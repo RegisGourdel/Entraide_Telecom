@@ -1,0 +1,45 @@
+\subsection{Définition des processus}
+
+	On se donne une mesure de probabilité $\proba$ sur un espace probabilisé $\Omega$.
+	
+	\begin{defn}
+		Un \textbf{processus} $X$ est une fonction de $\Z$ vers l'ensemble des variables aléatoires (suite de v.a.).
+	\end{defn}
+	
+	\begin{defn}
+		Si $X$ est un processus tel que $\forall n, X_n \in L^1(\Omega)$.
+		On dit que $X$ est \textbf{stationnaire à l'ordre 1} si $\exists m_X \in \C, \forall n \in \Z, \esp(X_n) = m_X$.
+	\end{defn}
+	
+	\begin{defn}
+		Si $X$ et $Y$ sont $L^2$ (admettent des variances) leur covariance est définie par
+		$\Cov(X,Y) = \esp \left[ (X - \esp(X)) \overline{(Y - \esp(Y))} \right] = \esp(X^C \overline{Y^C})$.
+		D'après l'inégalité de Cauchy-Schwartz $\abs{\Cov(X,Y)} \leq \sqrt{\Var(X) \Var(Y)}$.
+	\end{defn}
+	
+	\begin{defn}
+		On dit que le processus $X$ est \textbf{stationnaire à l'ordre 2} si $\forall n \in \Z, X_n \in L^2(\Omega)$ et
+		$\forall k \in \Z, \forall n \in \Z, \Cov(X_{n + k},X_n) = \Cov(X_k,X_0)$.
+		En particulier la $X_n$ ont tous la même variance.
+	\end{defn}
+	
+	\begin{defn}
+		Les processus stationnaires au sens large (SSL) sont ceux stationnaires aux ordres 1 et 2.
+	\end{defn}
+	
+	\begin{defn}
+		Soit $X$ une processus stationnaire au second ordre.
+		On appelle \textbf{autocovariance} de $X$ la fonction, définie sur $\Z$, $R_k \colon k \mapsto \Cov(X_k,X_0) = \Cov(X_{n + k},X_n)$.
+		On en déduit $\forall k \in \Z, R_X(-k) = \overline{R_X(k)}$ et $R_X(0) \in \R_+$ avec $\forall k \in \Z, \abs{R_X(k)} \leq R_X(0)}$.		
+	\end{defn}
+	
+	\begin{defn}
+		Soit $X$ stationnaire du second ordre.
+		Si $R_X \in l^1$, on définit sa \textbf{densité spectrale de puissance} par $\forall \nu \in \intfo{-\frac{1}{2}}, S_X(\nu) := \sum_{k \in \Z} R_X(k) e^{-2i\pi \nu k} = \mathcal{F}(R_X)(\nu)$.
+		Elle est à valeurs réelles puisque $R_X$ est à symétrie hermitienne.
+	\end{defn}
+	
+	\begin{defn}
+	\textbf{Puissance d'un processus SSL} : norme $L^2$ au carré de $X_n$, noté $P_X$.
+	Elle ne dépend pas de $n$ et est donnée par $P_X = \esp \left( \abs{X}^2 \right) = 
+	\end{defn}

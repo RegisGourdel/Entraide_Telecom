@@ -1,0 +1,13 @@
+\subsection{Canal de propagation}
+
+	\begin{hyp}
+		Le bruit $b(t)$ est i.i.d. gaussien de moyenne nulle, de fonction d'autocorrélation $r_{bb}(\tau) := \esp(b(t + \tau) b(t))$ et satisfait $r_{bb}(\tau) = \frac{N_0}{2}$.
+	\end{hyp}
+	
+	\begin{pop}
+		Soit $x(t)$ le signal émis et $y(t)$ le signal reçu.
+		Le canal multi-trajets conduit à $y(t) = c_p(t) \star y(t) + b(t)$.
+	\end{pop}
+	
+	Lorsque $c_p(t) = \delta(t)$ le canal est appelé canal gaussien, car seul le bruit gaussien vient perturber la transmission.
+	Dans ce cas $y(t) = x(t) + b(t)$.

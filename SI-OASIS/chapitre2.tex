@@ -1,0 +1,60 @@
+\begin{pop}[Inégalité de Hölder]
+	\begin{itemize}
+	\item Si $u \in l^1$ et $v \in l^\infty$, alors $u \cdot v \in l^1$ et $\norme{u \cdot v}_1 \leq \norme{u}_1 \norme{v}_\infty$.
+	\item Si $u \in l^2$ et $v \in l^2$ alors $u \cdot v \in l^1$ et $\norme{u \cdot v}_1 \leq \norme{u}_2 \norme{v}_2$ (CS).
+	\end{itemize}
+\end{pop}
+
+\begin{pop}[Règles de convolution]
+	$\begin{array}{|c||c|c|c|}
+		\hline
+		* & l^1 & l^2 & l^\infty \\ \hline \hline
+		l^1 & l^1 & l^2 & l^\infty \\ \hline
+		l^2 & l^2 & l^\infty & - \\ \hline
+		l^\infty & l^\infty & - & - \\ \hline
+	\end{array}$
+	
+	On a aussi, à chaque fois, $\norme{u \star v}_\gamma \leq \norme{u}_\alpha \norme{v}_\beta$.
+\end{pop}
+
+\begin{defn}
+	Soit $u \in l^1$, sa transformée de Fourier à temps discret (\textbf{TFtD}) est $\mathcal{F}(u) = \hat{u} \colon \nu \mapsto \sum_{n \in \Z} u_n e^{-2i\pi \nu n}$.
+	Elle est continue, que ce soit sur $\intfo{-\frac{1}{2}}{\frac{1}{2}}$ ou sur $\R$.
+\end{defn}
+
+\begin{pop}
+	Soit $u,v \in l^1$, $\nu_0 \in \intfo{-\frac{1}{2}}{\frac{1}{2}}$, $\varphi$ une onde de Fourier sur $\Z$ de fréquence $\nu_0$, $m \in \Z$ et $\psi \colon x \mapsto e^{-2i\pi mx}$ une onde de Fourier sur $\intfo{-\frac{1}{2}}{\frac{1}{2}}$ de fréquence $-m$.
+	\begin{itemize}
+		\item La TFtD de l'impulsion en $m$ $(\delta_n^m)_n$ est une onde de Fourier de fréquence $-m$ sur $\intfo{-\frac{1}{2}}{\frac{1}{2}}$.
+		\item $\mathcal{F}(u \star v) = \hat{u} \cdot \hat{v}$.
+		\item $\mathcal{F}(u \cdot v) = \hat{u} \star \hat{v}$.
+		\item $\forall \nu \in \intfo{-\frac{1}{2}}{\frac{1}{2}}, (\mathcal{F}(\varphi \cdot u))(\nu) = \hat{u}(\nu - \nu_0)$.
+		\item Soit $u^m$ la $m$-translatée de $u$, $\mathcal{F} \left( u^m \right) = \hat{u} \cdot \varphi$, i.e. $\hat{u^m}(\nu) = \hat{u}(\nu) e^{-2i\pi m \nu}$.
+		\item Si $u$ est réelle, alors $\hat{u}$ est à symétrie hermitienne : $\hat{u}(-X) = \overline{\hat{u}(\nu)}$.
+		\item Si $u$ est symétrique alors $\hat{u}$ aussi.
+		\item Si $u$ est symétrique et réelle alors $\hat{u}$ aussi.
+	\end{itemize}
+\end{pop}
+
+\begin{pop}
+	Soit un SLI $T \colon l^\infty \to l^\infty$ et $h \in l^1$ sa R.I.
+	Si $u \in l^1$ et $v = T(u)$ alors : la réponse fréquentielle de $T$ est $\hat{h}$, $h \star u = v \in l^1$ et $\hat{v} = \hat{h} \hat{u}$.
+\end{pop}
+
+\begin{thm}
+	On peut étendre $\mathcal{F}$ de façon unique à $l^2$ et elle forme une bijection de $l^2$ sur $L^2 \left( \intfo{-\frac{1}{2}}{\frac{1}{2}} \right)$.
+	De plus, on a l'égalité de \textbf{Parseval} : $\forall u \in l^2, \norme{\hat{u}}_2 = \norme{u}_2$.
+\end{thm}
+
+\begin{thm}[\textbf{Inversion} de la TFtD]
+	Si $u \in l^2$ alors on a $\forall n \in \Z, u_n = \int_{-\frac{1}{2}}^{\frac{1}{2}} \hat{u}(\nu) e^{2i\pi n\nu} \diff \nu$.
+\end{thm}
+
+\begin{thm}
+	Soit $k \in \N$, on a $\left( \sum_{n \in \Z} \abs{n}^k \abs{u_n} < \infty \right) \implies \left( \hat{u} \in \cont^k \left( \intfo{-\frac{1}{2}}{\frac{1}{2}} \right) \right)$ et $\hat{u}^{(k)} = \hat{v^k}$ où $v_n^k = (-2i\pi n)^k u_n$.
+\end{thm}
+
+\begin{thm}
+	Si $u \colon \Z / N\Z \to \R$.
+	On note $\hat{u}$ sa transformée de Fourier discrète (\textbf{TFD}) définie sur $\Z / N\Z$ par $k \mapsto \sum_{n \in \Z / N\Z} u_n e^{-2i\pi \frac{k}{N}n}$.
+\end{thm}

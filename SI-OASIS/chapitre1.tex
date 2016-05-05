@@ -1,0 +1,100 @@
+\begin{defn}[Les signaux]
+	\begin{tabular}{rlcrl}
+	$\R$ & signaux à temps continu & $\qquad$ & $\Z$ & signaux à temps discret \\
+	$\R^2$ & image & $\qquad$ & $\Z^2$ & image échantillonnée \\
+	tore $\R / \Z$ ou $\intfo{0}{1}$ & signaux 1-périodiques & $\qquad$ & $\Z / n\Z$ & signaux discrets finis
+	\end{tabular}
+\end{defn}
+
+\begin{defn}
+	Soit $(u_n)_n \in \C^\N$ et $m \in \Z$.
+	La suite $v$ est la $m$-\textbf{translatée} de $u$ si $\forall n \in \Z, v_n = u_{n - m}$.
+\end{defn}
+
+\begin{defn}
+	Soit $T$ une application de $V$ dans $W$, des s-ev de suites invariants par translation.
+	On dit que $T$ est un système linéraire invariant (\textbf{SLI}) si $T$ est linéaire et invariante par translation, i.e. si $v$ est la $m$-translatée de $u$ alors $T(v)$ est la $m$-translatée de $T(u)$.
+\end{defn}
+
+\begin{defn}
+	Soit $u$ et $v$ deux suites, leur \textbf{produit de convolution} est la suite de terme général $(u \star v)_n = \sum_{m \in \Z} u_m v_{n-m}$.
+\end{defn}
+
+\begin{pop}
+	La convolution est commutative, associative, linéraire et invariante par décalage (de l'une des deux suites).
+\end{pop}
+
+\begin{thm}
+	$T$ est un SLI entre $V$ et $W$ si et seulement s'il existe une suite $h$ telle que $\forall u \in V, T(u) = u \star h$.
+	$h$ est appelée \textbf{réponse impulsionnelle} de $T$.
+\end{thm}
+
+\begin{ex}
+	Si $V = W = l^\infty$ et $\forall v \in V, \lim_N T \left( V^N \right) = 0$ où $v_n^N =
+		\left\{\begin{array}{rl}
+			0 & \text{ si } \abs{n} < n \\
+			v_n & \text{ sinon}
+		\end{array}\right.$
+	alors $h \in l^1$.
+	Si $V = l^2$ et $W = l^\infty$ alors $h \in l^2$.
+	Si $V = W = l^1$ alors $h \in l^1$.
+	Si $V = l^1$ et $W = l^\infty$ alors $h \in l^\infty$.
+	Si $V = W$ l'ensemble des suites à support fini alors $h$ y appartient aussi.
+\end{ex}
+
+\begin{pop}[Caractérisation des \textbf{ondes de Fourier} sur $\Z$]
+	$$\exists \nu \in \intfo{-\frac{1}{2}}{\frac{1}{2}}, u_n = e^{2i\pi \nu n} \iff
+	\left\{\begin{array}{l}
+		\text{Pout tout SLI } T, \exists C \in \C, T(u) = Cu \\
+		u \in l^\infty \text{ et } u_0 = 1
+	\end{array}\right.$$
+	On appelle $\nu$ la fréquence de la suite harmonique $u$ (réductible à $\intfo{-\frac{1}{2}}{\frac{1}{2}}$).
+	Si $\nu$ convient dans la formule ci-dessus alors tout $\nu + m$ avec $m \in \Z$ convient aussi.
+\end{pop}
+
+\begin{pop}
+	Soit $T$ un SLI de RI $h$.
+	Pour chaque suite harmonique de fréquence $\nu$, noté $u^\nu$, on sait par ce qui précède que $\exists C(\nu) \in \C, T(u^\nu) = C(\nu)u^\nu$.
+	$C(\nu) = \sum_{n \in \Z} h_n u^\nu_{-n} = \sum_{n \in \Z} h_n e^{-2i\pi \nu n}$ est appelé gain fréquentiel de $T$.
+\end{pop}
+
+Toutes les propositions précédentes sur les suites sont vraies pour les fonction en adaptant les énoncés.
+
+\begin{defn}
+	$\forall f \colon \R \to \C, \forall x$ la $x$-translatée de $f$ est $f_x \colon y \mapsto f(y - x)$.
+\end{defn}
+
+\begin{defn}
+	On appelle onde de Fourier sur $\R$ toute fonction $f$ telle que $\exists \nu \in \R, \forall x \in \R, f(x) = e^{2i\pi \nu x}$, $\nu$ est sa fréquence.
+\end{defn}
+
+\begin{pop}
+	Si $T$ est un SLI sur $\R$ et $f$ une onde de Fourier, alors $\exists C \in \C, T(f) = Cf$.
+\end{pop}
+
+	\begin{defn}
+	Si $T$ est un SLI qui admet des ondes de Fourier en entrée, alors on appelle \textbf{réponse en fréquence} (ou \textbf{gain fréquentiel}) de $T$ la fonction $C$ sur $\R$ telle que $\forall \nu \in \R, T(f^\nu) = C(\nu) f^\nu$ où $f^\nu$ est l'onde de Fourier de fréquence $\nu$.
+\end{defn}
+
+\begin{defn}
+	\textbf{Signaux finis périodiques} : définis sur $\Z / N\Z$ où $N \in \N^*$.
+\end{defn}
+
+\begin{defn}
+	Si $u$ est un signal fini périodique et $m \in \Z / N\Z$, on appelle $m$-translatée de $u$ la suite $v$ définie par $v_n = u_{n - m}$ où $n - m$ est pris dans $\Z / N\Z$.
+\end{defn}
+
+\begin{defn}
+	Tout SLI $T$ de l'espace des signaux finis périodiques est de la forme $(u)_n \mapsto \sum_{m = 0}^{N - 1} u_m h_{n - m}$ (convolution) où $h$ est appelée réponse impulsionnelle de $T$.
+	Leurs ondes de Fourier sont de la forme $\phi \colon n \mapsto e^{2i\pi \frac{k}{N} n}$ où $k \in \Z / N\Z$.
+	Leur fréquence est $\frac{k}{N}$ et un gain fréquentiel $C(\nu)$ leur est associé.
+\end{defn}
+
+\begin{defn}
+	\textbf{Signaux ($1$-)périodiques} : définis sur $\intfo{-\frac{1}{2}}{\frac{1}{2}}$. Les opérations y sont faites modulo 1.
+\end{defn}
+
+\begin{defn}
+	Si $f$ est un signal périodique et $x \in \intfo{-\frac{1}{2}}{\frac{1}{2}}$, on appelle $x$-translatée de $f$ la fonction sur $\intfo{-\frac{1}{2}}{\frac{1}{2}}$, $f_x \colon y \mapsto f(y - x)$.
+	Les SLI y sont des convolutions par $\int_{-\frac{1}{2}}^{\frac{1}{2}}$ et les ondes de Fourier de la forme $x \mapsto e^{2i\pi kx}$ où $k \in \Z$.
+\end{defn}

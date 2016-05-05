@@ -1,0 +1,95 @@
+On montrera ici que la probabilité d'erreur peut être rendue artificiellement faible pour peu que $R$ ne dépasse pas un certain seuil et sous l'hypothèse que $k$ et $n$ tendent vers l'infini.
+
+\subsection{Entropie et information mutuelle}
+
+	\begin{defn}
+		Soit $X$ une v.a. sur $\mathcal{X}$ fini avec loi de probabilité $\proba_X$.
+		Son \textbf{entropie} est $H(X) := - \sum_{x \in \mathcal{X}} \proba_X(x) \log_2(\proba_X(x))$ avec, par convention, $0 \cdot \log_2(0) = 0$.
+	\end{defn}
+
+	L'entropie permet de capter le degré d'incertitude contenue dans une variable aléatoire.
+	Elle ne dépend pas des valeurs prises, mais seulement des probabilités associées.
+
+	\begin{thm}[Valeurs extrêmes de l'entropie]
+		Pour toute v.a. $X$ sur $\mathcal{X}$ fini, on a
+		\vspace{-0.2cm}
+		$$0 \leq H(X) \leq \log_2 (\abs{\mathcal{X}})\ .\vspace{-0.2cm}$$
+		En outre $H(X) = 0$ si et seulement si $X$ est déterministe et $H(X) = \log_2 (\abs{\mathcal{X}}) \iff X \sim \mathcal{U}(\mathcal{X})$.
+	\end{thm}
+
+	\begin{defn}
+		La fonction d'\textbf{entropie binaire} est définie par $H_{\mathrm{b}}(p) := -p \log_2(p) - (1 - p) \log_2(1 - p)$ où $p \in \inff{0}{1}$.
+		Donc $H_{\mathrm{b}}(p) = H(X)$ si $X \sim \mathcal{B} \left( p \right)$.
+	\end{defn}
+
+	\begin{defn}
+		Soit $X$ et $Y$ deux v.a. sur $\mathcal{X}$ et $\mathcal{Y}$ discrets avec $\proba_{XY}$ comme loi de probabilité conjointe.
+		Leur \textbf{entropie conjointe} est définie comme $H(X,Y) := - \sum_{x \in \mathcal{X}, y \in \mathcal{Y}} \proba_{XY}(x,y) \log_2 \left( \proba_{XY}(x,y) \right)$.
+	\end{defn}
+
+	L'entropie conjointe est symétrique et on retrouve $H(X,X) = H(X)$.
+
+	\begin{thm}[Valeurs extrêmes de l'entropie conjointe]
+		Pour toute paire de v.a. $X$ et $Y$ sur $\mathcal{X}$ et $\mathcal{Y}$ discrets, on a
+		\vspace{-0.2cm}
+		$$\max \{ H(X), H(Y) \} \leq H(X,Y) \leq H(X) + H(Y)\ .\vspace{-0.2cm}$$
+		En outre $H(X,Y) = H(X) \iff Y = g(X)$ avec $g$ quelconque, et $H(X,Y) = H(X) + H(Y) \iff X \indep Y$.
+	\end{thm}
+
+	\begin{defn}
+		L'\textbf{entropie conditionnelle} de $X$ sachant $Y$ est\\
+		$H(x \mid Y) := \sum_{y \in \mathcal{Y}} \proba_Y(y) H(X \mid Y = y) = - \sum_{x \in \mathcal{X}} \sum_{y \in \mathcal{Y}} \proba_{XY}(x,y) \log_2(\proba_{X \mid Y} (x \mid y))$.
+	\end{defn}
+
+	\begin{pop}[Valeurs extrêmes de l'entropie conditionnelle]
+		Pour toute paire de v.a. $X$ et $Y$ sur $\mathcal{X}$ et $\mathcal{Y}$, on a
+		$0 \leq H(X \mid Y) \leq H(X)$.
+		En outre $H(X \mid Y) = 0 \iff X = f(Y)$ avec $f$ une fonction quelconque, et $H(X,Y) = H(X) \iff X \indep Y$.
+	\end{pop}
+
+	\begin{pop}[Règle de chaînage (\textit{chain rule})]
+		$H(X,Y) = H(Y) + H(X \mid Y) = H(X) + H(Y \mid X)$ pour n'importe quel $X$ et $Y$.
+	\end{pop}
+
+	\begin{defn}
+		L'\textbf{information mutuelle} de $X$ et $Y$ est $I(X;Y) := H(X) + H(Y) - H(X,Y) = H(X) - H(X \mid Y) = H(Y) - H(Y \mid X)$.
+	\end{defn}
+
+	Cette information mutuelle (car symétrique) permet de quantifier l'information commune entre $X$ et $Y$.
+
+	\begin{pop}[Valeurs extrêmes de l'information mutuelle]
+		Pour toute paire de v.a. $X$ et $Y$ sur $\mathcal{X}$ et $\mathcal{Y}$ finis, on a
+		$0 \leq I(X;Y) \leq \min \{ H(X),H(Y) \}$.
+		En outre $I(X;Y) = 0 \iff X \indep Y$, et $I(X;Y) = H(X) \iff X = f(Y)$ avec $f$ une fonction quelconque.
+	\end{pop}
+
+\subsection{Définition et théorème de la capacité pour le DMC}
+
+	\begin{note}
+		On note $f^{(n)}$ et $g^{(n)}$ les fonctions de codage et décodage pour indiquer la taille des blocs.
+		On les inclut dans la définition des codes, qui sont alors spécifiés par $(n,k,f^{(n)},g^{(n)})$.
+	\end{note}
+
+	On considère les probabilités d'erreur en bloc $P_e^{(n)} := \proba \left( (D_1,\ldots,D_k) \neq (\hat{D}_1,\ldots,\hat{D}_k) \right)$.
+
+	\begin{defn}
+		Un taux $R > 0$ est dit atteignable sur un DMC $(\mathcal{X},\mathcal{Y},\proba_{Y \mid X})$ s'il existe une suite $\left( n,k = \lfloor nR \rfloor, f^{(n)}, g^{(n)} \right)_{n \in \N^*}$ de codes, telle que $P_e^{(n)} \underset{n \to \infty}{\longrightarrow} 0$.
+	\end{defn}
+
+	\begin{defn}
+		La \textbf{capacité} $C$ d'un DMC $(\mathcal{X},\mathcal{Y},\proba_{Y \mid X})$ est $C = \max_{\proba_X} I(X;Y)$
+		où la maximisation se fait sur toutes les lois de probabilité de $X$ et où $Y \sim \proba_{X \mid Y}(\cdot \mid X)$.
+		Donc, dans cette expression, la paire $(X,Y)$ suit la loi de probabilité $\proba_{XY}(x,y) = \proba_X(x) \proba_{Y \mid X}(x \mid Y)$.
+	\end{defn}
+	
+	\begin{thm}[Théorème de Shannon de la capacité]
+		Pour un DMC $(\mathcal{X},\mathcal{Y},\proba_{Y \mid X})$ : tous les débits $0 < R < C$ sont atteignables et aucun débit $R > C$ ne l'est.
+	\end{thm}
+
+	\begin{pop}
+		La capacité d'un $\mathrm{BSC}(p)$ est égale à $C_{\mathrm{BSC}(p)} = 1 - H_{\mathrm{b}}(p)$.
+	\end{pop}
+
+	\begin{pop}
+		La capacité d'un $\mathrm{BEC}(\epsilon)$ est égale à $C_{\mathrm{BEC}(\epsilon)} = 1 - \epsilon$.
+	\end{pop}
