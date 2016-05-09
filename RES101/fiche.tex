@@ -20,13 +20,13 @@
 
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
-\fancyfoot[C]{\tiny Ilyass \bsc{El Mansouri} - Télécom ParisTech}
+\fancyfoot[C]{\tiny{Che Bedara - BDE Télécom ParisTech}}
 \fancyfoot[RO]{\thepage}
 \fancyfoot[LE]{\thepage}
 
-\title{\vspace{-1.2cm} Fiche RES101}
-\date{\today}
-\author{Ilyass \bsc{El Mansouri}}
+\title{\vspace{-1.1cm} \textbf{Fiche de RES101} \vspace{-1.1cm}}
+\date{}
+\author{}
 
 \begin{document}
 
@@ -56,7 +56,7 @@
 		\item Chaque couche ne peut communiquer qu'avec une couche adjacente. (Envoi de données : de haut en bas $\neq$ Réception de données : de bas en haut).
 	\end{itemize}
 
-	\textbf{Principe de l'architectecture des couches :}
+	\textbf{Principe de l'architecture des couches :}
 	\begin{itemize}
 		\item Les unités de données échangées : \textbf{SDU}.
 		\item Les unités de données manipulées \textbf{PDU} (= SDU + \textbf{PCI} (champs spécifique au control du protocole)).
@@ -89,8 +89,8 @@
 
 	\textbf{CSMA/CSMA-CD : Protocoles à détection de porteuse} : les stations adapent leur comportement à l'activité du canal (si occupé, il ne faut pas émettre, et s'il est libre on transmet). Plusieurs types :
 	\begin{itemize}
-		\item CSMA 1-persistant : Lorsque le canal est libre, l'émission se fait avec une probabilité 1 $\longrightarrow$ proba de collision élevé si le traffic est important.
-		\item CSMA non persistant : si canal occupé on introduit une attente aléatoire en plus $\longrightarrow$ proba de collision réduite.
+		\item CSMA 1-persistant : Lorsque le canal est libre, l'émission se fait avec une probabilité 1 $\longrightarrow$ proba de collision élevé si le trafic est important.
+		\item CSMA non persistant : si canal occupé on introduit une attente aléatoire en plus $\longrightarrow$ probabilité de collision réduite.
 		\item CSMA p-persistent : si le canal n'est pas occupé on émet avec une probabilité $p$ (plus le nombre de stations est important, plus faible doit être $p$ et donc plus important est le délai).
 		\item CSMA-CD : on peut émettre et sonder le signal simultanément, lorsqu'une collision est détectée, la transmission en cours est interrompu + Choix de la période d'attente (Binary Exponential Backoff BEB) : Après $i$ collision on attend de façon aléatoire entre $0$ et $2^{i}-1$.
 			\includegraphics[scale=0.4]{CD.png}
@@ -99,8 +99,8 @@
 
 	\textbf{Ethernet}
 	\begin{itemize}
-		\item Cable croisées à 8 fils (on utilise courrament 4 fils, deux à l'émission et deux à la transmission).
-		\item Les cables sont torsadés.
+		\item Cable croisées à 8 fils (on utilise couramment 4 fils, deux à l'émission et deux à la transmission).
+		\item Les câbles sont torsadés.
 		\item La sortie est en général en RJ45.
 			\includegraphics[scale=0.4]{RJ.png}
 		\item Deux types de codage: codage en bande de base (narmol) et le codage de Manchester :
@@ -139,15 +139,16 @@
 	avec : 
 	\begin{itemize}
 		\item $\alpha$ : le coefficient d'atténuation (entre le vide et l'urbain)
-		\item $a_{shadowing}$ : effet de masque (objet entre émetteur et récepteur)
-		\item $a_{fading}$ : évanouissements rapide (variations raides du canal)
+		\item $a_{\text{shadowing}}$ : effet de masque (objet entre émetteur et récepteur)
+		\item $a_{\text{fading}}$ : évanouissements rapide (variations raides du canal)
 	\end{itemize}
 	
 	\textbf{Wi-Fi} - 2 bandes : 
 	\begin{itemize}
-		\item Entre 2.4 et 2.48GHz (avec 13 canaux en Europe)
-		\item Entre 5.15 et 5.35GHz : pour les radars météo et les usages militaires.
-		\item \textbf{CSMA/CA} : On écoute avant d'émettre. Quand le medium est libre, on attend un délai fixe avant d'émettre.
+		\item Entre 2.4 et 2.48 GHz (avec 13 canaux en Europe)
+		\item Entre 5.15 et 5.35 GHz : pour les radars météo et les usages militaires.
+		\item \textbf{CSMA/CA} : On écoute avant d'émettre.
+			Quand le médium est libre, on attend un délai fixe avant d'émettre.
 	\end{itemize}
 	
 	
@@ -175,9 +176,9 @@
 	\begin{itemize}
 		\item \textbf{Classe A :} Le premier octet a une valeur comprise entre 1 et 126 ; soit un bit de poids fort égal à 0. Ce premier octet désigne le numéro de réseau et les 3 autres correspondent à l'adresse de l'hôte $\longrightarrow$ de \texttt{1.xxx.xxx.xxx} à \texttt{126.xxx.xxx.xxx}
 		\item \textbf{Classe B :} Le premier octet a une valeur comprise entre 128 et 191 ; soit 2 bits de poids fort égaux à 10. Les 2 premiers octets désignent le numéro de réseau et les 2 autres correspondent à l'adresse de l'hôte $\longrightarrow$ de \texttt{128.0.xxx.xxx} à \texttt{191.255.xxx.xxx}
-		\item \textbf{Classe C :} Le premier octet a une valeur comprise entre 192 et 223 ; soit 3 bits de poids fort égaux à 110. Les 3 premiers octets désignent le numéro de réseau et le dernier correspond à l'adresse de l'hôte. $\longrightarrow$ de \texttt{192.0.0.xxx} à \texttt{223.255.255.xxx}
-		\item \textbf{Classe D :} Le premier octet a une valeur comprise entre 224 et 239 ; soit 3 bits de poids fort égux à 111. Il s'agit d'une zone d'adresses dédiées aux services de multidiffusion vers des groupes d'hôtes (host groups). $\longrightarrow$ de \texttt{224.xxx.xxx.xxx} à \texttt{239.xxx.xxx.xxx}
-		\item \textbf{Classe E : }Le premier octet a une valeur comprise entre 240 et 255. Il s'agit d'une zone d'adresses réservées aux expérimentations. Ces adresses ne doivent pas être utilisées pour adresser des hôtes ou des groupes d'hôtes.$\longrightarrow$ de \texttt{240.xxx.xxx.xxx} à \texttt{255.xxx.xxx.xxx}
+		\item \textbf{Classe C :} Le premier octet a une valeur comprise entre 192 et 223 ; soit 3 bits de poids fort égaux à 110. Les 3 premiers octets désignent le numéro de réseau et le dernier correspond à l'adresse de l'hôte $\longrightarrow$ de \texttt{192.0.0.xxx} à \texttt{223.255.255.xxx}
+		\item \textbf{Classe D :} Le premier octet a une valeur comprise entre 224 et 239 ; soit 3 bits de poids fort égux à 111. Il s'agit d'une zone d'adresses dédiées aux services de multidiffusion vers des groupes d'hôtes (host groups) $\longrightarrow$ de \texttt{224.xxx.xxx.xxx} à \texttt{239.xxx.xxx.xxx}
+		\item \textbf{Classe E : }Le premier octet a une valeur comprise entre 240 et 255. Il s'agit d'une zone d'adresses réservées aux expérimentations. Ces adresses ne doivent pas être utilisées pour adresser des hôtes ou des groupes d'hôtes $\longrightarrow$ de \texttt{240.xxx.xxx.xxx} à \texttt{255.xxx.xxx.xxx}
 	\end{itemize}
 
 	\includegraphics[scale=0.38]{masq.png}
@@ -191,16 +192,16 @@
 		\item indiquer tous les autres réseaux que je ne peux pas encore joindre avec les deux étapes précédentes.
 	\end{itemize}
 
-	\textbf{Le protocole ARP :} On veut connaître le chemin pour envoyer un message à une machine, sauf que l'on a pas son adresse MAC, il existe un protocole pour remédier à cela : ARP
+	\textbf{Le protocole ARP :} On veut connaître le chemin pour envoyer un message à une machine, sauf que l'on a pas son adresse MAC, il existe un protocole pour remédier à cela : ARP.
 	\begin{itemize}
-		\item On envoie un message de broadcast, en demandant à la personne dont on connait l'adresse IP de nous envoyer son adresse MAC : C'est la requête ARP
-		\item Sauf que si on envoie une requête à chaque fois que l'on veut transmettre un message on risque de saturer le réseau, d'ou la \textbf{table ARP}
-		\item la table ARP garde en mémoire provisoirement les relation adresse MAC $\longleftrightarrow$ adresse IP, la table est dynamique, elle la garde en mémoire environ 2 minutes.
+		\item On envoie un message de \emph{broadcast}, en demandant à la personne dont on connait l'adresse IP de nous envoyer son adresse MAC : c'est la requête ARP.
+		\item Sauf que si on envoie une requête à chaque fois que l'on veut transmettre un message on risque de saturer le réseau, d'où la \textbf{table ARP}.
+		\item la table ARP garde en mémoire provisoirement les relation \texttt{adresse MAC $\longleftrightarrow$ adresse IP}, la table est dynamique, elle la garde en mémoire environ 2 minutes.
 		\end{itemize}
 		\textbf{Le serveur DHCP} : On se rend donc bien compte qu'il serait bien d'avoir un mécanisme rapide et fiable pour adresser les machines d'un réseau. C'est là qu'entre en jeu le protocole DHCP.
 		\begin{itemize}
 		\item La première fonction d'un serveur DHCP est de fournir des adresses IP  aux machines en faisant la demande.
-		\item Demande en broadcast en passant par l'adresse MAC : \texttt{ff:ff:ff:ff:ff:ff}
+		\item Demande en \emph{broadcast} en passant par l'adresse MAC : \texttt{ff:ff:ff:ff:ff:ff}
 			\includegraphics[scale=0.4]{dhcp.png}
 	\end{itemize}
 	
@@ -212,27 +213,26 @@
 \section*{Couche de transport}
 
 	Deux principaux protocoles de transport : \textbf{TCP} et \textbf{UDP}.
-	UDP : User Datagram Protocol 
+	UDP : User Datagram Protocol .
 	\begin{itemize}
-		\item Très simple, aucune garranti que les messages arrivent ou arrivent dans l'ordre, mais les performances sont élevé (utilisé par exemple pour skype), 
-		\item Utilisé beaucoup en téléphone IP et en DHCP
+		\item Très simple, aucune garantie que les messages arrivent ou arrivent dans l'ordre, mais les performances sont élevé (utilisé par exemple pour skype, le streaming,...).
+		\item Utilisé beaucoup en téléphone IP et en DHCP.
 	\end{itemize}
 	
 	TCP : Transmission Control Protocol.
-	
 	\begin{itemize}
 		\item En 3 étapes : établissement de la connexion, transfert de données et fin de la connexion.
-		\item Pendant la phase d'établissement de la connexion, des paramètres comme le numéro de séquence sont initialisés afin d'assurer la transmission fiable (sans perte et dans l'ordre) des données.
-		\item Structure du segment TCP 
+		\item Pendant la phase d'établissement de la connexion, des paramètres comme le numéro de séquence sont initialisés afin d'assurer une transmission fiable (sans perte et dans l'ordre) des données.
+		\item Structure du segment TCP.
 		\includegraphics[scale=0.28]{tc.png}
-		\item \textbf{Etablissement d'une connexion :} un système ouvre une 'socket' et attend une demande de connexion d'un autre système, après c'est le 'three-way handshake'
-			\includegraphics[scale=0.28]{hand.png}
+		\item \textbf{Établissement d'une connexion :} un système ouvre une \emph{socket} et attend une demande de connexion d'un autre système, après c'est le \emph{three-way handshake}.
+			\includegraphics[scale=0.27]{hand.png}
 		\item \textbf{Transfert de données :}
-			certains mécanismes clefs permettent d'assurer la robustesse et la fiabilité de TCP.
+			certains mécanismes cléss permettent d'assurer la robustesse et la fiabilité de TCP.
 			En particulier, les numéros de séquence sont utilisés afin d'ordonner les segments TCP reçus et de détecter les données perdues, les sommes de contrôle permettent la détection d'erreurs, et les acquittements ainsi que les temporisations permettent la détection des segments perdus ou retardés.
 			\includegraphics[scale=0.28]{trans.png}
 		\item \textbf{Terminaison d'une connexion :}
-			la phase de terminaison d'une connexion utilise un handshaking en quatre temps, chaque extrémité de la connexion effectuant sa terminaison de manière indépendante.
+			la phase de terminaison d'une connexion utilise un \emph{handshaking} en quatre temps, chaque extrémité de la connexion effectuant sa terminaison de manière indépendante.
 			Ainsi, la fin d'une connexion nécessite une paire de segments FIN et ACK pour chaque extrémité.
 			\includegraphics[scale=0.28]{term.png}
 		\item \textbf{Contrôle de flux :}
@@ -247,14 +247,15 @@
 
 \section*{Le service DNS}
 
-	Indispensable au fonctionnement d'internet : Domain Name System. Un nom de domaine se décompose en plusieurs parties.
+	Domain Name System $\leftarrow$ indispensable au fonctionnement d'internet.
+	Un nom de domaine se décompose en plusieurs parties.
 	\begin{itemize}
 		\item l'extension en premier : on parle de Top Level Domain.
-			Il existe des TLD nationaux (fr, it, de, es, etc.) et les TLD génériques (com, org, net, biz, etc.)
+			Il existe des TLD nationaux (fr, it, de, es, etc.) et les TLD génériques (com, org, net, biz, etc...).
 			\includegraphics[scale=0.45]{dns.png}
 		\item Le système de noms de domaine est géré par un organisme américain appelé l'ICANN.
 			L'ICANN est responsable de la gestion des 13 serveurs DNS qui gèrent la racine du DNS.
-			Ces 13 serveurs connaissent les adresses IP des serveurs DNS gérant les TLD (les .fr, .com; org, etc.)
+			Ces 13 serveurs connaissent les adresses IP des serveurs DNS gérant les TLD (les .fr, .com, org, etc...).
 	\end{itemize}
 
 \end{document}

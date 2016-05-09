@@ -1,0 +1,457 @@
+\documentclass[9pt,a4paper,twocolumn]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage[left=1.6cm,right=1.6cm,top=1.3cm,bottom=1.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{framed}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+
+\usepackage{listings}
+\lstset{
+    language=C, 
+    breaklines=true,
+    basicstyle={\ttfamily},
+    keywordstyle={\color{gray}},
+    morekeywords={func,sem_t,pid_t}
+}
+
+\pagestyle{fancy}
+
+%opening
+\title{\vspace{-1.1cm} \textbf{Fiche d'INF104} \vspace{-1.1cm}}
+\author{}
+\date{}
+
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\tiny Che Bedara - BDE Télécom ParisTech}
+\fancyfoot[RO]{\thepage}
+\fancyfoot[LE]{\thepage}
+
+%\setlength{\columnseprule}{0.3pt} 
+\setlength{\columnsep}{0.5cm}
+\setlength{\textwidth}{17.5cm}
+
+
+\begin{document}
+
+\maketitle
+
+    Les machines actuelles stockent les instructions du programme et ses données dans le même espace (Von Neumann).
+
+
+\section{Fork et processus}
+
+    Processus sous {UNIX}, 3 zones mémoires:
+    \begin{itemize}
+        \item code exécutable (text segment)
+        \item pile de données (stack segment)
+        \item données statiques (data segment)
+    \end{itemize}
+
+    Lors d'un appel à \texttt{fork}, \texttt{stack}, \texttt{data} et le pointeur sur \texttt{text} sont copiés pour le nouveau processus.
+
+    Attention à la cascade de \texttt{fork} si on ne fait pas attention au processus dans lequel on l'appelle.
+
+
+\section{Ordonnancement}
+
+    \subsection{Politiques avec file}
+    Dans ces politiques, on applique l'algorithme pour l'attribution d'un seul quantum et on le remet dans la file.
+    \begin{itemize}
+        \item \emph{First Come First Served}: file classique
+        \item \emph{Shortest Job First}: file de priorité sur la durée d'exécution 
+        \item \emph{} Priorité définie par l'utilisateur (avec vieillissement pour éviter la famine).
+        \item \emph{PAPS}: file de priorité élu par priorité puis par ordre d'arrivée.
+    \end{itemize}
+
+    \subsection{Politiques de type tourniquet}
+
+    Dans ces politiques, on reprend les précédentes, mais en planifiant à l'avance les quantums pour que tous les processus aient un quantum prévu (attente bornée).
+    Elles permettent d'éviter la famine.
+    \begin{itemize}
+        \item \emph{Round Robin}: découpe en quantum de temps et les distribue de manière uniforme aux processus.
+        \item \emph{Round Robin within priority}: découpe en quantum de temps distribués en fonction des priorités.
+    \end{itemize}
+
+    \subsection{Implémentations}
+
+    Pour {UNIX}: \emph{Round robin with priority} avec priorité dynamique (dépend du type d'interruption).
+
+
+\section{Sémaphore}
+
+    \subsection{Principe}
+    Objectif: contrôler l'exécution de deux acteurs indépendants.
+
+    C'est un objet muni d'un \emph{compteur} qui indique le nombre de jetons disponible ou en attente et d'une \emph{file d'attente} de processus. 
+
+    Opération (métaphore du panier): 
+    \begin{itemize} 
+        \item \textbf{P}: prendre un jeton
+        \item \textbf{V}: rendre un jeton
+    \end{itemize}
+
+    \textbf{P} bloque tant qu'il n'y a pas de jeton. 
+
+    Attention situation d'interblocage et safety (variables partagées, etc)
+
+    \subsubsection{Section critique}
+
+    Sémaphore initialisé à $1$, jeton pris au début de la section critique et relâché à la fin. Un seul accès possible à la fois. 
+
+    \subsubsection{Rendez-vous}
+
+    \texttt{x} et \texttt{y} initialisés à $0$.
+
+    \begin{multicols}{2}
+        \texttt{PROCESSUS 1}
+        \begin{lstlisting}
+P (x)
+V (y)
+        \end{lstlisting}
+
+        \columnbreak{}
+        
+        \texttt{PROCESSUS 2}
+        \begin{lstlisting}
+V (x)
+P (y)
+        \end{lstlisting}
+    \end{multicols}
+
+    \subsubsection{Producteur consommateur}
+
+    Synchronisation entre une source et un client. Exemple d'utilisation: les pipes.
+    On trouve généralement une version améliorée de ce principe avec plusieurs cases, en initialisant le sémaphore du producteur à $N$ et du consommateur à $0$.
+    Note: c'est un rendez-vous avec une opération au milieu.
+
+    \begin{multicols}{2}
+        \texttt{PRODUCTEUR}
+        \begin{lstlisting}
+P (x) 
+ecrire donnees
+V (y)
+        \end{lstlisting}
+        \columnbreak{}
+        \texttt{CONSOMMATEUR}
+        \hspace{0cm}
+        \begin{lstlisting}
+P (y) 
+read data
+V (x) 
+        \end{lstlisting}
+    \end{multicols}
+
+
+    \subsubsection{Barrière}
+
+    \texttt{x} initialisé à $1$, \texttt{barriere} à $0$.
+
+    \begin{lstlisting}[frame=shadowbox]
+P (x)
+if (nb < N-1)
+    nb++
+else for (i=1 to N) 
+    V (barriere)
+    nb--
+V (x)
+
+P (barriere)
+    \end{lstlisting}
+
+    \subsubsection{Lecteur-\'ecrivain}
+
+    \texttt{o,x,y} initialisé à $1$.
+
+    \texttt{LECTEUR}
+    \begin{lstlisting}[frame=shadowbox]
+P (o)
+V (o)
+
+P (x)
+    if nb_lecteur = 0
+        P (y)
+    nb_lecteur++
+V (x)
+
+lecture
+
+P (x)
+    if nb_lecteur = 1
+        V (y)
+    nb_lecteur--
+V (x)
+    \end{lstlisting}
+
+
+    \texttt{ECRIVAIN}
+    \begin{lstlisting}[frame=shadowbox]
+P (o)
+P (y)
+
+ecriture
+
+V (o)
+V (y)
+    \end{lstlisting}
+
+    \subsubsection{Dangers à vérifier}
+
+    \begin{itemize}
+        \item Famine (attente indéfinie)
+        \item Interblocage
+        \item Taille des sections critiques
+    \end{itemize}
+
+    \subsection{Solutions logicielles}
+
+    Dans la suite, $i=0$ et $j=1$ désignent les deux processus.
+
+    \subsubsection{Algorithme de Dekker}
+
+    L'idée est d'introduire un ordre pour distinguer les deux processus.
+    \begin{lstlisting}[frame=shadowbox]
+etat[i] = 1
+
+while etat[j] = 1
+    if tour = j
+        etat[i] = 0
+        while tour = j {}
+        
+        etat[i] = 1;
+tour = j
+etat[i] = 0
+    \end{lstlisting}
+
+    \subsubsection{Algorithme de Peterson}
+
+    On manipule une variable par processus pour l'accès.
+    \begin{lstlisting}[frame=shadowbox]
+etat[i] = 1
+tour = j
+
+// Faire passer j s'il veut y aller
+while (etat[j] = 1) 
+   && (tour == j) {} 
+
+// section critique
+
+etat[i] = 0
+    \end{lstlisting}
+
+    \subsection{Pipe}
+
+    Modèle producteur-consommateur, deux utilisations en console:
+    \begin{itemize}
+        \item \texttt{programme-A | programme-B}, envoie la sortie de \texttt{programme-A} vers \texttt{programme-B}
+        \item \texttt{programme > fichier}, écrit la sortie de programme vers le fichier \texttt{fichier}
+    \end{itemize}
+
+    Tout ce qui devait être écrit dans la sortie console ne s'affiche plus et est écrit vers la destination. \textbf{[partiel 2014, Q3, processus et fichier]}
+
+    %TODO: utilisation de pipe P.184
+
+
+\section{Signaux}
+
+    Pour ignorer des signaux, on utilise \texttt{signal} avec le numéro du signal et l'argument \texttt{SIG\_IGN}. Sinon, \texttt{signal (sig, \&fonction)} avec \texttt{fonction} une fonction de type \texttt{void fonction (int)};
+
+    On utilise \texttt{kill} pour envoyer des signaux:
+    \begin{itemize}
+        \item \texttt{SIGKILL} (9)
+        \item \texttt{SIGALRM} (14)
+        \item \texttt{SIGUSR1} (16)
+        \item \texttt{SIGUSR2} (17)
+    \end{itemize}
+
+
+\section{Gestion des fichiers}
+
+    \subsection{Généralités}
+    Les informations sur les fichiers sont stockées dans un bloc nommée \emph{i-list}.
+    Chaque fichier est constitué de plusieurs blocs.
+    Sous système {POSIX} ({UNIX}, Linux, \ldots), même les périphériques sont exposés comme des fichiers.
+
+    \subsection{Alignement mémoire}
+
+    Les éléments des structures en mémoire sont alignées sur des multiples de $2$, $4$, $8$, \ldots
+    
+    \begin{lstlisting}[frame=shadowbox]
+        struct noalign {
+            char c;     // 1
+            double d;   // 8
+            int i;      // 4
+            char c3[3]; // 3
+        }
+    \end{lstlisting}
+
+    Ici, le système rajoute $7$ octets de rembourrage entre c et d, et un octet après $c3$, ce qui fait une structure de 24 octets.
+    En mettant c en dessous de $c3$, on corrige le problème, et la structure n'en fait plus que $16$ octets.
+
+
+\section{Partitions et mémoire}
+    
+    \subsection{Politiques}
+
+    On combine généralement ces politiques avec un ramasse-miette qui défragmente les partitions.
+
+    \begin{itemize}
+        \item \emph{First fit}: on utilise la première partition libre de taille suffisante.
+        \item \emph{Best fit}: on utilise la partition de taille la plus proche.
+        \item \emph{Worst fit}: on utilise la partition de taille la plus grande.
+    \end{itemize}
+
+    \textbf{Knuth:} Il y a toujours un tiers de blocs libres par rapport aux blocs occupés avec ces politiques.
+
+    \subsection{Mémoire virtuelle et pagination}
+
+    Les adresses sont constitués de deux parties: l'\emph{adresse physique} de la page et le \emph{déplacement} dans cette page (qui doit aller jusqu'à la taille de la page).
+    Pour les processus, il y a également une numérotation des \emph{pages logiques}, que le système associe ensuite à des pages physiques. Cela permet d'isoler les processus entre eux et abstraire la mémoire en virtualisant l'espace d'adressage.
+
+    Méthode d'accès: on transforme l'adresse de logique à physique, puis on récupère la donnée dans la page physique.
+
+    \subsection{Allocation des pages}
+
+    Pour les exercies sur les allocations, on fait un tableau page virtuelle à gauche, temps discret en haut, et page physique dans les cases.
+
+    \subsubsection{Stratégies}
+    \begin{itemize}
+        \item \emph{Least recently used}: on place les plus anciennement utilisées sur la mémoire lente.
+        \item \emph{Least frequently used}: on place les moins utilisées sur la mémoire lente.
+        \item \emph{First in first out}: on place les dernières créées sur la mémoire lente.
+    \end{itemize}
+
+
+\section{Mémo fonctions}
+
+    \subsection{Processus}
+
+    \begin{lstlisting}
+int fork ()
+    \end{lstlisting}
+
+    Cr\'ee un nouveau processus.
+    Retourne son pid dans le processus p\`ere, $0$ dans le fils, ou $-1$ en cas d'erreur.
+
+    \begin{lstlisting}
+int wait (int pid)
+    \end{lstlisting}
+
+    Attend la fin du processus de pid \texttt{pid}.
+    Retourne 0 si pas d'erreur, ou le num\'ero d'erreur.
+
+    \begin{lstlisting}
+int execv (char* filename, char* argv[])
+    \end{lstlisting}
+
+    Existe sous plusieurs formes.
+    Remplace le code à exécuter par le processus et la mémoire par celui du fichier, en remplissant le \texttt{argv} du \texttt{main} du programme cible.
+    Ne retourne qu'en cas d'erreur \emph{avant} le lancement.
+
+    \subsection{Sémaphores}
+
+    \begin{lstlisting}
+sem_t*  sem_open (const char* name, int options)
+    \end{lstlisting}
+    Déclare une nouvelle sémaphore de nom \texttt{name} (au format ``/nom''). 
+    \texttt{options} vaut \texttt{O\_CREAT} ou \texttt{O\_EXCL}, seul le 1er est utile ici.
+
+
+    \begin{lstlisting}
+int sem_wait (sem_t* sem)
+    \end{lstlisting}
+    \'Equivalent de l'opération \textbf{P}, prend un jeton ou bloque.
+    Retourne $0$ si aucune erreur, $-1$ sinon.
+
+
+    \begin{lstlisting}
+int sem_post (sem_t* sem)
+    \end{lstlisting}
+    \'Equivalent de l'opération \textbf{V}, rend un jeton et débloque un processus.
+    Retourne $0$ si aucune erreur, $-1$ sinon.
+
+    \subsection{Signaux}
+
+    \begin{lstlisting}
+int kill (int pid, int signal)
+    \end{lstlisting}
+    Envoie le signal \texttt{signal} au processus \texttt{pid}
+    Retourne $0$ si aucune erreur, $-1$ sinon.
+
+    \begin{lstlisting}
+func signal (int sig, func f)
+    \end{lstlisting}
+    Associe \emph{pour un appel} le signal \texttt{sig} à la fonction \texttt{f}.
+    La valeur de retour n'a pas d'importance, et il faut bien donner \emph{l'adresse de la fonction}.
+    (\texttt{\&mafonction}).
+
+    \begin{lstlisting}
+void alarm (int seconds)
+    \end{lstlisting}
+    Supprime la dernière alarme, et si $\texttt{seconds} \neq 0$ rajoute une alarme qui lancera le signal \texttt{SIGALRM} dans \texttt{seconds} secondes.
+    Retourne le nombre de secondes avant le déclenchement de l'alarme précédente.
+
+    \begin{lstlisting}
+int sigsetjmp (jmp_buf env, int sigmask)
+    \end{lstlisting}
+    Enregistre l'état du programme dans le contexte \texttt{env}. Généralement $\texttt{mask} = 0$, mais il faut réappeler \texttt{signal}.
+    \texttt{env} doit être accessible, le déclarer en global (à l'extérieur des fonctions) pour l'utiliser avec des signaux.
+    Attention valeur retour: retourne $0$ ou $-1$ selon si pas d'erreur, sauf si l'on revient à cette instruction avec un saut.
+    Dans le dernier cas, retourne l'entier passé en paramètre de \texttt{siglongjmp}, ce qui permet de savoir si on a sauté et d'où.
+
+    \begin{lstlisting}
+int siglongjmp (jmp_buf env, int val)
+    \end{lstlisting}
+    Saute à l'instruction \texttt{sigsetjmp} sauvegardé dans \texttt{env} en lui faisant retourner \texttt{val}.
+
+    \subsection{Fichiers}
+
+    %TODO
+    \begin{lstlisting}
+int open (char* filename, int mode)
+int fopen (char* filename, char* mode)
+    \end{lstlisting}
+    \texttt{open} ouvre le fichier \texttt{filename} avec le mode \texttt{mode}. \texttt{mode} peut valoir \texttt{O\_RDONLY}, \texttt{O\_WRONLY}, \texttt{O\_RDWR}, mais on peut utiliser des flags plus complexes comme \texttt{O\_CREAT}, \texttt{O\_EXCL}, \texttt{O\_APPEND}\ldots
+    Pour \texttt{fopen}, \texttt{mode} prend ``r'', ``w'', ``a'' et leur version multimode avec un $+$.
+
+    \begin{lstlisting}
+int read (int fichier, char* buffer, unsigned size)
+    \end{lstlisting}
+    Lit \texttt{size} caractères du fichier \emph{ouvert} \texttt{fichier} et les écrit dans le tampon mémoire \texttt{buffer}.
+    \texttt{buffer} \emph{doit} être initialisé à la bonne taille. 
+    Renvoie une valeur strictement positive si pas d'erreur.
+
+    \begin{lstlisting}
+int write (int fichier, char* buffer, unsigned size)
+    \end{lstlisting}
+    Écrit \texttt{size} caractères du fichier \emph{ouvert} \texttt{fichier} en les récupérant du tampon mémoire \texttt{buffer}.
+    Renvoie une valeur strictement positive si pas d'erreur.
+
+    \begin{lstlisting}
+int lseek (int fichier, int offset, int mode)
+    \end{lstlisting}
+    D\'eplace le curseur sur le fichier \texttt{fichier} de \texttt{offset} caractères ou bytes selon le mode.
+    \texttt{mode} peut prendre les valeurs \texttt{SEEK\_CUR} (position actuelle), \texttt{SEEK\_SET} (début),
+    Retourne la position du pointeur sur le fichier, ou $-1$ en cas d'erreur.
+
+    \begin{lstlisting}
+int lockf (int fichier, int mode, int size)
+    \end{lstlisting}
+    \texttt{mode} peut valoir \texttt{F\_LOCK} ou \texttt{F\_ULOCK}.
+    La synchronisation est assurée par le système, mais pas obligatoire.
+
+\begin{lstlisting}
+int pipe (int pipefd[2])
+\end{lstlisting}
+
+Crée un pipe et remplie le tableau avec deux descripteurs de fichiers. \texttt{pipefd[0]} est réservé à la lecture, et \texttt{pipefd[1]} à l'écriture.
+Retourne $0$ ou $-1$ si une erreur apparait.
+
+\end{document}
