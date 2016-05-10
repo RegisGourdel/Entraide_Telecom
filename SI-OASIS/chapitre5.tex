@@ -1,0 +1,39 @@
+\begin{defn}
+	Soit $u_0,\ldots,u_{N - 1}$ un signal fini.
+	La transformée en cosinus discret de $u$ est $\hat{u}^D$ telle que
+	$\forall 0 \leq k \leq N - 1, \hat{u}^D_k = \omega_k \sum_{n = 0}^{N - 1} u_n \cos \left( 2\pi \left( n + \frac{1}{2} \right) \frac{k}{2N} \right)$
+	avec $\omega_0 = \sqrt{\frac{1}{N}}$ et $\omega_k = \sqrt{\frac{2}{N}}$ pour $k \neq 0$.
+\end{defn}
+
+\begin{pop}[Lien avec la TFD]
+	Soit $x$ le signal fini de taille $2N$ donné par
+	$x_n = \left\{ \begin{array}{ccl}
+		u_n & \text{si} & n < N \\
+		u_{2N - 1 - n} & \text{si} & N \leq n \leq 2N - 1
+	\end{array}\right .$
+	(concaténation du signal $u$ avec son symétrique).
+	Alors, avec $\hat{x}$ la TFD (d'ordre $2N$) de $x$, on a :
+	$\hat{u}^D_0 = \frac{1}{2\sqrt{N}} \hat{x}_0$
+	et $\forall 1 \leq k \leq N - 1, \hat{u}_k^D = e^{-i\pi \frac{k}{2N}} \frac{1}{\sqrt{2N}} \hat{x}_k$.
+	De plus, si $u$ est réel, $\sum_k \abs{\hat{u}_k^D}^2 = \sum_n \abs{u_n}^2$.
+\end{pop}
+
+\begin{defn}[Base de la DCT]
+	C'est la base orthonormée de $\R^n$ constituée des vecteurs indexés par $k = 0 \ldots N-1$ et de formule générale
+	$n \mapsto w_k \cos \left( 2\pi \left( n + \frac{1}{2} \right) \frac{k}{2N} \right)$.
+	Obtenir la DCT d'un signal c'est effectuer le produit scalaire contre ces vecteurs.
+	Cette base est orthonormée car $\sum_k \abs{\hat{u}_k^D}^2 = \sum_n \abs{u_n}^2$.
+\end{defn}
+
+\begin{defn}[DCT locale]
+	Pour les signaux de taille $mN$ on appelle base de la DCT locale de taille $N$ l'ensemble des $mN$ vecteurs obtenus en translatant les vecteurs de la base de la DCT de taille $N$ aux positions multiples de $N$.
+\end{defn}
+
+\begin{defn}[DCT 2D]
+	La base de la DCT bi-dimensionnelle de $\R^{n \times N}$ est celle obtenue en opérant le produit tensoriel sur la base de la DCT monodimensionnelle de taille $N$.
+	Elle compte $N^2$ vecteurs.
+\end{defn}
+
+\begin{defn}[DCT locale 2D]
+	La DCT locale de taille $N \times N$ pour une image de taille $(mN) \times (mN)$ est la base que l'on obtient en décalant la base de la DCT 2D de taille $N \times N$ à toutes les positions multiples de $N$ (dans les deux dimensions).
+\end{defn}

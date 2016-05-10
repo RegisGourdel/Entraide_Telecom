@@ -30,7 +30,8 @@
 	\begin{defn}
 		Soit $X$ une processus stationnaire au second ordre.
 		On appelle \textbf{autocovariance} de $X$ la fonction, définie sur $\Z$, $R_k \colon k \mapsto \Cov(X_k,X_0) = \Cov(X_{n + k},X_n)$.
-		On en déduit $\forall k \in \Z, R_X(-k) = \overline{R_X(k)}$ et $R_X(0) \in \R_+$ avec $\forall k \in \Z, \abs{R_X(k)} \leq R_X(0)}$.		
+		On en déduit $\forall k \in \Z, R_X(-k) = \overline{R_X(k)}$ et $R_X(0) \in \R_+$ avec
+		$\forall k \in \Z, \abs{R_X(k)} \leq R_X(0)$.
 	\end{defn}
 	
 	\begin{defn}
@@ -41,5 +42,26 @@
 	
 	\begin{defn}
 	\textbf{Puissance d'un processus SSL} : norme $L^2$ au carré de $X_n$, noté $P_X$.
-	Elle ne dépend pas de $n$ et est donnée par $P_X = \esp \left( \abs{X}^2 \right) = 
+	Elle ne dépend pas de $n$ et est donnée par $P_X = \esp \left( \abs{X}^2 \right) = \abs{m_X}^2 + R_X(0) = m_X^2 + \int_{-\frac{1}{2}}^{\frac{1}{2}} S_X(\nu) \diff \nu$.
 	\end{defn}
+	
+	\begin{pop}[Positivité de la DSP]
+		Soit $X$ un processus stationnaire au 2\up{nd} ordre avec $R_X$ sommable.
+		Alors $\forall \nu \in \intfo{-\frac{1}{2}}{\frac{1}{2}}, S_X(\nu) \geq 0$.
+	\end{pop}
+
+\subsection{Filtrage des processus SSL}
+
+	\begin{pop}[Filtrage par un filtre sommable]
+		Soit $X$ un processus SSL avec $R_X$ sommable, et $h$ une suite sommable.
+		On appelle $Y = h * X$ le processus filtré de $X$ par le noyau $h$.
+		Il est défini par $\forall n \in \Z, Y_n = \sum_{l \in \Z} h_l X_{n - l}$.
+		Cette somme étant prise dans $L^2(\Omega)$, on a :
+		\begin{enumerate}
+		\item
+			Pour presque tout $\omega \in \Omega$, $\forall n \in \Z, Y_n(\omega) = \sum_{l \in \Z} h_l X_{n - l}(\omega)$.
+		\item
+			$Y$ est SSL. On note $\tilde{h}_n = \overline{h_{-n}}$ le signal $h$ symétrisé et conjugué.
+			On a $m_Y = m_X \sum_{l \in \Z} h_l$ et $R_Y = (h * \tilde{h}) * R_X$.
+		\end{enumerate}
+	\end{pop}
