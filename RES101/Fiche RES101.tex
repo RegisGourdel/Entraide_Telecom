@@ -24,6 +24,8 @@
 \fancyfoot[RO]{\thepage}
 \fancyfoot[LE]{\thepage}
 
+\newcommand\rar{\rightarrow}
+
 \title{\vspace{-1.1cm} \textbf{Fiche de RES101} \vspace{-1.1cm}}
 \date{}
 \author{}
@@ -31,6 +33,25 @@
 \begin{document}
 
 \maketitle
+
+\section*{Notions utiles}
+
+	\begin{itemize}
+		\item[\textbullet] \textbf{Réseau} : infrastructure et ensemble des mécanismes permettant à plusieurs entité réparties de communiquer avec la meilleure performance possible.
+		\item[\textbullet] Exemples de réseaux :
+			\begin{itemize}
+			\item Réseau téléphonique commuté (RTC) : réseau dédié, téléphonie classique.
+			\item Réseaux cellulaires (GSM)
+			\item Réseaux locaux (LAN) : quelques dizaines de terminaux.
+			\item Réseau étendu (WAN) : opéré par un service de télécommunications.
+			\end{itemize}
+		\item[\textbullet] \textbf{Débit} d'un flux : volume de données émis par unité de temps.
+		\item[\textbullet] \textbf{Capacité} d'un réseau : quantité d'informations qu'il peut acheminer par unité de temps ; peut ralentir un débit ou conduire à des pertes de données.
+		\item[\textbullet] \textbf{Latence} : temps de propagation d'une unité de donnée entre un émetteur et un récepteur.
+		\item[\textbullet] \textbf{Gigue} : variation du délai de transmission $\rar$ arythmie des flux $\rar$ mise en place de tampons (buffers) à la réception.
+		\item[\textbullet] \textbf{Broadcast} : type de paquet envoyé à tout le monde.
+		\item[\textbullet] \emph{Network Interface Card} (NIC) : fournit la connexion physique entre le réseau et un terminal.
+	\end{itemize}
 
 \section*{Modèle OSI}
 
@@ -41,18 +62,18 @@
 		\begin{center}
 		\includegraphics[scale=0.4]{couches.png}
 		\end{center}
-		\item Couche 1 : Physique $\Longrightarrow$ offrir un support de transmission pour la communication.
-		\item Couche 2 : Liaison de données $\Longrightarrow$ connecter les machines entre elles sur un réseau local (+ détecter les erreurs et fiabiliser la connexion physique entre deux réseaux) $\Longrightarrow$ $Switch$
-		\item Couche 3 : Réseau $\Longrightarrow$ interconnecter les réseaux entre eux, cad trouver un chemin pour envoyer des données d'un terminal à un autre à travers un réseau hétérogène et fragmenter les paquets $\Longrightarrow$ $Routeur$.
-		\item Couche 4 : Transport $\Longrightarrow$ gérer les connexions applicatives et garantir la connexion.
-		\item Couche 5 : Session (rarement implémentée).
-		\item Couche 6 : Présentation $\Longrightarrow$ définit une syntaxe commune pour la représentation des données.
-		\item Couche 7 : Application $\Longrightarrow$ source et destination des données à transporter.
+		\item Couche 1 : \textbf{physique} (câbles,...) $\rar$ offrir un support de transmission pour la communication.
+		\item Couche 2 : \textbf{liaison} (lien direct, point à point) $\rar$ connecter les machines entre elles sur un réseau local (+ détecter les erreurs et fiabiliser la connexion physique entre deux réseaux) $\rar$ adresses MAC, \emph{Switch}.
+		\item Couche 3 : \textbf{réseau} $\rar$ interconnecter les réseaux entre eux, càd trouver un chemin pour envoyer des données d'un terminal à un autre à travers un réseau hétérogène et fragmenter les paquets $\rar$ \emph{routeur}.
+		\item Couche 4 : \textbf{transport} $\rar$ gérer les connexions applicatives et garantir la connexion $\rar$ TCP / UDP, ports, différentiation des services.
+		\item Couche 5 : \textbf{session} (rarement implémentée).
+		\item Couche 6 : \textbf{présentation} $\rar$ définit une syntaxe commune pour la représentation des données.
+		\item Couche 7 : \textbf{application} $\rar$ source et destination des données à transporter.
 	\end{itemize}
 
 	\textbf{Deux règles pour les couches : }
 	\begin{itemize}
-		\item Chaque couche est indépendante (ex : Adressage IP (couche 3) peut être interchangeable (IPv4 $\Leftrightarrow$ IPv6) sans toucher aux autres couches).
+		\item Chaque couche est indépendante (ex : adressage IP (couche 3) interchangeable (IPv4 $\leftrightarrow$ IPv6) sans toucher aux autres couches).
 		\item Chaque couche ne peut communiquer qu'avec une couche adjacente. (Envoi de données : de haut en bas $\neq$ Réception de données : de bas en haut).
 	\end{itemize}
 
@@ -69,7 +90,7 @@
 	\end{center}
 
 
-\section*{Réseaux locaux (PHY/MAC)}
+\section*{Réseaux locaux : couche liaison de données (PHY/MAC)}
 
 	Problématique de l'accès partagé : il peut être intéressant de partager un même support physique/logique entre plusieurs terminaux. 
 	\begin{itemize}
@@ -99,8 +120,8 @@
 
 	\textbf{Ethernet}
 	\begin{itemize}
-		\item Cable croisées à 8 fils (on utilise couramment 4 fils, deux à l'émission et deux à la transmission).
-		\item Les câbles sont torsadés.
+		\item Protocole de réseau local à commutation de paquets.
+		\item Généralement des câbles croisées torsadés à 8 fils (on utilise couramment 4 fils, deux à l'émission et deux à la transmission).
 		\item La sortie est en général en RJ45.
 			\includegraphics[scale=0.4]{RJ.png}
 		\item Deux types de codage: codage en bande de base (narmol) et le codage de Manchester :
@@ -119,20 +140,22 @@
 
 	\textbf{Interconnexion des réseau locaux}
 	\begin{itemize}
-		\item Réparateur : Décode les données et transmet les données sur tous les segments auxquel il est attaché
-		\item Concentrateur (Hub) : Topologie en étoile, connecte, des brins entre eux et diffuse sur toutes les branches de l'étoile.
-		\item Les ponts (bridge) : Possède une adresse MAC et filtre les trames en  laissant passer les trames de broadcast.
-		\item Spanning tree : Suppression des boucles dans des topologies de réseau contentant des chemins redondants (on ne garde qu'un seul chemin en bloquant l'accès aux autres).
-			On construit un graphe non orienté et connecté et calcule le plus court chemin à la racine(fondé sur l'adresse MAC + priorité).
-		\item Les commutateurs (switch) : 4 à 32 cartes comprenant chacune 8 ports.
-		\item Les apports sur switch : plus de CSMA/CD, il n'y a plus de collision avec les switch, la carte réseau fonctionne en \textbf{full duplex}
+		\item Réparateur : décode les données et les transmet sur tous les segments auxquels il est attaché.
+		\item Concentrateur (hub) : topologie en étoile, connecte, des brins entre eux et diffuse sur toutes les branches de l'étoile, équipement de niveau 1 $\sim$ multiprise réseau.
+		\item Pont (bridge) : relie plusieurs réseaux de façon qu'ils constituent un seul réseau logique ; possède une adresse MAC et filtre les trames (laisse passer les trames de broadcast).
+		\item Passerelle applicative : capable de travailler au niveau de toutes les couches ; peut décoder le format et le contenu et opérer des conversions.
+		\item Passerelle de transport : connecte deux réseaux avec des couches de transport différentes.
+		\item \emph{Spanning tree protocol} : Suppression des boucles dans des topologies de réseau contentant des chemins redondants (on ne garde qu'un seul chemin en bloquant l'accès aux autres).
+			On construit un graphe non orienté et connecté et calcule le plus court chemin à la racine (fondé sur l'adresse MAC + priorité).
+		\item Les commutateurs (switch) : équipement “intelligent” $\rar$ possède une table avec les adresses MAC pour retransmettre les messages uniquement à la partie où se trouve le destinataire ; 4 à 32 cartes comprenant chacune 8 ports.
+		\item Les apports sur switch : plus de CSMA/CD, il n'y a plus de collision avec les switch, la carte réseau fonctionne en \textbf{full duplex}.
 	\end{itemize}
 
 
 \section*{Réseau sans fil}
 
 	\textbf{Classifications des réseaux sans fils :} 
-	\includegraphics[scale=0.6]{res.png}
+	\includegraphics[scale=0.55]{res.png}
 	
 	\textbf{Propagation radio : } 
 	$$P_{r} = P_{e} G_{e} G_{r} \left( \frac{K\lambda^{2}}{r^{\alpha}} \right) a_{\text{shadowing}} a_{\text{fading}}$$
@@ -185,18 +208,22 @@
 	
 	\textbf{Le routage} : Le routeur est un matériel de couche 3 qui relie plusieurs réseaux.
 	\begin{itemize}
-		\item Quand le routeur reçoit la trame, il vérifie qu'adresse MAC est bien la bonne, et ensuite il utilise la table de routage qui va donc lister les routeurs auxquels je peux envoyer mon datagramme pour joindre une destination donnée.
-		\item La table de routage contient : la liste des réseaux que l'on peut joindre et les passerelles par lesquelles je dois passer pour les joindre. Construire une table de routage se fait en 3 étapes :
-		\item indiquer les réseaux auxquels ma machine est connectée ;
-		\item indiquer la route par défaut ;
-		\item indiquer tous les autres réseaux que je ne peux pas encore joindre avec les deux étapes précédentes.
+		\item[\textbullet] Quand le routeur reçoit la trame, il vérifie qu'adresse MAC est bien la bonne, et ensuite il utilise la table de routage qui va donc lister les routeurs auxquels je peux envoyer mon datagramme pour joindre une destination donnée.
+		\item[\textbullet] Fonctionne sur les adresses IP.
+		\item[\textbullet] La table de routage contient des adresses et des masques $\rar$ la liste des réseaux que l'on peut joindre et les passerelles par lesquelles je dois passer pour les joindre.
+			C'est une table de correspondance qui indique qui est le routeur suivant. Construire une table de routage se fait en 3 étapes :
+		\begin{itemize}
+			\item indiquer les réseaux auxquels ma machine est connectée ;
+			\item indiquer la route par défaut ;
+			\item indiquer tous les autres réseaux que je ne peux pas encore joindre avec les deux étapes précédentes.
+		\end{itemize}
 	\end{itemize}
 
 	\textbf{Le protocole ARP :} On veut connaître le chemin pour envoyer un message à une machine, sauf que l'on a pas son adresse MAC, il existe un protocole pour remédier à cela : ARP.
 	\begin{itemize}
 		\item On envoie un message de \emph{broadcast}, en demandant à la personne dont on connait l'adresse IP de nous envoyer son adresse MAC : c'est la requête ARP.
 		\item Sauf que si on envoie une requête à chaque fois que l'on veut transmettre un message on risque de saturer le réseau, d'où la \textbf{table ARP}.
-		\item la table ARP garde en mémoire provisoirement les relation \texttt{adresse MAC $\longleftrightarrow$ adresse IP}, la table est dynamique, elle la garde en mémoire environ 2 minutes.
+		\item la table ARP garde en mémoire provisoirement les relation \texttt{adresse MAC $\leftrightarrow$ adresse IP}, la table est dynamique, elle la garde en mémoire environ 2 minutes.
 		\end{itemize}
 		\textbf{Le serveur DHCP} : On se rend donc bien compte qu'il serait bien d'avoir un mécanisme rapide et fiable pour adresser les machines d'un réseau. C'est là qu'entre en jeu le protocole DHCP.
 		\begin{itemize}
@@ -208,6 +235,10 @@
 	\textbf{ICMP} : ICMP est un protocole dans la suite protocolaire TCP-IP utilisé pour envoyer des messages d'erreurs dans un réseau.
 	Il travaille en partenariat avec le protocole IP.
 	Nous allons le voir en détail, voir les différents types d'erreurs, leurs codes, leurs significations et les scénarios dans lesquels elles se manifestent.
+	
+	\begin{center}
+	\includegraphics[scale=0.24]{IPv4-Packet.png}
+	\end{center}
 
 
 \section*{Couche de transport}
@@ -234,7 +265,9 @@
 		\item \textbf{Terminaison d'une connexion :}
 			la phase de terminaison d'une connexion utilise un \emph{handshaking} en quatre temps, chaque extrémité de la connexion effectuant sa terminaison de manière indépendante.
 			Ainsi, la fin d'une connexion nécessite une paire de segments FIN et ACK pour chaque extrémité.
-			\includegraphics[scale=0.28]{term.png}
+			\begin{flushleft}
+			\includegraphics[scale=0.27]{term.png}
+			\end{flushleft}
 		\item \textbf{Contrôle de flux :}
 			chaque partenaire dans une connexion TCP dispose d'un tampon de réception dont la taille n'est pas illimitée.
 			Afin d'éviter qu'un hôte ne surcharge l'autre, TCP prévoit plusieurs mécanismes de contrôle de flux.
@@ -257,5 +290,21 @@
 			L'ICANN est responsable de la gestion des 13 serveurs DNS qui gèrent la racine du DNS.
 			Ces 13 serveurs connaissent les adresses IP des serveurs DNS gérant les TLD (les .fr, .com, org, etc...).
 	\end{itemize}
+	
+\section*{QoS et QoE}
+
+	\paragraph{Qualité de service (network-centric)}
+		\begin{itemize}
+		\item bande-passante,
+		\item probabilité de perte (paquet arrivé avec trop d'erreur ou perdu à une file d'attente),
+		\item délai,
+		\item gigue.
+		\end{itemize}
+		
+	\paragraph{Qualité d'expérience (user-centric)}
+		\begin{itemize}
+		\item orienté données : temps de complètement, fiabilité,...
+		\item multimédia : \textit{Mean Opinion Score}, \textit{Perceptual Evaluation of Video Quality},...
+		\end{itemize}
 
 \end{document}
