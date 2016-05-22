@@ -59,3 +59,40 @@
 	On note $\hat{u}$ sa transformée de Fourier discrète (\textbf{TFD}) définie sur $\Z / N\Z$ par $k \mapsto \sum_{n \in \Z / N\Z} u_n e^{-2i\pi \frac{k}{N}n}$.
 \end{thm}
 
+\begin{thm}[Inversion et interprétation de la TFD comme décomposition sur une base]
+	Si $u \colon \Z / N\Z \to \R$, $\forall n \in \Z / n\Z, u_n = \frac{1}{N} \sum_{k \in \Z / n\Z} \hat{u}_k e^{2i\pi \frac{k}{N} n}$, ou encore $u = \sum_{k \in \Z / n\Z} \frac{1}{N} \hat{u}_k \mathbf{w}^k$ où $\mathbf{w}$ est l'onde de Fourier sur $\Z / n \Z$ de fréquence $k/N$, i.e. les $\frac{\hat{u}_k}{N}$ sont les coefficients de la décomposition de $u$ sur la base des ondes de Fourier.
+\end{thm}
+
+\begin{pop}
+	Soit $u$ et $v$ des suites définies sur $\Z / n\Z$.
+	\begin{enumerate}
+	\item
+		La TFD de l'impulsion en $m$ est une onde de Fourier de fréquence $- \frac{m}{N}$ sur $\Z / n\Z$.
+	\item
+		La convolution est transformée en produit : $\mathcal{F} (u \star v) = \hat{u} \cdot \hat{v}$.
+	\item
+		Le produit est transformé en convolution à facteur de normalisation près : $\mathcal{F} (uv) = \frac{1}{N} \hat{u} \star \hat{v}$.
+	\item
+		$\forall k \in \Z / n\Z, [\mathcal{F}(\varphi \cdot u)](k) = \hat{u}(k - k_0)$ où $k_0 \in \Z / n\Z$ et $\varphi_n = e^{2i\pi \frac{k_0}{N}n}$ (onde de Fourier de fréquence $\frac{k_0}{N}$).
+	\item
+		$\mathcal{F}(u^m) = \hat{u} \cdot \psi$ où $u^m$ est la $m$-translatée de $u$ et $\psi_n = e^{-2i\pi \frac{m}{N}k}$ (onde de Fourier de fréquence $- \frac{m}{N}$).
+	\item
+		Si $u$ est réelle, alors $\hat{u}$ possède la symétrie hermitienne.
+		Si $u$ est symétrique alors $\hat{u}$ aussi.
+		Si $u$ est symétrique et réelle alors $\hat{u}$ également.
+	\end{enumerate}
+\end{pop}
+
+\begin{pop}[Égalité de Parseval]
+	$\sum_{n \in \Z / n\Z} \abs{u_n}^2 = \frac{1}{N} \sum_{k \in \Z / n\Z} \abs{\hat{u}_k}^2$.
+\end{pop}
+
+\begin{rem}
+	Une TFD peut capturer toute l'information d'une suite à support fini.
+\end{rem}
+
+\begin{defn}
+	Soit $u$ une suite sur $\Z$ à support inclus dans $\intiff{0}{N - 1}$ et $M \geq N$.
+	Soit $v$ la suite finie définie sur $\intiff{0}{M - 1}$ par $\forall n, v_n = u_n$.
+	On appelle $\hat{v}$ \textbf{TFD d'ordre arbitraire} de $u$, avec $\forall k \in \intiff{0}{M - 1}, \hat{v}(k) = \sum_{n = 0}^{M - 1} v_n e^{-2i\pi \frac{k}{M} n} = \hat{u} \left( \frac{k}{M} \right)$.
+\end{defn}
