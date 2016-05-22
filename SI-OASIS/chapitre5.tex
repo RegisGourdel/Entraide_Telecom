@@ -1,6 +1,6 @@
 \begin{defn}
 	Soit $u_0,\ldots,u_{N - 1}$ un signal fini.
-	La transformée en cosinus discret de $u$ est $\hat{u}^D$ telle que
+	La transformée en cosinus discret (\textbf{DCT}) de $u$ est $\hat{u}^D$ telle que
 	$\forall 0 \leq k \leq N - 1, \hat{u}^D_k = \omega_k \sum_{n = 0}^{N - 1} u_n \cos \left( 2\pi \left( n + \frac{1}{2} \right) \frac{k}{2N} \right)$
 	avec $\omega_0 = \sqrt{\frac{1}{N}}$ et $\omega_k = \sqrt{\frac{2}{N}}$ pour $k \neq 0$.
 \end{defn}
@@ -25,15 +25,15 @@
 	Cette base est orthonormée car $\sum_k \abs{\hat{u}_k^D}^2 = \sum_n \abs{u_n}^2$.
 \end{defn}
 
-\begin{defn}[DCT locale]
+\begin{defn}[\textbf{DCT locale}]
 	Pour les signaux de taille $mN$ on appelle base de la DCT locale de taille $N$ l'ensemble des $mN$ vecteurs obtenus en translatant les vecteurs de la base de la DCT de taille $N$ aux positions multiples de $N$.
 \end{defn}
 
-\begin{defn}[DCT 2D]
+\begin{defn}[\textbf{DCT 2D}]
 	La base de la DCT bi-dimensionnelle de $\R^{n \times N}$ est celle obtenue en opérant le produit tensoriel sur la base de la DCT monodimensionnelle de taille $N$.
 	Elle compte $N^2$ vecteurs.
 \end{defn}
 
-\begin{defn}[DCT locale 2D]
+\begin{defn}[\textbf{DCT locale 2D}]
 	La DCT locale de taille $N \times N$ pour une image de taille $(mN) \times (mN)$ est la base que l'on obtient en décalant la base de la DCT 2D de taille $N \times N$ à toutes les positions multiples de $N$ (dans les deux dimensions).
 \end{defn}

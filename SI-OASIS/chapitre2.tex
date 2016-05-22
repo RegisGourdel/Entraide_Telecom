@@ -95,4 +95,50 @@
 	Soit $u$ une suite sur $\Z$ à support inclus dans $\intiff{0}{N - 1}$ et $M \geq N$.
 	Soit $v$ la suite finie définie sur $\intiff{0}{M - 1}$ par $\forall n, v_n = u_n$.
 	On appelle $\hat{v}$ \textbf{TFD d'ordre arbitraire} de $u$, avec $\forall k \in \intiff{0}{M - 1}, \hat{v}(k) = \sum_{n = 0}^{M - 1} v_n e^{-2i\pi \frac{k}{M} n} = \hat{u} \left( \frac{k}{M} \right)$.
+	$\hat{v}(k)$ est l'échantillonnage de la TFtD de $u$ aux points $\frac{k}{M}$.
 \end{defn}
+
+\paragraph{Détermination de la fréquence d'une onde par la TFD.}
+On a un signal du type $u_n = e^{2i\pi \nu_0 n}$ et l'on veut estimer $\nu_0$ à partir de $u_0,\ldots,u_N$.
+On prend $u^T$ la suite tronquée égale à $u$ sur $\intiff{0}{N - 1}$ et nulle ailleurs.
+Le module de sa TFtD est un sinus cardinal.
+
+\begin{thm}
+	La valeur $\frac{k}{M}$ la plus proche de $\nu_0$ est celle pour laquelle la TFD de $u^T$ est maximale en module.
+\end{thm}
+
+\begin{pop}
+	Avec une TFD d'ordre $M$ on peut connaître la fréquence $\nu_0$ de l'onde avec une précision de au moins $\frac{1}{M}$.
+\end{pop}
+
+\paragraph{Cas avec deux ondes.}
+Pour un signal du type $u_n = A_0 e^{2i\pi \nu_0 n} + A_1 e^{2i\pi \nu_1 n}$ il faut au moins avoir $\abs{\nu_0 - \nu_1} > \frac{1}{N}$ pour pouvoir distinguer deux pics sur la TFtD.
+
+\begin{voc}
+	On dit que $\frac{1}{N}$ est la \textbf{résolution fréquentielle}.
+	Il faut augmenter $N$ pour pouvoir séparer des fréquences proches l'une de l'autre.
+\end{voc}
+
+Si $A_1$ est beaucoup plus grand que $A_0$ alors le lobe principal peut être masqué, même par des lobes secondaires de l'autre.
+Pour palier à ceci on peut utiliser une fenêtre de Hamming : au lieu de faire une troncature en multipliant par un signal créneau $c = (\indic_{\intiff{0}{N - 1}}(n))_n$ on multiplie par $h$ où $h_n = \indic_{\intiff{0}{N - 1}}(n) \cdot \left( 0.54 - 0.46 \cos \left( 2\pi \frac{n}{N - 1} \right) \right)$.
+Alors le lobe central est plus étalé ($\rightarrow$ perte de résolution fréquentielle) mais les lobes secondaires sont bien moins hauts et ne masquent plus le lobe principal d'une seconde onde.
+
+\begin{defn}
+	Soit $u$ une suite définie sur $\Z$, $w_0,\ldots,w_N$ une fenêtre de taille $N$ et $M \geq N$.
+	La Transformée de Fourier à Court Terme (\textbf{TFCT}) de $u$, de fenêtre $w$ et de précision $\frac{1}{M}$ est la fonction
+	$$U \colon \begin{array}{rcl}
+		\Z \times \frac{\intiff{0}{N - 1}}{M} & \to & \C \\
+		n, \frac{k}{M} & \mapsto & \sum_{m \in \Z} u_m w_{n - m} e^{-2i\pi \frac{k}{M} m}
+	\end{array}$$
+	On peut aussi, en remplaçant $\frac{k}{M}$ par $\nu$ la considérer comme une fonction de $\Z \times \intff{-\frac{1}{2}}{\frac{1}{2}}$ que l'on échantillonnera aussi finement que l'on veut en augmentant la valeur de $M$.
+\end{defn}
+
+Pour $n$ fixé (un instant donné) : la fonction $\nu \mapsto U(n,\nu)$ est la TFtD de $(u_l w_{l-n})$.
+Autour de chaque $n$ on extrait un morceau de signal dont on calcule la TFtD (par le moyen d'une TFD aussi fine que voulue).
+
+Pour $\nu$ fixé : on a $U(n,\nu) = \sum_{m \in \Z} u_m w_{m - n} e^{-2i\pi \nu m} = e^{-2i\pi \nu n} \sum_m u_m \gamma_{n - m}$ où $\gamma_l = w_{-l} e^{2i\pi \nu l}$.
+Alors $\abs{U(n,\nu)} = \abs{(u \star \gamma)_n}$, ce qui signifie qu'à $\nu$ fixé, le module de $U$ reflète à quel point la fréquence $\nu$ est présente dans le signal autour de $n$.
+En effet la TFtD de $\gamma$ est centrée autour de $\nu$ (la fenêtre $w$ a son spectre centré en $0$).
+
+Le \textbf{spectogramme} est $\abs{U(n,\nu)}^2$.
+On le visualise comme une image en niveaux de gris ou en couleurs, avec $n$ et $\nu$ pour axes.
