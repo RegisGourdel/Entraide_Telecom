@@ -1,0 +1,37 @@
+\begin{defn}[Causalité] Vocabulaire : \\
+\begin{itemize}
+\item h est causale si $$\forall n<0, h_{n}=0$$
+\item Un SLI est causal si sa réponse impulsionnelle est causale
+\item RIF : un SLI à réponse impulsionnelle finie
+\item RII : un SLI à réponse impulsionnelle infinie
+\end{itemize}
+\end{defn}
+
+\begin{pop} .\\
+\begin{itemize}
+\item La convolution de deux suites causale est causale
+\item La composition de deux SLI RIF est RIF 
+\end{itemize}
+\end{pop}
+
+\begin{defn}[Transformée en Z]
+\textit{Si h est un signal défini sur Z et est sommable. On apelle transformée en Z de h, la fonction H défini sur le cercle unité de C} $$H(z) = \sum_{n\in Z} h_{n}z^{-n}$$
+\end{defn}
+
+\begin{pop}
+\textit{Si h est une suite sommable et que H est sa transformée en Z , alors on a :}
+$$h_{n}= \int_{-1/2}^{1/2}H(e^{2i\pi \nu})e^{2i\pi \nu n}\mathrm{d}\nu$$
+\end{pop}
+
+\begin{pop}
+\textit{Si ($x_{n}$) et ($y_{n}$) sont deux signaux sommables, on note X et Y leurs transformée en Z, on note u la convolution de x et y, on a :}$$U(z)=X(z)Y(z)$$
+\end{pop}
+
+\begin{pop}
+\textit{Si T est un SLI récursif stable et h sa réponse impulsionnelle, H admet une transformée en Z notée H :}
+$$H(z) = \dfrac{P(z^{-1})}{Q(z^{-1})} $$
+\end{pop}
+
+\begin{defn} On appelle \textbf{zeros} du filtre les zéros de la fonction $P(z^{-1})$, c'est à dire les inverse du polynôme P. On appelle \textbf{pôles}, les zéros de $Q(z^{-1})$.
+\end{defn}
+
