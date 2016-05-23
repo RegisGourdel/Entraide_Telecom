@@ -5,7 +5,7 @@
 	\item Un SLI est causal si sa réponse impulsionnelle est causale.
 	\item Une suite $h$ est anti-causale si $\forall h \geq 0, h_n = 0$ et un SLI est anti-causal si sa RI l'est.
 	\item Suite bilatère : qui n'est ni causale, ni anti-causale.
-	\item RIF : un SLI à réponse impulsionnelle finie,
+	\item RIF : un SLI à réponse impulsionnelle finie.
 	\item RII : un SLI à réponse impulsionnelle infinie.
 	\end{itemize}
 \end{voc}
@@ -19,27 +19,64 @@
 	\end{itemize}
 \end{pop}
 
-\begin{defn}[Transformée en $Z$]
-	Si $h$ est un signal défini sur $\Z$ et est sommable. On appelle transformée en $Z$ de $h$, la fonction $H$ défini sur le cercle unité de $\C$ par
-	$$H(z) = \sum_{n\in Z} h_{n}z^{-n}\ .$$
+\begin{defn}
+	Si $h$ est un signal défini sur $\Z$ et est sommable. On appelle \textbf{transformée en $Z$} de $h$, la fonction $H$ défini sur le cercle unité de $\C$ par
+	\vspace{-0.15cm}$$
+	H(z) = \sum_{n\in Z} h_{n}z^{-n}\ .
+	\vspace{-0.15cm}$$
 \end{defn}
 
 \begin{pop}
-Si $h$ est une suite sommable et que $H$ est sa transformée en $Z$ , alors on a :
-$$h_{n}= \int_{-1/2}^{1/2}H(e^{2i\pi \nu})e^{2i\pi \nu n}\mathrm{d}\nu\ .$$
+	Si $h$ est une suite sommable et que $H$ est sa transformée en $Z$ , alors on a :
+	\vspace{-0.15cm}$$
+	\forall n \in \Z, h_{n}= \int_{-1/2}^{1/2} H \left( e^{2i\pi \nu} \right) e^{2i\pi \nu n} \diff \nu\ .
+	\vspace{-0.15cm}$$
 \end{pop}
 
 \begin{pop}
-Si ($x_{n}$) et ($y_{n}$) sont deux signaux sommables, on note $X$ et $Y$ leurs transformée en $Z$, on note $u$ la convolution de $x$ et $y$, on a :
-$$U(z)=X(z)Y(z)\ .$$
+	Si ($x_{n}$) et ($y_{n}$) sont deux signaux sommables, on note $X$ et $Y$ leurs transformée en $Z$, on note $u$ la convolution de $x$ et $y$, on a :
+	\vspace{-0.15cm}$$
+	U(z)=X(z)Y(z)\ .
+	\vspace{-0.15cm}$$
 \end{pop}
 
+\begin{defn}[\textbf{Filtres récursifs stables}]
+	Un SLI sur $\Z$ est dit récursif stable s'il vérifie les conditions suivantes :
+	\begin{enumerate}
+	\item
+		Sa réponse impulsionnelle est sommable ($\sum_n \abs{h_n} < + \infty$).
+	\item
+		Il existe des coefficients $a_0,\ldots,a_p$ et $b_0,\ldots,b_q$ tels que, si $(x_n)_n$ est une entrée et $(y_n)_n$ la sortie qui lui correspond par le SLI, alors
+		\vspace{-0.15cm}$$
+		\forall n \in \Z, b_0 y_n + b_1 y_{n - 1} + \ldots + b_q y_{n - q} = a_0 x_n + a_1 x_{n - 1} + \ldots + a_p x_{n - p}
+		\vspace{-0.15cm}$$
+		Les $a_i$ et $b_j$ sont appelés coefficients du SLI.
+	\item
+		Les polynômes $\sum_i a_i z^i$ et $\sum_i b_i z^i$ sont premiers entre eux.
+	\end{enumerate}
+\end{defn}
+
 \begin{pop}
-Si $T$ est un SLI récursif stable et $h$ sa réponse impulsionnelle, $H$ admet une transformée en $Z$ notée $H$ :
-$$H(z) = \dfrac{P(z^{-1})}{Q(z^{-1})}\ .$$
+	Si $T$ est un SLI récursif stable et $h$ sa réponse impulsionnelle, $H$ admet une transformée en $Z$ notée $H$ :
+	\vspace{-0.15cm}$$
+	H(z) = \frac{P(z^{-1})}{Q(z^{-1})}\ .
+	\vspace{-0.15cm}$$
 \end{pop}
 
 \begin{defn}
 	On appelle \textbf{zéros} du filtre les zéros de la fonction $P(z^{-1})$, c'est à dire les inverses du polynôme $P$.
 	On appelle \textbf{pôles}, les zéros de $Q(z^{-1})$.
+\end{defn}
+
+\begin{pop}
+	Un SLI récursif stable dont l'équation de récurrence est
+	\vspace{-0.15cm}$$
+	\forall n \in \Z, y_n + b_1 y_{n - 1} + \ldots + b_q y_{n - q} = a_0 x_n + a_1 x_{n - 1} + \ldots + a_p x_{n - p}
+	\vspace{-0.15cm}$$
+	est causal si et seulement si tous ses pôles sont dans $\mathring{\U}$ (i.e. de module strictement plus petit que $1$).
+\end{pop}
+
+\begin{defn}
+	\textbf{Filtre à minimum de phase} : filtre récursif stable causal dont l'inverse est aussi stable et causal.
+	Cela est équivalent à dire que ses pôles et ses zéros sont dans $\mathring{\U}$.
 \end{defn}

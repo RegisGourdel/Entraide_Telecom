@@ -1,18 +1,21 @@
 \begin{thm}[Formule de Poisson ou le repliement spectral]
 	Si $f$ est une fonction définie sur $\R$, intégrable et telle que sa transformée de Fourrier est aussi intégrable et que la suite $(f(n))_n$ est sommable, alors :
-	$$\sum_{m\in Z} f(m)e^{-2i\pi m\nu } = \sum_{n\in Z} \hat{f}(n+\nu )
+	\vspace{-0.1cm}$$
+	\sum_{m\in Z} f(m)e^{-2i\pi m\nu } = \sum_{n\in Z} \hat{f}(n+\nu )
 	\qquad \text{et} \qquad
-	\hat{u}(\nu ) = \sum_{n\in Z} \hat{f}(n+\nu )\ .$$
+	\hat{u}(\nu ) = \sum_{n\in Z} \hat{f}(n+\nu )\ .
+	\vspace{-0.1cm}$$
 \end{thm}
 
 \begin{thm}[Théorème de bon échantillonnage ou théorème de Shannon]
-	Si f est une fonction sommable et que TFtC, $\hat{f}$ est nulle en dehors de [-0.5, 0.5], alors on a :
-	$$f(t)=\sum_{n\in \Z} f(n) \sinC (\pi (t-n))\ .$$
+	Si $f$ est une fonction sommable et que sa TFtC, $\hat{f}$, est nulle en dehors de $\intff{-\frac{1}{2}}{\frac{1}{2}}$, alors on a
+	\vspace{-0.15cm}$$
+	f(t)=\sum_{n\in \Z} f(n) \sinC (\pi (t-n))\ .
+	\vspace{-0.15cm}$$
 \end{thm}
 
 \begin{thm}[Théorème de Shannon pour les énergies finies]
-	Si f est d'énergie finie. On note $u_{n}=f(n)$, alors :
-	$$\norme{f}_{2} = \norme{u}_{2}\ .$$
+	Soit $f$ d'énergie finie et $u_{n} = f(n)$, alors $\norme{f}_{2} = \norme{u}_{2}$.
 \end{thm}
 
 \begin{defn} La formule
