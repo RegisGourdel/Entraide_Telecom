@@ -1,7 +1,7 @@
 \begin{defn}
 	Soit $u_0,\ldots,u_{N - 1}$ un signal fini.
 	La transformée en cosinus discret (\textbf{DCT}) de $u$ est $\hat{u}^D$ telle que
-	$\forall 0 \leq k \leq N - 1, \hat{u}^D_k = \omega_k \sum_{n = 0}^{N - 1} u_n \cos \left( 2\pi \left( n + \frac{1}{2} \right) \frac{k}{2N} \right)$
+	$\forall k \in \intiff{0}{N - 1}, \hat{u}^D_k = \omega_k \sum_{n = 0}^{N - 1} u_n \cos \left( 2\pi \left( n + \frac{1}{2} \right) \frac{k}{2N} \right)$
 	avec $\omega_0 = \sqrt{\frac{1}{N}}$ et $\omega_k = \sqrt{\frac{2}{N}}$ pour $k \neq 0$.
 \end{defn}
 

@@ -13,18 +13,23 @@
 	
 	\begin{defn}
 		Si $X$ et $Y$ sont $L^2$ (admettent des variances) leur covariance est définie par
-		$\Cov(X,Y) = \esp \left[ (X - \esp(X)) \overline{(Y - \esp(Y))} \right] = \esp(X^C \overline{Y^C})$.
-		D'après l'inégalité de Cauchy-Schwartz $\abs{\Cov(X,Y)} \leq \sqrt{\Var(X) \Var(Y)}$.
+		\vspace{-0.15cm}$$
+		\Cov(X,Y) = \esp \left[ (X - \esp(X)) \overline{(Y - \esp(Y))} \right] = \esp(X^C \overline{Y^C})\ .
+		\vspace{-0.15cm}$$
+		D'après l'inégalité de Cauchy-Schwartz : $\abs{\Cov(X,Y)} \leq \sqrt{\Var(X) \Var(Y)}$.
 	\end{defn}
 	
 	\begin{defn}
-		On dit que le processus $X$ est \textbf{stationnaire à l'ordre 2} si $\forall n \in \Z, X_n \in L^2(\Omega)$ et
-		$\forall k \in \Z, \forall n \in \Z, \Cov(X_{n + k},X_n) = \Cov(X_k,X_0)$.
-		En particulier la $X_n$ ont tous la même variance.
+		On dit que le processus $X$ est \textbf{stationnaire à l'ordre 2} si
+		$\forall n \in \Z, X_n \in L^2(\Omega)$ et
+		\vspace{-0.15cm}$$
+		\forall k \in \Z, \forall n \in \Z, \Cov(X_{n + k},X_n) = \Cov(X_k,X_0)\ .
+		\vspace{-0.15cm}$$
+		En particulier les $X_n$ ont tous la même variance.
 	\end{defn}
 	
 	\begin{defn}
-		Les processus stationnaires au sens large (SSL) sont ceux stationnaires aux ordres 1 et 2.
+		Les processus stationnaires au sens large (\textbf{SSL}) sont ceux stationnaires aux ordres 1 et 2.
 	\end{defn}
 	
 	\begin{defn}
@@ -36,7 +41,10 @@
 	
 	\begin{defn}
 		Soit $X$ stationnaire du second ordre.
-		Si $R_X \in l^1$, on définit sa \textbf{densité spectrale de puissance} par $\forall \nu \in \intfo{-\frac{1}{2}}{\frac{1}{2}}, S_X(\nu) := \sum_{k \in \Z} R_X(k) e^{-2i\pi \nu k} = \mathcal{F}(R_X)(\nu)$.
+		Si $R_X \in l^1$, on définit sa \textbf{densité spectrale de puissance} par
+		\vspace{-0.15cm}$$
+		\forall \nu \in \intfo{-\frac{1}{2}}{\frac{1}{2}}, S_X(\nu) := \sum_{k \in \Z} R_X(k) e^{-2i\pi \nu k} = \mathcal{F}(R_X)(\nu)\ .
+		\vspace{-0.15cm}$$
 		Elle est à valeurs réelles puisque $R_X$ est à symétrie hermitienne.
 	\end{defn}
 	
@@ -63,7 +71,16 @@
 		\item
 			$Y$ est SSL. On note $\tilde{h}_n = \overline{h_{-n}}$ le signal $h$ symétrisé et conjugué.
 			On a $m_Y = m_X \sum_{l \in \Z} h_l$ et $R_Y = (h * \tilde{h}) * R_X$.
-			Soit ponctuellement $\forall k \in \Z, R_Y(k) = \sum_l (h \star \tilde{h})(l) \star R_X(k - l) = \sum$
+			Soit ponctuellement
+			$\forall k \in \Z, R_Y(k) = \sum_l (h \star \tilde{h})(l) \star R_X(k - l) = \sum_{t,m} h_t \bar{h}_m R_X(k - t + m)$
+			et
+			$\forall \nu \in \intfo{-\frac{1}{2}}{\frac{1}{2}}, S_Y(\nu) = \abs{\hat{h}(\nu)}^2 S_X(\nu)$ ($\hat{h}$ est la TFtD de $h$).
 		\item
+			Si $g$ est un autre signal sommable et $Z = g * Y$ alors $Z = (g * (h * X)) = (g * h) * X$.
 		\end{enumerate}
+	\end{pop}
+
+	\begin{pop}[Filtrage récursif]
+		Soit $b_0,\ldots,b_q$ et $a_0,\ldots,a_p$ des complexes tels que les polynômes $P(z) = \sum_n a_n z^n$ et $Q(z) = \sum_n b_n z^n$ n'ont pas de zéro commun et que $Q$ n'a pas de zéro sur $\U$.
+		Si de plus $X$ est un processus SSL, alors il existe un unique processus SSL $Y$ tel que $\sum_i b_i Y_{n - i} = \sum_i a_i X_{n - i}$ et $Y = h * X$ où $h$ est la réponse impulsionnelle du filtre récursif stable défini par cette équation de récurrence.
 	\end{pop}

@@ -1,20 +1,22 @@
 \begin{thm}[Formule de Poisson ou le repliement spectral]
-\textit{Si f est une fonction définie sur R, intégrable et telle que sa transformée de Fourrier est aussi integrable et que la suite $f(m)$ est sommable, alors : }
-$$\sum_{m\in Z} f(m)e^{-2i\pi m\nu } = \sum_{n\in Z} \hat{f}(n+\nu )$$
-$$\hat{u}(\nu ) = \sum_{n\in Z} \hat{f}(n+\nu )$$
+	Si $f$ est une fonction définie sur $\R$, intégrable et telle que sa transformée de Fourrier est aussi intégrable et que la suite $(f(n))_n$ est sommable, alors :
+	$$\sum_{m\in Z} f(m)e^{-2i\pi m\nu } = \sum_{n\in Z} \hat{f}(n+\nu )
+	\qquad \text{et} \qquad
+	\hat{u}(\nu ) = \sum_{n\in Z} \hat{f}(n+\nu )\ .$$
 \end{thm}
 
 \begin{thm}[Théorème de bon échantillonnage ou théorème de Shannon]
-\textit{Si f est une fonction sommable et que TFtC, $\hat{f}$ est nulle en dehors de [-0.5, 0.5], alors on a : }
-$$f(t)=\sum_{n\in Z}f(n)sinC(\pi (t-n))$$
+	Si f est une fonction sommable et que TFtC, $\hat{f}$ est nulle en dehors de [-0.5, 0.5], alors on a :
+	$$f(t)=\sum_{n\in \Z} f(n) \sinC (\pi (t-n))\ .$$
 \end{thm}
 
 \begin{thm}[Théorème de Shannon pour les énergies finies]
-\textit{Si f est d'énergie finie. On note $u_{n}=f(n)$, alors :}
- $$||f||_{2} = ||u||_{2}$$ 
+	Si f est d'énergie finie. On note $u_{n}=f(n)$, alors :
+	$$\norme{f}_{2} = \norme{u}_{2}\ .$$
 \end{thm}
 
-\begin{defn} La formule : 
-$$\forall t\in R   f(t)=\sum_{n\in Z}f(n)sinC(\pi (t-n))$$
-Signifie que si le spectre de f est à support dans [-0.5, 0.5] alors on peut reconstruire la fonction f à partir de ses échantillons. On parle \textbf{CNA parfait} ou \textbf{CNA idéal}
+\begin{defn} La formule
+	$$\forall t \in \R, f(t) = \sum_{n\in \Z} f(n) \sinC (\pi (t-n))$$
+	signifie que, si le spectre de $f$ est à support dans $\intff{-\frac{1}{2}}{\frac{1}{2}}$, alors on peut reconstruire la fonction $f$ à partir de ses échantillons.
+	On parle \textbf{CNA parfait} ou \textbf{CNA idéal}.
 \end{defn}

@@ -128,7 +128,7 @@ Alors le lobe central est plus étalé ($\rightarrow$ perte de résolution fréq
 	La Transformée de Fourier à Court Terme (\textbf{TFCT}) de $u$, de fenêtre $w$ et de précision $\frac{1}{M}$ est la fonction
 	$$U \colon \begin{array}{rcl}
 		\Z \times \frac{\intiff{0}{N - 1}}{M} & \to & \C \\
-		n, \frac{k}{M} & \mapsto & \sum_{m \in \Z} u_m w_{n - m} e^{-2i\pi \frac{k}{M} m}
+		\left( n, \frac{k}{M} \right) & \mapsto & \sum_{m \in \Z} u_m w_{n - m} e^{-2i\pi \frac{k}{M} m}
 	\end{array}$$
 	On peut aussi, en remplaçant $\frac{k}{M}$ par $\nu$ la considérer comme une fonction de $\Z \times \intff{-\frac{1}{2}}{\frac{1}{2}}$ que l'on échantillonnera aussi finement que l'on veut en augmentant la valeur de $M$.
 \end{defn}

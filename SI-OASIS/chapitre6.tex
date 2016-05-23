@@ -1,21 +1,20 @@
 \begin{defn}[Approximation]
-\textit{Soit x un vecteur et $\alpha_{n}$ une collection de M vecteurs, de plus $n_{j}\in \lbrace 1 ... M \rbrace$ on a alors : }
-$$\tilde{x}=\sum_{j=0}^{m-1}a_{j}\alpha_{n_{j}}$$
-On dit que $\tilde{x}$ est une approximation de x dans la collection d'atomes $\alpha_{n}$ avec les coefficient $a_{j}$
+	Soit $x$ un vecteur et $\alpha_{n}$ une collection de M vecteurs, de plus $n_{j}\in \lbrace 1 ... M \rbrace$ on a :
+	$$\tilde{x} = \sum_{j=0}^{m-1} a_{j} \alpha_{n_{j}}$$
+	On dit que $\tilde{x}$ est une \textbf{approximation} de $x$ dans la collection d'atomes $\alpha_{n}$ avec les coefficient $a_{j}$.
 \end{defn}
 
-\begin{defn}[Taux de compression]
-Le taux de compression noté $\tau_{c}$ est défini : 
-$$\tau_{c}=\dfrac{m}{N}$$
+\begin{defn}
+	Le \textbf{taux de compression}, noté $\tau_{c}$, est défini par $\tau_{c} = \dfrac{m}{N}$.
 \end{defn}
 
-\begin{defn}[Erreur relative]
-L'errueur relative de compression noté $\tau_{c}$ est définie par : 
-$$err_{c}=\dfrac{||x-\tilde{x}||}{||x||}$$
+\begin{defn}
+	L'\textbf{erreur relative} de compression, notée $\tau_{c}$, est définie par
+	$err_{c} = \dfrac{ \norme{x-\tilde{x}} }{\norme{x}}$.
 \end{defn}
 
 \begin{defn}[Compression linéaire]
-\textit{Pour un taux de compression $\tau=\dfrac{m}{N}$, on prend pour approximation de x, le vecteur  : }
-$$\tilde{x}=\sum_{i=1}^{m}a_{j}<x|\alpha_{i} >\alpha_{i}$$
-Autrement dit on choisit les m premiers vecteurs de la base $\alpha$ pour approximer x
+	Pour un taux de compression $\tau = \dfrac{m}{N}$, on prend pour approximation de $x$, le vecteur :
+	$$\tilde{x} = \sum_{i=1}^{m} a_{j} \scal{x}{\alpha_{i}} \alpha_{i}\ .$$
+	Autrement dit on choisit les $m$ premiers vecteurs de la base $\alpha$ pour approximer $x$.
 \end{defn}
