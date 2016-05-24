@@ -1,25 +1,44 @@
 \begin{thm}[Formule de Poisson ou le repliement spectral]
-	Si $f$ est une fonction définie sur $\R$, intégrable et telle que sa transformée de Fourrier est aussi intégrable et que la suite $(f(n))_n$ est sommable, alors :
-	\vspace{-0.1cm}$$
-	\sum_{m\in Z} f(m)e^{-2i\pi m\nu } = \sum_{n\in Z} \hat{f}(n+\nu )
+	Si $f$ est une fonction définie sur $\R$, intégrable et telle que sa transformée de Fourrier est aussi intégrable, et que la suite $(f(n))_n$ est sommable, alors :
+	\vspace{-0.15cm}$$
+	\forall \nu \in \intfo{-\frac{1}{2}}{\frac{1}{2}}, \sum_{m\in Z} f(m)e^{-2i\pi m\nu } = \sum_{n\in Z} \hat{f}(n+\nu )
 	\qquad \text{et} \qquad
 	\hat{u}(\nu ) = \sum_{n\in Z} \hat{f}(n+\nu )\ .
-	\vspace{-0.1cm}$$
+	\vspace{-0.15cm}$$
 \end{thm}
 
 \begin{thm}[Théorème de bon échantillonnage ou théorème de Shannon]
 	Si $f$ est une fonction sommable et que sa TFtC, $\hat{f}$, est nulle en dehors de $\intff{-\frac{1}{2}}{\frac{1}{2}}$, alors on a
-	\vspace{-0.15cm}$$
-	f(t)=\sum_{n\in \Z} f(n) \sinC (\pi (t-n))\ .
-	\vspace{-0.15cm}$$
+	\vspace{-0.2cm}$$
+	f(t)=\sum_{n\in \Z} f(n) \sinC (\pi (t-n))
+	\qquad \text{et} \qquad
+	\forall \nu \in \intfo{-\frac{1}{2}}{\frac{1}{2}}, \sum_{m \in \Z} f(m) e^{2i\pi \nu m} = \hat{f}(\nu)\ .
+	\vspace{-0.17cm}$$
+	En particulier l'opération d'échantillonnage sur $\Z$ est injective sur l'espace des fonctions dont la TF est à support dans $\intfo{-\frac{1}{2}}{\frac{1}{2}}$.
 \end{thm}
 
 \begin{thm}[Théorème de Shannon pour les énergies finies]
-	Soit $f$ d'énergie finie et $u_{n} = f(n)$, alors $\norme{f}_{2} = \norme{u}_{2}$.
+	Soit $f$ d'énergie finie telle que son spectre est à support dans $\intfo{-\frac{1}{2}}{\frac{1}{2}}$ et $u_{n} = f(n)$, alors $\norme{f}_{2} = \norme{u}_{2}$.
 \end{thm}
 
-\begin{defn} La formule
-	$$\forall t \in \R, f(t) = \sum_{n\in \Z} f(n) \sinC (\pi (t-n))$$
-	signifie que, si le spectre de $f$ est à support dans $\intff{-\frac{1}{2}}{\frac{1}{2}}$, alors on peut reconstruire la fonction $f$ à partir de ses échantillons.
+\begin{pop}
+	Dans le cas $(f(n))_n \in l^1$, on a
+	\vspace{-0.15cm}$$
+	\forall t \in \R, f(t) = \sum_{n\in \Z} f(n) \sinC (\pi (t-n))
+	\vspace{-0.15cm}$$
+	ce qui signifie que, si le spectre de $f$ est à support dans $\intff{-\frac{1}{2}}{\frac{1}{2}}$, alors on peut reconstruire la fonction $f$ à partir de ses échantillons.
 	On parle \textbf{CNA parfait} ou \textbf{CNA idéal}.
-\end{defn}
+\end{pop}
+
+\paragraph{Cas d'un échantillonnage réel} avec une période $T_e = \frac{1}{F_e}$.
+	Soit $g$ définie par $g(x) = f(x T_e) = f \left( \frac{x}{T_e} \right)$.
+	Alors :
+	\begin{itemize}
+	\item[\textbullet] $\hat{g}(\nu) = \frac{1}{T_e} \hat{f} \left( \frac{\nu}{T_e} \right) = F_e \hat{f}(F_e \nu)$ et $\hat{f}(\nu) = T_e \hat{g} \left( \frac{\nu}{F_e} \right)$.
+	\item[\textbullet] Condition du théorème de Shannon :
+		$\left( \forall \nu >\frac{1}{2}, \hat{g}(\nu) = 0 \right) \iff \left( \forall \xi >\frac{F_e}{2}, \hat{f}(\xi) = 0 \right)$.
+	\item[\textbullet] Formule de Poisson : $\forall \nu \in \intfo{-\frac{1}{2}}{\frac{1}{2}}, \sum_{m \in \Z} f(mT_e) e^{-2i\pi m \nu} = F_e \sum_{n \in \Z} \hat{f}(F_e (n + \nu))$.
+	\item[\textbullet] Théorème de Shannon :
+		$f(t) = \sum_n f(nT_e) \sinC \left( \pi \left( \frac{t}{T_e} - n \right) \right)$.
+	\end{itemize}
+	

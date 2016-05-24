@@ -20,23 +20,24 @@
 \end{pop}
 
 \begin{defn}
-	Si $h$ est un signal défini sur $\Z$ et est sommable. On appelle \textbf{transformée en $Z$} de $h$, la fonction $H$ défini sur le cercle unité de $\C$ par
+	Si $h$ est un signal défini sur $\Z$ et est sommable. On appelle \textbf{transformée en $Z$} de $h$, la fonction $H$ défini $\U$, sur le cercle unité de $\C$, par
 	\vspace{-0.15cm}$$
 	H(z) = \sum_{n\in Z} h_{n}z^{-n}\ .
 	\vspace{-0.15cm}$$
 \end{defn}
 
-\begin{pop}
+\begin{pop}[Théorème d'inversion]
 	Si $h$ est une suite sommable et que $H$ est sa transformée en $Z$ , alors on a :
 	\vspace{-0.15cm}$$
 	\forall n \in \Z, h_{n}= \int_{-1/2}^{1/2} H \left( e^{2i\pi \nu} \right) e^{2i\pi \nu n} \diff \nu\ .
 	\vspace{-0.15cm}$$
+	En particulier, si deux suites sommables ont la même transformées en $Z$, alors elles sont égales.
 \end{pop}
 
 \begin{pop}
-	Si ($x_{n}$) et ($y_{n}$) sont deux signaux sommables, on note $X$ et $Y$ leurs transformée en $Z$, on note $u$ la convolution de $x$ et $y$, on a :
+	Soit $(x_{n})_n$ et $(y_{n})_n$ deux signaux sommables. On note $X$ et $Y$ leurs transformée en $Z$ et $u = x \star y$. On a :
 	\vspace{-0.15cm}$$
-	U(z)=X(z)Y(z)\ .
+	\forall z \in \U, U(z)=X(z)Y(z)\ .
 	\vspace{-0.15cm}$$
 \end{pop}
 
@@ -59,13 +60,22 @@
 \begin{pop}
 	Si $T$ est un SLI récursif stable et $h$ sa réponse impulsionnelle, $H$ admet une transformée en $Z$ notée $H$ :
 	\vspace{-0.15cm}$$
-	H(z) = \frac{P(z^{-1})}{Q(z^{-1})}\ .
+	H(z) = \frac{P(z^{-1})}{Q(z^{-1})}
+	\quad \text{avec}\quad
+	P = \sum_{i = 0}^p a_i X^i
+	\quad \text{et}\quad
+	Q = \sum_{i = 0}^q b_i X^i\ .
 	\vspace{-0.15cm}$$
+	En particulier $Q$ n'a pas de zéro sur $\U$.
+\end{pop}
+
+\begin{pop}
+	Sous les conditions ci-dessus, pour toute suite sommable $x$, il existe une unique suite sommable $y$ qui vérifie l'équation de récurrence, donnée par $h \star x$.
 \end{pop}
 
 \begin{defn}
 	On appelle \textbf{zéros} du filtre les zéros de la fonction $P(z^{-1})$, c'est à dire les inverses du polynôme $P$.
-	On appelle \textbf{pôles}, les zéros de $Q(z^{-1})$.
+	On appelle \textbf{pôles} du filtre les zéros de $Q(z^{-1})$.
 \end{defn}
 
 \begin{pop}
@@ -80,3 +90,18 @@
 	\textbf{Filtre à minimum de phase} : filtre récursif stable causal dont l'inverse est aussi stable et causal.
 	Cela est équivalent à dire que ses pôles et ses zéros sont dans l'intérieur du disque unité.
 \end{defn}
+
+\begin{pop}[Implémentation des filtres récursifs]
+	Soit $T$ un SLI récursif stable causal avec $b_0 = 1$, $x$ sommable, $y = T(x)$ et $x^c = (\indic_\N(n) x_n)_n$ la troncature causale de $x$.
+	On considère la suite causale $t$ telle que
+	\vspace{-0.15cm}$$
+	\forall n \geq 0, t_n = \left( \sum_{i = 0}^p a_i x^c_{n - i} \right) - \left( \sum_{i = 1}^q a_i t_{n - i} \right)\ .
+	\vspace{-0.15cm}$$
+	Alors on a :
+	\begin{enumerate}
+	\item Si $x$ est causale alors $t = y$ (implémentation parfaite).
+	\item Dans tous les cas,
+		$\exists A < 1, C \geq 0, \forall n \geq 0, \abs{t_n - y_n} < C A^n \norme{x}_1$,
+		i.e. pour $n$ assez grand, $t$ devient aussi proche que l'on veut de la vraie solution $y$.
+	\end{enumerate}
+\end{pop}
