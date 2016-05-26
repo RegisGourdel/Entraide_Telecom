@@ -22,3 +22,36 @@
 		
 
 \subsection{Description de l'émetteur}
+
+\begin{defn}
+\textit{Transmission d'un signal provenant d'un code correcteur d'erreur, mathématiquement on a : }
+$$x(t)=\sum_{n=0}^{N-1} s_{n}g(t-nT_{s})$$
+avec $g(t)$ la porte de longuer $T_{s}$, la suite de symbole avec : $s_{n}=Ac_{n}$
+\end{defn}
+
+\begin{pop}
+\textit{Si on veut augmenter le débit $D$, on peut augmenter le nombre de symbole possibles afin d'augmenter le nombre de bits par symbole : $T_{b}= T_{b}/log_{2}(M)$, on peut donc chercher à augmenter $M$ pour améliorer le débit}
+\end{pop}
+
+\begin{pop}
+\textit{Une fois la valeur de $M$ choisie, il faut disposer les valeurs de $M$ pour former une \textbf{constellation}}
+\begin{itemize}
+\item $M-OOK$ : Disposition de manière régulière.
+\item $M-PAM$ : Dsposition régulière également mais on s'autorise des phase (dans le cadre des valeurs réelles, on peut donc avoir des amplitude négatives). 
+\end{itemize}
+\end{pop}
+
+\begin{pop}
+\textit{Résultats à connaître (pour aller plus vite) :}
+\begin{itemize}
+\item OOK : $m_{s}$ = $A(M-1)/2$;     $\sigma_{s}^{2}$=$A^{2}(M^{2}-1)/12$;     $E_{s}=A^{2}(2M^{2}-3M+1)/6$
+\item PAM : $m_{s}$ = 0;    $\sigma_{s}^{2}$=$A^{2}(M^{2}-1)/3$;     $E_{s}=A^{2}(M^{2}-1)/3$;
+\end{itemize}
+\end{pop}
+\begin{pop}
+\textit{L'énergie consommée pour émettre un bit d'information s'écrit : }
+$$E_{b}=\dfrac{1}{log_{2}(M)} (E_{s}E_{g}+m_{s}\sum_{n\neq 0} h_{n})$$
+Avec $E_{g}$ l'énergie du filtre d'émission.
+\end{pop}
+
+\subsection{Description du récepteur}
