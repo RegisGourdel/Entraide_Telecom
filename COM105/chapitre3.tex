@@ -9,5 +9,16 @@
 		Le canal multi-trajets conduit à $y(t) = c_p(t) \star y(t) + b(t)$.
 	\end{pop}
 	
-	Lorsque $c_p(t) = \delta(t)$ le canal est appelé canal gaussien, car seul le bruit gaussien vient perturber la transmission.
+	Lorsque $c_p(t) = \delta(t)$ le canal est appelé \textbf{canal gaussien}, car seul le bruit gaussien vient perturber la transmission.
 	Dans ce cas $y(t) = x(t) + b(t)$.
+	C'est notamment vrai dans les cas suivants :
+	\begin{itemize}
+	\item[\textbullet] Faisceaux hertziens : entre antenne fixes avec une visibilité directe entre elles $\rar$ antenne émettrice directive orienté vers l'antenne de réception $\rar$ ni dispersion, ni écho.
+	\item[\textbullet] Liaisons satellitaires : en première approximation l'onde ne subit pas d'obstacle entre l'émission par le satellite et la réception par une antenne parabolique.
+	\item[\textbullet] Réseaux câblés co-axiaux : produisent très peu de multitrajets.
+	\end{itemize}
+	
+	Lorsque $c_p(t) \neq \delta(t)$, le canal est appelé \textbf{cana sélectif en fréquence}, car alors $Y(f) = C_p(f) X(f) + B(f)$ (en prenant les TF) $\rar$ $C_p$ n'est plus constante et donc agit différemment selon les fréquences.
+		
+
+\subsection{Description de l'émetteur}
