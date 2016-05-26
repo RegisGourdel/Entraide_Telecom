@@ -5,6 +5,25 @@
 \usepackage{amsfonts}
 
 \definecolor{vert}{rgb}{0,0.6,0}
+%\theoremstyle{plain}% default
+%\newtheorem{thm}{\textcolor{Crimson}{Théorème}}[section]
+%\newtheorem{lem}{Lemme}
+%\newtheorem{prop}{\textcolor{FireBrick}{Proposition}}[section]
+%\newtheorem{cor}{\textcolor{Brown}{Corollaire}}
+
+%\theoremstyle{definition}
+%\newtheorem{defn}{\textcolor{magenta}{Définition}}[section]
+%\newtheorem{conj}{Conjecture}
+%\newtheorem{exmp}{\normalfont{Exemple}}
+%\newtheorem{exo}{Exercice}
+
+%\theoremstyle{remark}
+%\newtheorem*{rem}{\textcolor{Teal}{Rem}}
+%\newtheorem*{note}{\textcolor{RoyalBlue}{Not}}
+%\newtheorem*{danger}{\textcolor{green}{Attention}}
+%\newtheorem*{voc}{\normalfont{Vocabulaire}}
+
+%\newcommand\demo{\begin{proof}[\textit{Démonstration}]}
 
 
 % Une macro pour obtenir de grandes fractions dans les formules en ligne.
@@ -16,7 +35,6 @@
 	\halign{##\cr
 	\leaders\hbox{$\scriptstyle{-}$\kern-.4em}\hfil$\scriptstyle{\rightarrow}$\cr
 	$#1$\cr}}}
-
 
 % Majuscules d'anglaise.
 \DeclareSymbolFont{rsfscript}{U}{rsfs}{m}{n}
@@ -45,20 +63,22 @@
 \newcommand\cont{\mathcal{C}}
 \newcommand\li{[\![}
 \newcommand\ri{]\!]}
-\newcommand{\diff}{\mathop{}\mathopen{}\mathrm{d}} % Le d de dx ou dt dans les intégrales
-\newcommand{\abs}[1]{\left\lvert#1\right\rvert} % Valeur absolue
+\newcommand{\diff}{\mathop{}\mathopen{}\mathrm{d}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 \newcommand{\norme}[1]{\left\lVert#1\right\rVert}
-\newcommand{\transp}[1]{{#1}^{\mathsf{T}}} % Transposée
-\newcommand{\scal}[2]{\left\langle #1 \mid #2 \right\rangle} % Produit scalaire
-\newcommand\Hom{\mathrm{Hom}}
-\newcommand\End{\mathrm{End}}
-\newcommand\Isom{\mathrm{Isom}}
-\newcommand\Aut{\mathrm{Aut}}
-\newcommand\Int{\mathrm{Int}}
-\newcommand{\compl}[1]{{#1}^{\mathcal{C}}} % Complémentaire d'un ensemble
-\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}} % Variables aléatoires indépendantes
+\newcommand{\transp}[1]{{\vphantom{#1}}^{\mathit t}{#1}}
+\newcommand{\scal}[2]{\left\langle #1 \mid #2 \right\rangle}
+\newcommand{\compl}[1]{{#1}^{\mathcal{C}}} % symbole du complémentaire en exposant
+\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}} % symbole d'indépendance en probas
 \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern3mu{#1#2}}}
+\newcommand\rar{\rightarrow}
 
+% Notation d'ensembles en algèbre
+\newcommand\Hom{\mathrm{Hom}}
+\newcommand\End{\mathrm{End}} % Endomorphismes
+\newcommand\Isom{\mathrm{Isom}} % Isométries
+\newcommand\Aut{\mathrm{Aut}} % Automorphismes
+\newcommand\Int{\mathrm{Int}}
 
 % Premières définitions d'intervalles, taille non ajustable
 \newcommand{\intervalle}[4]{\mathopen{#1}#2\mathclose{}\mathpunct{};#3\mathclose{#4}}
@@ -67,7 +87,6 @@
 \newcommand{\info}[2]{\intervalle{[}{#1}{#2}{[}}
 \newcommand{\inoo}[2]{\intervalle{]}{#1}{#2}{[}}
 \newcommand{\iniff}[2]{\intervalle{[\![}{#1}{#2}{]\!]}}
-
 
 % Secondes définitions d'intervalles, taille ajustable
 \newcommand{\genericinterval}[4]
@@ -80,8 +99,6 @@
 \newcommand{\intfo}[2]{\genericinterval{[}{#1}{#2}{[}}
 \newcommand{\intiff}[2]{\genericinterval{[\![}{#1}{#2}{]\!]}}
 
-
-% Quelques opérateurs mathématiques
 \DeclareMathOperator{\card}{Card}
 \DeclareMathOperator{\tr}{Tr}
 \DeclareMathOperator{\Ker}{Ker}
@@ -97,7 +114,7 @@
 \DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Supp}{Supp}
-
+\DeclareMathOperator{\sinC}{sinC}
 
 % Pour des symboles « inférieur ou égal », « supérieur ou égal », « ensemble vide » et « parallèles » conformes aux usages français.
 \DeclareSymbolFont{AmsA}{U}{msa}{m}{n}
