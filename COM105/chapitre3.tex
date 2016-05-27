@@ -55,3 +55,30 @@ Avec $E_{g}$ l'énergie du filtre d'émission.
 \end{pop}
 
 \subsection{Description du récepteur}
+\begin{pop}
+\textit{La suite optimale au sens de la probabilité d'erreur est la suivante :}
+$$z_{n}=z(nT_{s})$$
+\textit{avec}
+$$z(t)=g(-t)*y(t)$$
+\end{pop}
+
+\begin{pop}
+\textit{Dans le contexte d'un canal gaussien on a : }
+$$z_{n}=h_{n}*s_{n}+w_{n}$$
+\end{pop}
+
+\begin{defn}[Filtre de Nyquist]
+\textit{Un filtre de réponse impulsionnelle l(t) est dit de Nyquist, si et seulement si : }
+$$l_{n}=l(nT_{s})= 
+\left\{
+  \begin{array}{rcr}
+    \neq 0 & pour &  n=0 \\
+    0 & pour & n\neq 0 \\
+  \end{array}
+\right.
+$$
+\end{defn}
+
+\begin{pop}
+\textit{La largeur de bande notée B, de tout filtre de Nyquist ou en racine de Nyquist vérifie} $$B\geq \dfrac{1}{T_{s}}$$
+\end{pop}
