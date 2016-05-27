@@ -6,7 +6,7 @@
 	
 	\begin{pop}
 		Soit $x(t)$ le signal émis et $y(t)$ le signal reçu.
-		Le canal multi-trajets conduit à $y(t) = c_p(t) \star y(t) + b(t)$.
+		Le canal multi-trajets conduit à $y(t) = c_p(t) \star x(t) + b(t)$.
 	\end{pop}
 	
 	Lorsque $c_p(t) = \delta(t)$ le canal est appelé \textbf{canal gaussien}, car seul le bruit gaussien vient perturber la transmission.
@@ -18,67 +18,63 @@
 	\item[\textbullet] Réseaux câblés co-axiaux : produisent très peu de multitrajets.
 	\end{itemize}
 	
-	Lorsque $c_p(t) \neq \delta(t)$, le canal est appelé \textbf{cana sélectif en fréquence}, car alors $Y(f) = C_p(f) X(f) + B(f)$ (en prenant les TF) $\rar$ $C_p$ n'est plus constante et donc agit différemment selon les fréquences.
+	Lorsque $c_p(t) \neq \delta(t)$, le canal est appelé \textbf{canal sélectif en fréquence}, car alors $Y(f) = C_p(f) X(f) + B(f)$ (en prenant les TF) $\rar$ $C_p$ n'est plus constante et donc agit différemment selon les fréquences.
 		
 
 \subsection{Description de l'émetteur}
 
-\begin{defn}
-\textit{Transmission d'un signal provenant d'un code correcteur d'erreur, mathématiquement on a : }
-$$x(t)=\sum_{n=0}^{N-1} s_{n}g(t-nT_{s})$$
-avec $g(t)$ la porte de longuer $T_{s}$, la suite de symbole avec : $s_{n}=Ac_{n}$
-\end{defn}
+	\begin{defn}
+	\textit{Transmission d'un signal provenant d'un code correcteur d'erreur, mathématiquement on a : }
+	$$x(t)=\sum_{n=0}^{N-1} s_{n}g(t-nT_{s})$$
+	avec $g(t)$ la porte de longuer $T_{s}$, la suite de symbole avec : $s_{n}=Ac_{n}$
+	\end{defn}
+	
+	\begin{pop}
+	Si on veut augmenter le débit $D$, on peut augmenter le nombre de symbole possibles afin d'augmenter le nombre de bits par symbole : $T_{b}= \frac{T_{b}}{\log_{2}(M)}$, on peut donc chercher à augmenter $M$ pour améliorer le débit.
+	\end{pop}
+	
+	\begin{pop}
+		Une fois la valeur de $M$ choisie, il faut disposer les valeurs de $M$ pour former une \textbf{constellation}.
+		\begin{itemize}
+		\item M-OOK : Disposition de manière régulière.
+		\item M-PAM : Disposition régulière également mais on s'autorise des phase (dans le cadre des valeurs réelles, on peut donc avoir des amplitude négatives). 
+		\end{itemize}
+	\end{pop}
 
-\begin{pop}
-\textit{Si on veut augmenter le débit $D$, on peut augmenter le nombre de symbole possibles afin d'augmenter le nombre de bits par symbole : $T_{b}= T_{b}/log_{2}(M)$, on peut donc chercher à augmenter $M$ pour améliorer le débit}
-\end{pop}
-
-\begin{pop}
-\textit{Une fois la valeur de $M$ choisie, il faut disposer les valeurs de $M$ pour former une \textbf{constellation}}
-\begin{itemize}
-\item $M-OOK$ : Disposition de manière régulière.
-\item $M-PAM$ : Dsposition régulière également mais on s'autorise des phase (dans le cadre des valeurs réelles, on peut donc avoir des amplitude négatives). 
-\end{itemize}
-\end{pop}
-
-\begin{pop}
-\textit{Résultats à connaître (pour aller plus vite) :}
-\begin{itemize}
-\item OOK : $m_{s}$ = $A(M-1)/2$;     $\sigma_{s}^{2}$=$A^{2}(M^{2}-1)/12$;     $E_{s}=A^{2}(2M^{2}-3M+1)/6$
-\item PAM : $m_{s}$ = 0;    $\sigma_{s}^{2}$=$A^{2}(M^{2}-1)/3$;     $E_{s}=A^{2}(M^{2}-1)/3$;
-\end{itemize}
-\end{pop}
-\begin{pop}
-\textit{L'énergie consommée pour émettre un bit d'information s'écrit : }
-$$E_{b}=\dfrac{1}{log_{2}(M)} (E_{s}E_{g}+m_{s}\sum_{n\neq 0} h_{n})$$
-Avec $E_{g}$ l'énergie du filtre d'émission.
-\end{pop}
+	\begin{pop}
+		Résultats à connaître (pour aller plus vite) :
+		\begin{itemize}
+		\item OOK : $m_{s}$ = $A(M-1)/2$;     $\sigma_{s}^{2}$=$A^{2}(M^{2}-1)/12$;     $E_{s}=A^{2}(2M^{2}-3M+1)/6$
+		\item PAM : $m_{s}$ = 0;    $\sigma_{s}^{2}$=$A^{2}(M^{2}-1)/3$;     $E_{s}=A^{2}(M^{2}-1)/3$;
+		\end{itemize}
+		\end{pop}
+		\begin{pop}
+		\textit{L'énergie consommée pour émettre un bit d'information s'écrit : }
+		$$E_{b}=\frac{1}{\log_{2}(M)} \left( E_{s}E_{g}+m_{s} \sum_{n\neq 0} h_{n} \right)$$
+		Avec $E_{g}$ l'énergie du filtre d'émission.
+	\end{pop}
 
 \subsection{Description du récepteur}
-\begin{pop}
-\textit{La suite optimale au sens de la probabilité d'erreur est la suivante :}
-$$z_{n}=z(nT_{s})$$
-\textit{avec}
-$$z(t)=g(-t)*y(t)$$
-\end{pop}
 
-\begin{pop}
-\textit{Dans le contexte d'un canal gaussien on a : }
-$$z_{n}=h_{n}*s_{n}+w_{n}$$
-\end{pop}
-
-\begin{defn}[Filtre de Nyquist]
-\textit{Un filtre de réponse impulsionnelle l(t) est dit de Nyquist, si et seulement si : }
-$$l_{n}=l(nT_{s})= 
-\left\{
-  \begin{array}{rcr}
-    \neq 0 & pour &  n=0 \\
-    0 & pour & n\neq 0 \\
-  \end{array}
-\right.
-$$
-\end{defn}
-
-\begin{pop}
-\textit{La largeur de bande notée B, de tout filtre de Nyquist ou en racine de Nyquist vérifie} $$B\geq \dfrac{1}{T_{s}}$$
-\end{pop}
+	\begin{pop}
+		La suite optimale au sens de la probabilité d'erreur est la suivante :
+		$$z_{n} = z(nT_{s}) \quad \text{avec} \quad z(t)=g(-t)*y(t)\ .$$
+	\end{pop}
+	
+	\begin{pop}
+	\textit{Dans le contexte d'un canal gaussien on a : }
+	$$z_{n} = h_{n} \star s_{n} + w_{n}$$
+	\end{pop}
+	
+	\begin{defn}[Filtre de Nyquist]
+		Un filtre de réponse impulsionnelle $l(t)$ est dit de Nyquist, si et seulement si :
+		$$l_{n} = l(nT_{s}) =
+		\left\{ \begin{array}{rcr}
+			\neq 0 & \text{pour} & n = 0 \\
+			0      & \text{pour} & n \neq 0 \\
+		\end{array} \right.$$
+	\end{defn}
+	
+	\begin{pop}
+	\textit{La largeur de bande notée B, de tout filtre de Nyquist ou en racine de Nyquist vérifie} $$B\geq \dfrac{1}{T_{s}}$$
+	\end{pop}
