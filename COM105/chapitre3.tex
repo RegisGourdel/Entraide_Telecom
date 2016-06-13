@@ -42,9 +42,9 @@
 	\begin{defn}
 	On note \textbf{$\mathcal{M}=\{s^{(m)}\}_{m=0,\cdots,M-1}$}. Ainsi, à l'instant $n$, $s_{n}$ prend une des valeurs $s^{(m)}$.
 	Comme la suite des symboles est i.i.d, on définit la moyenne symbole \textbf{$m_{s}$}, la variance symbole \textbf{$\sigma^{2}_{s}$} et \textbf{l'énergie symbole $E_{s}$}. Ces variables ne dépendent pas de $n$; on les définit ainsi :
-	$$m_{s}=\frac{1}{M}\sum_{m=0}^{M-1}s^{(m)}$$
-	$$\sigma^{2}_{s}=\frac{1}{M}\sum_{m=0}^{M-1}(s^{(m)}-m_{s})^2$$
-	$$E_{s}=\frac{1}{M}\sum_{m=0}^{M-1}s^{(m)^2}=m_s^2+\sigma_s^2$$
+	$$m_{s}=\frac{1}{M}\sum_{m=0}^{M-1}s^{(m)} \qquad
+	\sigma^{2}_{s}=\frac{1}{M}\sum_{m=0}^{M-1}(s^{(m)}-m_{s})^2 \qquad
+	E_{s}=\frac{1}{M}\sum_{m=0}^{M-1}s^{(m)^2}=m_s^2+\sigma_s^2$$
 	\end{defn}	
 	
 	\begin{pop}
@@ -72,8 +72,7 @@
 	\end{pop}
 	
 	\begin{pop}
-	\textit{Dans le contexte d'un canal gaussien on a : }
-	$$z_{n} = h_{n} \star s_{n} + w_{n}$$
+	Dans le contexte d'un canal gaussien on a $z_{n} = h_{n} \star s_{n} + w_{n}$.
 	\end{pop}
 	
 	\begin{defn}[Filtre de Nyquist, Filtre en racine de Nyquist]
@@ -97,7 +96,7 @@
 	\end{pop}
 	
 	\begin{pop}
-		La largeur de bande notée B, de tout filtre de Nyquist ou en racine de Nyquist vérifie $B\geq \dfrac{1}{T_{s}}$.
+		La largeur de bande, notée $B$, de tout filtre de Nyquist ou en racine de Nyquist vérifie $B\geq \dfrac{1}{T_{s}}$.
 	\end{pop}
 	
 \subsection{Détecteur optimal}
@@ -110,8 +109,7 @@
 			s^{(m)} & \text{si} & z_n\in ]t^{(m-1)} ,t^{(m)}]\;\text{pour}\; m\in \{1,\cdots, M-2\} \\
                         s^{(M-1)} & \text{si} & z_n\in ]t^{(M-2)} ,+\infty[ \\
 		\end{array}\right .$$
-		Avec, pour $m\in \{0,\cdots,M-2\}$, les seuils suivants :
-		$$t^{(m)}=\frac{s^{(m)}+s^{(m+1)}}{2}$$
+		Avec, pour $m\in \{0,\cdots,M-2\}$, les seuils suivants : $t^{(m)} = \dfrac{s^{(m)}+s^{(m+1)}}{2}$.
 	\end{pop}
 
 \subsection{Performances}
@@ -128,6 +126,4 @@
 		$$P_b = P_e = Q \left( \sqrt{2 \frac{E_b}{N_0}} \right) \quad \text{avec} \quad Q := x \mapsto \frac{1}{\sqrt{2\pi}} \int_x^{+\infty} e^{-u^2/2} \diff u\ .$$
 	\end{pop}
 	
-	$$P_\text{dB} = 10 \log_{10} (P)$$
-	
-	
+	%$$P_\text{dB} = 10 \log_{10} (P)$$	
