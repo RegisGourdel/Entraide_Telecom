@@ -3,12 +3,12 @@
 	\begin{hyp}
 		Le bruit $b(t)$ est i.i.d. gaussien de moyenne nulle, de fonction d'autocorrélation $r_{bb}(\tau) := \esp(b(t + \tau) b(t))$ et satisfait $r_{bb}(\tau) = \frac{N_0}{2}$.
 	\end{hyp}
-	
+
 	\begin{pop}
 		Soit $x(t)$ le signal émis et $y(t)$ le signal reçu.
 		Le canal multi-trajets conduit à $y(t) = c_p(t) \star x(t) + b(t)$.
 	\end{pop}
-	
+
 	Lorsque $c_p(t) = \delta(t)$ le canal est appelé \textbf{canal gaussien}, car seul le bruit gaussien vient perturber la transmission.
 	Dans ce cas $y(t) = x(t) + b(t)$.
 	C'est notamment vrai dans les cas suivants :
@@ -17,9 +17,9 @@
 	\item[\textbullet] Liaisons satellitaires : en première approximation l'onde ne subit pas d'obstacle entre l'émission par le satellite et la réception par une antenne parabolique.
 	\item[\textbullet] Réseaux câblés co-axiaux : produisent très peu de multitrajets.
 	\end{itemize}
-	
+
 	Lorsque $c_p(t) \neq \delta(t)$, le canal est appelé \textbf{canal sélectif en fréquence}, car alors $Y(f) = C_p(f) X(f) + B(f)$ (en prenant les TF) $\rar$ $C_p$ n'est plus constante et donc agit différemment selon les fréquences.
-		
+
 
 \subsection{Description de l'émetteur}
 
@@ -28,25 +28,32 @@
 	$$x(t)=\sum_{n=0}^{N-1} s_{n}g(t-nT_{s})$$
 	avec $g(t)$ le filtre d'émission, $\{s_{n}\}_{n}$ la suite de symboles s'exprimant en fonction des données et $T_{s}$ le temps-symbole.
 	\end{defn}
-	
+
 	\begin{defn}
-	On note \textbf{$\mathcal{M}$} l'ensemble des valeurs possibles pour chaque symbole $s_{n}$ et \textbf{$M = card(\mathcal{M})$} le \textbf{le nombre de valeurs possibles pour chaque symbole}.
-	
-	Une fois \textbf{$M$} fixé, on appelle \textbf{constellation} la manière dont sont répartis les \textbf{$M$} valeurs possibles des symboles sur l'axe des réels. Voici les deux constellations les plus utilisées :
-	\begin{itemize}
-	\item $M$-OOK : $\{0;A;2A;...;(M-2)A;(M-1)A\}$, les valeurs sont espacées de $A$.
-	\item $M$-PAM : $\{-(M-1)A;-(M-3)A;...;-A;A;...;(M-3)A;(M-1)A\}$, les valeurs sont espacées de $2A$.
-	\end{itemize}
+	On note $\mathcal{M}$ l'ensemble des valeurs possibles pour chaque symbole $s_{n}$ et \textbf{$M = \card(\mathcal{M})$} le \textbf{nombre de valeurs possibles pour chaque symbole}.
+
+	Une fois \textbf{$M$} fixé, on appelle \textbf{constellation} la manière dont sont répartis les \textbf{$M$} valeurs possibles des symboles sur l'axe des réels.
+	Voici les deux constellations les plus utilisées :
+		\begin{itemize}
+		\item $M$-OOK : $\{0;A;2A;...;(M-2)A;(M-1)A\}$, les valeurs sont espacées de $A$.
+		\item $M$-PAM : $\{-(M-1)A;-(M-3)A;...;-A;A;...;(M-3)A;(M-1)A\}$, les valeurs sont espacées de $2A$.
+		\end{itemize}
 	\end{defn}
-	
-	\begin{defn}
-	On note \textbf{$\mathcal{M}=\{s^{(m)}\}_{m=0,\cdots,M-1}$}. Ainsi, à l'instant $n$, $s_{n}$ prend une des valeurs $s^{(m)}$.
-	Comme la suite des symboles est i.i.d, on définit la moyenne symbole \textbf{$m_{s}$}, la variance symbole \textbf{$\sigma^{2}_{s}$} et \textbf{l'énergie symbole $E_{s}$}. Ces variables ne dépendent pas de $n$; on les définit ainsi :
-	$$m_{s}=\frac{1}{M}\sum_{m=0}^{M-1}s^{(m)} \qquad
-	\sigma^{2}_{s}=\frac{1}{M}\sum_{m=0}^{M-1}(s^{(m)}-m_{s})^2 \qquad
-	E_{s}=\frac{1}{M}\sum_{m=0}^{M-1}s^{(m)^2}=m_s^2+\sigma_s^2$$
-	\end{defn}	
-	
+
+	\begin{hyp}
+	Soit $\left\{ s_n \right\}_{n = 0,\ldots,N - 1}$ et $\mathcal{M} = \left\{ s^{(m)} \right\}_{m=0,\cdots,M-1}$ rangé par ordre croissant. On considère que :
+	\begin{itemize}
+		\item[\textbullet] La suite $\left\{ s_n \right\}_{n = 0,\ldots,N - 1}$ est i.i.d.
+		\item[\textbullet] Chaque $s_n$ prend une valeur dans $\mathcal{M}$ de façon équiprobable :
+			$\forall m,n, \proba \left( s_n = s^{(m)} \right) = \frac{1}{M}$.
+	\end{itemize}
+	On définit la \textbf{moyenne symbole} $m_{s}$, la \textbf{variance symbole} $\sigma^{2}_{s}$ et \textbf{l'énergie symbole} $E_{s}$.
+	Comme la suite des symboles est i.i.d elles ne dépendent pas de $n$ et on a :
+	$$\forall n, \quad m_{s} = \frac{1}{M} \sum_{m = 0}^{M - 1} s^{(m)} \qquad
+		\sigma^2_{s} = \frac{1}{M} \sum_{m = 0}^{M-1}(s^{(m)} - m_{s})^2 \qquad
+		E_{s} = \frac{1}{M} \sum_{m = 0}^{M - 1} s^{(m)^2} = m_s^2 + \sigma_s^2$$
+	\end{hyp}
+
 	\begin{pop}
 		Résultats à connaître (pour aller plus vite) :
 		$\begin{array}{c|ccc}
@@ -55,7 +62,7 @@
 		\text{PAM} & 0                  & \frac{A^2 (M^2 - 1)}{3}  & \frac{A^{2}(M^{2}-1)}{3}
 		\end{array}$
 	\end{pop}
-	
+
 	\begin{pop}
 		L'énergie consommée pour émettre un bit d'information (\textbf{énergie bit}) s'écrit :
 		$$E_b = \frac{1}{\log_{2}(M)} \left( E_{s}E_{g}+m_{s} \sum_{n\neq 0} h_{n} \right)$$
@@ -70,35 +77,35 @@
 		La suite optimale au sens de la probabilité d'erreur est la suivante :
 		$$z_{n} = z(nT_{s}) \quad \text{avec} \quad z(t)=g(-t)*y(t)\ .$$
 	\end{pop}
-	
+
 	\begin{pop}
 	Dans le contexte d'un canal gaussien on a $z_{n} = h_{n} \star s_{n} + w_{n}$.
 	\end{pop}
-	
+
 	\begin{defn}[Filtre de Nyquist, Filtre en racine de Nyquist]
-	
+
 		\begin{itemize}
-		
-		\item Un filtre de réponse impulsionnelle $l(t)$ est dit de Nyquist, si et seulement si :
-		$$l_{n} = l(nT_{s}) =
-		\left\{ \begin{array}{rcr}
-			\neq 0 & \text{pour} & n = 0 \\
-			0      & \text{pour} & n \neq 0 \\
-		\end{array} \right.$$
-		\item Un filtre est dit en racine de Nyquist si et seulement si le filtre $l(-t)\star l(t)$ est un filtre de Nyquist. Autrement dit, le filtre convolué à son filtre adapté est de Nyquist.
+
+		\item[\textbullet] Un filtre de réponse impulsionnelle $l(t)$ est dit de Nyquist, si et seulement si :
+			$l_{n} = l(nT_{s}) =
+			\left\{ \begin{array}{rcr}
+				\neq 0 & \text{pour} & n = 0 \\
+				0      & \text{pour} & n \neq 0 \\
+			\end{array} \right.$
+		\item[\textbullet] Un filtre est dit en racine de Nyquist si et seulement si le filtre $l(-t)\star l(t)$ est un filtre de Nyquist. Autrement dit, le filtre convolué à son filtre adapté est de Nyquist.
 		\end{itemize}
 	\end{defn}
-	
+
 	\begin{pop}[Canal gaussien à temps discret]
 		Une fois la contrainte de filtre de Nyquist vérifiée par $h(t)$, l'équation $z_{n} = h_{n} \star s_{n} + w_{n}$ se simplifie en :
 		$$z_{n} = s_{n} + w_{n}$$
 		Avec $w_n$ un bruit blanc gaussien de variance $\frac{N_0}{2}$.
 	\end{pop}
-	
+
 	\begin{pop}
 		La largeur de bande, notée $B$, de tout filtre de Nyquist ou en racine de Nyquist vérifie $B\geq \dfrac{1}{T_{s}}$.
 	\end{pop}
-	
+
 \subsection{Détecteur optimal}
 
 	\begin{pop}
@@ -107,23 +114,25 @@
 		\left\{ \begin{array}{ccl}
 			s^{(0)} & \text{si} & z_n\in ]-\infty ,t^{(0)}] \\
 			s^{(m)} & \text{si} & z_n\in ]t^{(m-1)} ,t^{(m)}]\;\text{pour}\; m\in \{1,\cdots, M-2\} \\
-                        s^{(M-1)} & \text{si} & z_n\in ]t^{(M-2)} ,+\infty[ \\
+			s^{(M-1)} & \text{si} & z_n\in ]t^{(M-2)} ,+\infty[ \\
 		\end{array}\right .$$
 		Avec, pour $m\in \{0,\cdots,M-2\}$, les seuils suivants : $t^{(m)} = \dfrac{s^{(m)}+s^{(m+1)}}{2}$.
 	\end{pop}
 
 \subsection{Performances}
-	
+
 	\begin{pop}
 		Si l'étiquetage permet d'avoir seulement un bit de différent entre deux symboles adjacents, alors on a cette relation :
-		$$P_b=\frac{1}{\log_2(M)}P_e$$
+		$$P_b = \frac{1}{\log_2(M)} P_e$$
 		Avec $P_b$ et $P_e$ les probabilités d'erreur bit et symbole respectives.
-		(NdR : En réalité, le symbole $=$ dans l'équation plus haut est un $\approx$. Cependant, pour les applications en COM105, on a bien un $=$. Ces propos ont été affirmés par Philippe CIBLAT lors du dernier amphi de cours)
-	\end{pop}	
-	
+		(NdR : En réalité, le symbole $=$ dans l'équation plus haut est un $\approx$. Cependant, pour les applications en COM105, on a bien un $=$.) % Ces propos ont été affirmés par Philippe CIBLAT lors du dernier amphi de cours)
+	\end{pop}
+
 	\begin{pop}
 		Si l'hypothèse sur l'émetteur est vérifiée, la constellation 2-PAM admet les performances suivantes :
 		$$P_b = P_e = Q \left( \sqrt{2 \frac{E_b}{N_0}} \right) \quad \text{avec} \quad Q := x \mapsto \frac{1}{\sqrt{2\pi}} \int_x^{+\infty} e^{-u^2/2} \diff u\ .$$
 	\end{pop}
-	
-	%$$P_\text{dB} = 10 \log_{10} (P)$$	
+
+	\begin{rem}
+		On a $P_\text{dB} = 10 \cdot \log_{10} (P)$.
+	\end{rem}
