@@ -1,0 +1,63 @@
+On considère un système linéaire écrite sous la forme matricielle $Ax = b$.
+
+Deux types d'erreurs peuvent être commises :
+\begin{itemize}
+\item[\textbullet] Les erreurs d'arrondi, dues aux limites du codage employé.
+\item[\textbullet] Les erreurs de troncature, due à la limite choisie en nombre d'iterations.
+\end{itemize}
+
+\subsection{Conditionnement d'un système linéaire}
+
+	\begin{defn}
+		On appelle \textbf{conditionnement} de $A$ (relativement à la norme $\norm{\cdot}$, la quantité $\norm{A} \cdot \norm{A^{-1}}$, que l'on note $\cond_{\norm{\cdot}}(A)$ ou $\cond(A)$.
+	\end{defn}
+
+	Dans le cas $A(x + \delta x) = b + \delta b$ on a alors $\frac{\norm{\delta x}}{\norm{x}} \leq \cond(A) \frac{\norm{\delta b}}{\norm{b}}$.
+	Dans le cas $(A + \delta A)(x + \delta x) = b$ alors $\frac{\norm{\delta x}}{\norm{x + \delta x}} \leq \cond(A) \frac{\norm{\delta A}}{\norm{A}}$.
+
+	Une matrice est d'autant mieux conditionnée que son conditionnement est proche de 1.
+
+	\begin{thm}
+		Soit $A$ une matrice inversible. On a alors :
+		\begin{itemize}
+		\item[\textbullet] $\cond(A) \geq 1$
+		\item[\textbullet] $\cond(A) = \cond(A^{-1})$
+		\item[\textbullet] $\forall \alpha \neq 0, \cond(\alpha A) = \cond(A)$
+		\item[\textbullet] En notant $\cond_2$ le conditonnement associé à $\norm{\cdot}_2$ et en notant respectivement $\mu_1(A)$ et $\mu_n(A)$ la plus petite et la plus grande des valeurs singulières de $A$, $\cond_2(A) = \frac{\mu_n(A)}{\mu_1(A)}$.
+		\item[\textbullet] Si $A$ est normale (i.e. $A A^* = A^* A$), $\cond_2(A) = \frac{\max_i \abs{\lambda_i(A)}}{\min_i \abs{\lambda_i(A)}}$ où les $\lambda_i(A)$ représentent les valeurs propres de $A$.
+		\item[\textbullet] Si $A$ est unitaire ou orthogonale, $\cond_2(A) = 1$.
+		\item[\textbullet]
+			$\cond_2(A)$ est invariant par transformation unitaire ou orthogonale : si $U U^* = I$ (resp. $U \transp{U} = I$) alors
+			$$\cond_2(A) = \cond_2(AU) = \cond_2(UA) = \cond_2(U^* A U) \qquad \text{(resp. } \cond_2(\transp{U}AU) \text{ )}.$$
+		\end{itemize}
+	\end{thm}
+
+	\begin{defn}
+		Le problème de \mathbf{l'équilibrage d'une matrice} consiste à chercher à chercher deux matrices $D_1$ et $D_2$ diagonales inversibles telle que $\cond(D_1 A D_2) = \inf_{\Delta_1, \Delta_2 \text{ diagonales inversibles}} \cond(\Delta_1 A \Delta_2)$.
+	\end{defn}
+
+	On résout alors $Ax = b$ en deux étapes : résolution de $D_1 A D_2 y = D_1 b$ puis de $x = D_2 y$.
+
+	En pratique on essaie plus simplement de minimiser le rapport entre le plus grand et le plus petit élément non nul de $A' = \Delta_1 A \Delta_2$.
+	Posons $E = \{ (i,j) \in \iniff{1}{n}^2 \mid a'_{i,j} \neq 0 \}$.
+	On minimise $\frac{ \max_{(i,j) \in E} \abs{a'_{i,j}} }{ \min_{(i,j) \in E} \abs{a'_{i,j}} }$.
+
+\susbsection{Conditionnement d'un problème de recherche de valeurs propres}
+
+	\begin{thm}
+		Soit $A$ diagonalisable et $P$ une matrice telle que $P^{-1} A P = \diag(\lambda_i)$.
+		Soit $\norm{\cdot}$ une norme matricielle telle que, pour toute matrice diagonale $\diag(\alpha_i)$ : $\norm{\diag(\alpha_i)} = \max_i \abs{\alpha_i}$.
+		Alors, pour toute matrice $\delta A$, $\Sp(A + \delta A) \subset \bigcup_{i = 1}^n D_i$ avec $D_i = \{ z \in \C \mid \abs{z - \lambda_i} \leq \cond_{\norm{\cdot}}(P) \cdot \norm{\delta A} \}$.
+	\end{thm}
+	
+	\begin{defn}
+		Le conditionnement $\Gamma(A)$ relatif à la recherche des valeurs propres est le minimum de $\cond_{\norm{\cdot}}(P)$ pour $P$ tel que $P^{-1} A P$ soit diagonale.
+	\end{defn}
+
+	On a alors $\Sp(A + \delta A) \subset \bigcup_{i = 1}^n B(\lambda_i, \Gamma(A) \cdot \norm{\delta A})$.
+	
+	\begin{thm}
+		Soit $A$ symétrique et $B = A + \delta A$ où la perturbation $\delta A$ est également symétrique.
+		Soit $\alpha_1 \leq \ldots \leq \alpha_n$ les valeurs propres de $A$ et $\beta_1 \leq \ldots \leq \beta_n$ celles de $B$.
+		Alors $\forall i \in \iniff{1}{n}, \abs{\alpha_i - \beta_i} \leq \norme{\delta A}_2$.
+	\end{thm}
