@@ -1,0 +1,43 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Introduction au concept d'identit\IeC {\'e}}{2}
+\contentsline {subsection}{\numberline {1.1}Premi\IeC {\`e}re condition de l'identit\IeC {\'e} : l'unit\IeC {\'e} psychologique}{2}
+\contentsline {subsection}{\numberline {1.2}Deuxi\IeC {\`e}me condition de l'identit\IeC {\'e} : l'unit\IeC {\'e} anatomique}{2}
+\contentsline {subsection}{\numberline {1.3}Troisi\IeC {\`e}me condition de l'identit\IeC {\'e} : la permanence dans le temps}{3}
+\contentsline {subsection}{\numberline {1.4}Quatri\IeC {\`e}me condition de l'identit\IeC {\'e} : l'unicit\IeC {\'e}}{3}
+\contentsline {subsection}{\numberline {1.5}L'identit\IeC {\'e} sociale}{3}
+\contentsline {subsection}{\numberline {1.6}L'identit\IeC {\'e} professionnelle menac\IeC {\'e}e par l'ali\IeC {\'e}nation}{4}
+\contentsline {section}{\numberline {2}Morale et \IeC {\'e}volution}{4}
+\contentsline {subsection}{\numberline {2.1}La morale est-elle issue de relations entre apparent\IeC {\'e}s ?}{4}
+\contentsline {paragraph}{Nourrir son enfant : Eibl-Eibesfeldt.}{4}
+\contentsline {paragraph}{Aider sa parent\IeC {\`e}le : Hamilton.}{4}
+\contentsline {paragraph}{Interdire l'inceste : Westermarck.}{5}
+\contentsline {subsection}{\numberline {2.2}La morale est-elle un syst\IeC {\`e}me d'\IeC {\'e}changes ?}{5}
+\contentsline {paragraph}{L'altruisme r\IeC {\'e}ciproque : Trivers}{5}
+\contentsline {paragraph}{Peut-on \IeC {\'e}galement consid\IeC {\'e}rer les comportements humains de r\IeC {\'e}ciprocit\IeC {\'e} comme des r\IeC {\'e}sultats de l'\IeC {\'E}volution ?}{5}
+\contentsline {paragraph}{Le force du donnant-donnant : Axelrod.}{5}
+\contentsline {paragraph}{La g\IeC {\'e}n\IeC {\'e}rosit\IeC {\'e} : Frans de Waal.}{5}
+\contentsline {subsection}{\numberline {2.3}Les sentiments moraux sont-ils des produits de l'\IeC {\'E}volution ?}{5}
+\contentsline {paragraph}{De l'oralit\IeC {\'e} \IeC {\`a} la moralit\IeC {\'e}.}{6}
+\contentsline {paragraph}{De l'empathie \IeC {\`a} la compassion.}{6}
+\contentsline {section}{\numberline {3}La soumission \IeC {\`a} l'autorit\IeC {\'e}}{6}
+\contentsline {subsection}{\numberline {3.1}Quelques le\IeC {\c c}ons des exp\IeC {\'e}riences de Stanley Milgram}{6}
+\contentsline {paragraph}{Le protocole exp\IeC {\'e}rimental et ses r\IeC {\'e}sultats}{6}
+\contentsline {paragraph}{Les facteurs influen\IeC {\c c}ant l'administration de la punition}{6}
+\contentsline {paragraph}{La question de la responsabilit\IeC {\'e}}{6}
+\contentsline {paragraph}{La question de la r\IeC {\'e}sistance \IeC {\`a} l'autorit\IeC {\'e} : le point de vue de Serge Moscovici}{6}
+\contentsline {paragraph}{R\IeC {\'e}sum\IeC {\'e}.}{7}
+\contentsline {subsection}{\numberline {3.2}Le contr\IeC {\^o}le des prisonniers}{7}
+\contentsline {paragraph}{Les prisonniers am\IeC {\'e}ricains en Cor\IeC {\'e}e : Robert Cialdini.}{7}
+\contentsline {paragraph}{Le Panoptique : Michel Foucault (\textit {Surveiller et punir})}{7}
+\contentsline {section}{\numberline {4}Aux sources de la peur de l'inf\IeC {\'e}riorit\IeC {\'e}}{8}
+\contentsline {subsection}{\numberline {4.1}Les pathologies psychiques}{8}
+\contentsline {subsection}{\numberline {4.2}Philosophie politique : Tocqueville}{8}
+\contentsline {subsection}{\numberline {4.3}Sociologie : Veblen}{9}
+\contentsline {subsection}{\numberline {4.4}Philosophie morale : Dupuy}{9}
+\contentsline {subsection}{\numberline {4.5}Psychologie du d\IeC {\'e}veloppement}{9}
+\contentsline {subsection}{\numberline {4.6}Psychanalyse : Adler}{10}
+\contentsline {subsection}{\numberline {4.7}Th\IeC {\'e}orie des m\IeC {\'e}dias}{10}
+\contentsline {subsection}{\numberline {4.8}\IeC {\'E}pilogue}{10}
+\contentsline {section}{\numberline {5}La mort est-elle une invention \IeC {\'e}ph\IeC {\'e}m\IeC {\`e}re de la vie ?}{10}
+\contentsline {subsection}{\numberline {5.1}Un pionnier Auguste Weismann (1834-1914)}{10}
+\contentsline {subsection}{\numberline {5.2}L'immortalit\IeC {\'e} est-elle un luxe inutile ? \textit {Peter Medawar} (1915-1987)}{10}

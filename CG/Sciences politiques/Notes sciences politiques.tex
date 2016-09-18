@@ -1,0 +1,399 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage[top=2cm, bottom=2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{draftwatermark}
+\usepackage{listings}
+\usepackage[francais]{babel}
+\pagestyle{fancy}
+
+\SetWatermarkText{\includegraphics{../../logo.png}}
+\SetWatermarkScale{0.5}
+\SetWatermarkAngle{0}
+
+\def\signed #1{{\leavevmode\unskip\nobreak\hfil\penalty50\hskip2em
+	\hbox{}\nobreak\hfil(#1)%
+	\parfillskip=0pt \finalhyphendemerits=0 \endgraf}}
+
+\newsavebox\mybox
+\newenvironment{aquote}[1]
+	{\savebox\mybox{#1}\begin{quote}}
+	{\signed{\usebox\mybox}\end{quote}}
+
+%opening
+\title{
+	\textbf{Cours de CG 203} \\
+	Sciences politiques}
+\author{}
+\date{}
+
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\tiny Che Bedara - BDE Télécom ParisTech}
+\fancyfoot[RO]{\thepage}
+\fancyfoot[LE]{\thepage}
+
+
+\begin{document}
+
+\maketitle
+
+	La science politique n’est pas véritablement une discipline.
+	Certains font de l’histoire politique, de la philosophie politique, de la sociologie politique, etc. En France, elle est souvent associée au droit.
+	Ces disciplines diverses ont des objets différents.
+	Pour qu’il y ait science politique, il faut qu’il y ait une catégorie sur laquelle la science politique s’applique. (Ex : la société, telle qu’elle est définie aujourd’hui, est un terme qui date du XVIII\up{e} siècle.
+	La sociologie est née après que les hommes aient pensé la société.) Il faut distinguer les sciences de la nature, les sciences dures, des sciences humaines et sociales.
+	Les procédures de travail utilisées dans ces domaines diffèrent mais le but reste d’accéder à un discours vrai.\\
+
+	Les sciences humaines sociales et historiques se renouvellent car les questions qu’elles se posent se renouvellent aussi constamment.
+	Ces nouvelles questions apparaissent car elles sont liées à la vie des sociétés. (Ex : le racisme a posé question depuis l’apparition du nazisme.) Ces objets apparaissent car des réactions ont lieu, ces phénomènes suscitent indignation, réflexion ou admiration et sont alors constitués en objets.\\
+	
+
+	En ce qui concerne la vérité, on peut éloigner l’idée que la vérité n’existe pas. Il faut présupposer la vérité, pour imaginer des procédures pour la dégager et concevoir des institutions pour la chercher et la transmettre. (Un certain nombre de choses sont présupposés sur des choses sur lesquelles on ne doute pas. Avoir une discussion sur le vrai et le faux suppose d’accepter l’idée même de vérité. Sinon, on ne peut distinguer la science de l’éthique et de l’esthétique. On ne peut pas affirmer la relativité de tous les énoncés en affirmant qu’ils sont le fruit d’une histoire et avoir raison car cela serait aussi un énoncé relatif.) C’est le rôle des universités. En tant qu’idée régulatrice, qui donne les conditions de possibilité du reste, elle est une nécessité. Notons les notions de noumène et de phénomène : le premier revient à la chose en soi, le second est le résultat du premier par le filtre des catégories du temps et de l’espace.\\
+
+	Revenons à la science politique.
+
+	Elle appartient aux sciences humaines et sociales. Elle constitue plutôt un champ qu’une discipline. Différentes disciplines s’efforcent de penser la politique, et cette réflexion est très ancienne et précède de beaucoup le développement des sciences humaines et sociales, qui date de la fin du XIX\up{e} siècle. (Cela remonte aussi loin qu’aux Grecs avec Aristote, Platon, etc.) Si l’avènement d’une science suppose l’autonomisation d’une catégorie, le plus cohérent pour penser la science politique serait de penser l’autonomisation du politique.\\
+
+	Il y a une singularité de la modernité occidentale, qui serait conséquence de cette autonomisation.
+	
+	Définissons ce que signifie modernité : la lente et progressive autonomisation du politique. (Modernité économique : capitalisme, modernité sociologique : passage de la communauté à la société)
+
+	La plupart des auteurs classiques du XIX\up{e} ont développé des théories du passage de l’ancien au nouveau, de la sortie de la tradition et de l’entrée en modernité. Auguste Comte pense que le nouveau, c’est la révolution industrielle.
+	Alexis de Tocqueville (\textit{De la démocratie en Amérique}) l’envisage le passage de l’ancien au nouveau comme le passage de la société aristocratique à la société démocratique.
+	Chez Tocqueville, cette dernière se caractérise par la passion de l’égalité et l’égalisation des conditions. La nouveauté de cette société est que les places sont interchangeables.
+	Il y a de l’égalité imaginaire et des inégalités réelles.
+	Chez Max Weber, il y une trajectoire occidentale très spécifique : le désenchantement du monde.
+	Chez Durkheim, le passage se fait d’une solidarité mécanique à une société organique (division du travail social).
+	
+	La plupart des grands auteurs pointent ou désignent quelque chose, mais parfois prennent la partie pour le tout.
+	La difficulté consiste à savoir jusqu’à un auteur a-t-il raison. La vraie discussion suppose qu’on reconnaisse la pertinence de l’auteur considéré. Elle suppose que l’on envisage la part de vrai dans la théorie de l’autre.\\
+
+
+	On retrouve dans les sciences humaines et sociales des théories sur comment on est passé de l’ancien au nouveau.
+	Nous aurions intérêt à lier le développement de la science politique moderne à l’autonomisation du politique, telle qu’elle entame son processus à partir du XVI\up{e} siècle. Un des auteurs faisant la rupture est Machiavel (auteur florentin, \textit{Le Prince}, 1513).
+	\textit{Le Prince} est un livre considéré comme sulfureux.
+	L’autonomisation du politique est à lier avec la sortie du religieux et donc au désenchantement du monde.\\
+
+	Partons du désenchantement du monde, de la sortie du théologico-politique, passage de l’hétéronomie à l’autonomie.\\
+
+	Le désenchantement du monde est central dans la pensée wébérienne.
+	Récemment en France, l’auteur Marcel Gauchet a publié chez Gallimard en 1985 un livre intitulé \textit{Le désenchantement du monde : une histoire politique de la religio}n. Dans la théorisation wébérienne, cette théorie renvoie à la singularité de la trajectoire occidentale. 
+	Elle a deux significations :
+	\begin{itemize}
+	\item l’élimination de la magie comme technique du salut.
+		Elle s’entend sur la longue durée. 
+		Elle commence dans le judaïsme antique, s’épanouit dans le protestantisme.
+	\item un concept élargi : le retrait du divin, la déprise du religieux sur les représentations que les hommes se font de leur existence et du monde dans lequel ils vivent.
+		Un monde désenchanté, rationalisé est un monde où règne la conviction que tout ce qui se passe est soumis à des lois que la science peut connaître, à un principe de causalité (des causes que les hommes peuvent appréhender, restituer).
+		En droit, tout ce qui s’y passe peut être compris par la science et la technique. Ce monde exclut toute intervention du surnaturel dans les affaires humaines.
+	\end{itemize}
+	
+	
+	C’est aussi pour Weber un monde dépourvu de sens. Nous entendons par là ce que Weber appelle le sens ultime, le sens du sens. Exemple : quand les enfants posent plusieurs fois de suite la question pourquoi. Ce qui rend ces questions difficiles à supporter est qu’on ne puisse plus leur répondre ; c’est là qu’apparaît la question du sens ultime.
+	
+	Cette question du sens ultime renvoie à l’incapacité de la science à expliquer le sens des phénomènes. Une cause n’est pas une signification.
+	
+	Dans les phénomènes traditionnels et religieux, en revanche, tout a un sens. 
+	Exemple : pour répondre aux enfants, on peut raconter l’histoire des dieux grecs. 			Expliquer n’est pas comprendre.
+	
+	La science nous montre un monde rationalisé, vidé de sens ultime. Chacun peut élaborer un système de convictions qui crée du sens autour de nous. Le sens qu’on donne à notre vie et le sens qu’on donne au monde sont créés par nous.
+	Exemple : en dépression, les gens se posent la question : « A quoi bon ? ».
+	C’est avec les relations liées aux autres que le monde prend son sens. Toutefois, tout le monde dans la même société ne partage pas un sens commun ; il n’y a plus de sens ultime.
+	
+	Exemple : les gens n’arrivent pas à choisir où passer la soirée. La question qui émerge est : comment choisir quelque chose ? Comment donner du prix aux choses ? Au nom de quoi choisir des trajectoires et des possibilités ?
+
+	\vspace{0.3cm}
+	\begin{tabular}{lr}
+	%\centering
+	\multicolumn{2}{c}{Tableau informatif} \\
+	\hline
+	Faits & Valeurs / normes \\
+	Être & Devoir être \\
+	Science & Éthique \\
+	Savoir & Sagesse
+	\end{tabular}
+	\vspace{0.3cm}
+
+	On peut universaliser ce qui est à gauche mais ce qui est à droite selon Weber. Dès lors, comment faire pour penser ce qui devrait être ? Pour choisir en général, on a besoin de plus de sagesse.
+	
+	Au sens wébérien, le désenchantement du monde renvoie au fait que tout est ramené à des causes humaines et naturelles, ce monde désenchanté est caractérisé par la béance du sens ultime, ce dernier est perdu. Les évidences ne sont plus partagées par tous.
+	
+	Sur le plan des valeurs, avons-nous des évidences ? Dans la société actuelle, le sacrifice pour les enfants semble en faire partie.
+	La question du sacrifice pour la nation semble encore être ouverte aujourd’hui.
+	Rien ne modifie plus les comportements qu’une situation de violence extrême. Hobbes nous dit ainsi que le problème principal de la politique est la sécurité.
+	On peut ainsi tout à fait imaginer que des coopérations se mettent en place.\\
+	
+	Selon Gauchet, le désenchantement du monde, dans \textit{L’avènement de la démocratie}, s’étend et est insérée dans une théorie de la modernité démocratique. Il s’agit d’un processus long qui remonte en deçà des révolutions politiques dites du XVIII\up{e} siècle, qui se caractérise par le passage d’une société assujettie (ce que Gauchet appelle une société de religion) à une société sujette d’elle-même (société structurée hors-religion). C’est le passage de l’hétéronomie à l’autonomie.
+	
+	L’hétéronomie consiste à se soumettre à une loi extérieure.
+	Les sociétés hétéronomes sont pensées comme ayant des lois extérieures.
+	
+	Exemples :
+	\begin{itemize}
+	\item la société monothéiste pense qu’il y a une révélation.
+	\item la société structurée autour d’un cosmos pense la politique comme un cosmos.
+	\end{itemize}
+	
+	Il y a toujours une notion de précédence, la tradition fait autorité. Quelque chose dans le passé, au dessus des hommes, nous contraint.
+	
+	L’avènement de la démocratie conduit à une société autonome : on se donne à soit même ses propres lois, ses propres valeurs et ses propres normes. Ils le font au principe au nom de l’intérêt général, ils gèrent la régulation des pratiques.
+	
+	Ces catégories sont idéales typiques. Les dictatures sont largement du côté de l’autonomie, dans la mesure où ils ont un pouvoir politique absolu, mais qui n’est pas un pouvoir de médiation entre l’ici-bas et l’au-delà.
+	
+	En revanche, il n’y a pas, dans ces notions, de perte des croyances religieuses. La thèse de Gauchet n’a rien à voir avec la mort de Dieu (théorie de Nietzsche).
+	Les dieux n’ont plus la capacité d’organiser collectivement la cité, de structurer la collectivité.
+	Gauchet a fait un livre reprenant la problématique wébérienne mais le sous-titre est plus évocateur du contenu. 
+
+	Il y a deux niveaux à prendre en compte.
+	Depuis le XVI\up{e} siècle, on constate la mise en place de la modernité au niveau de trois vecteurs : le vecteur politique (l’autonomisation du politique), le vecteur du droit (la mise en place des droits de l’homme) et le vecteur de l’histoire (la conscience historique telle que nous l’envisageons).
+	Gauchet envisage également le niveau anthropologique : pour lui, l’homme est un animal de croyance, modernité hétéronomie et autonomie n’entrent plus en ligne de compte. Les sociétés modernes ne sont pas traditionnelles.
+	Elle sont orientées vers l’avenir et élaborent des projets.
+	Nous vivons dans un monde où les valeurs dominantes sont des valeurs de changement d’innovation.
+	Une société tournée vers l’avenir est essentiellement créatrice de croyances, car le futur n’est objet que de représentations et de croyances.
+	Au XIX\up{e} et au XX\up{e} siècle, les politiques semblent utopiques. Les idéologies du XX\up{e} siècle ont nourries grandement et se sont fondées sur des croyances fortes. (Ex : les cultes de la personnalité ne laissent pas réduire à leurs intérêts. Staline a fait des morts le jour de sa mort lors de son enterrement.
+	Il y a malheureusement plus de la manipulation dans ces notions.)On n’a jamais produit autant de mythes politiques qu’au XX\up{e} siècle.
+	Toute croyance n’est donc pas religieuse et la religion ne saurait s’y réduire : elle constitue une structuration du monde humain.\\
+	
+	Le vecteur politique est visible à travers le texte de Machiavel, \textit{Le Prince} et aussi à travers \textit{Le Léviathan} de Hobbes.
+	
+	Le tour de force de Machiavel est d’avoir pensé la politique à partir de ce que l’homme est et non pas de ce qu’il devrait être.
+	
+	Il a conscience de s’écarter du chemin de celui des devanciers. Le genre des miroirs princiers (participation à l’éducation d’un prince), ne présente pas du tout le même type d’écriture que l’on retrouve dans \textit{Le Prince}.
+	Machiavel cherche à trouver la « vérité effective de la chose ».
+	Les gens qui ont pensé le devoir être imaginaient un prince avec toutes les qualités et les vertus morales et cherchaient à indiquer au prince ce qu’il devrait faire pour être un bon prince.
+	Pour penser la politique, Machiavel veut partir de ce qui est pour être le plus réaliste possible.
+	
+	Ce que Machiavel raconte est un peu tragique, il s’agit de dire que le prince doit parfois transgresser les règles de la morale pour atteindre l’efficacité politique.
+	
+	Parfois certains principes moraux ne peuvent pas avoir de réalité politique.
+	Citons le principe « Tu ne tueras point. » face à Hitler.\\
+	
+	
+	Machiavel fait une césure des idées.
+	Il ouvre avec Hobbes la première vague de modernité.
+	Ils introduisent une rupture par rapport à la pensée politique classique et introduisent des éléments centraux dans la pensée moderne.
+	Il y a une révolte réaliste chez Machiavel, il se demande comment l’homme doit vivre et se pose la question du meilleur régime, le mieux adapté à la vie humaine. Il pose la question politique, non pas à partir de ce que l’homme devrait être mais à partir de ce qu’il est.
+	Dans \textit{Le Prince}, il explicite sont intention, dit pourquoi il a écrit ce texte.
+	Mais il a conscience de s’écarter du chemin de ses prédécesseurs.
+	Le genre consistant à écrire des recommandations pour l’éducation des princes s’appelle les miroirs princiers. On doit selon lui travailler à partir des faits et non à partir les valeurs.
+
+	Quand on fait de la politique, il faut penser au réel et se soucier des effets de nos actions dans la réalité.
+	Il ne recommande pas au prince d’être immoral mais explique qu’il faut rester dans le bien si on le peut mais rentrer dans le mal quand il le faut.
+	Le vœu de Machiavel est que les critères qui jugent l’action politique se basent non sur la morale mais sur la réussite et l’efficacité.
+	Il passe en revu l’action de princes vertueux moralement mais qui perdent le pouvoir ainsi que l’action de princes cruels qui, eux, réussissent dans leurs entreprises.
+	Selon lui, pour réussir, il faut transgresser les frontières de la charité, de l’humanité et de la religion. Parfois l’efficacité et la morale rentrent en contradiction.
+	C’est là que la politique trouve sa véritable grandeur.\\
+
+
+	Du point de vue des règles morales les plus admirables, tuer est mal. Or la guerre est un des sommets de la transgression morale. Mais s’il on rend absolu ce principe moral que tuer est mal, alors surviennent nombre de situations où l’on ne peut pas s’en sortir.
+	 
+	Le principe moral de ne pas tuer ne peut alors s’appliquer comme absolu et c’est cela dont Machiavel parle. Cela a été reformulé au XX\up{e} siècle.
+	
+	Max Weber explique que l’éthique de la conviction est l’éthique des savants et que nous agissons au nom d’une conviction. L’éthique de la responsabilité dit que l’on est jugé selon les conséquences (et non selon le caractère moral) de nos actions.
+	Si on juge les révolutionnaires russes à l’aide de l’éthique de la conviction, leur comportement peut sembler compréhensible mais si on les juge selon l’éthique de la responsabilité, ils sont condamnables car le stalinisme est désastreux. Leurs intentions étaient toutefois nobles.\\
+
+	
+	La politique doit partir du réel et se juger aux effets. Qu’importent les intentions, seules comptent les conséquences. Les politiques sont jugés aux effets de leurs actions. Or, dans le domaine de l’action, rien n’est jamais certain. Toute action subit les effets de l’environnement. Entre ce que l’on fait, ce que l’on avait l’intention de faire et ce qu’il y a à l’arrivée, il y a une grande différence.
+	
+		Les effets pervers sont les effets non désirés et non souhaitables dans les actions. Par exemple, s’il est tout à fait rationnel pour chacun de prendre sa voiture le vendredi pour partir en week-end, en regardant les effets cela devient irrationnel. En effet, tout le monde le fait et nous resterions coincés dans des bouchons. Alors que les actions individuelles sont rationnelles, l’amas de toutes ces actions individuelles devient irrationnel.
+		
+		L’action politique ne peut donc pas se penser comme une action scientifique ou l’on peut quantifier et résoudre une équation. Le politique avance au tâtonnement. La complexité contemporaine de la politique est un vrai défi du point de vu démocratique.  Il faut faire au moins quinze ans d’études pour juger du type d’action. Il devient assez compliqué de pouvoir prendre les meilleures décisions, ce qui introduit  un défi démocratique de représentation.\\
+	
+		
+	Par exemple lorsque le Pape condamne le préservatif, il est du point de vu de la morale religieux et chrétienne, son discourt est tout à fait morale mais s’il on regarde les effets, c’est désastreux alors que l’épidémie du Sida fais des ravages en Afrique.\\
+	
+	
+	Est-ce qu’un moraliste peut se désintéresser des effets de son discours ou de ses actions ?
+	Est-ce qu’un discours moral ne se soucie par des effets ?\\
+	
+	
+	Machiavel va très loin, il fait l’éloge de la terreur et explique que s’il on désire acquérir une province habituée à vivre selon ses propres coutumes et ses propres lois, il existe trois solutions :
+	\begin{itemize}
+	\item exterminer tout le monde car un peuple habitué à vivre libre n’oubliera pas cette liberté et va cultiver cette mémoire.
+	\item que le prince aille vivre en personne là bas.
+	\item laisser cette société vivre comme elle l’a fait mais lui faire payer un tribut et lui faire perdre sa souveraineté.
+	\end{itemize}
+	 
+	Il a une préférence pour l’extermination car c’est la plus efficace. Le réalisme machiavélien est brutal, car l’action politique doit être volontaire et déterminée. Il s’applique aussi à l’action politique en portant une attention extrême aux conséquences des actions.
+	
+	Machiavel décrit dans certains chapitres comment l’ordre a été réinstauré dans certaines provinces troublées en envoyant un ministre cruel. Avec des méthodes cruelles et violentes, ce dernier a suscité des rancœurs et du ressentiment vis à vis du prince et Machiavel écrit une stratégie pour contrer ce problème.
+	
+	Sachant que la répression cruelle et expéditive produit de la rancœur, il faut ensuite exécuter sur la place publique le ministre qui a été cruel. Du point de vu de l’efficacité, la manœuvre est parfaite car la province est pacifiée et la rancœur de la population disparaît car le ministre a été supprimé. Garder le pouvoir est alors aisé. Toues les objectifs ont été atteints.\\
+
+		
+	Machiavel ne nous dit jamais la finalité de la politique ; il donne les moyens mais pas la fin.\\
+	
+	
+	Pourquoi la politique ? Pour garder le pouvoir ? Mais dans quel but ?\\
+	
+	
+	Pour Hobbes, l’institution politique cherche à nous permettre échapper à une mort violente par exemple. Avant Machiavel, le bon prince était celui qui se conformait à la morale. Donc le bon politique, était un homme moral. Machiavel inverse la logique. Au fond il exprime que la réussite de l’action politique produit les conditions de la morale. La stabilité politique permet l’établissement de la morale.
+	
+	Les pensées de Machiavel et de Hobbes vont toutes dans le sens du renforcement du pouvoir. C’est que plus tard que les pensées viendront limiter les pouvoirs, notamment avec la révolution française.\\
+
+	
+	La question des réfugiés comporte notamment une dimension de ce genre. En Allemagne, accepter des réfugiés est une action morale. Mais l’action produit des réactions xénophobes et de rejet. Par notre politique d’accueil, on actualise nos valeurs de tolérance et d’ouverture. Pourtant, si cela ça produit des mouvements xénophobes, on se trouve en face d’un recul de la démocratie.
+	
+	\textit{Le Prince} est publié en 1513, et, en 1516, Thomas More publie \textit{Utopia} qui décrit une île qui est un monde parfait. Au moment même où Machiavel décrit le réalisme, Thomas More expose quant à lui une rêve idéal qui est ailleurs. Mais les deux ont en commun qu’il n’est question que d’affaires humaines. Ils éliminent complètement la dimension religieuse et supra-naturelle. Mais là ou Machiavel part du réel, More imagine un monde qui n'existe pas.
+	
+	Accepter le monde tel qu’il est retire l’espoir de l’utopie. Il faut garder une sensibilité utopique. Certains penseurs expriment l’idée que l’on est trop utopiste et que faire passer des principes moraux au dessus de principes économiques est néfaste. Il faut donc trouver le juste équilibre entre Machiavel et More. Prenons comme exemple la crise de la gauche française. Il lui est reproché tantôt d’être trop utopiste, rêveuse. On lui reproche aussi d’être trop cynique et d’accepter les contraintes d’un monde libéral qu’elle conteste.\\
+
+	
+	Dans \textit{Le Léviathan}, Hobbes nous fait imaginer les enjeux de conflit. Trois causes émergent : rivalité, méfiance et fierté.
+	L’homme n’est pas un animal politique pour Hobbes car ses passions naturelles de l’homme le poussent à l’opposer de la politique.
+	La politique est là pour échapper au conflit, pour assouvir un besoin de sécurité.\\
+
+	
+	L’autonomisation du politique vient à la suite et en solution à la violence déchaînée qui a existé au cours des guerres de religieux.
+	Elle est l’aboutissement de la recherche d’un pouvoir capable de limiter ces déchaînements de violence.
+	\textit{Le Léviathan} est de ce point de vue une œuvre politique majeure. Hobbes introduit une fiction dans son œuvre de l’état de nature.
+	Il essaye de partir de ce que sont les hommes pour trouver ce qu’ils seraient avant l’établissement des institutions.
+	C’est une sorte de démontage de l’horloge sociale.
+
+	Dans \textit{Le Léviathan}, il y a quatre parties associées à des concepts séparés :
+	\begin{itemize}
+	\item « De l’homme », une partie anthropologique.
+	\item « De la République », une partie politique.
+	\item « De la République chrétienne », une partie sur le religieux.
+	\item « Du royaume des ténèbres », une partie sur le post-mortem.
+	\end{itemize}
+	
+	La première porte sur ce qu’est l’homme indépendant de la cité, c’est une fiction. En effet, on n’a jamais connu l’homme en dehors de la société.
+	Il esquisse une vision de ce qui se passerait s’il n’y avait pas de pouvoir capable de tenir les hommes en respect.
+	Aujourd’hui, on pense que tout conflit porte sur la notion d’intérêt.
+	En cela, on a tord. Très souvent, les conflits sont envenimés par le mauvais traitement.
+	Un petit film existe sur YouTube montrant les managers d’Air France en costume face aux grévistes en tenue de travail.
+	Une femme interpelle un DRH en lui disant « Regardez nous, considérez nous. »
+	Il s’agit ici d’un conflit de reconnaissance.
+	Les gens se sentent méprisés et il faut donc tenir compte des enjeux symboliques. Dans cet état de nature, la guerre est toujours possible, tout le monde peut mourir à chaque instant.
+	Au Moyen-Age, les liens féodaux compensaient partiellement ce genre de problèmes car pour le plus faible, ces liens impliquaient une certaine sécurité. Les crimes étaient punis, les tribunaux existaient.\\
+
+	
+	On sort de la vision aristotélicienne des hommes car on se rend compte que les passions naturelles des hommes les poussent vers la discorde. Tant que les hommes garderont leur droit sur toute chose, leur \textit{jus in omnia}. Dans l’état de nature, chaque être vivant a le droit de se conserver lui-même. Le droit va aussi loin que le pouvoir va ici. Cela ressemble un petit peu au Moyen-Age sous certains égards. Pour me déposséder de ce droit, il faut que mon voisin aussi se dépossède de ce droit. Hobbes explique que cette situation est insupportable. Toutefois, Hobbes écrit un livre politique, il ne peut donc s’arrêter à cette vision.
+	
+	Gobinot a élaboré une théorie des races relativement fataliste, selon laquelle il y avait des races pures qui se sont mélangées et donc abâtardies. Il affirme que le phénomène a eu lieu et est irréversible. Il n’y a aucune philosophie politique  dans cet ouvrage, il y a presque une dimension nihiliste dans ce phénomène. Il faudrait songer à demander aux auteurs de ce genre d’ouvrage comment il est possible d’écrire un tel livre. Nous arriverions alors à un paradoxe.
+	
+	Hobbes explique que l’on peut sortir de cette situation par la raison et par la passion. Tous les hommes ont comme ennemi commun la mort violente et nous pourrions de fait établir des préceptes permettant de sortir de cette situation comme par exemple « rechercher la paix en toute occasion ». Ces préceptes dégagés par la raison sont appelés par Hobbes « loi naturelle ». Ainsi, Hobbes pense donc qu’on peut s’extraire de cette situation. Cette loi naturelle n’a rien à voir avec une loi religieuse.
+	
+	Pour ce qui concerne la passion, il faut partir d’une passion réelle, universelle, qui est la plus puissante : « la peur de la mort ». Apparaît alors un problème fondamental. En quoi serions nous tenus de respecter ces principes dégagés par la raison ?
+	S’il n’y a pas un glaive qui garantit ces conventions, c’est comme si elles n’avaient jamais été fondées. Ainsi, une loi non garantie par une force n’existe pas. Si on veut que ces droits soient absolument garantis, il faut une loi absolue. Il vient le problème du contrôle du pouvoir. 
+		
+	Émerge alors la nécessité d’un tiers qui régule les pouvoirs. Ce tiers correspond au Léviathan, le super-état imaginé par Hobbes. Hobbes imagine qu’il faut trouver un pouvoir absolu au profit duquel chacun se dépossède d’une partie de sa liberté en échange de la sécurité qui lui est conférée. Si la violence sociale revient, les gens se réarment. Le sentiment d’insécurité est à prendre très au sérieux. On assiste souvent à des fausses oppositions entre la liberté et la sécurité. Il ne peut y avoir de liberté sans sécurité.  La liberté doit être garantie par la sécurité, sans quoi elle ne vaut plus (exemple de la liberté d’expression). Max Weber définit l’état comme « ce qui détient le monopole de la coercition physique légitime ». La modernité politique est en très grande partie une réponse à ces violences. Ce processus d’autonomisation n’a cessé de s’approfondir avec le temps. C’est un processus très long. Dans certaines sociétés qui n’ont pas connu ce type de violences,  ce type de processus n’a pas été nécessaire.
+	
+	Le moment en Europe où on retrouve une véritable dissociation du politique et du religieux se trouve entre 1880 et 1920 soit plusieurs siècles après l’écriture de ces livres.\\
+
+
+	Quand on parle du second vecteur de la modernité qu’est le droit, il s’agit du droit mis en place par les sociétés mais pas du droit positif. Chez Hobbes, on trouve un droit de résistance également.
+	Il est intéressant de voir que Hobbes a pensé cette notion et celle d’état absolu. La notion de droit de résistance préfigure ainsi celle de droit de l’homme.
+	Le droit naturel moderne est un droit subjectif qui repose sur l’individu et qui est purement rationnel.
+	Il s’agit de quelque chose qui serait universel et qui caractériserait les êtres humains et les sociétés dans leur totalité.
+	Chez Hobbes, il s’agit de penser des principes ou des règles qui reposent sur le droit de l’individu.
+	Ce n’est pas une philosophie des devoirs humains. Nous avons ici pour définir la justice le respect des conventions fixées par les hommes.
+	Dès le chapitre XIV du \textit{Léviathan}, Hobbes parle des « lois de nature fondamentale » : « Que l’on consente quand les autres y consentent aussi à se dessaisir du droit sur toute chose » constitue la deuxième loi.
+	Dès que Hobbes a introduit cette logique du dessaisissement,  il explique que l’on gagne quelque chose. On ne peut se dessaisir si l’on perd tout.
+	Il existe certains droits tels qu’\emph{on ne peut concevoir qu’aucun homme les aie abandonné}.
+	Il n’y a pas de dépossession ou de dessaisissement total. En effet, on ne peut se priver du droit de résister à celui qui tente de nous enlever la vie.
+	Si seul le Léviathan a le monopole de la coercition physique légitime et qu’on se fait attaquer, c’est que le Léviathan a échoué. On ne peut donc pas se déposséder de son droit à se défendre de la violence que l’on reçoit. Un Léviathan doit être capable de susciter l’effroi.
+	« Nul ne peut transmettre son droit de se protéger de la mort, des blessures et de l’emprisonnement », explique Hobbes dans son œuvre.
+	Personne n’est obligé de ne pas résister à la violence.
+	On peut dire : « tu n’es pas tenu de t’engager à ne pas frapper si l’on te frappe ». Le fait de postuler des droits inaliénables constitue le principe même des droits de l’homme.\\
+
+
+	Il existe des théories du droit de résistance et des théories du tyrannicide très anciennes (remontant au moins au moyen-âge). Hobbes nous propose une reformulation moderne du droit de résistance. Dans le livre de Hobbes, on ne peut pas montrer qu’un pouvoir est illégitime. Selon Hobbes, ceux qui se plaignent de certains régimes leur donnent des noms différents mais pas forcément logiques. Le droit de résistance n’est plus pensé par rapport à la légitimité. En réalité, le droit de résistance vu sous l’angle de la légitimité disparaît mais le droit de résistance réapparaît comme un droit attaché à la personne même de l’homme. C’est un droit inaliénable de l’homme.
+	
+	On est en présence d’une reformulation subjectiviste des fondements du droit.
+	
+	On s’est demandé si les droits de l’homme n’étaient pas le masque de l’impérialisme occidental. Jeanne Hersch a réalisé une enquête et recueilli des réponses venant de tous les coins du monde. De manière générale, les individus estiment avoir le droit d’être traités en temps qu’être humains et non bestialisés ou réifiés. Pour elle, il y a là une racine des droits de l’homme qui ne sont pas seulement occidentaux.\\
+
+	
+	Aujourd’hui, les utopies sont temporelles. Dans les sociétés futuristes, la crise de l’avenir se pose.
+		
+	Prenons un exemple à Cuba : discussion entre Obama et Raul Castro. Aujourd’hui, on ne peut plus directement évaluer la question des droits de l’homme. Castro a du répondre : « Si des hommes n’ont pas été traités comme des hommes, qu’on m’en fasse le liste ».\\
+	
+	
+	Abordons le troisième vecteur de la modernité : l’Histoire.
+	La conscience historique est une certaine manière de penser le temps pour les individus. Elle renvoie à la temporalité. Toutes les sociétés sont soumises au temps mais seules certaines pensent et racontent le temps au moyen de la conscience historique. C’est le cas de notre société, à nous modernes. Nous avons conscience d’être historiques. Il y a presque équivalence entre la modernité et l’historicité. D’autres façons de penser le temps existent. Par exemple, raconter l’histoire d’une société avec des mythes, qui font le lien entre ce que nous sommes et ce que nous avons été. Le mythe est alors fondateur. Pour comprendre le présent, nous allons nous référer au mythe. Tout est passé à la grille du mythe. Personne ne vit hors du temps.\\
+	
+	
+	Quand nous disons : « Nous sommes historiques. », nous avons conscience de l’historicité de toute chose, nous savons que nos manières de penser, de sentir, de croire sont liées à notre façon de vivre.\\
+	
+	
+	Nous savons que nos valeurs et que nos normes ont changé au cours du temps. Au cours de l’Histoire, les hommes ont cru à des valeurs qu’ils pensaient universelles et éternelles. Nous savons aujourd’hui que les valeurs sont soumises au temps. Cela nous confère le sens de la relativité. Les hommes du passé ne pensaient pas de la même façon que nous et que ceux du futur ne penseront pas non plus de la même façon.\\
+	
+	La conscience historique est la conscience de la relativité de toute chose (y compris les résultats scientifiques). Nous savons que nous sommes plongés dans le temps et que ce simple fait vient relativiser toutes nos croyances absolues.\\
+	
+	C’est à partir du XVIII\up{e} siècle qu’on voit le temps à travers la lumière du progrès. On a projeté sur l’avenir l’idée d’une amélioration qualitative. Sur les dimensions de la technique et de la médecine, notre vie est meilleure. Le progrès vu au XX\up{e} siècle est un progrès général. De ce point de vue, on ne peut supporter cette idée. En effet, il existe des domaines où nous avons remarqué des régressions. Aujourd’hui, lorsqu’on se plonge dans la conscience historique, on voit que tout ça est beaucoup plus relatif que ce que l’on pourrait le penser. Prendre conscience de ce changement est un privilège. Il s’agit d’un progrès de la réflexivité (pensée sur soi-même). Nous prenons conscience que nos valeurs n’ont pas une universalité naïve. Nous débouchons alors sur la critique de l’ethnocentrisme et de l’anachronisme.\\
+	
+	L’anachronisme est le fait de projeter sur les sociétés du passé les traits d’esprit des sociétés qui sont les nôtres.  Les gens pensaient et vivaient différemment. Projeter sur les sociétés du passé nos catégories fait tomber dans le piège de l’anachronisme.\\
+	
+	L’ethnocentrisme est le fait de projeter sur d’autres sociétés d’un point de vue spatial.
+	
+	On passerait alors à côté de l’altérité culturelle et historique. C’est précisément la conscience historique qui a conduit les modernes à penser la conscience de l’historicité de toute chose. Cela débouche sur le sens de la relativité et est un surcroît de la relativité.\\
+
+	
+	Cette conscience historique est parfois un fardeau.
+	La relativité est très simple à énoncer mais très difficile à vivre. On n’a plus à disposition les absolus du bien.
+	Les sociétés qui vivent comme les nôtres sans repère de certitude sont aussi très difficiles à vivre.
+	On revient partiellement à la pensée de Weber.
+	Il dit connaître cette difficulté mais que c’est ainsi.
+	Dès lors, Weber conseille à ses étudiants de retourner dans les « vieilles églises ».
+	Il se rend compte que les étudiants en face de lui attendent un sauveur, des règles absolues. Ce dernier type d’attitude a conduit au fanatisme moderne.\\
+	
+	
+	Chez ces étudiants dont certains tendront, après coup vers le nazisme, la certitude sera récréée sur le terrain du doute. Ce sont des étudiants qui ont appris la déconstruction nietzschéenne, le doute des énoncés et qui, malgré cette apprentissage, cherchent encore des certitudes qu’ils trouveront dans les grandes idéologies du XX\up{e} siècle proposées par Hitler ou Mussolini.\\
+	
+	
+	Au XX\up{e} siècle, la trajectoire du fanatisme est la déconstruction de la conscience historique sur laquelle on reconstruit du sens et des valeurs différentes.\\
+
+	
+	Parlons du basculement du passéisme vers le futurisme.
+	À chaque moment de l’histoire, les hommes élaborent des jugements de valeur, sentent, pensent, croient.
+	Cette manière de penser amène à prendre conscience que chaque culture a ses propres sensibilités.
+	En faisant un pas de plus, on en vient à l’idée que les hommes font leur histoire. Nous nous produisons nous-même.
+	C’est pour cela que l’enseignement de l’histoire est aussi fondamental dans les sociétés modernes.
+	Étudier l’expérience humaine nous donne des outils pour nous transformer nous-même. Pour cela, nous prenons conscience de notre expérience.\\
+
+	
+	Ce sont les sociétés qui ont conscience de faire l’Histoire qui font de l’Histoire. Pour les sociétés fondées sur la religion, l’Histoire qui nous est enseignée sert à nous transformer nous-même, pour nous faire évoluer.
+	À partir du XVIII\up{e} siècle,  nous passons du passéisme au futurisme.
+	
+	On cherche le savoir pour agir. Il nous faut une médiation entre les deux, l'idéologie.
+	
+	Une idéologie est un système de mise en sens. Les idéologies, pour la plupart, laissent de côté une partie qui ne les concerne pas (ex : vie après la mort).
+	Les idéologies totalitaires ont tendance à recréer ces aspects. Influence des idéologues français et de la révolution.
+	
+	\begin{aquote}{K. Pomian, \textit{La crise de l’avenir}}
+	“La religion aborde le présent à la lumière du passé. L’idéologie, elle l’appréhende dans la perspective de l’avenir.”
+	\end{aquote}
+	
+	Cela se rapproche de l’hétéronomie et l’autonomie. La première regarde vers le passé, la tradition est à l’origine des normes et le passé fait loi. La seconde regarde vers l’avenir, les sociétés se dotent de leurs propres normes ; des institutions créent des normes à partir de l’argumentation. L’esprit de religion et celui d’idéologie s’opposent terme à terme.\\
+
+
+	Nos sociétés sont des sociétés du projet.	
+	
+	Lorsque les représentations de l’avenir commencent à s’affaisser, nous nous trouvons face à un phénomène inédit.
+	Le temps de l’action politique, c’est l’avenir.
+	Nos sociétés valorisent l’innovation.
+	L’impératif du changement est l’évidence de nos sociétés actuelles.
+	Dans une société de ce genre, si l’avenir tombe en panne, on est en crise.\\
+	
+	
+	L’opposition (société traditionnelle + croyance) contre (société moderne + science) est irrecevable.
+	En effet, les sociétés modernes ont produit des croyances, des dogmatismes car elles ont passé leur temps à imaginer leur avenir, matériau d’origine des croyances.\\
+	
+	
+	Peut-être l’homme est-il un animal de croyance.\\
+	
+	
+	Les idéologies existantes aujourd’hui ont la particularité de toutes permettre de penser le temps. Elles proposent un projet d’avenir. Dans toutes les idéologies, il y a donc une image d’avenir. Pour pouvoir proposer cela, il faut une vision du passé. De fait, ces idéologies ont également construit une image du passé.\\
+
+	
+	Les croyances existent toujours, elles portent sur l’avenir humain plus que sur la vie et la mort, etc.
+
+\end{document}

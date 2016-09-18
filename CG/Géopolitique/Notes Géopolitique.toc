@@ -1,0 +1,77 @@
+\select@language {french}
+\contentsline {part}{I\hspace {1em}De quoi s'agit-il ?}{2}
+\contentsline {section}{\numberline {1}L'invention d'une nouvelle discipline scientifique}{2}
+\contentsline {subsection}{\numberline {1.1}Les fondateurs}{2}
+\contentsline {subsection}{\numberline {1.2}Le fruit du contexte \IeC {\guillemotleft } fin de si\IeC {\`e}cle \IeC {\guillemotright }}{2}
+\contentsline {paragraph}{Premier facteur :}{2}
+\contentsline {paragraph}{Second facteur :}{2}
+\contentsline {paragraph}{Troisi\IeC {\`e}me facteur :}{2}
+\contentsline {subsection}{\numberline {1.3}Une g\IeC {\'e}opolitique plus politique que g\IeC {\'e}ographique ?}{2}
+\contentsline {paragraph}{Les cons\IeC {\'e}qences}{2}
+\contentsline {paragraph}{Une discipline discr\IeC {\'e}dit\IeC {\'e}e ?}{3}
+\contentsline {section}{\numberline {2}Les concepts de la g\IeC {\'e}opolitique contemporaine}{3}
+\contentsline {subsection}{\numberline {2.1}Le relativit\IeC {\'e} de l'influence des milieux naturels sur les orientations, les rivalit\IeC {\'e}s et les enjeux politiques}{3}
+\contentsline {paragraph}{Une nouvelle approche}{3}
+\contentsline {paragraph}{Opportunit\IeC {\'e}s}{3}
+\contentsline {subsection}{\numberline {2.2}Les repr\IeC {\'e}sentations : les lieux et repr\IeC {\'e}sentations mystiques et symboliques}{4}
+\contentsline {paragraph}{La construction des repr\IeC {\'e}sentations}{4}
+\contentsline {paragraph}{La construction d'un mythe national : le cas de la France.}{4}
+\contentsline {paragraph}{Construction et d\IeC {\'e}construction de l'identit\IeC {\'e} nationale.}{4}
+\contentsline {paragraph}{Le r\IeC {\^o}le des d\IeC {\'e}nominations.}{4}
+\contentsline {paragraph}{Cartes r\IeC {\'e}elles et cartes mentales.}{5}
+\contentsline {paragraph}{Les repr\IeC {\'e}sentations \IeC {\guillemotleft } ic\IeC {\^o}nes \IeC {\guillemotright } et repoussoirs.}{5}
+\contentsline {paragraph}{Les repr\IeC {\'e}sentations, elles non plus, ne sont pas immuables.}{5}
+\contentsline {subsection}{\numberline {2.3}La s\IeC {\'e}dimentation des politisations successives de l'espace.}{5}
+\contentsline {section}{\numberline {3}Les \IeC {\guillemotleft } objets \IeC {\guillemotright } de la g\IeC {\'e}opolitique : territoires, fronti\IeC {\`e}res et flux.}{5}
+\contentsline {subsection}{\numberline {3.1}En terme de g\IeC {\'e}opolitique, le territoire national c'est l'espace de l'\IeC {\'E}tat.}{5}
+\contentsline {paragraph}{Les origines de l'\IeC {\'E}tat.}{5}
+\contentsline {paragraph}{L'objectif de l'\IeC {\'E}tat est d'assurer sa p\IeC {\'e}rennit\IeC {\'e} et d'affirmer sa l\IeC {\'e}gitimit\IeC {\'e}.}{5}
+\contentsline {paragraph}{Pour assurer cette p\IeC {\'e}rennit\IeC {\'e}, l'\IeC {\'E}tat se donne pour mission de : prot\IeC {\'e}ger le pouvoir, prot\IeC {\'e}ger le territoire national, s\IeC {\'e}duire, surveiller, punir.}{6}
+\contentsline {subsection}{\numberline {3.2}La fronti\IeC {\`e}re est une discontinuit\IeC {\'e} g\IeC {\'e}opolitique, \IeC {\`a} fonction de marquage r\IeC {\'e}el, symbolique et imaginaire}{6}
+\contentsline {paragraph}{Une discontinuit\IeC {\'e} qui \IeC {\'e}volue avec le temps.}{6}
+\contentsline {paragraph}{Des marches \IeC {\`a} la fronti\IeC {\`e}re lin\IeC {\'e}aire.}{6}
+\contentsline {paragraph}{Fonction de marquage r\IeC {\'e}el.}{6}
+\contentsline {paragraph}{Fonction de marquage symbolique}{6}
+\contentsline {paragraph}{Fonction de marquage imaginaire : la fronti\IeC {\`e}re v\IeC {\'e}cue}{6}
+\contentsline {paragraph}{Les fronti\IeC {\`e}res ne sont pas fix\IeC {\'e}es par M\IeC {\`e}re Nature}{7}
+\contentsline {paragraph}{Plusieurs types d'\IeC {\'e}volution des fronti\IeC {\`e}res possibles}{7}
+\contentsline {subsection}{\numberline {3.3}Les flux : humains, \IeC {\'e}conomiques, immat\IeC {\'e}riels}{7}
+\contentsline {paragraph}{Les flux humains.}{7}
+\contentsline {paragraph}{Les flux \IeC {\'e}conomiques / marchands.}{7}
+\contentsline {paragraph}{Les flux \IeC {\'e}nerg\IeC {\'e}tiques.}{7}
+\contentsline {paragraph}{Les flux d'informations.}{7}
+\contentsline {part}{II\hspace {1em}Principaux aspects de la g\IeC {\'e}opolitique du monde actuel}{7}
+\contentsline {section}{\numberline {4}Un constat : mondialisation versus fragmentation politique}{8}
+\contentsline {subsection}{\numberline {4.1}Mondialisation}{8}
+\contentsline {paragraph}{Les \IeC {\'e}volutions technologiques et leurs cons\IeC {\'e}quences g\IeC {\'e}opolitiques.}{8}
+\contentsline {paragraph}{Centre et p\IeC {\'e}riph\IeC {\'e}rie.}{8}
+\contentsline {subparagraph}{\IeC {\'E}conomiques}{8}
+\contentsline {subparagraph}{Culturels}{9}
+\contentsline {subsection}{\numberline {4.2}Fragmentation}{9}
+\contentsline {paragraph}{D\IeC {\'e}colonisation.}{9}
+\contentsline {paragraph}{Dislocation.}{9}
+\contentsline {paragraph}{Balkanisation et libanisation}{9}
+\contentsline {paragraph}{S\IeC {\'e}paratisme et ind\IeC {\'e}pendantisme}{9}
+\contentsline {subsection}{\numberline {4.3}De nouveaux acteur g\IeC {\'e}opolitiques}{9}
+\contentsline {paragraph}{Les ONG}{9}
+\contentsline {paragraph}{Les organismes supranationaux :}{9}
+\contentsline {paragraph}{L'OMC}{10}
+\contentsline {paragraph}{Les r\IeC {\'e}seaux mafieux}{10}
+\contentsline {paragraph}{Les r\IeC {\'e}seaux terroristes islamistes}{10}
+\contentsline {section}{\numberline {5}Instabilit\IeC {\'e}s du monde contemporain}{10}
+\contentsline {subsection}{\numberline {5.1}D\IeC {\'e}mographiques : plus de 7 milliards d\IeC {\textquoteright }\IeC {\^e}tres humains}{10}
+\contentsline {subsection}{\numberline {5.2}\IeC {\'E}conomiques : ressources limit\IeC {\'e}es, besoins croissants}{10}
+\contentsline {subsection}{\numberline {5.3}Socio-culturelles : pertes et qu\IeC {\^e}tes d\IeC {\textquoteright }identit\IeC {\'e}}{10}
+\contentsline {paragraph}{Retour du religieux ?}{10}
+\contentsline {subsection}{\numberline {5.4}Environnementales : r\IeC {\'e}chauffement climatique, pollution, biodiversit\IeC {\'e} menac\IeC {\'e}e, etc.}{10}
+\contentsline {subsection}{\numberline {5.5}Politiques : un monde unipolaire, bipolaire, multipolaire ?}{10}
+\contentsline {paragraph}{La fin de l\IeC {\textquoteright }hyperpuissance am\IeC {\'e}ricaine ?}{10}
+\contentsline {paragraph}{La Chine, pays \IeC {\'e}mergent ?}{11}
+\contentsline {paragraph}{Les autres BRICS}{11}
+\contentsline {paragraph}{Demain, l\IeC {\textquoteright }Afrique ?}{11}
+\contentsline {section}{\numberline {6}Les foyers d'instabilit\IeC {\'e}}{11}
+\contentsline {section}{\numberline {7}Le principal foyer d'instabilit\IeC {\'e} dans le monde : le Moyen-Orient}{11}
+\contentsline {section}{\numberline {8}Proche-Orient, Moyen-Orient}{11}
+\contentsline {subsection}{\numberline {8.1}Enjeux strat\IeC {\'e}giques et conflits \IeC {\`a} port\IeC {\'e}e mondiale}{12}
+\contentsline {subsection}{\numberline {8.2}Des conflits embl\IeC {\'e}matiques}{12}
+\contentsline {paragraph}{Le conflit israelo-palestinien}{12}
