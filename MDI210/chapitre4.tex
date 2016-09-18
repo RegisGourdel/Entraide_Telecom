@@ -1,0 +1,19 @@
+\begin{defn}
+	Soit le polynôme $P(\lambda) = \lambda^n + a_1 \lambda^{n-1} + \ldots + a_{n-1} \lambda + a_n$.
+	Est dite « compagne du polynôme $P$ » la matrice suivante :
+	$$C(P) = \begin{pmatrix}
+		-a_1 & -a_2 & -a_3   & \ldots & \ldots & -a_{n-1} & -a_n \\
+		1    & 0    &        &        &        &          &      \\
+		0    & 1    & 0      &        &        &          &      \\
+		     & 0    & 1      & \ddots &        &          &      \\
+		     &      & \ddots & \ddots & \ddots &          &      \\
+		     &      &        & 0      & 1      & 0        &      \\
+		     &      &        &        & 0      & 1        & 0    \end{pmatrix}$$
+\end{defn}
+
+\begin{pop}
+	Le polynôme caractéristique de $C(P)$ vaut $(-1)^n P(\lambda)$.
+	La matrice a donc pour valeurs propres les racines de $P$.
+\end{pop}
+
+Ce lien prouve, par le théorème d'Abel, que la recherche des valeurs propres d'une matrice ne peut se faire en un nombre fini d'opérations au-delà de la dimension 5.

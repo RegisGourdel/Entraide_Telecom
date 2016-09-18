@@ -1,0 +1,92 @@
+\select@language {french}
+\contentsline {chapter}{\numberline {1}R\IeC {\'e}sum\IeC {\'e} du projet}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}R\IeC {\'e}sum\IeC {\'e} du sujet choisi en fran\IeC {\c c}ais}{3}{section.1.1}
+\contentsline {section}{\numberline {1.2}English summary}{3}{section.1.2}
+\contentsline {chapter}{\numberline {2}\IeC {\'E}tude d\IeC {\textquoteright }ant\IeC {\'e}riorit\IeC {\'e} et justification de la proposition}{4}{chapter.2}
+\contentsline {section}{\numberline {2.1}Description de la proposition}{4}{section.2.1}
+\contentsline {section}{\numberline {2.2}Description du pourquoi}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}Description de l\IeC {\textquoteright }\IeC {\'e}tat de l\IeC {\textquoteright }art}{5}{section.2.3}
+\contentsline {chapter}{\numberline {3}Sc\IeC {\'e}narios d\IeC {\textquoteright }usage}{7}{chapter.3}
+\contentsline {chapter}{\numberline {4}Architecture du projet}{9}{chapter.4}
+\contentsline {section}{\numberline {4.1}Sch\IeC {\'e}ma d\IeC {\textquoteright }architecture}{9}{section.4.1}
+\contentsline {section}{\numberline {4.2}Description des blocs}{9}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Traitement de l\IeC {\textquoteright }image}{9}{subsection.4.2.1}
+\contentsline {subsubsection}{Les entr\IeC {\'e}es}{9}{section*.2}
+\contentsline {subsubsection}{Caract\IeC {\'e}risation des photos du visage}{9}{section*.3}
+\contentsline {subsubsection}{Classification automatique des images}{9}{section*.4}
+\contentsline {subsection}{\numberline {4.2.2}Traitement audio}{9}{subsection.4.2.2}
+\contentsline {subsubsection}{Les entr\IeC {\'e}es}{9}{section*.5}
+\contentsline {subsubsection}{Caract\IeC {\'e}risation audio des morceaux}{9}{section*.6}
+\contentsline {subsubsection}{Classification automatique}{9}{section*.7}
+\contentsline {subsection}{\numberline {4.2.3}Int\IeC {\'e}gration et comparaison des donn\IeC {\'e}es}{11}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Description des interfaces}{11}{section.4.3}
+\contentsline {section}{\numberline {4.4}Diagramme de s\IeC {\'e}quence}{12}{section.4.4}
+\contentsline {section}{\numberline {4.5}Interface utilisateur graphique}{12}{section.4.5}
+\contentsline {section}{\numberline {4.6}Tableau d\IeC {\'e}taill\IeC {\'e} des t\IeC {\^a}ches}{15}{section.4.6}
+\contentsline {chapter}{\numberline {5}Organisation du projet}{16}{chapter.5}
+\contentsline {section}{\numberline {5.1}Diagramme de planification temporel des t\IeC {\^a}ches}{16}{section.5.1}
+\contentsline {section}{\numberline {5.2}R\IeC {\'e}partition des \IeC {\'e}l\IeC {\`e}ves par module}{16}{section.5.2}
+\contentsline {section}{\numberline {5.3}\leavevmode {\color {RoyalBlue}Plans de test}}{16}{section.5.3}
+\contentsline {section}{\numberline {5.4}Diagramme d\IeC {\textquoteright }avancement des t\IeC {\^a}ches}{17}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Avancement au PAN 2}{17}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Avancement au PAN 3}{17}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}\leavevmode {\color {RoyalBlue}Avancement au PAN 4}}{17}{subsection.5.4.3}
+\contentsline {chapter}{\numberline {6}Bibliographie}{19}{chapter.6}
+\contentsline {paragraph}{Ressources utiles au d\IeC {\'e}veloppement :}{19}{section*.8}
+\contentsline {paragraph}{Documents sur la reconnaissance des \IeC {\'e}motions}{19}{section*.9}
+\contentsline {paragraph}{Documents pour le traitement audio des musiques}{19}{section*.10}
+\contentsline {paragraph}{Documents pour la recommandation :}{19}{section*.11}
+\contentsline {paragraph}{Sources pour la classification :}{19}{section*.12}
+\contentsline {paragraph}{Documents pour le module image}{19}{section*.13}
+\contentsline {chapter}{\numberline {A}Fiche d'identit\IeC {\'e} de groupe}{21}{appendix.A}
+\contentsline {section}{\numberline {A.1}Pr\IeC {\'e}sentation collective}{21}{section.A.1}
+\contentsline {section}{\numberline {A.2}Pr\IeC {\'e}sentation des membres du groupe}{21}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}\IeC {\'E}tudiant 1}{21}{subsection.A.2.1}
+\contentsline {subsection}{\numberline {A.2.2}\IeC {\'E}tudiant 2}{21}{subsection.A.2.2}
+\contentsline {subsection}{\numberline {A.2.3}\IeC {\'E}tudiant 3}{21}{subsection.A.2.3}
+\contentsline {subsection}{\numberline {A.2.4}\IeC {\'E}tudiant 4}{21}{subsection.A.2.4}
+\contentsline {subsection}{\numberline {A.2.5}\IeC {\'E}tudiant 5}{21}{subsection.A.2.5}
+\contentsline {subsection}{\numberline {A.2.6}\IeC {\'E}tudiant 6}{22}{subsection.A.2.6}
+\contentsline {subsection}{\numberline {A.2.7}\IeC {\'E}tudiant 7}{22}{subsection.A.2.7}
+\contentsline {chapter}{\numberline {B}Compte-rendus de r\IeC {\'e}unions}{23}{appendix.B}
+\contentsline {section}{\numberline {B.1}Descriptif chronologique des r\IeC {\'e}unions}{23}{section.B.1}
+\contentsline {section}{\numberline {B.2}Compte-rendu du xx.xx.16 : 1\up {er} contact tuteurs}{24}{section.B.2}
+\contentsline {section}{\numberline {B.3}Compte-rendu du 12.10.15 : Foire aux experts}{24}{section.B.3}
+\contentsline {section}{\numberline {B.4}CR foire aux modules : SES}{24}{section.B.4}
+\contentsline {section}{\numberline {B.5}CR foire aux modules : Electronique}{24}{section.B.5}
+\contentsline {chapter}{\numberline {C}Module 1}{25}{appendix.C}
+\contentsline {section}{\numberline {C.1}Fiche module}{25}{section.C.1}
+\contentsline {section}{\numberline {C.2}Documentation}{25}{section.C.2}
+\contentsline {section}{\numberline {C.3}Avancement}{25}{section.C.3}
+\contentsline {chapter}{\numberline {D}Module 2}{26}{appendix.D}
+\contentsline {section}{\numberline {D.1}Fiche module}{26}{section.D.1}
+\contentsline {section}{\numberline {D.2}Documentation}{26}{section.D.2}
+\contentsline {section}{\numberline {D.3}Avancement}{26}{section.D.3}
+\contentsline {chapter}{\numberline {E}Module 3}{27}{appendix.E}
+\contentsline {section}{\numberline {E.1}Fiche module}{27}{section.E.1}
+\contentsline {section}{\numberline {E.2}Documentation}{27}{section.E.2}
+\contentsline {section}{\numberline {E.3}Avancement}{27}{section.E.3}
+\contentsline {chapter}{\numberline {F}Module 4}{28}{appendix.F}
+\contentsline {section}{\numberline {F.1}Fiche module}{28}{section.F.1}
+\contentsline {section}{\numberline {F.2}Documentation}{28}{section.F.2}
+\contentsline {section}{\numberline {F.3}Avancement}{28}{section.F.3}
+\contentsline {chapter}{\numberline {G}Module 5}{29}{appendix.G}
+\contentsline {section}{\numberline {G.1}Fiche module}{29}{section.G.1}
+\contentsline {section}{\numberline {G.2}Documentation}{29}{section.G.2}
+\contentsline {section}{\numberline {G.3}Avancement}{29}{section.G.3}
+\contentsline {chapter}{\numberline {H}Module 6}{30}{appendix.H}
+\contentsline {section}{\numberline {H.1}Fiche module}{30}{section.H.1}
+\contentsline {section}{\numberline {H.2}Documentation}{30}{section.H.2}
+\contentsline {section}{\numberline {H.3}Avancement}{30}{section.H.3}
+\contentsline {chapter}{\numberline {I}Module 7}{31}{appendix.I}
+\contentsline {section}{\numberline {I.1}Fiche module}{31}{section.I.1}
+\contentsline {section}{\numberline {I.2}Documentation}{31}{section.I.2}
+\contentsline {section}{\numberline {I.3}Avancement}{31}{section.I.3}
+\contentsline {chapter}{\numberline {J}Module 8}{32}{appendix.J}
+\contentsline {section}{\numberline {J.1}Fiche module}{32}{section.J.1}
+\contentsline {section}{\numberline {J.2}Documentation}{32}{section.J.2}
+\contentsline {section}{\numberline {J.3}Avancement}{32}{section.J.3}
+\contentsline {chapter}{\numberline {K}Module 9}{33}{appendix.K}
+\contentsline {section}{\numberline {K.1}Fiche module}{33}{section.K.1}
+\contentsline {section}{\numberline {K.2}Documentation}{33}{section.K.2}
+\contentsline {section}{\numberline {K.3}Avancement}{33}{section.K.3}

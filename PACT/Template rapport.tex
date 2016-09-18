@@ -1,0 +1,233 @@
+\documentclass[a4paper,10pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{textcomp}
+\usepackage{wasysym}
+\usepackage[top=2cm, bottom=2cm, left=2.1cm, right=2.1cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[svgnames,table]{xcolor}
+\usepackage{tikzsymbols}
+\usepackage{longtable}
+\usepackage{listings}
+\usepackage{eurosym}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage{wrapfig}
+\usepackage[francais]{babel}
+\pagestyle{fancy}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{\textcolor{Teal}{Remarque}}
+
+\newcommand\R{\mathbf{R}}
+\newcommand\N{\mathbf{N}}
+\newcommand\C{\mathbf{C}}
+\newcommand\Q{\mathbf{Q}}
+\newcommand\Z{\mathbf{Z}}
+\newcommand\E{\mathcal{E}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+
+\newcommand\leaf{\textcolor{ForestGreen}{\textleaf}}
+\newcommand\emo{\textcolor{OrangeRed}{\smiley}}
+
+\DeclareMathOperator{\argmax}{arg\ max}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\intervalle}[4]{\mathopen{#1}#2\mathclose{}\mathpunct{};#3\mathclose{#4}}
+\newcommand{\intiff}[2]{\intervalle{[\![}{#1}{#2}{]\!]}}
+
+\newcommand\ct{\cellcolor{LimeGreen}}
+\newcolumntype{M}[1]{>{\centering}m{#1}}
+\newcommand\cs{\qquad \textcolor{OrangeRed}{$\bigstar$}}
+
+
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\tiny PACT 5.1 - PAN 4}
+\fancyfoot[RO]{\thepage}
+\fancyfoot[LE]{\thepage}
+
+\usepackage[colorlinks=true,linkcolor=purple]{hyperref}
+
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%
+% Page de titre %
+%%%%%%%%%%%%%%%%%
+
+
+\begin{titlepage}
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+	\center
+
+	\textsc{\LARGE Télécom ParisTech}\\[1.2cm]
+	\textsc{\Large PACT 2016-2017}\\[0.5cm]
+
+	\HRule \\[0.8cm]
+	{ \huge \bfseries Rapport d'avancement du groupe 5.1}\\[0.4cm]
+	{ \huge \bfseries Projet FeelList}\\[0.4cm]
+	\HRule \\[1.5cm]
+
+	\begin{minipage}{0.4\textwidth}
+	\begin{flushleft} \large
+	\emph{Groupe :}\\
+	Charles \textsc{Boulitrop}\\
+	Grégoire \textsc{Dupont}\\
+	Philippe \textsc{Edwards}\\
+	Ilyass \textsc{El Mansouri}\\
+	Régis \textsc{Gourdel} \\
+	Nesrine \textsc{Kortas}\\
+	Annah \textsc{Tencic}\\
+	\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+	\begin{flushright} \large
+	\emph{Tuteurs :} \\
+	Prénom \textsc{Nom}\\
+	Prénom \textsc{Nom}\\
+	\vspace{1em}
+	\emph{Encadrant génie logiciel :}\\
+	Prénom \textsc{Nom} \\
+	\end{flushright}
+	\end{minipage}\\[1.3cm]
+
+	{\large \today}\\[0.9cm]
+
+	% À commenter au PAN 1 car pas encore utile
+	% La coloration pour les parties nouvelles devra ensuite se faire de la même manière que pour le mot bleue ci-dessous
+	\begin{rem}
+		Pour le PAN 4 les ajouts et modifications ont été signalés par la couleur \textcolor{RoyalBlue}{bleue}.
+		Lorsque le titre d'une section est coloré c'est que l'ensemble du contenu est concerné.\\[0.9cm]
+	\end{rem}
+
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[scale=0.60]{./images/logoPACT.jpg}
+	\end{figure}
+
+	\begin{figure}[htp]
+	\centering
+	\includegraphics[scale=0.12]{./images/logoTelecom.png}
+	\end{figure}
+
+\end{titlepage}
+
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Sections principales %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Résumé du projet}
+	\input{./partiesPrincipales/resume}
+
+
+\chapter{Étude d’antériorité et justification de la proposition}
+
+	\section{Description de la proposition}
+		\input{./partiesPrincipales/proposition}
+		
+	\section{Description du pourquoi}
+		\input{./partiesPrincipales/pourquoi}
+		
+	\section{Description de l’état de l’art}
+		\input{./partiesPrincipales/etatArt}
+
+
+\chapter{Scénarios d’usage}
+
+	\input{./partiesPrincipales/scenario}
+
+\chapter{Architecture du projet}
+
+	\section{Schéma d’architecture}
+		Voir figure \ref{diagArchi}.
+
+		\begin{figure}[htp]
+		\includegraphics[scale=0.60]{images/diagrammeArchitecture.jpg}
+		\caption{Diagramme d'architecture du projet}
+		\label{diagArchi}
+		\end{figure}
+
+	\section{Description des blocs}
+		\input{./partiesPrincipales/descriptionBlocs}
+		
+	\section{Description des interfaces}
+		\input{./partiesPrincipales/interfaces}
+		
+	\section{Diagramme de séquence}
+		\input{./partiesPrincipales/diagrammesSequences}
+		
+	\section{Interface utilisateur graphique}
+		\input{./partiesPrincipales/UI}
+		
+	\section{Tableau détaillé des tâches}
+		\input{./partiesPrincipales/tableauTaches}
+
+\chapter{Organisation du projet}
+
+	\input{./partiesPrincipales/organisation}
+
+
+\chapter{Bibliographie}
+
+	\input{./partiesPrincipales/biblio}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Début des annexes %
+%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+\chapter{Fiche d'identité de groupe}
+	\input{./partiesPrincipales/ficheIdentite}
+
+\chapter{Compte-rendus de réunions}
+	\input{./partiesPrincipales/CRs}
+
+% Modules
+% Pensez à changer les noms dans les titres...
+\chapter{Module 1}
+	\input{./partiesModules/modulex}
+
+\chapter{Module 2}
+	\input{./partiesModules/modulex}
+
+\chapter{Module 3}
+	\input{./partiesModules/modulex}
+
+\chapter{Module 4}
+	\input{./partiesModules/modulex}
+
+\chapter{Module 5}
+	\input{./partiesModules/modulex}
+
+\chapter{Module 6}
+	\input{./partiesModules/modulex}
+
+\chapter{Module 7}
+	\input{./partiesModules/modulex}
+
+\chapter{Module 8}
+	\input{./partiesModules/modulex}
+
+\chapter{Module 9}
+	\input{./partiesModules/modulex}
+
+\end{document}

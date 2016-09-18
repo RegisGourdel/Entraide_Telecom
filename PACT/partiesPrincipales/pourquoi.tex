@@ -1,0 +1,21 @@
+L’idée de base du projet a énormément évolué pour devenir ce qu’elle est actuellement.
+En effet, l’idée d’origine était de réaliser une application capable de traduire le langage des signes en phrases cohérentes.
+Mais durant la foire aux experts il est apparu que la traduction du LSF en phrases cohérentes est irréalisable : on ne peut pas utiliser une Kinect pour une telle précision sur les mouvements des doigts et Leapmotion (carré de 50cm avec ondes radio reconnaissant les mouvements d’une main) n’est pas approprié (2 mains à gérer implique de relier des plaques entre elles, sans oublier de les relier aussi à la reconnaissance émotionnelle, ce qui est infaisable pour nous; il faut être statique et l’amplitude des mouvements est limitée, c’est pourquoi le Leapmotion ne convient que pour commander une souris virtuelle devant son ordinateur).
+Ainsi la solution était de se concentrer uniquement sur les émotions/humeurs/états.
+Le passage de l’émotion à un morceau de musique nous a semblé pertinent, en effet la reconnaissance multimodales d’émotions dans des applications interactives est un modèle jeune dont la maturité est grandissante et de plus en plus de chercheurs travaillent sur ce domaine pour améliorer l’interaction homme-machine, et de plus en plus d’applications innovantes utilisant les modèles de la théorie de l’émotion sont entrain d’apparaître dans le marché.\\
+
+Néanmoins, nous avons du faire face à plusieurs obstacles pour concrétiser ce projet.
+
+Tout d’abord, en ce qui concernent l’interprétation du visage pour les associer à des émotions, nous travaillerons sur les états : triste, joyeux, en colère.
+Ces états sont plus facilement reconnaissables sans ambiguïté: l'état triste se manifestera par une inertie des mouvements au contraire de l'état heureux/joyeux où il y aura profusion de petits mouvements (hochement de tête, changements rapides et multiples de mimiques...).
+L'état heureux sera surtout visible au sourire et au plissement des yeux au contraire de l'état triste.
+Ce type de paramètres nous semble déjà plus pertinent et moins controversé, et nous approfondirons cette recherche des attributs adéquats dans le module reconnaissance d’émotion, où on dégagera des paramètres de classement pertinents, invariants et différenciant.
+
+Ainsi notre application répondra à un besoin, qu’on retrouve souvent chez de nombreux utilisateurs, en effet l’idée est apparu pertinente quand en discutant avec des camarades ou des collègues on se rend compte que nous ne sommes pas les seuls à avoir du mal à sélectionner les morceaux que l’on souhaite écouter.
+De plus la reconnaissance d’émotion est un domaine jeune qui risque très probablement par la loi de Say selon laquelle « l’offre crée sa propre demande », d’attirer de nombreux utilisateurs.
+
+\textcolor{RoyalBlue}{
+Notre application se distingue des produits préexistants sur plusieurs points.
+Par rapport à une utilisation où l'utilisateur choisit “manuellement” les musiques qu'il souhaite écouter : il y a ici un gain de temps pour lui, il aura juste à passer un moment pour \textit{tagger} une partie de ses musiques au début, des tags sur les musiques restantes seront extrapolées par classification et l'utilisateur aura juste à lancer le mode spécifique FeelList.
+Par rapport à un service qui propose des playlists classées par humeur : FeelList a l'avantage de la personnalisation, si l'humeur influe sur ce que l'on écoute, tout le monde n'écoute pas pour autant les mêmes musiques dans la même humeur.
+}
