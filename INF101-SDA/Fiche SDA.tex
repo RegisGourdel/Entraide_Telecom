@@ -1,0 +1,1067 @@
+\documentclass[a4paper,11pt,twocolumn]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage[top=1cm, bottom=1.8cm, left=1cm, right=1cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage[svgnames]{xcolor}
+\usepackage{listings}
+\usepackage{alltt}
+\usepackage{draftwatermark}
+\usepackage{enumerate}
+\usepackage[french,vlined,boxruled]{algorithm2e}
+\usepackage{graphicx}
+\usepackage[francais]{babel}
+\pagestyle{fancy}
+
+\SetWatermarkText{\includegraphics{../logo.png}}
+\SetWatermarkScale{0.5}
+\SetWatermarkAngle{0}
+
+%opening
+\title{\vspace{-0.8cm} \textbf{Fiche de SDA} \vspace{-1cm}}
+\date{}
+
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\tiny Che Bedara - BDE Télécom ParisTech}
+\fancyfoot[RO]{\thepage}
+\fancyfoot[LE]{\thepage}
+
+\input{../mathsMacro.tex}
+
+\DeclareMathOperator{\pere}{Père}
+\DeclareMathOperator{\DFS}{DFS}
+\DeclareMathOperator{\val}{val}
+
+\renewcommand*\rmdefault{ppl}
+
+\begin{document}
+
+\maketitle
+
+\section{Algorithme et complexité}
+
+	\begin{defn}
+	\textbf{Algorithme} : suite finie d'instruction non ambiguës pouvant être exécutées de façon automatique.
+	\end{defn}
+
+	\begin{defn}
+	\textbf{Complexité} de $\mathcal{A}$ : ordre de grandeur du nombre d'opérations élémentaires effectuées pendant le déroulement de l’algorithme.
+	\end{defn}
+
+\section{Premières structures de données}
+
+	\begin{defn}
+	\textbf{Structure de données} : manière d’organiser et de représenter des données ainsi que méthodes d’accès et de transformation.
+	\end{defn}
+
+	\begin{defn}
+	\textbf{Liste} : suite ordonnée d’éléments d’un type donné.
+	Implémentations possibles : tableau, liste chaînée.
+	\end{defn}
+
+	\begin{defn}
+	\textbf{Pile} (LIFO) : liste dans laquelle l’insertion ou la suppression d’un élément s’effectue toujours à partir de la même extrémité (début).
+	Fonctions standards : empiler, dépiler, tester si vide, renvoyer premier élément.
+	\end{defn}
+
+	\begin{defn}
+	\textbf{File} (FIFO) : liste dans laquelle les insertions s’effectuent d’un même côté (fin) et les suppressions à partir de l’autre extrémité (début).
+	Opérations standards : enfiler, défiler.
+	\end{defn}
+
+	\begin{defn}
+	Un \textbf{arbre binaire} est soit vide, soit constitué d’un nœud racine et de deux sous-arbres binaires disjoints appelés sous-arbre gauche et sous-arbre droit.
+	Il est dit \textbf{localement complet} si tout nœud interne a exactement deux fils.
+	Il est dit \textbf{parfait} ou presque-complet si, avec $h$ la hauteur de l’arbre, les niveaux de profondeur $p < h$ sont complètement remplis alors que le niveau de profondeur $h$ est rempli en partant de la gauche.
+	Il est dit \textbf{équilibré} si, pour tout nœud, les sous-arbres gauche et droit ont des hauteurs qui diffèrent au plus de 1.
+	\end{defn}
+
+
+\section{Recherche et tri}
+
+	\begin{algorithm}[h]
+	\caption{\textcolor{RoyalBlue}{Recherche dichotomique} $O(\ln(n))$}
+	\Entree{Tableau $T[1,n]$ trié et élément $x$.}
+	$\texttt{gauche} \lar 1$, $\texttt{droite} \lar n$ \;
+	$\texttt{found} \lar \texttt{false}$ \;
+	\Tq{$\neg \texttt{found}$ et $\texttt{gauche} \leq \texttt{droite}$}
+	{
+		$\texttt{milieu} \lar (\texttt{gauche} + \texttt{droite})/2$ \;
+		\Si{$x < T[\texttt{milieu}]$}
+		{
+			$\texttt{droite} \lar \texttt{milieu} - 1$ \;
+		}
+		\SinonSi{$x > T[\texttt{milieu}]$}
+		{
+			$\texttt{gauche} \lar \texttt{milieu} + 1$ \;
+		}
+		\Sinon{$\texttt{found} \lar \texttt{true}$}
+	}
+	\Sortie{$\texttt{found}$}
+	\end{algorithm}
+
+	\begin{thm}
+	Tout algorithme de tri comparatif (fondé sur des comparaisons entre les éléments pour déterminer la permutation correspondant à l'ordre croissant des données) possède une complexité $\Omega(n \log_2(n))$ (au pire et en moyenne).
+	\end{thm}
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Tri sélection} ($C \in O(n^2)$)}
+	\Entree{Tableau $T[1,n]$.}
+	\SetKwFunction{echanger}{echanger}
+	\PourTous{$i \in \intiff{1}{n-1}$}
+	{
+		$i_{\min} \lar i$, $\texttt{min} \lar T[i]$ \;
+		\PourTous{$j \in \intiff{i + 1}{n}$}
+		{
+			\Si{$T[j] < \texttt{min}$}
+			{
+				$i_{\min} \lar j$, $\texttt{min} \lar T[j]$ \;
+			}
+		}
+		$\echanger(T,i,i_{\min})$ \;
+	}
+	\end{algorithm}
+
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Tri insertion} ($C \in O(n^2)$)}
+	\Entree{Tableau $T[1,n]$.}
+	\PourTous{$i \in \intiff{2}{n}$}
+	{
+		$\texttt{j} \lar i$, $\texttt{key} \lar T[j]$ \;
+		\Tq{$j \geq 2$ et $T[\texttt{j} - 1] > \texttt{key}$}
+		{
+			$T[j] \lar T[j - 1]$ \;
+			$j \lar j - 1$ \;
+		}
+		$T[j] \lar \texttt{key}$ \;
+	}
+	\end{algorithm}
+
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Tri rapide}}
+	\Entree{Tableau $T[1,n]$.}
+	\SetKwFunction{echanger}{echanger}
+	\SetKwFunction{partition}{partition}
+	\SetKwProg{func}{Fonction}{}{}
+	\func{\partition{$g$,$d$}}
+	{
+		$p \lar T[g]$, $i \lar g + 1$, $j \lar d$ \;
+		\Tq{$i \leq j$}
+		{
+			\lTq{$i \leq j$ et $T[i] \leq p$}{$i \lar i + 1$}
+			\lTq{$T[j] > p$}{$j \lar j - 1$}
+			\Si{$i < j$}
+			{
+				$\echanger{T,i,j}$\;
+				$i \lar i + 1$, $j \lar j - 1$\;
+			}
+		}
+		$\echanger{T,g,j}$\;
+		\Sortie{$j$}
+	}
+	\SetKwFunction{triRapide}{triRapide}
+	\SetKwProg{proc}{Procedure}{}{}
+	\proc{\triRapide{$g$,$d$}}
+	{
+		\Si{$g < d$}
+		{
+			$j \lar \partition{g,d}$ \;
+			\triRapide{$g$,$j - 1$}\;
+			\triRapide{$j + 1$,$d$}\;
+		}
+	}
+	\triRapide{$1$,$n$}\;
+	\end{algorithm}
+
+	\begin{defn}
+	Un arbre binaire est un \textbf{arbre binaire de recherche} (ABR) s'il est vide ou égal à $(F_g,c,F_d)$ où : $F_g$ et $F_d$ sont des ABRs, toute clé de $F_g$ est inférieure à $c$ et toute clé de $F_d$ est supérieure à $c$.
+	\end{defn}
+
+	Un parcours en ordre infixe d'un ABR donne donc la liste triée de ses clés.
+
+	\begin{algorithm}[h]
+	\caption{\textcolor{RoyalBlue}{Insertion dans un ABR}}
+	\Entree{Racine $r$ de l'arbre et clé $c$ à insérer.}
+	\SetKwFunction{inserer}{inserer}
+	\SetKwProg{func}{Fonction}{}{}
+	\func{\inserer{$r$,$c$}}
+	{
+		\Si{$r = \texttt{nil}$}
+		{
+			Soit $n$ un nouveau nœud \;
+			$n.\texttt{data} \lar c$, $n.g \lar \texttt{nil}$, $n.d \lar \texttt{nil}$ \;
+			\Sortie{n}
+		}
+		\Sinon
+		{
+			\lSi{$c \leq r.\texttt{data}$}{$r.g \lar \inserer(r.g, c)$}
+			\lSinon{$r.d \lar \inserer(r.d, c)$}
+			\Sortie{r}
+		}
+	}
+	\end{algorithm}
+
+	\begin{pop}
+	Le tri rapide et le tri par ABR ont une complexité au pire en $O \left( n^2 \right)$ et en moyene en $O(n\ln(n))$.
+	\end{pop}
+
+	\begin{defn}
+	\textbf{Tas-max} : arbre binaire parfait sur un ensemble totalement ordonné tel que l'étiquette de chaque nœud autre que la racine est inférieure ou égale à l'étiquette de son père.
+	\end{defn}
+
+	\begin{algorithm}[h]
+	\caption{\textcolor{RoyalBlue}{Montée, descente et tri dans un tas}}
+	\SetKwProg{proc}{Procedure}{}{}
+	\Entree{Tableau $T[1,n]$}
+
+	\SetKwFunction{montee}{montee}
+	\proc{\montee{p}}
+	{
+		\tcp{$p$ est le numéro du dernier élément.}
+		$i \lar p$ \;
+		$\texttt{cle} \lar T[p]$ \;
+		\Tq{$i \geq 2$ et $\texttt{cle} > T \left[ \left\lfloor \frac{i}{2} \right\rfloor \right]$}
+		{
+			$T[i] \lar T \left[ \left\lfloor \frac{i}{2} \right\rfloor \right]$ \;
+			$i \lar \left\lfloor \frac{i}{2} \right\rfloor$ \;
+		}
+		$T[i] \lar \texttt{cle}$ \;
+	}
+
+	\SetKwFunction{echanger}{echanger}
+	\SetKwFunction{descente}{descente}
+	\proc{\descente{q,p}}
+	{
+		\tcp{$q$ est le numéro de l'élément à descendre.}
+		$\texttt{found} \lar \texttt{false}$ \;
+		$i \lar q$ \;
+		$\texttt{cle} \lar T[q]$ \;
+		\Tq{$\neg \texttt{found}$ et $2i \leq p$}
+		{
+			\lSi{$2i = p$}{$i_{\max} \lar p$}
+			\Sinon
+			{
+				\lSi{$T[2i] \geq T[2i + 1]$}{$i_{\max} \lar 2i$}
+				\lSinon{$T[2i] \geq T[2i + 1]$}{$i_{\max} \lar 2i + 1$}
+			}
+			\Si{$\texttt{cle} < T[i_{\max}]$}
+			{
+				$T[i] \lar T[i_{\max}]$ \;
+				$i \lar i_{\max}$ \;
+			}
+			\lSinon{$\texttt{found} \lar \texttt{true}$}
+		}
+		$T[i] \lar \texttt{cle}$ \;
+	}
+
+	\SetKwFunction{triTas}{triTas}
+	\proc{\triTas{p}}
+	{
+		\lPour{$p$ qui varie de $2$ à $n$}{\montee{p}}
+		\Pour{$p$ qui varie de $n$ à $2$}
+		{
+			$\echanger{T,1,p}$ \;
+			$\descente{1,p - 1}$ \;
+		}
+	}
+	\end{algorithm}
+
+	\begin{pop}
+	Le tri tas a une complexité en $O(n\ln(n))$.
+	\end{pop}
+
+
+\section{Le hachage}
+
+	\begin{defn}
+	\textbf{Fonction de hachage} : application $h \colon \K \mapsto \intiff{0}{m - 1}$ où $\K$ est l'ensemble des clés possibles et $\intiff{0}{m - 1}$ l'ensemble des indices (adresses de hachage).
+	\end{defn}
+
+	\begin{defn}
+	\textbf{Collision} primaire : deux clés ont le même indice.
+	Collision secondaire : une case d'indice $i$ est déjà occupée par une clé d'indice $j \neq i$.
+	\end{defn}
+
+	\begin{defn}
+	Hachage linéaire : en cas de collision on se déplace cycliquement vers la droite dans la table.
+	Hachage avec chaînage interne : en cas de collision on remplit par la droite une zone de débordement à la fin du tableau, puis les positions libres du tableau, par la droite encore.
+	Hachage avec chaînage externe : liste chaînée à partir de chaque case du tableau.
+	\end{defn}
+
+
+\section{L'algorithme de Huffman}
+
+	\begin{defn}
+	Codage binaire : application injective $E \colon \Sigma \to \{ 0,1 \}^+$ avec $\Sigma$ un alphabet.
+	\end{defn}
+
+	On peut l'étendre à $\Sigma^+$ par concaténation et on dit que $E$ est uniquement décodable si $E$ est injectif sur $\Sigma^+$.
+
+	\begin{defn}
+	\textbf{Codage préfixe} : $\forall \sigma, \sigma' \in \Sigma, \sigma \neq \sigma'$, $E(\sigma)$ n'est pas un préfixe de $E(\sigma')$ (suit la règle du préfixe).
+	\end{defn}
+
+	\begin{pop}
+	Un codage préfixe est uniquement décodable et équivalent à la donnée d'un arbre binaire dont les feuilles sont étiquetées par les lettres de $\Sigma$.
+	\end{pop}
+
+	Objectif : associer à la suite des caractères à coder un AB tel que, toute feuille étant associé à un caractère $c_i$ de fréquence $f_i$, à la hauteur $l_i$, $\sum_i l_i f_i$ est minimum.
+	L'arbre est alors dit optimum.
+
+	\begin{lem}
+	Dans un AB optimum tout nœud interne a deux fils et les deux plus petites occurrences se trouvent à la profondeur maximum de l'arbre.
+	\end{lem}
+
+	\begin{lem}
+	Il existe un AB optimum dans lequel les deux plus petites occurrences sont dans des feuilles “frères” à la profondeur maximum.
+	\end{lem}
+
+	\begin{lem}
+	Soit $A$ un AB où les deux plus petites occurrences sont “frères” à la profondeur maximum.
+	On note $x$ et $y$ leurs caractères contenus.
+	On transforme $A$ en $A'$ en fusionnant ces deux feuilles en $x + y$ avec nombre d'occurrences conservé.
+	L'arbre $A$ est optimum si et seulement si $A'$ l'est.
+	\end{lem}
+
+	\begin{thm}
+	La compression optimale de données sans perte est toujours possible en utilisant un code sans préfixe.
+	\end{thm}
+
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Algorithme de Huffman}}
+	\SetKwFunction{push}{push}
+	\SetKwFunction{occ}{occ}
+	\SetKwFunction{size}{size}
+	\SetKwFunction{popBack}{popBack}
+	\SetKwFunction{sort}{sort}
+	\Entree{alpabet $\Sigma$ et fonction occurrence $\occ$}
+	soit $A$ un tableau dynamique d'arbres \;
+	\PourTous{$x \in \Sigma$}
+	{
+		$A.\push{\texttt{nil},(x,\occ(x)),\texttt{nil}}$\;
+	}
+	$A.\sort{}$ \;
+	\tcp{tri par occurrence décroissante des racines}
+	$n \lar A.\size{}$ \;
+	\Tq{$n > 1$}
+	{
+		$(\_,(x,\_),\_) \lar A[n]$ \;
+		$(\_,(y,\_),\_) \lar A[n - 1]$ \;
+		$A[n - 1] \lar (A[n - 1],(x + y, \occ(x) + \occ(y)), A[n])$ \;
+		$A.\popBack{}$, $n \lar n - 1$ \;
+		$A.\sort{}$ \;
+	}
+	\Sortie{$A[1]$}
+	\end{algorithm}
+
+	\begin{thm}
+	L'algorithme de Huffman permet de construire un codage préfixe optimal.
+	\end{thm}
+
+
+\section{Graphes et arbres couvrant}
+
+	On note $X_2 = \{ Y \in \parties(X) \mid \card(Y) = 2 \}$.
+
+	\begin{defn}
+	Graphe (simple) non orienté : $G = (V,E)$ avec $E \subset V_2$.
+	\end{defn}
+
+	\begin{defn}
+	Graphe (simple) orienté : $G = (V,E)$ avec $E \subset V^2$.
+	\end{defn}
+
+	\begin{defn}
+	L'\textbf{ordre} d'un graphe est $\abs{V}$ et sa \textbf{taille} est $\abs{E}$.
+	\end{defn}
+
+	\begin{defn}
+	Graphe \textbf{complet} (ou clique) $K_n = (V,V_2)$ avec $\abs{V} = n$.
+	\end{defn}
+
+	\begin{defn}
+	Graphe \textbf{partiel} de $G = (V,E)$ : $G' = (V,E')$ avec $E' \subset E$.
+	Soit $W \subset V$, on appelle $F = (W,E_W)$, avec $E_W = E \cap W_2$ ou $E_W = E \cap W^2$, sous-graphe de $G$ engendré par $W$.
+	\end{defn}
+
+	\begin{defn}
+	\textbf{Arbre} : graphe acyclique connexe.
+	\end{defn}
+
+	\begin{thm}
+	Pour un graphe $G$ d'ordre $n$ et de taille $m$, sont équivalents :
+		\begin{enumerate}[i)]
+		\item $G$ est un arbre,
+		\item $G$ est connexe et on a $m = n - 1$,
+		\item $G$ est sans cycle et on a $m = n - 1$,
+		\item $G$ est connexe et supprimer une arête le déconnecte,
+		\item $G$ est acyclique et l'ajout d'une arête crée un cycle,
+		\item entre deux sommets quelconques, il existe une chaîne élémentaire unique.
+		\end{enumerate}
+	\end{thm}
+
+	Problème : étant donné un graphe $G = (V,E)$ pondéré par $w \colon E \to \R$, trouver un arbre couvrant $T$ (graphe partiel connexe) de poids $w(T) = \sum_{e \in T} w(e)$ minimal.
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Algorithme de Kruskal} $O(m \log(m))$}
+	\SetKwFunction{triCroissant}{triCroissant}
+	\Entree{graphe connexe $G = (V,E)$ et fonction coût $w$}
+	$A \lar \emptyset$\;
+	$E_t = \triCroissant{E}$ \;
+	\PourTous{$(a,b) \in E_t$}
+	{
+		\Si{$A \cup \{ (a,b) \}$ est acyclique}
+		{
+			$A \lar A \cup \{ (a,b) \}$ \;
+		}
+	}
+	\Sortie{$(V,A)$}
+	\tcc{on peut vérifier l'acyclicité par un tableau donnant le numéro de composante connexe ou une structure union-find}
+	\end{algorithm}
+
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Algorithme de Prim} $O(m \log(n))$}
+	\SetKwFunction{voisins}{voisins}
+	\Entree{graphe connexe $G = (V,E)$ et fonction coût $w$}
+	$S \lar \{ s_o \}$\; \tcp{sommet choisi arbitrairement}
+	$A \lar \emptyset$\;
+	$p \lar s_o$ \;
+	\lPourTous{$s \in V \setminus \{ s_0 \}$}{$d(x) \lar +\infty$}
+	\Tq{$S \neq V$}
+	{
+		\PourTous{$s \in \voisins{p} \cap \compl{S}$}
+		{
+			\Si{$w(p,s) < d(s)$}
+			{
+				$\texttt{proche}[s] \lar p$\;
+				$d(s) \lar w(p,s)$ \;
+			}
+		}
+		$p \lar \argmin_{s \in \compl{S}}(d(s))$\;
+		$S \lar S \cup \{ s \}$ \;
+		$A \lar A \cup \{ (\texttt{proche}[p],p) \}$ \;
+	}
+	\Sortie{$(S,A)$}
+	\tcp{on représente $\compl{S}$ avec un tas}
+	\end{algorithm}
+
+
+\section{Problèmes de plus court chemin}
+
+	\begin{note}
+	On note $\sim$ la relation binaire telle que $x \sim y$ s'il existe un chemin de $x$ à $y$ dans le graphe.
+	\end{note}
+
+	\begin{defn}
+	\textbf{Chemin élémentaire} : passant par des sommets distincts.
+	\textbf{Circuit} : chemin dont les extrémités coïncident.
+	Circuit \textbf{absorbant} $C$ : tel que $\sum_{e \in C} w(e) < 0$.
+	\end{defn}
+
+	\begin{defn}
+	\textbf{Racine} de $G$ : $r \in V$ tel que $\forall s \in V, r \sim s$.
+	\textbf{Arborescence} de racine $r$ : graphe orienté tel que le graphe orienté sous-jacent $G'$ est un arbre et $\forall v \in V$, l'unique chaîne entre $r$ et $v$ dans $G'$ correspond à un chemin de $r$ vers $x$ dans l’arborescence.
+	\end{defn}
+
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Algorithme de Dijkstra}, calcul des plus courts chemins d'un sommet à tous les autres, $O(n^2)$}
+	\Entree{graphe $G = (V,E)$ avec coût $w \colon E \to \R_+$ et sommet $s \in V$.}
+	$S \lar \{ s \}$\;
+	\PourTous{$v \in V$}
+	{
+		$d[v] \lar w(s,v)$
+	}
+	\Tq{$\compl{S} \neq \emptyset$}
+	{
+		$u \lar \argmin_{v \in \compl{S}}(d[v])$\;
+		$S \lar S \cup \{ u \}$\;
+		\PourTous{$v \in \compl{S}$}
+		{
+			\Si{$d[v] > d[u] + w(u,v)$}
+			{
+				$d[v] \lar d[u] + w(u,v)$ \;
+				$\texttt{pere}[v] \lar u$ \;
+			}
+		}
+	}
+	\Sortie{vecteurs $d$ (distances à $s$) et $\texttt{pere}$}
+	\end{algorithm}
+
+	\begin{defn}
+	On appelle \textbf{tri topologique} des sommets d'un graphe orienté acyclique une numérotation des sommets telle que, pour $(u,v) \in E$ et $n$ la fonction de numérotation, $n(u) \leq n(v)$.
+	\end{defn}
+
+	\begin{pop}
+	Un graphe est sans circuit si et seulement s'il admet une numérotation topologique.
+	\end{pop}
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Algorithme de Bellman} $O(n^2)$}
+	\Entree{graphe acyclique orienté avec coût w $G = (V,E)$}
+	\SetKwFunction{numT}{numTopo}
+	\SetKwProg{func}{Fonction}{}{}
+	\func{\numT{$V$,$E$}}
+	{
+		trouver $x$ qui n'a pas de prédecesseur \;
+		$n_{-1} = \numT(V \setminus \{ x \}, E \cap (V \setminus \{ x \})^2)$ \;
+		\Sortie{$n \colon y \mapsto \left\{ \begin{array}{cl}	1 & \text{si } y = x \\ n_{-1}(y) + 1 & \text{sinon} \end{array}\right.$}
+	}
+	$n = \numT{V,E}$ \;
+	$r \lar n^{-1}(1)$ \;
+	$d[r] \lar 0$ \;
+	\lPourTous{$v \in V \setminus \{ r \}$}{$d[v] \lar \infty$}
+	\Pour{$i$ variant de $2$ à $n$}
+	{
+		$x \lar n^{-1}(i)$ \;
+		$\texttt{pere}[x] \lar \argmin_{y \in V \mid n(y) < y, (y,x) \in E}(d[y] + w(y,x))$ \;
+		$d[x] \lar d[\texttt{pere}[x]] + w(\texttt{pere}[x],x)$ \;
+	}
+	\Sortie{vecteurs $d$ et $\texttt{pere}$}
+	\end{algorithm}
+
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Algorithme de Ford}}
+	\Entree{Graphe $G = (V,E)$ avec coût $w \colon E \to \R$ et sommet $s \in V$.}
+	$k \lar 0$\;
+	$d^{(0)} (s) \lar 0$\;
+	\lPourTous{$v \in V \setminus \{ s \}$}{$d^{(0)}(v) \lar \infty$}
+	\Repeter{$k = n$ ou $\neg \texttt{changement}$}
+	{
+		$\texttt{changement} \lar \texttt{faux}$ \;
+		$k \lar k+1$ \;
+		\PourTous{$v \in V$}
+		{
+			$d^{(k)}(v) \lar \min_{u \mid (u,v) \in E} (d^{(k-1)} (u) + w(u,v))$ \;
+			\Si{$d^{(k)} (v) \neq d^{(k-1)} (v)$}
+			{
+				$\texttt{changement} \lar \texttt{vrai}$ \;
+				$\texttt{pere}(v) \lar \underset{u \mid (u,v) \in E}{\argmin} (d^{(k-1)} (u) + w(u,v))$ \;
+			}
+		}
+	}
+	\Si{$\texttt{changement}$}
+	{
+		\Sortie{"cycle absorbant"}
+	}
+	\Sinon
+	{
+		\Sortie{vecteurs $d$ et $\texttt{pere}$}
+	}
+	\end{algorithm}
+
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Algorithme de Dantzig}, plus courts chemins de tout sommet à tout sommet, cas général $O(n^3)$}
+	\Entree{graphe $G = (V,E)$ avec coût $w \colon E \to \R$}
+	$D^{(1)}(1,1) \lar 0$\;
+	\Pour{$k$ allant de $1$ à $n - 1$}
+	{
+		\Pour{$i \in \intiff{1}{k}$}
+		{
+			$D^{(k + 1)}(i,k + 1) \lar \underset{j \in \intiff{1}{k}}{\min}(D^{(k)}(i,j) + w(j,k + 1))$\;
+			$D^{(k + 1)}(k + 1,i) \lar \underset{j \in \intiff{1}{k}}{\min}(D^{(k)}(j,i) + w(k + 1,j))$\;
+		}
+		$D^{(k + 1)}(k + 1,k + 1) \lar 0$ \;
+		\Pour{$(i,j) \in \intiff{1}{k}^2$}
+		{
+			$D^{(k + 1)}(i,j) \lar \min(D^{(k)}(i,j), D^{(k + 1)}(i,k + 1) + D^{(k + 1)}(k + 1,j))$\;
+		}
+	}
+	\Sortie{matrice $D^{(n)}$ des plus courtes distances}
+	\end{algorithm}
+
+
+
+\section{Parcours de graphes}
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Parcours abstrait d'un graphe}}
+	\Entree{$G = (V,E)$, sommet $r \in V$.}
+	$T \leftarrow \{ r \}$\;
+	marquer $r$ \;
+	\Tq{$T \neq \emptyset$}
+	{
+		choisir $v \in T$\;
+		visiter $v$ \;
+		$T \leftarrow T \setminus \{ v \}$ \;
+		\PourTous{$v'$ voisin de $v$}
+		{
+			\Si{$v'$ n'est pas marqué}
+			{
+				$T \lar T \cup \{ v' \}$ \;
+				marquer $v'$ \;
+			}
+		}
+	}
+	\end{algorithm}
+
+	C'est sur la façon de choisir $v$ que diffèrent les algorithmes : parcours en largeur en utilisant une file et parcours en profondeur en utilisant une pile.
+	
+	\begin{note}
+	$M$ : ensemble des sommets marqués par un algorithme de parcours à partir de $r$.
+	\end{note}
+
+	\begin{defn}
+	\textbf{Arborescence du parcours} : $A = (M, \{ (\texttt{pere}(x),x) \mid x \in M \setminus \{ r \}\})$ de racine $r$.
+	Les arcs $(\texttt{pere}(x),x)$ s'appellent \textbf{arcs arborescents}.
+	\end{defn}
+
+	\begin{pop}
+	$M$ est l'ensemble des sommets $x$ pour lesquels il existe dans $G$ un chemin de $r$ à $x$.
+	\end{pop}
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Parcours en profondeur} $O(n + m)$}
+	\SetKwProg{func}{Fonction}{}{}
+	\Entree{$G = \{ V,E \}$, $r$ un sommet particulier.}
+	($n_{pre} \lar 1$, $n_{post} \lar 1$) \;
+	\SetKwFunction{DFS}{DFS}
+	\func{\DFS{$s \in V$}}
+	{
+		(Numéroter $s$ en préfixe, $n_{pre} \lar n_{pre} + 1$) \;
+		Marquer $s$ \;
+		\PourTous{$v$ voisin de $s$}
+		{
+			\Si{$v$ n'est pas marqué}
+			{
+				$\texttt{pere}(v) \lar s$ \;
+				$\DFS(v)$ \;
+			}
+		}
+		(Numéroter $s$ en suffixe, $n_{post} \lar n_{post} + 1$) \;
+	}
+	\DFS{$r$}\;
+	\end{algorithm}
+
+	Dans un DFS en non orienté il peut être utile d'orienter les arêtes traversées (lors de la découverte des voisins) dans le sens de cette traversée.
+
+	\begin{defn}
+	\textbf{Arête arborescente} : arête qui a été orientée en un arc arborescent.
+	\textbf{Arc arrière} : arc obtenu en orientant une arête non arborescente.
+	Toute arête conduit à un arc arborescent ou à un arc arrière.
+	\end{defn}
+
+	\begin{lem}
+	Les arcs arrières vont d'un sommet $x$ à un des ses ancêtres autre que son père dans l'arborescence.
+	\end{lem}
+
+	\begin{defn}
+	Soit $\Join$ la relation d'équivalence sur $V$ définie par $x \Join y \iff (x \sim y) \wedge (y \sim x)$.
+	Les classes d'équivalences de $x$ pour cette relation sont les composantes fortement connexes de $G$.
+	$G$ est dit fortement connexe s'il n'admet qu'une seule telle composante.
+	\end{defn}
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Algorithme de calcul des composantes fortement connexes} $O(n + m)$}
+	\Entree{$G = \{ V,E \}$ un graphe orienté.}
+	\SetKwFunction{DFS}{DFS}
+	%$n_{post} \colon \intiff{1}{n} \to \intiff{1}{n}$ \;
+	\Tq{tous les sommet ne sont pas numérotés en post-fixe}
+	{
+		soit $x$ un sommet non numéroté \;
+		$\DFS(x)$ avec numérotation post-fixe \;
+	}
+	$E^- \lar \{ (v,u) \mid (u,v) \in E \}$ \;
+	$G^- \lar \{ V,E^- \}$ \;
+	effacer les marquages \;
+	effectuer des DFS dans $G^-$ successivement au départ du sommet de plus grand numéro post-fixe restant
+	\tcp{chaque DFS donne une composante fortement connexe}
+	\Sortie{composantes fortement connexes}
+	\end{algorithm}
+
+	\begin{defn}
+	\textbf{Sommet d'articulation} d'un graphe non orienté : sommet dont la suppression augmente le nombre de composantes connexes.
+	C'est équivalent à dire qu'il existe $(x,y) \in V^2$ tel que toute chaîne entre $x$ et $y$ passe par ce point.
+	Un graphe est dit \textbf{$2$-connexe} si et seulement si il est réduit à une arête ou n'a pas de sommet d'articulation.
+	\end{defn}
+
+	\begin{thm}
+	Soit $G = (V,E)$ un graphe connexe, non orienté, et $A$ une arborescence DFS de $G$.
+	Alors $s \in V$ est un point d'articulation de $G$ si et seulement si
+		\begin{itemize}
+		\item $s$ est la racine de $A$ et possède au moins deux fils dans $A$,
+		\item ou $s$ n'est pas la racine de $A$ et, pour un fils $f$ de $s$ dans $A$, il n'y a pas d'arc arrière entre les descendants de $f$ ($f$ compris) et les ancêtres de $s$.
+		\end{itemize}
+	\end{thm}
+
+	\begin{defn}
+	\textbf{Numérotation basse} : $\texttt{basse}(v)$ est le minimum de : $\texttt{prefixe}(v)$, $\texttt{prefixe}(z)$ où $z \in V$ et $(v,z)$, et $\texttt{basse}(u)$ où $u$ est fils de $v$ dans l'arborescence DFS.
+	\end{defn}
+
+	\begin{thm}
+	Le point de départ de DFS est sommet d'articulation si et seulement si il a au moins deux fils dans l'arborescence.
+	Un sommet $s$ autre que la racine est un sommet d'articulation si et seulement s'il a au moins un fils $f$ dans l'arborescence tel que $\texttt{basse}(f) \geq \texttt{prefixe}(s)$.
+	\end{thm}
+
+	\begin{defn}
+	Soit $G$ un graphe non orienté.
+	On dit que $G$ est $2$-connexe s'il est connexe et n'admet aucun sommet d'articulation.
+	On appelle composante $2$-connexe tout sous-graphe $2$-connexe maximal pour l'inclusion.
+	\end{defn}
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Calcul des composantes $2$-connexes} $O(m)$}
+	\SetKwProg{func}{Fonction}{}{}
+	\Entree{$G = \{ V,E \}$, $r$ un sommet particulier.}
+	$\texttt{pre} \lar 1$ \;
+	$\texttt{pileAretes} \lar \texttt{nil}$ \;
+	\SetKwFunction{empiler}{empiler}
+	\SetKwFunction{parcours}{parcours}
+	\func{\parcours{$x \in V$}}
+	{
+		Marquer $x$ \;
+		$\texttt{prefixe}[x] \lar \texttt{pre}$ \;
+		$\texttt{pre} \lar \texttt{pre} + 1$ \;
+		$\texttt{basse}[x] \lar \texttt{prefixe}[x]$ \;
+		\PourTous{$y$ voisin de $x$}
+		{
+			\Si{$\{ x,y \}$ n'a pas été traversée}
+			{
+				\tcc{i.e. si $y$ n'est pas marqué ou ($y$ n'est pas le père de $x$ et $\texttt{prefixe}[y] \leq \texttt{prefixe}[x]$)}
+				$\texttt{pileAretes}.\empiler{ \{ x,y \} }$
+				\Si{$y$ est déjà marqué}
+				{
+					$\texttt{basse}[x] \lar \min(\texttt{basse}[x], \texttt{prefixe}[y])$ \;
+				}
+				\Sinon
+				{
+					$\texttt{pere}[y] \lar x$ \;
+					\parcours{$y$} \;
+					\Si{$\texttt{basse}[y] \geq \texttt{prefixe}[x]$}
+					{
+						dépiler $\texttt{pileAretes}$ jusqu'à $\{ x,y \}$ (compris) \;
+						les arêtes dépilées sont celles d'une composante $2$-connexe \;
+					}
+					\Sinon
+					{
+						$\texttt{basse}[x] \lar \min(\texttt{basse}[x], \texttt{basse}[y])$ \;
+					}
+				}
+			}
+		}
+	}
+	\parcours{$r$}\;
+	\end{algorithm}
+
+
+\section{Flot max et coupe min}
+
+	\begin{defn}
+	\textbf{Réseau} : quadruplet $(G,c,s,t)$ où $G = (V,E)$ est un graphe orienté, $c \colon E \to \R_+^*$ une fonction de capacité et $s$ et $v$ des sommets distincts de $V$ appelés source et puits.
+	\end{defn}
+
+	\begin{note}
+	Soit $S \subset V$ contenant $s$ et non $p$.
+	On dit que $S$ sépare $s$ de $p$.
+	\textbf{Coupe} : ensemble noté $(S,\compl{S})$ des arcs d'origine dans $S$ et d'extrémité dans $\compl{S}$.
+	On note $E(S,T) = \{ (u,v) \in E \mid u \in S, v \in T \}$ et $\delta_f(v) = \sum_{e \in E(v,V \setminus \{ v \})} f(e) - \sum_{e \in E(V \setminus \{ v \},v)} f(e)$.
+	\end{note}
+
+	\begin{defn}
+	\textbf{Flot}: application $f \colon E \to \R_+$ telle que
+		\begin{enumerate}[i)]
+		\item $\forall u \in E, f(e) \leq c(e)$
+		\item $\forall v \in V \setminus \{ s,t \}, \delta_f(v) = 0$.
+		\end{enumerate}
+	Flux d'un arc $u$ : $f(u)$.
+	\end{defn}
+
+	\begin{defn}
+	\textbf{Valeur du flot} $f$ : $\val(f) = \delta_f(s) = - \delta_f(p) = f(S,\compl{S}) - f(\compl{S},S)$ avec $(S,\compl{S})$ une coupe.
+	En particulier cette dernière valeur est indépendante de la coupe choisie.
+	Capacité d'une coupe : $c(S,\compl{S}) = \sum_{u \in (S,\compl{S})} c(u)$.
+	\end{defn}
+
+	\begin{defn}
+	Étant donné un réseau, un flot maximal est un flot qui maximise $\val{f}$.
+	Problème :  trouver un tel flot.
+	\end{defn}
+
+	\begin{thm}
+	Soit $f$ un flot et $(S,\bar{S})$ une coupe, alors
+		\begin{enumerate}
+		\item $\val(f) \leq c(S,\compl{S})$,
+		\item si $\val(f) = c(S,\compl{S})$, $\val(f)$ est maximum et $c(S,\compl{S})$ est minimum,
+		\item $\val(f) = c(S,\compl{S})$ si et seulement si $\forall u \in (S,\compl{S}), f(u) = c(u)$ et $\forall u \in (\compl{S},S), f(u) = 0$.
+		\end{enumerate}
+	\end{thm}
+
+	\begin{note}
+	Soit $e = (u,v)$ un arc, on note $\overleftarrow{e} = (v,u)$ (arc inverse).
+	Pour $f$ donné, on a le graphe résiduel $(G_f,c',s,t)$ où $G_f = (V,E')$, $E' = \{ e \in E \mid f(e) < c(e) \} \cup \{ \overleftarrow{e} \mid e \in E, f(e) > 0 \}$ et $\forall e \in E', c'(e) = \left\{ \begin{array}{cl}
+		c(e) - f(e) & \text{ si } e \in E \\
+		f(\overleftarrow{e}) & \text{ si } \overleftarrow{e} \in E
+	\end{array}\right.$.
+	\end{note}
+
+	\begin{defn}
+	\textbf{Chemin $f$-augmentant} $P$ : chemin de $s$ à $t$ dans $G_f$.
+	\end{defn}
+
+	Soit $\gamma = \min_{e \in P} c'(e)$.
+	On peut augmenter $f$ le long de $P$ par les formules $f(e) \lar f(e) + \gamma$ si $e \in E$ et $f(e') \lar f(e') - \gamma$ si $\overleftarrow{e} \in E$.
+
+	\begin{thm}[de Ford-Fulkerson]
+	Sont équivalents
+		\begin{enumerate}[i.]
+		\item $f$ est un flot maximal,
+		\item $G_f$ ne contient pas de chemin $f$-augmentant,
+		\item $\exists (S,\bar{S})$ une coupe, telle que $\abs{f} = c(S,\bar{S})$.
+		\end{enumerate}
+	\end{thm}
+
+
+	\begin{algorithm}
+	\caption{\textcolor{RoyalBlue}{Algorithme de Ford-Fulkerson} $O(m \cdot \max_f(\val(f)))$}
+	\SetKwProg{func}{Fonction}{}{}
+	\Entree{$(G,c,s,t)$}
+	\SetKwFunction{rca}{rechercheCheminAugmentant}
+	\func{\rca{}}
+	{
+		$\texttt{marque}[s] \lar (\Delta,+\infty)$ \;
+		considérer les sommets de $V \setminus \{ s \}$ non marqués \;
+		considérer tous les sommets non examinés \;
+		\Tq{$p$ est non marqué et il y a un sommet marqué mais non examiné}
+		{
+			soit $x$ un tel sommet \;
+			\tcp{on prolonge la chaîne augmentant après $x$}
+			soit $\alpha$ la valeur absolue de la deuxième marque de $x$\;
+			\PourTous{$y$ successeur de $x$ non marqué}
+			{
+				\Si{$c(x,y) > f(x,y)$}
+					{$\texttt{marque}[y] \lar (x,\min(\alpha,c(x,y) - f(x,y)))$ \;}
+			}
+			\PourTous{$z$ prédécesseur de $x$ non marqué}
+			{
+				\Si{$f(z,x) > 0$}
+					{$\texttt{marque}[z] \lar (x,-\min(\alpha,f(z,x)))$\;}
+			}
+			considérer $x$ comme examiné \;
+		}
+	}
+	on initialise $f$ à $0$ (flot nul) \;
+	\rca{} \;
+	\Tq{$p$ est marqué}
+	{
+		reconstituer la chaîne augmentante $C$ \;
+		soit $\alpha$ la valeur absolue de la deuxième marque de $p$\;
+		\PourTous{arc $(x,y) \in C$ parcouru à l'endroit}
+		{
+			$f(x,y) \lar f(x,y) + \alpha$ \;
+		}
+		\PourTous{arc $(x,y) \in C$ parcouru à l'envers}
+		{
+			$f(x,y) \lar f(x,y) - \alpha$ \;
+		}
+		\rca{} \;
+	}
+	\Sortie{$f$}
+	\end{algorithm}
+
+	\begin{thm}
+	Dans un réseau à capacités entières, il existe un flot maximum tel que tous les flux soient entiers.
+	\end{thm}
+
+
+\section{Applications de la théorie des flots}
+
+	\begin{defn}
+	$G$ est dit \textbf{$k$-connexe} s’il a au moins $k + 1$ sommets et si la suppression d’au plus $k - 1$ sommets quelconques résulte en un graphe connexe.
+	Sommet-connectivité de $G$ : plus grand entier $k$ tel que $G$ soit $k$-connexe.
+	\end{defn}
+
+	\begin{defn}
+	$G$ est dit \textbf{$k$-arête-connexe} si la suppression d’au plus $k - 1$ arêtes quelconques résulte en un graphe connexe.
+	Arête-connectivité de $G$ : plus grand entier $k$ tel que $G$ soit $k$-arête-connexe.
+	La forte arc-connectivité est analogue dans un graphe orienté.
+	\end{defn}
+
+	\subsection{Forte arc-connectivité}
+
+		\begin{note}
+		Soit $G = (V,e)$ orienté et $(a,b) \in V^2$ distincts.
+		On considère le réseau $R_{ab}$ déterminé par : ce graphe $G$, le sommet source $a$ et le sommet puits $b$, une capacité de $1$ sur tous les arcs de $G$.
+		\end{note}
+
+		\begin{note}
+		Soit $P$ et $N$ de à valeurs de $E$ dans $\N$ tels que $P(a,b)$ est le nombre maximum de chemins de $a$ vers $b$, deux à deux arc-disjoints, et $N(a,b)$ le nombre minimum d’arcs à supprimer pour qu’il n’existe plus de chemin de $a$ vers $b$.
+		\end{note}
+
+		\begin{thm}[Menger, “Max Flow - Min Cut”]
+		Si $f_{ab}$ est maximal dans le réseau $R_{ab}$, alors $\val(f_{ab}) = P(a,b) = N(a,b)$.
+		\end{thm}
+
+		\begin{lem}[Zorn]
+		Supposons définie une numérotation des sommets de $G$ de $0$ à $n - 1$.
+		La forte arc-connectivité de $G$ est $\min_{0 \leq i \leq n-1} N(x_i,x_{i+1})$, en posant $x_n = x_0$.
+		\end{lem}
+
+		Puisque l'algorithme de Ford-Fulkerson est en $O(nm)$, on peut déterminer une forte arc-connectivité en $O(mn^2)$.
+
+	\subsection{Détermination de l'arête-connectivité}
+
+		\begin{note}
+		Symétrisé $G^* = (V,E^*)$ de $G = (V,E)$ : $\forall \{ u,v \} \in E$, $(u,v) \in E^*$ et $(v,u) \in E^*$.
+		Par ailleurs, on attribue à chaque arc de $G^*$ une capacité de 1.
+		\end{note}
+
+		\begin{note}
+		Soit $a$ et $b$ dans $V$, on note :
+			\begin{itemize}
+			\item $N(a,b)$ le nombre min d’arêtes à supprimer de $G$ pour qu’il n’existe plus de chaîne entre $a$ et $b$,
+			\item $N^*(a,b)$ le nombre min d’arcs à supprimer de $G^*$ pour qu’il n’existe plus de chemin de $a$ vers $b$,
+			\item $N(a,b)$ le nombre max de chaînes deux à deux arête-disjointes de $G$ entre $a$ et $b$,
+			\item $N^*(a,b)$ le nombre max de chemins deux à deux arc-disjoints de $G^*$ de $a$ vers $b$.
+			\end{itemize}
+		\end{note}
+
+		\begin{thm}
+		Si $f_{ab}$ de $a$ à $b$ est maximal dans $G^*$, alors $N(a,b) = N^*(a,b) = P(a,b) = P^*(a,b) = \val(f_{ab})$.
+		\end{thm}
+
+	\subsection{Forte connectivité et connectivité}
+
+		\begin{thm}[Menger]
+		Un graphe non orienté est $k$-connexe si et seulement si, entre deux sommets quelconques, il existe $k$ chaînes n’ayant en commun que leurs extrémités.
+		\end{thm}
+
+		\begin{thm}[Menger]
+		Un graphe orienté est $k$-fortement connexe si et seulement si, entre deux sommets quelconques, il existe $k$ chemins de l'un vers l'autre n’ayant en commun que leurs extrémités.
+		\end{thm}
+
+	\subsection{Couplage maximum}
+
+		\begin{defn}
+		\textbf{Graphe biparti} : il existe une bipartition des sommets $V = V_1 \cup V_2$ telle que $E \subset V_1 \times V_2$.
+		\textbf{Couplage} : ensemble d’arêtes non incidentes entre elles.
+		\end{defn}
+
+		Problème : étant donné un graphe $G = (V,E)$ biparti, trouver un couplage de cardinal maximal.
+
+		Modélisation : on construit un réseau à partir de $G$ en adjoignant deux sommets $s$ et $p$ et en plaçant des arcs de capacité $1$ :
+		\begin{itemize}
+			\item entre $s$ et $v$ pour tout $v \in V_1$
+			\item entre $v$ et $p$ pour tout $v \in V_2$
+			\item entre $u$ et $v$ si $(u,v) \in E$
+		\end{itemize}
+
+		\begin{pop}
+		Les flots à valeur entière sont en bijection avec les couplages de $G$.
+		\end{pop}
+
+		L'algorithme de Ford-Fulkerson permet alors de résoudre le problème d'affectation posé.
+
+
+\section{Complexité}
+
+	\begin{defn}
+	Une machine de Turing déterministe à une bande est formée de :
+	\begin{itemize}
+	\item un ruban de mémoire infini,
+	\item une tête de lecture et d'écriture qui se déplace sur le ruban,
+	\item un ensemble d'états avec une table de transition (comme une unité centrale munie d'un programme),
+	\item un état particulier qui est l'état initial,
+	\item un état final
+	\end{itemize}
+	\end{defn}
+
+	Un calcul sur une machine de Turing se fait :
+	\begin{itemize}
+	\item en inscrivant l'entrée sur le ruban,
+	\item en appliquant la table de transition,
+	\item si on arrive dans l'état final le calcul s'arrête et est accepté.
+	\end{itemize}
+
+	Modèle : $(Q,\Gamma,b,\Sigma,\delta,q_0,q_s)$ avec $Q$ l'ensemble des états, $\Gamma$ l'alphabet de travail, $b \in \Sigma$ le symbole blanc, $\Sigma \subset \Gamma$ l'alphabet d'entrée, $\delta \colon Q \times \Gamma \to Q \times \Gamma \times \{ \lar, \rar \}$, $q_0$ l'état initial et $q_s$ l'état final.
+
+	\subsection{Classe de complexité $P$}
+
+		\begin{defn}
+		Une fonction $f \colon \N \to \R$ est dite polynomiale en $g \colon \N \to \R$ si $\exists p \in \R[g], \forall n \in \N, f(n) \leq p(g(n))$.
+		\end{defn}
+
+		\begin{defn}
+		\textbf{Problème de décision} (ou problème de reconnaissance) : admet oui ou non pour réponse.
+		Il est \textbf{en temps polynomial} (ou appartient à la classe $P$) s'il existe une machine de Turing permettant de décider ce problème et qui fonctionne en un nombre d'étapes polynomial en la taille de l'instance écrite sur le ruban d'entrée.
+		\end{defn}
+
+		\begin{note}
+		$A$ est polynomialement réductible à $B$ si toute instance $a$ de $A$ peut être transformée en temps polynomial en une instance $b$ de $B$, de longueur polynomiale en la longueur de $a$, telle que $A$ est solvable sur $a$ si et seulement si $B$ est solvable sur $b$.
+		On note $A \leq_P B$.
+		\end{note}
+
+	\subsection{Classe de complexité $NP$}
+
+		\begin{defn}
+		Un problème est dans la classe $NP$ s'il est possible de vérifier une solution en temps polynomial.
+		\end{defn}
+		
+		\begin{pop}
+		Le problème du voyageur de commerce est dans la classe $NP$.
+		\end{pop}
+
+		\begin{rem}
+		$P \subset NP$ mais on ne sait pas dire si il y a égalité ou non.
+		\end{rem}
+
+		\begin{defn}
+		On dit que $A$ est $NP$-complet si $A \in NP$ et, pour tout $B \in NP$, $B \leq_P A$.
+		\end{defn}
+
+		\begin{pop}
+		Si $A$ est $NP$-complet et $C \in NP$ tel que $A \leq_P C$, alors $C$ est aussi $NP$-complet.
+		\end{pop}
+
+	\subsection{Problème de satisfiabilité}
+
+		\begin{voc}
+			\begin{itemize}
+			\item Variables booléennes : $x_1,\ldots,x_n$.
+			\item Littéraux : $\lambda_i = x_i$ ou $\lambda_i = \neg x_i$.
+			\item Clauses : $C_j = \lambda_i \vee \lambda_2 \vee \ldots \vee \lambda_k$.
+			\item Formule : $C_1 \wedge C_2 \wedge \ldots \wedge C_z$.
+			\end{itemize}
+		\end{voc}
+
+		\begin{defn}
+		Problème SAT : étant donné une formule $F$, peut-on trouver des valeurs de $x_1,\ldots,x_n$ qui rendent $F$ vraie ?
+		\end{defn}
+
+		\begin{thm}[Cook-Levin]
+		Le problème SAT est $NP$-complet.
+		\end{thm}
+
+		\begin{defn}
+		Problème 3-SAT : étant donné une formule $F$ dont les clauses sont toutes formées de 3 littéraux, peut-on satisfaire $F$ ?
+		\end{defn}
+
+		\begin{thm}
+		Le problème 3-SAT est $NP$-complet.
+		\end{thm}
+		
+		\begin{defn}
+		Si le problème de décision associé à une problème d'optimisation $O$ est $NP$-complet, alors $O$ est lui-même $NP$-difficile.
+		\end{defn}
+		
+		\vspace{3cm}
+		\begin{figure}[htp]
+		\centering
+		\includegraphics[scale=0.90]{Ada-Lovelace.png}
+		\caption{Ada Lovelace}
+		\label{}
+		\end{figure}
+
+\end{document}
