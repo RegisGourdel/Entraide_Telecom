@@ -1,0 +1,72 @@
+\setlongtables
+
+\begin{longtable}{m{1.9cm}|m{3.9cm}|m{2.9cm}|m{2.9cm}|m{2.5cm}}
+	\textbf{Module} & \textbf{Description du test} & \textbf{Entrée} & \textbf{Sortie attendue} & \textbf{Validation} \\
+	\hline
+	\endhead
+
+	\textcolor{Green}{Image} &
+		Test de fonctionnalité : extraction des paramètres en conditions normales &
+		Ensemble réduit d'images de visages &
+		Paramètres extraits &
+		Voir annexe du module \\
+	\hline
+
+	\textcolor{Green}{Image} &
+		Mesures de performance &
+		Une prise (dix images) &
+		Temps de calcul de environ 2 s &
+		Le temps est satisfaisant.
+		Dépend des performances de l'ordinateur. \\
+	\hline
+
+	\textcolor{Green}{Classification (images)} &
+		Test de fonctionnalité : cas normal avec paramètres choisis &
+		Paramètres correspondants à des visages &
+		Émotions &
+		Taux de succès de 70\% pour un test en validation croisée \\
+	\hline
+
+	\textcolor{Green}{Classification (images)} &
+		Mesure de performance sur quelques entrées &
+		Ensembles de paramètres types correspondants à des visages &
+		Temps d'exécution : 1500 ms par prise, variable en fonction des performance de l'appareil. &
+		Le temps obtenu est acceptable. \\
+	\hline
+
+	\textcolor{Green}{Classification (musiques)} &
+		Test de fonctionnalité &
+		Plusieurs musiques &
+		Émotions associées aux musiques &
+		Taux de réussite : 69\%. \\
+	\hline
+
+	\textcolor{Green}{Classification (musiques)} &
+		Mesure de performance sur quelques entrées &
+		Série de 60 musiques. &
+		Temps d'exécution : 1500 ms. &
+		Le temps est suffisant pour un usage classique, ceci n'étant réalisé que ponctuellement. \\
+	\hline
+
+	\textcolor{Green}{Image et classification} &
+		Mesure de performance : temps total de reconnaissance de l'émotion &
+		Ensembles d'images avec ou sans visage &
+		Temps d'exécution 8152 ms &
+		Temps acceptable pour cette application. \\
+	\hline
+
+	\textcolor{Green}{Audio MFCC} &
+		Test de fonctionnalité &
+		Ensemble de musiques &
+		Moyenne quadratique par rapport à des résultats théorique. &
+		Taux d'erreurs : 8\%. \\
+	\hline
+
+	\textcolor{Green}{Audio MFCC} &
+		Test de performance &
+		Ensemble de musiques &
+		Temps d'exécution 2000 ms par musique. &
+		Valeur un peu trop grande en cas de gros ajout mais passable. \\
+	\hline
+	
+\end{longtable}

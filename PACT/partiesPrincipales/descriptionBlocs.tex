@@ -1,0 +1,67 @@
+\subsection{Traitement de l’image}
+\label{dB1}
+
+	\subsubsection{Les entrées}
+	\label{dB1.1}
+
+		\begin{enumerate}[(i)]
+		\item De prime abord, lors de la configuration initiale de l’application, l’utilisateur devra prendre une (ou plusieurs) \emph{photo(s) « neutre(s) »} de son visage qui servira d’outil(s) comparatif(s) pour la reconnaissance des humeurs lors de l’utilisation courante de l’application.
+		\item Lors de cette utilisation courante, l’ordinateur prendra une vidéo du visage de l’utilisateur qui présentera une humeur particulière.
+		\end{enumerate}
+
+	\subsubsection{Caractérisation des photos du visage}
+	\label{dB1.2}
+
+		\begin{enumerate}[(i)]
+		\item Le traitement de l’image prise au cours de l’utilisation courante consiste principalement à y dégager $p$ caractéristiques renvoyant à une humeur particulière.
+		\item Pour chaque photo exploitable de la vidéo on extrait $p$ paramètres caractérisant le visage.
+		\end{enumerate}
+
+	\subsubsection{Classification automatique des images}
+	\label{dB1.3}
+
+		On classe les $n$ photos extraites de la vidéo en fonction des $p$ caractéristiques.
+
+\subsection{Traitement audio}
+\label{dB2}
+
+	\subsubsection{Les entrées}
+	\label{dB2.1}
+
+		\begin{enumerate}[(i)]
+		\item Lors de la configuration initiale l’application demandera à l’utilisateur d’attribuer à un échantillon de musiques de son répertoire l’humeur dans laquelle il aime écouter tel ou tel morceau.
+			On appellera cette opération le \emph{taggage} (ou \emph{étiquetage}) des morceaux.
+		\item L’application disposera par ailleurs de l’intégralité de son répertoire musical ainsi qu’une bibliothèque « par défaut » que les créateurs de l’application auront mis à disposition de l’utilisateur.
+		\end{enumerate}
+
+	\subsubsection{Caractérisation audio des morceaux}
+	\label{dB2.2}
+
+		Le traitement audio consiste en l’analyse des grandeurs intrinsèques sonores d’une chanson par exemple de son tempo, de sa modalité (majeure ou mineure) ou encore de son MFCC.
+		De nouveau, il s’agira d’attribuer aux $n$ morceaux les $p$ caractéristiques intrinsèques.
+
+	\subsubsection{Classification automatique}
+	\label{dB2.3}
+
+		\begin{enumerate}[(i)]
+		\item C’est ici que rentre en jeu le point (i) de la section « les entrées » du \ref{dB2.1} : l’utilisateur ayant attribué à un échantillon de chansons une humeur particulière, ces chansons sont aussi caractérisés par les coordonnées définissant l’humeur ou l’état.
+			\begin{rem}
+			L’utilisateur pourra, durant l’utilisation courante, choisir de modifier son étiquetage initial. \emph{Une fois la mise à jour lancée par l’utilisateur}, une nouvelle classification de la musique se fera automatiquement.
+			\end{rem}
+		\item On compare ensuite les grandeurs intrinsèques sonores des morceaux non taggés et de ceux qui l’ont été à la configuration initiale pour déterminer automatiquement à quelles humeurs correspondent les chansons non étiquettées.
+		\end{enumerate}
+
+		Dès lors l’intégralité du répertoire de l’utilisateur, ainsi que la bibliothèque « par défaut » est classé non seulement par les grandeurs intrinsèques sonores des chansons mais aussi par l’humeur dans laquelle l’utilisateur aime écouter tel ou tel morceau.
+
+\subsection{Intégration et comparaison des données}
+\label{dB3}
+
+	\begin{enumerate}[(i)]
+	\item Il suffit alors de comparer les données du traitement audio et du traitement image afin de proposer une liste de lecture convenant à l’humeur de l’utilisateur.
+	\item S’agissant du répertoire personnel de l’utilisateur, on compare les données fournies par le traitement audio et celles fournies par le traitement image pour construire une première liste de lecture (par souci de simplicité on l’appellera \emph{playlist1}).
+	\item S’agissant du répertoire « par défaut » il faudra en amont le comparer avec une autre donnée fournie par l’utilisateur lors de la configuration initiale : les genres musicaux qu’il apprécie.
+		Une fois cette comparaison faite, on compare ce qui reste de la liste « par défaut » avec les données fournies par le traitement image afin de proposer une deuxième liste de lecture (idem, \emph{playlist2}).
+	\end{enumerate}
+
+	On obtient donc (après apposition des deux listes de lecture) une liste de lecture finale adaptée à l’humeur de l’utilisateur.
+	Cette liste est constituée non seulement de chansons connues de l’utilisateur mais en plus de nouvelles chansons qu’il va découvrir et qui ont été choisies pour convenir à ses goûts musicaux ainsi qu’à son humeur.

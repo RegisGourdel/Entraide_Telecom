@@ -5,4 +5,75 @@ Problème : résoudre $Ax = b$ sachant $A$ inversible.
 	Par combinaisons linéaires successives entre lignes de $A$ on se ramène à $(MA)x = Mb$ où $MA$ est triangulaire supérieure.
 	On résout ensuite cette équation par une méthode de remontée.
 	
+	\begin{algorithm}[h]
+	\caption{\textcolor{RoyalBlue}{Étape d'élimination}}
+	\Entree{Matrice $A$.}
+	$A' \lar A$ \;
+	\Tq{$\dim(A') > 1$}
+	{
+		$\texttt{pivot} \lar a'_{i,1} \neq 0$ (qui existe car $A'$ est inversible) \;
+		\Si{$i \neq 1$}
+		{
+			$L_i \leftrightarrow L_1$ \;
+		}
+		\PourTous{$i > 1$ tel que $a_{i,1} \neq 0$}
+		{
+			$L_i \lar L_i - \frac{a_{i,1}}{a_{1,1}} L_1$ \;
+			\tcp{on annule tous les termes de la colonne du pivot situés sous la diagonale}
+		}
+		\tcp{notre matrice $A'$ n'a alors que des 0 sous le premier terme, qui est non nul}
+		\tcp{on met alors de côté la première ligne et la première colonne de $A'$}
+		$A' \lar (a'_{i,j})_{2 \leq i,j}$
+	}
+	On replace les lignes et colonnes supprimées au fur et à mesure pour obtenir une matrice triangulaire ($MA$).
+	\end{algorithm}
+
+	Un pivot trop petit en valeur absolue peut causer des erreurs d'arrondi du fait de la division par le pivot.
+	D'où deux stratégies :
+	\begin{itemize}
+	\item[\textbullet] pivot partiel : on prend le terme de plus grande valeur absolue de la colonne courante, sur ou en dessous de la diagonale,
+	\item[\textbullet] pivot total : on choisit le terme de plus grande valeur absolue de la matrice résiduelle, i.e. si on est à l'étape $n - k + 1$, la matrice constituée des $k$ dernières lignes et colonnes (plus couteux).
+	\end{itemize}
 	
+	La complexité est en $O \left( \frac{2n^3}{3} \right)$ sans choix du pivot.
+
+\subsection{Méthode de Gauss-Jordan (variante de la précédente)}
+
+	Dans la phase d'éliminations on élimine également les terme au-dessus de la diagonale.
+	On obtient ainsi une matrice diagonale, ce qui permet de calculer efficacement l'inverse.
+
+\subsection{Factorisation LU}
+
+	\begin{thm}
+		Soit $A = (a_{i,j}) \in \GL_n(\K)$ telle que $\forall k \in \iniff{1}{n},
+			\begin{pmatrix}
+				a_{11} & \ldots & a_{1k} \\
+				\vdots &        & \vdots \\
+				a_{k1} & \ldots & a_{kk} \end{pmatrix}
+			\in \GL_k(\K)$.
+		Alors $A$ admet une factorisation sous la forme $A = LU$ avec $L$ triangulaire inférieure et $U$ triangulaire supérieure.
+		De plus on peut choisir $\forall i \in \iniff{1}{n}, (L)_{ii} = 1$ et la décomposition est alors unique.
+	\end{thm}
+	
+	Cela signifie que, dans l'algorithme de Gauss, les pivots successifs peuvent toujours être pris sur la diagonale.
+	Si la factorisation échoue ou peut toujours permuter des lignes de $A$ pour arriver à une matrice $A'$ qui admet une factorisation LU.
+	
+	Cette factorisation est utile lorsque plusieurs systèmes linéaires sont à résoudre : on résout un système sur $L$ puis un système sur $U$.
+
+\subsection{Méthode de Cholesky (matrices symétriques définies positives)}
+
+	\begin{thm}
+		Soit $A \in \Sym^{++}_n(\K)$.
+		Il existe une matrice triangulaire $B$ vérifiant $A = B \transp{B}$.
+		De plus on peut imposer que tous les éléments diagonaux de $B$ soient tous strictement positifs et la factorisation $A = B \transp{B}$ est alors unique.
+	\end{thm}
+	
+	En pratique, on calcule $B$ colonne par colonne à partir de $\forall 1 \leq i \leq j \leq n, a_{ij} = \sum_{k = 1}^i b_{ik} b_{jk} = a_{ji}$.
+	
+	\begin{rem}
+		Le déterminant de la matrice peut alors se calculer facilement : $\det(A) = (b_{11} b_{22} \cdots b_{nn})^2$.
+	\end{rem}
+	
+	Un système $Ax = b$ devient alors $B \transp{B} x = b$.
+	Pour résoudre le système on résout $By = b$ puis $\transp{B}x = y$.
+	La complexité de la factorisation suivie de la résolution est en $O \left( \frac{n^3}{3} \right)$.
