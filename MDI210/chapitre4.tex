@@ -17,3 +17,37 @@
 \end{pop}
 
 Ce lien prouve, par le théorème d'Abel, que la recherche des valeurs propres d'une matrice ne peut se faire en un nombre fini d'opérations au-delà de la dimension 5.
+
+\paragraph{Méthode de Jacobi}
+Soit $A \in \Sym^+_n(\R)$ non diagonale.
+On dispose de $p$ et $q$, $p < q$ tels que $a_{pq} \neq 0$.
+On définit la matrice suivante :
+$$\Omega = I_n + \sin(\theta) \cdot (E_{pq} - E_{qp}) + (1 - \cos(\theta)) \cdot (E_{pp} + E_{qq})\ .$$
+C'est la matrice de rotation d'angle $-\theta$ dans le plan défini par les $p$\up{e} et $q$\up{e} vecteurs de la base (donc orthogonale).
+On pose $B = \transp{\Omega} A \Omega \in \Sym_n(\R)$, $c = \cos(\theta)$, $s = \sin(\theta)$ et $t = \tan(\theta)$.
+On a alors
+$\left\{ \begin{array}{ll}
+	b_{ij} = b_{ji} = a_{ij} & \text{si } i \not\in \{ p, q \} \text{ et } j \notin \{ p, q \} \\
+	b_{pi} = b_{ip} = c \cdot a_{pi} - s \cdot a_{qi} & \text{si } i \not\in \{ p, q \} \\
+	b_{qi} = b_{iq} = s \cdot a_{pi} + c \cdot a_{qi} \\
+	b_{pp} = a_{pp} - t \cdot  a_{pq} \\
+	b_{qq} = a_{qq} + t \cdot a_{pq}
+\right.$.
+
+\begin{thm}
+	Soit $A \in \Sym^+_n(\R)$ et $B$ la matrice obtenue par la construction précédente.
+	On a alors les relations
+	$$\sum_{i = 1}^n \sum_{j = 1}^n a_{ij}^2 = \sum_{i = 1}^n \sum_{j = 1}^n b_{ij}^2
+	\qquad \sum_{i = 1}^n a_{ii}^2 + 2a_{pq}^2 = \sum_{i = 1}^n b_{ii}^2$$
+	(le poids de la matrice se déporte sur la diagonale).
+\end{thm}
+
+\begin{thm}
+	La suite des matrices obtenues par la méthode de Jacobi est convergente et converge vers une matrice diagonale contenant les valeurs propres de $A$.
+\end{thm}
+
+Pour accélerer la convergence il vaut mieux prendre $\abs{a_{pq}}$ maximum.
+
+\begin{thm}
+	Si toutes les valeurs propres de $A$ sont distinctes, alors la suite des produits des matrices $\Omega$ converge vers une matrice orthogonale dont les vecteurs colonnes constituent unn ensemble orthnormal de vecteurs propres de $A$.
+\end{thm}
