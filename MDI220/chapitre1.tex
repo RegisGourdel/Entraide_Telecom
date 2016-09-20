@@ -1,25 +1,24 @@
 On note $\Omega$ l'univers et $\mathcal{F}$ la tribu des événements.
-
 On considère une variable aléatoire $X$, appelée observation, définie sur $(\Omega, \mathcal{F})$ et à valeur dans l'espace des observations $(\mathcal{X}, \mathcal{B}(\mathcal{X}))$, ou $\mathcal{B}(\mathcal{X})$ est une tribu composée de parties de $\mathcal{X}$.
 
 \begin{defn}
-	Modèle statistique : famille de probabilités $\mathcal{P}$ sur $\mathcal{B}(\mathcal{X})$.
-	Si $\Theta$ est un ensemble quelconque tel que $\mathcal{P} = \{ P_\theta, \theta \in \Theta \}$ alors $\Theta$ est appelé espace des paramètres du modèle.
+	\textbf{Modèle statistique} : famille de probabilités $\mathcal{P}$ sur $\mathcal{B}(\mathcal{X})$.
+	Si $\Theta$ est un ensemble quelconque tel que $\mathcal{P} = \{ P_\theta, \theta \in \Theta \}$ alors $\Theta$ est appelé \textbf{espace des paramètres} du modèle.
 \end{defn}
 
 \begin{rem}
 	L'existence d'une paramétrisation est toujours acquise, quitte à prendre $\Theta = \mathcal{P}$.
 \end{rem}
 
-Si $\Theta$ peut être choisi comme sous-ensemble d'un espace euclidien, le modèle est dit paramétrique.
-Si $\Theta \subset \Theta_1 \times \Theta_2$ où $\Theta_1$ est inclus dans un espace euclidien, le modèle est dit semi-paramétrique.
+Si $\Theta$ peut être choisi comme sous-ensemble d'un espace euclidien, le modèle est dit \textbf{paramétrique}.
+Si $\Theta \subset \Theta_1 \times \Theta_2$ où $\Theta_1$ est inclus dans un espace euclidien, le modèle est dit \textbf{semi-paramétrique}.
 
 \begin{defn}
-	Une statistique est une variable aléatoire s'écrivant commme une fonction mesurable des observations, de type $\varphi(X)$ où $\varphi \colon (\mathcal{X}, \mathcal{B}(\mathcal{X})) \to (\R^d, \mathcal{B}(\R^d))$ est mesurable.
+	Une \textbf{statistique} est une variable aléatoire s'écrivant commme une fonction mesurable des observations, de type $\varphi(X)$ où $\varphi \colon (\mathcal{X}, \mathcal{B}(\mathcal{X})) \to (\R^d, \mathcal{B}(\R^d))$ est mesurable.
 \end{defn}
 
 \begin{defn}[Identifiabilité]
-	Un modèle statistique $\mathcal{P}$ décrit par un paramètre $\theta \in \Theta$ est dit identifiable si $\theta \mapsto P_\theta$ est injective.
+	Un modèle statistique $\mathcal{P}$ décrit par un paramètre $\theta \in \Theta$ est dit \textbf{identifiable} si $\theta \mapsto P_\theta$ est injective.
 	Plus généralement, une fonction $g$ de $\theta$ est dite identifiable si $\left( P_{\theta_1} = P_{\theta_2} \right) \implies \left( g(\theta_1) = g(\theta_2) \right)$.
 \end{defn}
 
@@ -28,5 +27,5 @@ Si $\Theta \subset \Theta_1 \times \Theta_2$ où $\Theta_1$ est inclus dans un e
 \end{rem}
 
 \begin{defn}
-	Un modèle statistique est dit dominé s'il existe une mesure positive $\mu$ sur $\mathcal{B}(\mathcal{X})$ telle que pour tout $\theta \in \Theta$, $P_\theta \in \mathcal{P}$ admette une densité de probabilité $p_\theta$ par rapport à $\mu$.
+	Un modèle statistique est dit \textbf{dominé} s'il existe une mesure positive $\mu$ sur $\mathcal{B}(\mathcal{X})$ telle que pour tout $\theta \in \Theta$, $P_\theta \in \mathcal{P}$ admette une densité de probabilité $p_\theta$ par rapport à $\mu$.
 \end{defn}

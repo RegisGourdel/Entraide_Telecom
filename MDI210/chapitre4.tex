@@ -25,13 +25,13 @@ On définit la matrice suivante :
 $$\Omega = I_n + \sin(\theta) \cdot (E_{pq} - E_{qp}) + (1 - \cos(\theta)) \cdot (E_{pp} + E_{qq})\ .$$
 C'est la matrice de rotation d'angle $-\theta$ dans le plan défini par les $p$\up{e} et $q$\up{e} vecteurs de la base (donc orthogonale).
 On pose $B = \transp{\Omega} A \Omega \in \Sym_n(\R)$, $c = \cos(\theta)$, $s = \sin(\theta)$ et $t = \tan(\theta)$.
-On a alors
+On a alors\\
 $\left\{ \begin{array}{ll}
 	b_{ij} = b_{ji} = a_{ij} & \text{si } i \not\in \{ p, q \} \text{ et } j \notin \{ p, q \} \\
 	b_{pi} = b_{ip} = c \cdot a_{pi} - s \cdot a_{qi} & \text{si } i \not\in \{ p, q \} \\
-	b_{qi} = b_{iq} = s \cdot a_{pi} + c \cdot a_{qi} \\
+	b_{qi} = b_{iq} = s \cdot a_{pi} + c \cdot a_{qi} & \text{si } i \not\in \{ p, q \} \\
 	b_{pp} = a_{pp} - t \cdot  a_{pq} \\
-	b_{qq} = a_{qq} + t \cdot a_{pq}
+	b_{qq} = a_{qq} + t \cdot a_{pq} \end{array}
 \right.$.
 
 \begin{thm}

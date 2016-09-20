@@ -31,8 +31,8 @@ Problème : résoudre $Ax = b$ sachant $A$ inversible.
 	Un pivot trop petit en valeur absolue peut causer des erreurs d'arrondi du fait de la division par le pivot.
 	D'où deux stratégies :
 	\begin{itemize}
-	\item[\textbullet] pivot partiel : on prend le terme de plus grande valeur absolue de la colonne courante, sur ou en dessous de la diagonale,
-	\item[\textbullet] pivot total : on choisit le terme de plus grande valeur absolue de la matrice résiduelle, i.e. si on est à l'étape $n - k + 1$, la matrice constituée des $k$ dernières lignes et colonnes (plus couteux).
+	\item[\textbullet] \textit{pivot partiel} : on prend le terme de plus grande valeur absolue de la colonne courante, sur ou en dessous de la diagonale,
+	\item[\textbullet] \textit{pivot total} : on choisit le terme de plus grande valeur absolue de la matrice résiduelle, i.e. si on est à l'étape $n - k + 1$, la matrice constituée des $k$ dernières lignes et colonnes (plus couteux).
 	\end{itemize}
 	
 	La complexité est en $O \left( \frac{2n^3}{3} \right)$ sans choix du pivot.
