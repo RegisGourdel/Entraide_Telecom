@@ -1,0 +1,34 @@
+\begin{defn}
+	Let $\mathcal{H}$ be a complex linear space.
+	An \textbf{inner-product} on $\mathcal{H}$ is a function $\scal{\cdot}{\cdot} \colon \mathcal{H} \times \mathcal{H} \to \C$ which satisfies the following properties :
+	\begin{enumerate}[(i)]
+		\item $\forall (x,y) \in \mathcal{H} \times \mathcal{H}, \scal{x}{y} = \overline{\scal{y}{x}}$,
+		\item $\forall x, y, z \in \mathcal{H} \forall (\alpha,\beta) \in \C \times \C, \scal{\alpha x + \beta y}{z} = \alpha \scal{x}{z} + \beta \scal{y}{z}$,
+		\item $\forall x \in \mathcal{H}, \left( \scal{x}{x} = 0 \right) \iff \left( x = 0 \right)$
+	\end{enumerate}
+	Then $\norme{\cdot} \colon x \mapsto \sqrt{\scal{x}{x}} \geq 0$ defines a norm on $\mathcal{H}$.
+	Both are continuous.
+\end{defn}
+
+\begin{thm}
+	For all $x, y \in \mathcal{H}$, we have :
+	\begin{enumerate}[a)]
+		\item Cauchy-Schwarz inequality : $\abs{\scal{x}{y}} \leq \norme{x} \cdot \norme{y}$,
+		\item triangular inequality : $\abs{\norme{x} - \norme{y}} \leq \norme{x - y} \leq \norme{x} + \norme{y}$,
+		\item Parallelogram inequality : $\norme{x + y}^2 + \norme{x - y}^2 = 2 \norme{x}^2 + 2 \norme{y}^2$.
+	\end{enumerate}
+\end{thm}
+
+\begin{defn}
+	An inner-product space $\mathcal{H}$ is called an Hilbert space if it is complete.
+\end{defn}
+
+\begin{pop}
+	For all measured space $(\Omega, \mathcal{F}, \mu)$, the space $L^2(\Omega, \mathcal{F}, \mu)$ endowed with $\scal{f}{g} = \int f \bar{g} \diff \mu$ is a Hilbert space.
+\end{pop}
+
+\begin{defn}
+	Two vectors $x,y \in \mathcal{H}$ are orthogonal if $\scal{x}{y} = 0$ which we denoted by $x \perp y$.
+\end{defn}
+
+[...]
