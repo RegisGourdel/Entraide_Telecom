@@ -1,3 +1,63 @@
 \begin{defn}
-	Source d'information : v.a. $X \in \mathcal{X}, \abs{\mathcal{X}} < \infty$ telle que $X \sim P$ avec probabilités $p_1, p_2, \ldots, p_{\abs{\mathcal{X}}}$, $p_i = P(X = i)$.
+	\textbf{Source} d'information : v.a. $X \in \mathcal{X}, \abs{\mathcal{X}} < \infty$ telle que $X \sim P$ avec probabilités $\forall i \in \iniff{1}{\abs{\mathcal{X}}}, p_i = P(X = i)$.
 \end{defn}
+
+\begin{defn}
+	\textbf{Code} pour une source $X$ : $\mathcal{C} \colon \mathcal{X} \to \{ 0,1 \}^*$.
+\end{defn}
+
+\begin{defn}
+	\textbf{Longueur moyenne} d'un code $\mathcal{C}$ : $\mathcal{L}(\mathcal{C}) = \sum_i p_i l_i$ avec $l_i$ la longueur du i\up{e} mot codé.
+\end{defn}
+
+\begin{defn}
+	Un code est \textbf{non singulier} si $\forall x_i \neq x_j, \mathcal{C}(x_i) \neq \mathcal{C}(x_j)$.
+\end{defn}
+
+\begin{defn}
+	L'extension d'un code $\mathcal{C}$ est $\forall n, \forall x_1,, \ldots, x_n, \mathcal{C}(x_1, \ldots, x_n) \triangleq \mathcal{C}(x_1) * \mathcal{C}(x_2) \cdots * \mathcal{C}(x_n)$.
+\end{defn}
+
+\begin{defn}
+	Un code est \textbf{à décodage unique} si son extension est non singulière.
+\end{defn}
+
+\begin{defn}
+	Un code est dit \textbf{instantané} si aucun mot code n'est le préfixe d'un autre.
+	On dit alors qu'il s'auto-ponctue car on peut décoder en temps réel, symbole par symbole.
+\end{defn}
+
+\begin{thm}[\textbf{Inégalité de Kraft}]
+	Soit $\mathcal{C}$ un code instantané avec longueurs $(l_i)$.
+	Alors $\sum_i l_i \leq 1$.
+	Inversement, soit $(l_i)$ une famille de longueurs.
+	Si elle satisfait l'inégalité de Kraft alors il existe un code à décodage unique avec ces longueurs.
+\end{thm}
+
+\begin{thm}[de \textbf{McMillan}]
+	Le théorème précédent reste valable si l'on remplace décodage instantané par décodage unique.
+\end{thm}
+
+\begin{cor}
+	$\min_{\mathcal{C} \text{ à décodage unique}} \mathcal{L}(\mathcal{C}) = \min_{\mathcal{C} \text{ à décodage instantané}} \mathcal{L}(\mathcal{C})$.
+\end{cor}
+
+\begin{thm}[\textbf{Borne entropique}]
+	Pour tout $\mathcal{C}$ à décodage unique, $\mathcal{L}(\mathcal{C}) \geq H(X)$, où $H(X) = - \sum_i pi \log_2(p_i)$ est l'entropie de la source, avec égalité si et seulement si $\forall i, p_i = 2^{-l_i}$.
+\end{thm}
+
+\begin{thm}[\textbf{Inégalité de Jensen}]
+	Si $f$ est convexe, alors $\esp(f(X)) \geq f(\esp(X))$.
+	Si la convexité est stricte alors $\left( \esp(f(X)) \geq f(\esp(X)) \right) \iff \left( f \text{ est constante}\right)$.
+\end{thm}
+
+\begin{defn}
+	La \textbf{divergence de Kullback-Leibler}, ou entropie relative, de deux probabilités $P$ et $Q$ est définie par $D_{KL}(P \| Q) = \sum_i p_i \log \left( \frac{p_i}{q_i} \right)$.
+\end{defn}
+
+C'est une mesure de dissimilarité entre les deux distributions de probabilités.
+
+\begin{cor}
+	On a $D_{KL}(P \| Q) \geq 0$ avec égalité si et seulement si $\forall i, p_i = q_i$.
+\end{cor}
+
