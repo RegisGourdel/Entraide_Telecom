@@ -29,6 +29,25 @@
 
 \begin{defn}
 	Two vectors $x,y \in \mathcal{H}$ are orthogonal if $\scal{x}{y} = 0$ which we denoted by $x \perp y$.
+	If $\mathcal{S}$ is a subspace of $\mathcal{H}$, we write $x \perp \mathcal{S}$ if $\forall s \in \mathcal{S}, x \perp s$.
+	Also we write $\mathcal{S} \perp \mathcal{T}$ if all vectors in $\mathcal{S}$ are orthogonal to $\mathcal{T}$.
 \end{defn}
 
-[...]
+\begin{note}
+	If $\mathcal{H} = \mathcal{A} + \mathcal{B}$ and $\mathcal{A} \perp \mathcal{B}$ we will denote $\mathcal{H} = \mathcal{A} \overset{\perp}{\oplus} \mathcal{B}$.
+\end{note}
+
+\begin{defn}
+	Let $\mathcal{E}$ be a subset of an Hilbert space $\mathcal{H}$.
+	The orthogonal set of $\mathcal{E}$ is defined as $\mathcal{E} = \{ x \in \mathcal{H} \mid \forall y \in \mathcal{E}, \scal{x}{y} = 0 \}$.
+\end{defn}
+
+\begin{thm}
+	If $\mathcal{E}$ is a subset of an Hilbert space $\mathcal{H}$, then $\mathcal{E}^{\perp}$ is closed.
+\end{thm}
+
+\begin{defn}
+	Let $E$ be a subset of $\mathcal{H}$.
+	It is an orthogonal set if for all $(x,y) \in E \times E, x \neq y, x \perp y$.
+	If moreover $\forall x \in E, \norme{x} = 1$, we say that $E$ is orthonormal.
+\end{defn}
