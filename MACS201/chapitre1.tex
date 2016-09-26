@@ -96,3 +96,25 @@
 \begin{thm}
 	A Hilbert space $\mathcal{H}$ if separable (i.e. contains a countable dense subset) if and only if it admits a Hilbert basis.
 \end{thm}
+
+\subsection{Fourier series}
+
+	Let $\psi_n \colon x \mapsto \frac{1}{\sqrt{2\pi}} e^{inx}, n \in \Z$.
+	Let $L^1(\T)$ denote the set of $2\pi$-periodic locally integrable functions.
+	For $f \in L^1(\T)$, set $\forall n \in \N, f_n = \sum_{k = -n}^n \left( \int_\T f \bar\phi_k \right) \phi_k$.
+
+	\begin{thm}
+		Suppose that $f$ is a continuous $2\pi$-periodic function.
+		Then the Cesaro sequence $\frac{1}{n} \sum_{k = 0}^{n - 1} f_k$ converges uniformly to $f$.
+	\end{thm}
+
+	\begin{cor}
+		Let $\mu$ be a finite measure on the Borel sets of $\T = \R / (2\pi\Z)$.
+		The sequence $(\phi_n)_{n \in \Z}$ is dense in the Hilbert space $L^2(\T, \mathcal{B}(\T), \mu)$.
+	\end{cor}
+
+	\begin{cor}
+		The sequence $(\phi_n)_{n \in \Z}$ is a Hilbert basis in $L^2(\T)$.
+		In particular, $\forall f \in L^2(\T), f = \sum_{k = -\infty}^\infty \alpha_k \phi_k$ with $\alpha_k = \frac{1}{\sqrt{2\pi}} \int_\T f(x) e^{-ikx} \diff x$ when the infinite sum converges in $L^2(\T)$.
+		The Parseval identity then reads $\int_\T \abs{f(x)}^2 \diff x = \sum_{k = -\infty}^\infty \abs{\alpha_k}^2$.
+	\end{cor}
