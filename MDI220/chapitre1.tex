@@ -29,3 +29,11 @@ Si $\Theta \subset \Theta_1 \times \Theta_2$ où $\Theta_1$ est inclus dans un e
 \begin{defn}
 	Un modèle statistique est dit \textbf{dominé} s'il existe une mesure positive $\mu$ sur $\mathcal{B}(\mathcal{X})$ telle que pour tout $\theta \in \Theta$, $P_\theta \in \mathcal{P}$ admette une densité de probabilité $p_\theta$ par rapport à $\mu$.
 \end{defn}
+
+\begin{rem}
+	Tout modèle défini sur un espace fini ou dénombrable $(\mathcal{X}, \mathcal{P}(\mathcal{X}))$ est dominé par la mesure de comptage sur $\mathcal{X}$, $\mu = \sum_{x \in \mathcal{X}} \delta_x$.
+\end{rem}
+
+\begin{defn}
+	L'application $\theta \to p(x ; \theta)$ s'appelle la fonction de \textbf{vraisemblance} de l'observation $x$ (avec $p(\cdot; \theta)$, ou $p_\theta(\cdot)$ la densité de la loi $P_\theta$ par rapport à une mesure dominante de référence $\mu$).
+\end{defn}
