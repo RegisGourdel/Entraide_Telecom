@@ -118,3 +118,16 @@
 		In particular, $\forall f \in L^2(\T), f = \sum_{k = -\infty}^\infty \alpha_k \phi_k$ with $\alpha_k = \frac{1}{\sqrt{2\pi}} \int_\T f(x) e^{-ikx} \diff x$ when the infinite sum converges in $L^2(\T)$.
 		The Parseval identity then reads $\int_\T \abs{f(x)}^2 \diff x = \sum_{k = -\infty}^\infty \abs{\alpha_k}^2$.
 	\end{cor}
+	
+\subsection{Projection and orthogonality principle}
+	
+	\begin{thm}[Projection theorem]
+		Let $\mathcal{E}$ be a closed convex subset of a Hilbert space $\mathcal{H}$ and $x \in \mathcal{H}$.
+		Then the following holds:
+		\begin{enumerate}[(i)]
+			\item There exists a unique vector $\proj(x \mid \mathcal{E}) \in \mathcal{E}$ such that $\norm{x - \proj(x \mid \mathcal{E})} = \inf_{w \in \mathcal{E}} \norm{x - w}$.
+			\item If moreover $\mathcal{E}$ is a linear subspace, $\proj(x \mid \mathcal{E})$ is the unique $\hat{x} \in \mathcal{E}$ such that $x - \hat{x} \in \mathcal{E}^\perp$. It is called the orthogonal projection of $x$ onto $\mathcal{E}$.
+		\end{enumerate}
+	\end{thm}
+		
+		
