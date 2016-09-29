@@ -99,6 +99,7 @@
 \newcommand{\compl}[1]{{#1}^{\mathcal{C}}} % symbole du complémentaire en exposant
 \newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}} % symbole d'indépendance en probas
 \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern3mu{#1#2}}}
+\newcommand\rel{\mathcal{R}} % Pour les relations binaires
 \newcommand\rar{\rightarrow}
 \newcommand\lar{\leftarrow}
 
@@ -112,8 +113,6 @@
 
 %
 % Intervalles
-%
-% Premières définitions d'intervalles, taille non ajustable
 \newcommand{\intervalle}[4]{\mathopen{#1}#2\mathclose{}\mathpunct{};#3\mathclose{#4}}
 \newcommand{\inff}[2]{\intervalle{[}{#1}{#2}{]}}
 \newcommand{\inof}[2]{\intervalle{]}{#1}{#2}{]}}
