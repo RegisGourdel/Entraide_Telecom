@@ -1,5 +1,8 @@
+Soit $X$ une variable aléatoire discrète d'alphabet $\mathcal{X}$ et de fonction de probabilité $p$ telle que $\forall x \in \mathcal{X}, p(x) = \proba(X = x)$.
+On note $p(x)$ plutôt que $p_X(x)$ par commodité, mais par $p(x)$ et $p(y)$ on fait référence à deux fonctions de probabilité distinctes.
+
 \begin{defn}
-	\textbf{Source} d'information : v.a. $X \in \mathcal{X}, \abs{\mathcal{X}} < \infty$ telle que $X \sim P$ avec probabilités $\forall i \in \iniff{1}{\abs{\mathcal{X}}}, p_i = P(X = i)$.
+	$X$ est une \textbf{source d'information} si $\abs{\mathcal{X}} < \infty$ et on note $\forall i \in \iniff{1}{\abs{\mathcal{X}}}, p_i = p(x_i) = \proba(X = x_i)$.
 \end{defn}
 
 \begin{defn}
@@ -43,7 +46,7 @@
 \end{cor}
 
 \begin{thm}[\textbf{Borne entropique}]
-	Pour tout $\mathcal{C}$ à décodage unique, $\mathcal{L}(\mathcal{C}) \geq H(X)$, où $H(X) = - \sum_i pi \log_2(p_i)$ est l'entropie de la source, avec égalité si et seulement si $\forall i, p_i = 2^{-l_i}$.
+	Pour tout $\mathcal{C}$ à décodage unique, $\mathcal{L}(\mathcal{C}) \geq H(X)$, où $H(X) = - \sum_i p_i \log_2(p_i)$ est l'entropie de la source, avec égalité si et seulement si $\forall i, p_i = 2^{-l_i}$.
 \end{thm}
 
 \begin{thm}[\textbf{Inégalité de Jensen}]
@@ -61,3 +64,20 @@ C'est une mesure de dissimilarité entre les deux distributions de probabilités
 	On a $D_{KL}(P \| Q) \geq 0$ avec égalité si et seulement si $\forall i, p_i = q_i$.
 \end{cor}
 
+\subsection{Code de Shannon}
+
+	On construit un code de Shannon en définissant les longueurs selon $l_i = \left\lceil \log \left( \frac{1}{p} \right) \right\rceil$, qui satisfait l'inégalité de Kraft et peut donc être utilisé pour produire un code instantané.
+	
+	\begin{pop}
+		Soit $\mathcal{C}$ un code de Shannon pour $X$. Alors $H(x) \leq \mathcal{L}(\mathcal{C}) \leq  H(X) + 1$.
+	\end{pop}
+
+\subsection{Codage de Huffman}
+
+	Pour construire un codage de Huffman on ordonne l'ensemble des $p_i$, puis l'on construit itérativement de nouveaux ensembles de probabilités en sommant à chaque étape les deux plus faibles.
+	On repart ensuite à l'inverse : à partir de la dernière probabilité, égale à $1$, on va re-diviser les probabilités de sorte à construire un arbre dont les feuilles correspondront aux $p_i$.
+	La profondeur de chaque feuille $i$ s'identifie alors à $l_i$.
+
+	\begin{thm}
+		Un code de Huffman minimise $\mathcal{L}(\mathcal{C})$.
+	\end{thm}

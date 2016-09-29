@@ -1,0 +1,26 @@
+On remarque que $\mathcal{L}(\mathcal{C})$ s'identifie au nombre moyen de questions à poser pour identifier une valeur $X \in \mathcal{X}$.
+
+\begin{defn}
+	[...]
+\end{defn}
+
+\begin{thm}
+	On a $0 \leq H(X) \leq \log( \abs{\mathcal{X}} )$.
+\end{thm}
+
+\begin{defn}
+	Soit $(X,Y) \sim p(x,y}$.
+	On a $H(X,Y) = - \sum_{x,y} p(x,y) \log(p(x,y)) = - \esp_{p(x,y)} \left( \log (p(X,Y)) \right)$.
+	Et pour des v.a. $X_1, \ldots, X_n$ il vient $H(X_1,\ldots,X_n) = - \esp_{p(x_1,\ldots,x_n)} \left( \log( p(X_1,\ldots,X_n)}) \right)$.
+\end{defn}
+
+\begin{defn}[Entropie conditionnelle]
+	$H(Y \mid X)
+		= \sum_x p(x) H(Y \mid X = x)
+		= - \sum_{x,y} p(x,y) \log(p(y \mid x))
+		= - \esp [ \log(p(Y \mid X)) ]$
+\end{defn}
+
+\begin{thm}[\emph{Chain rule}]
+	$H(X_1,\ldots,X_n) = \sum_{i = 1}^n H(X_i \mid X^{i - 1})$ où $X^i \triangleq X_1,\ldots,X_i$.
+\end{thm}
