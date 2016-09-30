@@ -9,9 +9,9 @@ On remarque que $\mathcal{L}(\mathcal{C})$ s'identifie au nombre moyen de questi
 \end{thm}
 
 \begin{defn}
-	Soit $(X,Y) \sim p(x,y}$.
+	Soit $(X,Y) \sim p(x,y)$.
 	On a $H(X,Y) = - \sum_{x,y} p(x,y) \log(p(x,y)) = - \esp_{p(x,y)} \left( \log (p(X,Y)) \right)$.
-	Et pour des v.a. $X_1, \ldots, X_n$ il vient $H(X_1,\ldots,X_n) = - \esp_{p(x_1,\ldots,x_n)} \left( \log( p(X_1,\ldots,X_n)}) \right)$.
+	Et pour des v.a. $X_1, \ldots, X_n$ il vient $H(X_1,\ldots,X_n) = - \esp_{p(x_1,\ldots,x_n)} \left( \log( p(X_1,\ldots,X_n)) \right)$.
 \end{defn}
 
 \begin{defn}[Entropie conditionnelle]
@@ -24,3 +24,27 @@ On remarque que $\mathcal{L}(\mathcal{C})$ s'identifie au nombre moyen de questi
 \begin{thm}[\emph{Chain rule}]
 	$H(X_1,\ldots,X_n) = \sum_{i = 1}^n H(X_i \mid X^{i - 1})$ où $X^i \triangleq X_1,\ldots,X_i$.
 \end{thm}
+
+\begin{pop}
+	L'information mutuelle $I(X;Y) = \sum_{x,y} p(x,y) \log \left( \frac{p(x,y)}{p(x)p(y)} \right)$ vérifie
+	\begin{itemize}
+		\item[\textbullet] $I(X;Y) = H(X) + H(Y) - H(X,Y)$
+		\item[\textbullet] $I(X;Y) = H(X) - H(X \mid Y) = H(Y) - H(Y \mid X) = I(Y;X)$
+		\item[\textbullet] $I(X;X) = H(X)$
+		\item[\textbullet] $I(X;Y) = D_{KL}( p_{X,Y} \| p_X \cdot p_Y )$
+		\item[\textbullet] $I(X;Y) = 0 \iff X \indep Y$
+		\item[\textbullet] $H(Y \mid X) \leq H(Y)$
+		\item[\textbullet] $H(X^n) \leq \sum_{i = 1}^n H(X_i)$
+		\item[\textbullet] $H(X)$ est concave en $p_X$
+		\item[\textbullet] $H(f(X)) \leq H(x)$ pour toute fonction $f$ déterministe.
+	\end{itemize}
+\end{pop}
+
+\begin{defn}
+	On définit $H(X ; Y \mid Z) = \sum_{x,y,z} p(x,y,z) \log \left( \frac{p(x,y \mid z)}{p(x \mid z) p(y \mid z)} \right) = H(X \mid Z) - H(X \mid Y, Z)$.
+\end{defn}
+
+\begin{thm}
+	$I(X_1,\ldots,X_n ; Y) = \sum_{i = 1}^n I(X_i ; Y \mid X^{i - 1})$.
+\end{thm}
+
