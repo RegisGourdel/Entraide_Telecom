@@ -1,0 +1,45 @@
+\subsection{Statistical modeling}
+
+	\begin{defn}
+		Let $(\Omega,\mathcal{F})$ be a measurable space and $\mathcal{P}$ a collection of probabilities on this space.
+		Let $X$ be a measurable function from $(\Omega,\mathcal{F})$ to the observation space $(\mathsf{X},\mathcal{X})$.
+		We say that $\mathcal{P}$ is a \textbf{statistical model} for the observation variable $X$ and denote $\mathcal{P}^X = \left( P^X \right)_{P \in \mathcal{P}}$ the corresponding collection of probability distributions.
+	\end{defn}
+
+	It is usual in statistics to consider $\Omega = \mathsf{X}$, $\mathcal{F} = \mathcal{X}$ and $X(\omega) = \omega$, in which case $\forall P \in \mathcal{P}, P = P^X$.
+
+	\begin{defn}
+		Let $\nu \in \mes_+(\mathsf{X},\mathcal{X})$ and $\mathcal{P}$ be a statistical model for $X$.
+		We say that $\mathcal{P}$ is a $\nu$-dominated model for $X$, or that $\mathcal{P}^X$ is $\nu$-dominated, if $\forall P \in \mathcal{P}, P^X \ll \nu$.
+	\end{defn}
+
+	\begin{lem}
+		Let $\nu \in \mes_+(\mathsf{X},\mathcal{X})$.
+		Consider a $\nu$-dominated model $\mathcal{P}$ for the variable $X$.
+		Then there exists a countable collection $(P_n)_{n \geq 1}$ in $\mathcal{P}$ such that $\mathcal{P}^X$ is also dominated by $\mu = \sum_{n \geq 1} 2^{-n} P_n^X$.
+	\end{lem}
+
+	\begin{defn}
+		Let $\mathcal{P}$ be a statistical model for the observation variable $X$.
+		We say that $\mathcal{P}$ is a \textbf{parametric model} for $X$ if there exists a finite dimensional set $\Theta$ such that $\mathcal{P} = (P_\theta)_{\theta \in \Theta}$.
+	\end{defn}
+	
+	\begin{defn}
+		Let $\mathcal{P}$ be a statistical model for $X$.
+		Any finite dimensional quantity $t(P^X)$ only depending on $P^X$ as $P \in \mathcal{P}$ is called an \textbf{identifiablee parameter}.
+	\end{defn}
+	
+	\begin{defn}
+		Let $\mathcal{P}$ be a statistical model for $X$.
+		A \textbf{statistic} in this context is any random variable $T$ valued in $\left(\R^d, \mathcal{B}\left( \R^d \right)\right)$ with $d \geq 1$, defined by $T = g(X)$ where $g$ is a Borel function not depending on $P \in \mathcal{P}$.
+	\end{defn}
+	
+	If a statistic is used as a guess for a parameter $t(P) \in \R^d$, it is called an \textbf{estimator} of $t(P)$.
+	In this case, the \textbf{bias} of $T$ for estimating $t(P)$ is defined as $\Bias(T,P) = \int T \diff P - t(P)$ whenever $\int \abs{T} \diff P < \infty$.
+	We say that $T$ is an \emph{unbiased} estimator of $t(P)$ if $\forall P \in \mathcal{P}, \int T \diff P = t(P)$.
+	The \textbf{quadratic risk} or mean squared error (in the case $d = 1$) is defined by $\MSE(T,P) = \int (T - t(P))^2 \diff P = \Var(T) + \Bias(T,P)^2$.
+	
+	\begin{defn}
+		Let $T$ be a statistic valued in $(\R^d, \mathcal{\R^D})$ with $d \geq 1$.
+		We say that $T$ is a \textbf{sufficient statitstic} for the model $\mathcal{P}$ if, for all $P \in \mathcal{P}$, the conditional distribution of $X$ given $T$ does not depend on $P$, that is, there exists a probability kernel $Q \subset \R^d \times \mathcal{X}$ such that, for all $P \in \mathcal{P}$, $Q$ is a regular version of $P^{X \mid T}$.
+	\end{defn}
