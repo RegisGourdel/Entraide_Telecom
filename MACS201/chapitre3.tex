@@ -23,23 +23,36 @@
 		Let $\mathcal{P}$ be a statistical model for the observation variable $X$.
 		We say that $\mathcal{P}$ is a \textbf{parametric model} for $X$ if there exists a finite dimensional set $\Theta$ such that $\mathcal{P} = (P_\theta)_{\theta \in \Theta}$.
 	\end{defn}
-	
+
 	\begin{defn}
 		Let $\mathcal{P}$ be a statistical model for $X$.
 		Any finite dimensional quantity $t(P^X)$ only depending on $P^X$ as $P \in \mathcal{P}$ is called an \textbf{identifiablee parameter}.
 	\end{defn}
-	
+
 	\begin{defn}
 		Let $\mathcal{P}$ be a statistical model for $X$.
 		A \textbf{statistic} in this context is any random variable $T$ valued in $\left(\R^d, \mathcal{B}\left( \R^d \right)\right)$ with $d \geq 1$, defined by $T = g(X)$ where $g$ is a Borel function not depending on $P \in \mathcal{P}$.
 	\end{defn}
-	
+
 	If a statistic is used as a guess for a parameter $t(P) \in \R^d$, it is called an \textbf{estimator} of $t(P)$.
 	In this case, the \textbf{bias} of $T$ for estimating $t(P)$ is defined as $\Bias(T,P) = \int T \diff P - t(P)$ whenever $\int \abs{T} \diff P < \infty$.
 	We say that $T$ is an \emph{unbiased} estimator of $t(P)$ if $\forall P \in \mathcal{P}, \int T \diff P = t(P)$.
-	The \textbf{quadratic risk} or mean squared error (in the case $d = 1$) is defined by $\MSE(T,P) = \int (T - t(P))^2 \diff P = \Var(T) + \Bias(T,P)^2$.
-	
+	The \textbf{quadratic risk} or \textbf{mean squared error} (in the case $d = 1$) is defined by $\MSE(T,P) = \int (T - t(P))^2 \diff P = \Var(T) + \Bias(T,P)^2$.
+
 	\begin{defn}
 		Let $T$ be a statistic valued in $(\R^d, \mathcal{\R^D})$ with $d \geq 1$.
 		We say that $T$ is a \textbf{sufficient statitstic} for the model $\mathcal{P}$ if, for all $P \in \mathcal{P}$, the conditional distribution of $X$ given $T$ does not depend on $P$, that is, there exists a probability kernel $Q \subset \R^d \times \mathcal{X}$ such that, for all $P \in \mathcal{P}$, $Q$ is a regular version of $P^{X \mid T}$.
 	\end{defn}
+
+	\begin{lem}
+		Let $S$ be a sufficient statistic associated to the Markov kernel $Q$ and let $T = g(X)$ be an unbiased estimator of the parameter $t(P)$ (both real valued).
+		Define $T^R = \int g(x) Q(S,\diff x)$.
+		Then $T^R$ is an unbiased estimator of the parameter $t$ and its variance is smaller than that of $T$.
+		As a consequence we have, $\forall P \in \mathcal{P}, \MSE \left( T^R, P \right) \leq \MSE (T,P)$.
+	\end{lem}
+
+	\begin{thm}[Fisher Factorization theorem]
+		Let $\nu \in \mes_+(\mathsf{X},\mathcal{X})$.
+		Consider a $\nu$-dominated model $\mathcal{P}$ for $X$ and let $S = g(X)$ be a $d$-dimensional statistic.
+		Then $S$ is a sufficient statistic for the model $\mathcal{P}$ if and only if there exists a non-negative Borel function $h$ on $\mathsf{X}$ such that $\forall P \in \mathcal{P}$, there exists a Borel function $f_P \colon \R^d \to \R_+$ such that $\frac{\diff P^X}{\diff \nu} = h \cdot f_P \circ g$.
+	\end{thm}
