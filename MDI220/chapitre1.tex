@@ -37,3 +37,18 @@ Si $\Theta \subset \Theta_1 \times \Theta_2$ où $\Theta_1$ est inclus dans un e
 \begin{defn}
 	L'application $\theta \to p(x ; \theta)$ s'appelle la fonction de \textbf{vraisemblance} de l'observation $x$ (avec $p(\cdot; \theta)$, ou $p_\theta(\cdot)$ la densité de la loi $P_\theta$ par rapport à une mesure dominante de référence $\mu$).
 \end{defn}
+
+\begin{note}
+	Pour parler de $n$ observations on notera une loi produit $P_n = P^{\otimes n}$ lorsque les échantillons sont i.i.d, et $\mathcal{P}_n = \{ P_n, P \in \mathcal{P} \}$ le modèle associé.
+\end{note}
+
+\begin{defn}
+	Le type de réponse que l'on attend d'une \emph{procédure de décision} (procédure d'estimation ou test statistique) s'appelle une \textbf{action}.
+	On notera $\mathcal{A}$ l'espace des actions.
+	Une \textbf{règle de décision} est alors définie comme une fonction $\delta \colon \mathcal{X} \to \mathcal{A}$.
+\end{defn}
+
+\begin{defn}
+	Soit $\delta \colon \mathcal{X} \to \mathcal{A}$ une règle de décision.
+	Son \textbf{risque} sous la loi $P_\theta \in \mathcal{P}$ est $R(\theta,\delta) = \esp_\theta \left[ L(\theta, \delta(X)) \right] \in \bar{\R}_+$.
+\end{defn}
