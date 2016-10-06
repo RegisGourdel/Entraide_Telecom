@@ -46,58 +46,62 @@
 	If $\mathcal{E}$ is a subset of an Hilbert space $\mathcal{H}$, then $\mathcal{E}^{\perp}$ is closed.
 \end{thm}
 
-\begin{defn}
-	Let $E$ be a subset of $\mathcal{H}$.
-	It is an orthogonal set if for all $(x,y) \in E \times E, x \neq y, x \perp y$.
-	If moreover $\forall x \in E, \norme{x} = 1$, we say that $E$ is orthonormal.
-\end{defn}
 
-\begin{thm}
-	Let $(e_{i})_{i \geq 1}$ be an orthonormal sequence of an Hilbert space $\mathcal{H}$ and let $(\alpha_{i})_{i \geq 1} \in \C^{\N}$.
-	The series $\sum_{i = 1}^\infty \alpha_i e_i$ converges in $\mathcal{H}$ if and only if $\sum_i \abs{\alpha_i}^2 < \infty$, in which case $\norme{\sum_{i = 1}^\infty \alpha_i e_i}^2 = \sum_{i = 1}^\infty \abs{\alpha_i}^2$.
-\end{thm}
+\subsection*{Orthogonal and orthonormal bases}
 
-\begin{pop}
-	Let $x \in \mathcal{H}$ (Hilbert space) and $E = \{ e_1, \ldots, e_n \}$ a finite orthonormal set of vectors.
-	Then $\norm{x - \sum_{k = 1}^n \scal{x}{e_k} e_k}^2
-		= \norm{x}^2 - \sum_{k = 1}^n \abs{\scal{x}{e_k}}^2
-		= \inf \{ \norm{x - y}^2, y \in \Span(e_1, \ldots, e_n) \}$.
-\end{pop}
+	\begin{defn}
+		Let $E$ be a subset of $\mathcal{H}$.
+		It is an orthogonal set if for all $(x,y) \in E \times E, x \neq y, x \perp y$.
+		If moreover $\forall x \in E, \norme{x} = 1$, we say that $E$ is orthonormal.
+	\end{defn}
 
-\begin{cor}[Bessel inequality]
-	Let $(e_i)_{i \geq 1}$ be an orthonormal sequence of a Hilbert space $\mathcal{H}$.
-	Then$\forall, x \in \mathcal{H}, \sum_{i = 1}^\infty \abs{\scal{x}{e_i}}^2 \leq \norm{x}^2$.
-\end{cor}
+	\begin{thm}
+		Let $(e_{i})_{i \geq 1}$ be an orthonormal sequence of an Hilbert space $\mathcal{H}$ and let $(\alpha_{i})_{i \geq 1} \in \C^{\N}$.
+		The series $\sum_{i = 1}^\infty \alpha_i e_i$ converges in $\mathcal{H}$ if and only if $\sum_i \abs{\alpha_i}^2 < \infty$, in which case $\norme{\sum_{i = 1}^\infty \alpha_i e_i}^2 = \sum_{i = 1}^\infty \abs{\alpha_i}^2$.
+	\end{thm}
 
-\begin{defn}
-	A subset $E$ of a Hilbert space $\mathcal{H}$ is said dense id $\overline{\Span}(E) = \mathcal{H}$.
-	An orthonormal dense sequence is called a Hilbert basis.
-\end{defn}
+	\begin{pop}
+		Let $x \in \mathcal{H}$ (Hilbert space) and $E = \{ e_1, \ldots, e_n \}$ a finite orthonormal set of vectors.
+		Then $\norm{x - \sum_{k = 1}^n \scal{x}{e_k} e_k}^2
+			= \norm{x}^2 - \sum_{k = 1}^n \abs{\scal{x}{e_k}}^2
+			= \inf \{ \norm{x - y}^2, y \in \Span(e_1, \ldots, e_n) \}$.
+	\end{pop}
 
-\begin{pop}
-	Consider the measured space $(\Omega, \mathcal{F}, \mu)$ and the Hilbert space $\mathcal{H} = L^2(\Omega, \mathcal{F}, \mu)$, $\overline{\Span}(\indic_A, A \in \mathcal{F}) = \mathcal{H}$.
-\end{pop}
+	\begin{cor}[Bessel inequality]
+		Let $(e_i)_{i \geq 1}$ be an orthonormal sequence of a Hilbert space $\mathcal{H}$.
+		Then$\forall, x \in \mathcal{H}, \sum_{i = 1}^\infty \abs{\scal{x}{e_i}}^2 \leq \norm{x}^2$.
+	\end{cor}
 
-\begin{thm}
-	Let $(e_i)_{i \geq 1}$ be a Hilbert basis of the Hilbert space $\mathcal{H}$.
-	Then $\forall x \in \mathcal{H}, x = \sum_{i = 1}^\infty \scal{x}{e_i} e_i$.
-\end{thm}
+	\begin{defn}
+		A subset $E$ of a Hilbert space $\mathcal{H}$ is said dense id $\overline{\Span}(E) = \mathcal{H}$.
+		An orthonormal dense sequence is called a Hilbert basis.
+	\end{defn}
 
-\begin{thm}
-	Let $(e_i)_{i \geq 1}$ be an orthonormal sequence of the Hilbert space $\mathcal{H}$.
-	The following assertions are equivalent :
-	\begin{enumerate}[(i)]
-		\item $(e_i)_{i \geq 1}$ is a Hilbert basis,
-		\item if some $x \in \mathcal{H}$ satisfies $\forall i \geq 1, \scal{x}{e_i} = 0$ then $x = 0$,
-		\item $\forall x \in \mathcal{H}, \norm{x}^2 = \sum_{i = 1}^\infty \abs{\scal{x}{e_i}}^2$.
-	\end{enumerate}
-\end{thm}
+	\begin{pop}
+		Consider the measured space $(\Omega, \mathcal{F}, \mu)$ and the Hilbert space $\mathcal{H} = L^2(\Omega, \mathcal{F}, \mu)$, $\overline{\Span}(\indic_A, A \in \mathcal{F}) = \mathcal{H}$.
+	\end{pop}
 
-\begin{thm}
-	A Hilbert space $\mathcal{H}$ if separable (i.e. contains a countable dense subset) if and only if it admits a Hilbert basis.
-\end{thm}
+	\begin{thm}
+		Let $(e_i)_{i \geq 1}$ be a Hilbert basis of the Hilbert space $\mathcal{H}$.
+		Then $\forall x \in \mathcal{H}, x = \sum_{i = 1}^\infty \scal{x}{e_i} e_i$.
+	\end{thm}
 
-\subsection{Fourier series}
+	\begin{thm}
+		Let $(e_i)_{i \geq 1}$ be an orthonormal sequence of the Hilbert space $\mathcal{H}$.
+		The following assertions are equivalent :
+		\begin{enumerate}[(i)]
+			\item $(e_i)_{i \geq 1}$ is a Hilbert basis,
+			\item if some $x \in \mathcal{H}$ satisfies $\forall i \geq 1, \scal{x}{e_i} = 0$ then $x = 0$,
+			\item $\forall x \in \mathcal{H}, \norm{x}^2 = \sum_{i = 1}^\infty \abs{\scal{x}{e_i}}^2$.
+		\end{enumerate}
+	\end{thm}
+
+	\begin{thm}
+		A Hilbert space $\mathcal{H}$ if separable (i.e. contains a countable dense subset) if and only if it admits a Hilbert basis.
+	\end{thm}
+
+
+\subsection*{Fourier series}
 
 	Let $\psi_n \colon x \mapsto \frac{1}{\sqrt{2\pi}} e^{inx}, n \in \Z$.
 	Let $L^1(\T)$ denote the set of $2\pi$-periodic locally integrable functions.
@@ -118,9 +122,10 @@
 		In particular, $\forall f \in L^2(\T), f = \sum_{k = -\infty}^\infty \alpha_k \phi_k$ with $\alpha_k = \frac{1}{\sqrt{2\pi}} \int_\T f(x) e^{-ikx} \diff x$ when the infinite sum converges in $L^2(\T)$.
 		The Parseval identity then reads $\int_\T \abs{f(x)}^2 \diff x = \sum_{k = -\infty}^\infty \abs{\alpha_k}^2$.
 	\end{cor}
-	
-\subsection{Projection and orthogonality principle}
-	
+
+
+\subsection*{Projection and orthogonality principle}
+
 	\begin{thm}[Projection theorem]
 		Let $\mathcal{E}$ be a closed convex subset of a Hilbert space $\mathcal{H}$ and $x \in \mathcal{H}$.
 		Then the following holds:
@@ -129,5 +134,4 @@
 			\item If moreover $\mathcal{E}$ is a linear subspace, $\proj(x \mid \mathcal{E})$ is the unique $\hat{x} \in \mathcal{E}$ such that $x - \hat{x} \in \mathcal{E}^\perp$. It is called the orthogonal projection of $x$ onto $\mathcal{E}$.
 		\end{enumerate}
 	\end{thm}
-		
-		
+
