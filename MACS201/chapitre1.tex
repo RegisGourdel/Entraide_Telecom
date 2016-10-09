@@ -39,7 +39,7 @@
 
 \begin{defn}
 	Let $\mathcal{E}$ be a subset of an Hilbert space $\mathcal{H}$.
-	The orthogonal set of $\mathcal{E}$ is defined as $\mathcal{E} = \{ x \in \mathcal{H} \mid \forall y \in \mathcal{E}, \scal{x}{y} = 0 \}$.
+	The orthogonal set of $\mathcal{E}$ is $\mathcal{E}^\perp = \{ x \in \mathcal{H} \mid \forall y \in \mathcal{E}, \scal{x}{y} = 0 \}$.
 \end{defn}
 
 \begin{thm}
@@ -47,7 +47,7 @@
 \end{thm}
 
 
-\subsection*{Orthogonal and orthonormal bases}
+\subsection{Orthogonal and orthonormal bases}
 
 	\begin{defn}
 		Let $E$ be a subset of $\mathcal{H}$.
@@ -101,14 +101,14 @@
 	\end{thm}
 
 
-\subsection*{Fourier series}
+\subsection{Fourier series}
 
 	Let $\psi_n \colon x \mapsto \frac{1}{\sqrt{2\pi}} e^{inx}, n \in \Z$.
 	Let $L^1(\T)$ denote the set of $2\pi$-periodic locally integrable functions.
 	For $f \in L^1(\T)$, set $\forall n \in \N, f_n = \sum_{k = -n}^n \left( \int_\T f \bar\phi_k \right) \phi_k$.
 
 	\begin{thm}
-		Suppose that $f$ is a continuous $2\pi$-periodic function.
+		Let $f$ be a continuous $2\pi$-periodic function.
 		Then the Cesaro sequence $\frac{1}{n} \sum_{k = 0}^{n - 1} f_k$ converges uniformly to $f$.
 	\end{thm}
 
@@ -124,7 +124,7 @@
 	\end{cor}
 
 
-\subsection*{Projection and orthogonality principle}
+\subsection{Projection and orthogonality principle}
 
 	\begin{thm}[Projection theorem]
 		Let $\mathcal{E}$ be a closed convex subset of a Hilbert space $\mathcal{H}$ and $x \in \mathcal{H}$.
@@ -135,3 +135,68 @@
 		\end{enumerate}
 	\end{thm}
 
+	\begin{pop}
+		Let $\mathcal{H}$ be a Hilbert space and $\mathcal{E}, \mathcal{E}_1, \mathcal{E}_2$ closed subspaces of $\mathcal{H}$.
+		Then the following assertions hold.
+		\begin{enumerate}[(i)]
+			\item Suppose that $\mathcal{E} = \overline{\Span} \left( (e_k)_{k \in \N} \right)$ with $(e_k)$ being an orthonormal sequence.
+				Then $\proj(h \mid \mathcal{E}) = \sum_{k = 0}^\infty \scal{h}{e_k} e_k$.
+			\item The function $\proj(\cdot \mid \mathcal{H}) \colon x \mapsto \proj(x \mid \mathcal{E})$ is linear and continuous on $\mathcal{H}$.
+			\item $\norm{x}^2 = \norm{ \proj(x \mid \mathcal{E}) }^2 + \norm{ x - \proj(x \mid \mathcal{E}) }^2$
+			\item $\left( x \in \mathcal{E} \iff \proj(x \mid \mathcal{E}) = x \right)$ and $\left( x \in \mathcal{E}^\perp \iff \proj(x \mid \mathcal{E}) = 0 \right)$
+			\item If $\mathcal{E}_1 \subset \mathcal{E}_2$ then $\forall x \in \mathcal{H}, \proj(\proj(x \mid \mathcal{E_2} \mid \mathcal{E}_1) = \proj(x \mid \mathcal{E}_1)$
+			\item If $\mathcal{E}_1 \perp \mathcal{E}_2$ then $\forall x \in \mathcal{H}, \proj \left( x \mid \mathcal{E}_1 \overset\perp\oplus \mathcal{E}_2 \right) = \proj(x \mid \mathcal{E}_1) + \proj(x \mid \mathcal{E}_2)$
+		\end{enumerate}
+	\end{pop}
+
+	\begin{thm}
+		Let $(M_n)_{n \in \Z}$ be an increasing sequence of closed subspaces of an Hilbert space $\mathcal{H}$.
+		\begin{enumerate}
+			\item Denote $M_{-\infty} = \bigcap_n M_n$. Then $\forall h \in \mathcal{H}, \proj(h \mid M_{-\infty}) = \lim_{n \to -\infty} \proj(h \mid M_n)$.
+			\item Denote $M_{\infty} = \overline{\bigcup_n M_n}$. Then $\forall h \in \mathcal{H}, \proj(h \mid M_{\infty}) = \lim_{n \to \infty} \proj(h \mid M_n)$.
+		\end{enumerate}
+	\end{thm}
+
+	\begin{pop}
+		Let $\mathcal{E}$ and $\mathcal{F}$ be two subspaces of a Hilbert space $\mathcal{H}$.
+		If $\mathcal{E} \overset\perp\oplus \mathcal{F} = \mathcal{H}$, then $\mathcal{F} = \mathcal{E}^\perp$.
+	\end{pop}
+	
+	\begin{thm}
+		If $\mathcal{E}$ is a closed subspace of a Hilbert space $\mathcal{H}$ then $\mathcal{E} \overset\perp\oplus \mathcal{E}^\perp = \mathcal{H}$.
+		Moreover $\left( E^\perp \right)^\perp = \mathcal{E}$.
+	\end{thm}
+	
+	\begin{thm}[Riesz representation theorem]
+		Let $\mathcal{H}$ be a Hilbert space.
+		Then $F \colon \mathcal{H} \to \C$ is a non-zero continuous linear form if and only if $\exists x \in \mathcal{H} \setminus \{ 0 \}, \forall y \in \mathcal{H}, F(y) = \scal{y}{x}$.
+	\end{thm}
+
+\subsection{Unitary Operator}
+
+	\begin{defn}
+		Let $\mathcal{H}$ and $\mathcal{I}$ be two Hilbert spaces.
+		An \textbf{isometric} operator $S \colon \mathcal{H} \to \mathcal{I}$ is a linear application such that $\forall (v,w) \in \mathcal{H}^2, \scal{Sv}{Sw}_{\mathcal{I}} = \scal{v}{w}_{\mathcal{H}}$.
+		If it is moreover bijective, it is a \textbf{unitary} operator.
+		In this case we also says that $\mathcal{H}$ and $\mathcal{I}$ are isomorphic.
+	\end{defn}
+	
+	\begin{thm}
+		Let $\mathcal{H}$ be a separable Hilbert space.
+		\begin{enumerate}[(i)]
+			\item If $\mathcal{H}$ has infinite dimension, it is isomorphic to $l^2$.
+			\item If $\mathcal{H}$ has dimension $n$, it is isomorphic to $\C^n$.
+		\end{enumerate}
+	\end{thm}
+	
+	\begin{thm}
+		Let $\mathcal{H}$ and $\mathcal{I}$ be two Hilbert spaces and $\mathcal{G}$ a subspace of $\mathcal{H}$.
+		\begin{enumerate}[(i)]
+			\item Let $S \colon \mathcal{G} \to \mathcal{I}$ be isometric on $\mathcal{G}$.
+				Then $S$ admits a unique isometric extension $\bar{S} \colon \bar{\mathcal{G}} \to \mathcal{I}$ and $\bar{S} \left( \bar{\mathcal{G}} \right)$ is the closure of $S(\mathcal{G})$ in $\mathcal{I}$.
+			\item Let $(v_t)_{t \in T}$ and $(w_t)_{t \in T}$ be two set of vectors in $\mathcal{H}$ and $\mathcal{I}$ indexed by an arbitrary index set $T$.
+				Suppose $\forall (s,t) \in T^2, \scal{v_t}{v_s}_{\mathcal{H}} = \scal{w_t}{w_s}_{\mathcal{I}}$.
+				Then, there exists a unique isometric operator $S \colon \overline{\Span} \left( (v_t)_{t \in T} \right) \to \overline{\Span} \left( (w_t)_{t \in T} \right)$ such that $\forall t \in T, S v_t = w_t$.
+				Moreover, $S \left( \overline{\Span} \left( (v_t)_{t \in T} \right) \right) = \overline{\Span} \left( (w_t)_{t \in T} \right)$.
+		\end{enumerate}
+	\end{thm}

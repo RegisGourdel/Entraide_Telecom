@@ -1,0 +1,88 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsthm} %ou \usepackage{ntheorem}
+\usepackage[top=1.5cm, bottom=2.2cm, left=2cm, right=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{draftwatermark}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{titlesec}
+\usepackage{alltt}
+\usepackage[svgnames]{xcolor}
+\usepackage[francais]{babel}
+\pagestyle{fancy}
+
+
+%
+% Création du filigrane
+%
+\SetWatermarkText{\includegraphics{../logo_blanc.png}}
+\SetWatermarkScale{0.5}
+\SetWatermarkAngle{0}
+
+
+%
+% Suivent les macros qui donnent la mise en forme des théorèmes, définitions, etc...
+%
+\newtheoremstyle{persoth}% name
+{2pt}%Space above
+{2pt}%Space below
+{\itshape}%Body font
+{}%Indent amount
+{\bf}%Theorem head font
+{.}%Punctuation after theorem head
+{.5em}%Space after theorem head 2
+{}%
+
+\newtheoremstyle{persodef}% name
+{2pt}%Space above
+{2pt}%Space below
+{}%Body font
+{}%Indent amount
+{\bf}%Theorem head font
+{.}%Punctuation after theorem head
+{.5em}%Space after theorem head 2
+{}%
+
+\theoremstyle{persoth}% default
+\newtheorem*{thm}{\noindent\textcolor{Crimson}{Th}}
+\newtheorem*{lem}{\noindent\textcolor{MediumVioletRed}{Lem}}
+\newtheorem*{pop}{\noindent\textcolor{FireBrick}{Prop}}
+\newtheorem*{cor}{\noindent\textcolor{Brown}{Cor}}
+
+\theoremstyle{persodef}
+\newtheorem*{defn}{\noindent\textcolor{magenta}{Def}}
+\newtheorem*{conj}{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{\noindent\textcolor{Teal}{Rem}}
+\newtheorem*{ex}{\noindent\textcolor{DarkOrange}{Ex}}
+\newtheorem*{note}{\noindent\textcolor{RoyalBlue}{Not}}
+\newtheorem*{danger}{\textcolor{green}{Attention}}
+\newtheorem*{voc}{\textcolor{DarkGreen}{Voc}}
+\newtheorem*{hyp}{\textcolor{OrangeRed}{Hyp}}
+
+%\newcommand\demo{\begin{proof}[\textit{Démonstration}]}
+
+
+%
+% Redéfinition de caractéristiques sur le format des titres de sections etc...
+%
+\titlespacing{\section}{0pt}
+	{8pt}{3pt}
+
+\titleformat{\subsection}
+	[hang]% style : hang, display, runin, leftmargin, ...
+	{\normalsize\bfseries\sffamily}% fonte numéro + titre
+	{\thesubsection}% numéro
+	{1em}% espace entre le numéro et le titre
+	{}% fonte titre
+
+\titlespacing{\subsection}{0pt}
+	{6pt}{1pt}
+
+
+\renewcommand*\rmdefault{ppl}
+\date{}
