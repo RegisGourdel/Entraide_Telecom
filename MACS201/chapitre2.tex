@@ -86,3 +86,39 @@ Let $(\Omega, \mathcal{F}, \proba)$ be a probability space.
 			\item For every $\omega$, $A \mapsto \proba^{Y \mid \mathcal{G}}(\omega, A)$ is a probability on $\mathcal{Y}$.
 		\end{enumerate}
 	\end{defn}
+
+	\begin{defn}
+		Let $(\mathsf{X}, \mathcal{X})$ and $(\mathsf{Y}, \mathcal{Y})$ be two measurable spaces.
+		A \textbf{kernel} is a mapping $Q \colon \mathsf{X} \times \mathcal{Y} \to \intff{0}{\infty}$ satisfying the following conditions :
+		\begin{enumerate}[(i)]
+			\item for every $A \in \mathcal{Y}$, the mapping $Q(\cdot, A) \colon x \mapsto Q(x,A)$ is a measurable function,
+			\item for every $x \in \mathsf{X}$, the mapping $Q(x, \cdot) \colon A \mapsto Q(x,A)$ is a measure on $\mathcal{Y}$.
+		\end{enumerate}
+		$Q$ is said to be finite if $\forall x \in \mathsf{X}, Q(x,\mathsf{Y}) < \infty$.
+		It is called a probability kernel if $\forall x \in \mathsf{X}, Q(x,\mathsf{Y}) = 1$.
+		It is called a Markov kernel if it is a probability kernel on $\mathsf{X} \times \mathcal{X}$.
+	\end{defn}
+
+	\begin{defn}
+		Let $X$ and $Y$ be random variables with values in the measure spaces $(\mathsf{X},\mathcal{X})$ and $(\mathsf{Y},\mathcal{Y})$ respectively.
+		A \textbf{regular version of the conditional distribution of $Y$ given $X$} is a probability kernel $\proba^{X \mid Y} \colon \mathsf{X} \times \mathcal{Y} \to \intff{0}{1}$ such that $\forall A \in \mathcal{Y}, \proba^{Y \mid X}(X,A) = \proba(Y \in A \mid X)$ $\proba$-a.s.
+	\end{defn}
+
+	\begin{thm}
+		Let $\mathcal{G}$ be sub-$\sigma$-field of $\mathcal{F}$.
+		Let $d \geq 1$ and $Y$ be an $(\R^D, \mathcal{B}(\R^d))$-valued random variable.
+		Then, there exists a regular version of the conditional distribution of $Y$ given $\mathcal{G}$, $\proba^{Y \mid \mathcal{G}}$, and this version is unique in the sense that for any other regular version $\bar\proba^{Y \mid \mathcal{G}}$ of this distribution, for $\proba$-almost every $\omega$ it holds that $\forall F \in \mathcal{F}, \proba^{Y \mid \mathcal{G}}(\omega,F) = \bar\proba^{Y \mid \mathcal{G}}(\omega,F)$.
+		Moreover, if $\mathcal{G} = \sigma(X)$ for some r.v. $X$ with values in a measurable space $(\mathsf{X},\mathcal{X})$, there also exists a unique regular version (hence a probability kernel) $\proba^{Y \mid X}$.
+	\end{thm}
+
+	\begin{lem}
+		Let $\proba^{Y \mid X}$ bee a regular version of the conditional expectation of $Y$ given $X$.
+		Then, for any real-valued measurable function $g$ on $\mathsf{Y}$ such that $\esp(\abs{g(Y}) < \infty$, we have $\esp(g(Y) \mid X) = \int g(Y) \proba^{Y \mid X}(X, \diff y)$ $\proba$-a.s.
+	\end{lem}
+
+	\begin{pop}
+		
+	\end{pop}
+
+
+\subsection{Radon-Nikodym derivative}
