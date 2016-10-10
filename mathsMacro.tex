@@ -44,13 +44,14 @@
 \newcommand\esp{\mathbf{E}}
 \newcommand\Orth{\mathcal{O}}
 \newcommand\cont{\mathcal{C}}
+\newcommand\normale{\mathcal{N}}
 \newcommand\li{[\![}
 \newcommand\ri{]\!]}
 \newcommand{\diff}{\mathop{}\mathopen{}\mathrm{d}}
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 \newcommand{\norme}[1]{\left\lVert#1\right\rVert}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-\newcommand{\transp}[1]{{\vphantom{#1}}^{\mathit t}{#1}}
+\newcommand{\transp}[1]{\ensuremath{#1^\mathsf{T}}}
 \newcommand{\scal}[2]{\left\langle #1 \mid #2 \right\rangle}
 \newcommand{\compl}[1]{{#1}^{\mathcal{C}}} % symbole du complémentaire en exposant
 \newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}} % symbole d'indépendance en probas
@@ -116,6 +117,7 @@
 \DeclareMathOperator{\MSE}{MSE}
 \DeclareMathOperator{\pgcd}{pgcd}
 \DeclareMathOperator{\ppcm}{ppcm}
+\DeclareMathOperator{\KL}{KL} % Kullback-Leibler divergence
 
 
 % Pour des symboles « inférieur ou égal », « supérieur ou égal », « ensemble vide » et « parallèles » conformes aux usages français.

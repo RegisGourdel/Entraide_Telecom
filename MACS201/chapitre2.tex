@@ -113,12 +113,72 @@ Let $(\Omega, \mathcal{F}, \proba)$ be a probability space.
 
 	\begin{lem}
 		Let $\proba^{Y \mid X}$ bee a regular version of the conditional expectation of $Y$ given $X$.
-		Then, for any real-valued measurable function $g$ on $\mathsf{Y}$ such that $\esp(\abs{g(Y}) < \infty$, we have $\esp(g(Y) \mid X) = \int g(Y) \proba^{Y \mid X}(X, \diff y)$ $\proba$-a.s.
+		Then, for any real-valued measurable function $g$ on $\mathsf{Y}$ such that $\esp(\abs{g(Y}) < \infty$, we have $\esp(g(Y) \mid X) = \int g(Y) \proba^{Y \mid X}(X, \diff y)$, $\proba$-a.s.
 	\end{lem}
 
 	\begin{pop}
-		
+		Let $\mathbf{X}$ and $\mathbf{Y}$ be two jointly Gaussian vectors, respectively valued in $\R^p$ and $\R^q$.
+		Then the following holds.
+		\begin{enumerate}[(i)]
+			\item
+				If $\Cov(\mathbf{Y})$ is invertible, then $\hat{\mathbf{X}} := \proj(\mathbf{X} \mid \Span(1,\mathbf{Y}))$ is given by
+				$\hat{\mathbf{X}} = \esp(\mathbf{X}) + \Cov(\mathbf{X},\mathbf{Y}) \Cov(\mathbf{Y})^{-1} (\mathbf{Y} - \esp(\mathbf{Y}))$, and
+				$\Cov(\mathbf{X} - \hat{\mathbf{X}}) = \Cov(\mathbf{X}) - \Cov(\mathbf{X}, \mathbf{Y}) \Cov(\mathbf{Y})^{-1} \Cov(\mathbf{Y},\mathbf{X})$.
+			\item We have $\esp(\mathbf{X} \mid \mathbf{Y}) = \proj(\mathbf{X} \mid \Span(1,\mathbf{Y}))$.
+			\item Let $\hat{\mathbf{X}} = \esp(\mathbf{X} \mid \mathbf{Y})$.
+				Then $\Cov(\mathbf{X} - \hat{\mathbf{X}}) = \esp \left( \mathbf{X}\transp{(\mathbf{X} - \hat{\mathbf{X}})} \right) = \esp \left( (\mathbf{X} - \hat{\mathbf{X}}) \transp{\mathbf{X}} \right)$
+				and\\ $\proba^{\mathbf{Y} \mid \mathbf{X}}(\mathbf{X},\cdot) = \normale \left( \hat{\mathbf{X}}, \Cov \left( \mathbf{X} - \hat{\mathbf{X}} \right) \right)$.
+		\end{enumerate}
 	\end{pop}
 
 
 \subsection{Radon-Nikodym derivative}
+
+	\begin{defn}
+		If $\forall A \in \mathcal{F}, \mu(A) = \int_A \phi \diff \lambda$, we say that the $\lambda$-a.e. equivalent class of $\phi$ is the \textbf{Radon-Nikodym derivative} of $\mu$ with respect to $\lambda$, and write $\phi = \frac{\diff \mu}{\diff \lambda}$.
+	\end{defn}
+
+	\begin{defn}
+		Let $\lambda$ be a measure on $(\Omega,\mathcal{F})$.
+		We say that a $\sigma$-finite measure $\mu$ is \textbf{absolutely continuous} with repsect to $\lambda$ or that $\lambda$ dominates $\mu$ and we write $\mu \ll \lambda$ if $\forall A \in \mathcal{F}, (\lambda(A) = 0) \implies (\mu(A) = 0)$.
+	\end{defn}
+	
+	\begin{thm}[\textbf{Radon-Nikodym theorem}]
+		Let $\lambda, \mu \in \mes_+(\Omega,\mathcal{F})$ be $\sigma$-finite measures such that $\mu \ll \lambda$.
+		Then, there exists a non-negative Borel function $\phi$ such that $\forall A \in \mathcal{F}, \mu(A) = \int_A \phi \diff \lambda$.
+	\end{thm}
+	
+	\begin{defn}
+		Let $(X,Y)$ be two random elements admitting a density $f$ with respect to measure $\xi \otimes \xi'$ on $(\mathsf{X} \times \mathsf{Y}, \mathcal{X} \otimes \mathcal{Y})$.
+		Then the function $(x,y) \mapsto f(y \mid x) = \frac{f(x,y)}{\int f(x,y') \diff \xi'(y')}$ is called the \textbf{conditional density} of $Y$ given $X$.
+	\end{defn}
+
+	\begin{thm}
+		Let $(X,Y)$ be two random elements admitting a density $f \colon \mathsf{X} \times \mathsf{Y} \to \R_+$ with respect to $\xi \otimes \xi'$ on $(\mathsf{X} \times \mathsf{Y}, \mathcal{X} \otimes \mathcal{Y})$.
+		Then, $\forall  x \in \mathsf{X}, \forall A \in \mathcal{Y}, \proba^{Y \mid X}(x,A) = \int_A f(y \mid x) \xi'(\diff y)$.
+	\end{thm}
+	
+	\begin{lem}
+		Let $P$ and $Q$ be two probabilities on the measurable space $(\Omega,\mathcal{F})$ and let $\nu \in \mes_+(\Omega,\mathcal{F})$ dominate both $P$ and $Q$ (e.g. $\nu = P + Q$).
+		Let $f_P$ and $f_Q$ denote the densities of $P$ and $Q$ with respect to $\nu$.
+		Then, $\KL(P \| Q) = \int \ln \left( \frac{f_P}{f_Q} \right) \diff P$ is always well defined and takes values in $\intff{0}{\infty}$.
+		Moreover we have :
+		\begin{enumerate}[(i)]
+			\item If $Q$ does not dominate $P$ then $\KL(P \| Q) = \infty$.
+			\item If $P \ll Q$ then $\KL(P \| Q) = \int \ln \left( \frac{\diff P}{\diff Q} \right) \diff P$ (may be finite or infinite).
+			\item We have $\KL(P \| Q) = 0 \iff P = Q$.
+		\end{enumerate}
+	\end{lem}
+
+	\begin{defn}
+		The quantity $\KL(P \| Q)$ is called the \textbf{Kullback-Leibler divergence} between $P$ and $Q$.
+	\end{defn}
+
+	\begin{thm}
+		Let $P$ and $Q$ be two probabilities on the measurable space $(\Omega,\mathcal{F})$ and $X$ a measurable mapping from $(\Omega,\mathcal{F})$ to $(\mathsf{X},\mathcal{X})$.
+		Then we have $\KL \left( P^X \| Q^X \right) \leq \KL(P \| Q)$.
+	\end{thm}
+
+	\begin{rem}
+		Recall that $\forall A \in \mathcal{X}, P^X(A) = \int_{X^{-1}(A)} \diff P$ while $\forall F \in \mathcal{F}, P(F) = \int_F \diff P$.
+	\end{rem}
