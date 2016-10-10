@@ -1,0 +1,41 @@
+\begin{defn}
+	\textbf{Chaîne de Markov :} suite $(X_n)_{n \in \N}$ de v.a. à valeurs dans $\li 1,N \ri$ telle que $\forall n \in \N, \forall x_0,\ldots,x_{n+1} \in \li 1,N \ri, p(x_{n+1} \mid x_0,\ldots,x_n) = p(x_{n+1} \mid x_n)$.
+\end{defn}
+
+\begin{pop}
+	$\forall n \in \N, \forall k \geq 1, \forall x_0,\ldots,x_{n+1} \in \intiff{1}{N}, p(x_{n+1},\ldots,x_{n+k} \mid x_0,\ldots,x_n) = p(x_{n+1},\ldots,x_{n+k} \mid x_n)$.
+\end{pop}
+
+\begin{pop}
+	$\forall n \in \N, \forall k \geq 1, \forall x_n,\ldots,x_{n+k} \in \li 1,N \ri, p(x_{n+1},\ldots,x_{n+k} \mid x_n) = p(x_{n+1} \mid x_n) \cdots p(x_{n+k} \mid x_{n+k-1})$.
+\end{pop}
+
+\begin{defn}
+	Une chaîne de Markov est dite \textbf{homogène} si $\forall n \in \N, \proba(X_{n+1} = j \mid X_n = i) = \proba(X_1 = j \mid X_0 = i)$.
+	L'évolution de la chaîne de Markov ne dépend alors que de sa matrice de transition $P$, définie par $\forall i,j \in \li 1,N \ri^2, P_{ij} = p(j \mid i)$.
+\end{defn}
+
+C'est une matrice stochastique, i.e. $\forall i \in \li 1,N \ri, \sum_j P_{ij} = 1$.
+En notant la loi de $X_n$ comme un vecteur ligne $\pi(n)$ de dimension $N$, avec $\pi(n)\indic = 1$ il vient $\forall n \in \N, \pi(n) = \pi(0) P^n$.
+On parle de \textbf{loi stationnaire} si $\pi = \pi P$.
+
+\begin{defn}
+	Une chaîne de Markov est dite \textbf{irréductible} si son graphe de transition est fortement connexe, i.e. $\forall i,j, i \neq j$, il existe un chemin de i vers j dans le graphe de transition.
+	Cette propriété ne dépend que de la structure du graphe de transition et non des poids.
+\end{defn}
+
+\begin{pop}
+	Une chaîne de Markov est irréductible si et seulement si $\exists n \in \N^*, (I + P)^n > 0$ (positivité sur les coefficients).
+\end{pop}
+
+\begin{thm}[Perron-Frobenius partiel]
+	Une chaîne de Markov irréductible admet une unique loi stationnaire.
+\end{thm}
+
+\begin{cor}
+	La loi stationnaire $\pi$ d'une chaîne de Markov irréductible vérifie $\forall i \in \li 1,N \ri, \pi_i > 0$.
+\end{cor}
+
+\begin{defn}
+	\textbf{Période d'un état :} $\pgcd$ des longueurs des cycles du graphe de transition passant par cet état. Un état est apériodique lorsqu'il est de période $1$.
+\end{defn}

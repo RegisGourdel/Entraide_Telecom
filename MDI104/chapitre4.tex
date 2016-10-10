@@ -1,0 +1,157 @@
+\begin{defn}
+	\textbf{Tribu} sur $\Omega$ : partie $\mathcal{A}$ de $\mathcal{P}(\Omega)$ qui possède les propriétés suivantes :
+	\begin{itemize}
+		\item[\textbullet] Élément neutre : $\Omega \in \mathcal{A}$;
+		\item[\textbullet] Stabilité par passage au complémentaire : $\forall A \in \mathcal{A}, \overline{A} \in \mathcal{A}$;
+		\item[\textbullet] $\sigma$-additivité : si $(A_i)_{i \in I}$ est une famille d’éléments de $\mathcal{A}$, alors $\bigcup_{i \in I} A_i \in \mathcal{A}$.
+	\end{itemize}
+\end{defn}
+
+\begin{pop}
+	On a $\emptyset \in \mathcal{A}$ et $\forall A_1,\ldots \in \mathcal{A}, \bigcap_{i = 1}^{\infty} \in \mathcal{A}$.
+\end{pop}
+
+\begin{lem}
+	L’intersection de 2 tribus est une tribu.
+\end{lem}
+
+\begin{thm}
+	Soit $\mathcal{C} \subset \parties(\Omega)$.
+	L’intersection $\sigma(\mathcal{C})$ de toutes les tribus sur $\Omega$ contenant $\mathcal{C}$ est une tribu sur $\mathcal{C}$ appellée tribu engendrée par $\mathcal{C}$ sur $\Omega$.
+\end{thm}
+
+\begin{defn}[Tribu borélienne]
+	La tribu de Borel sur $\R^d$, notée $\mathcal{B}(\R^d)$, est la tribu engendrée par les pavés (ouverts).
+	Ses éléments sont appelés boréliens.
+\end{defn}
+
+\begin{thm}[Eléments caractéristiques de $\mathcal{B}(\R)$]
+	$\mathcal{B}(\R)$ contient : $\{ a \}$, $\intff{a}{b}$, $\intof{-\infty}{b}$, $\intfo{a}{+\infty}$, $\Q$ et $\R \setminus \Q$..
+\end{thm}
+
+\begin{defn}
+	Une application $X \colon (\Omega,F) \to (E,\mathcal{E})$ est dite $\mathcal{F}/\mathcal{E}$-mesurable si $\forall H \in \mathcal{E}, X^{-1}(H) \in \mathcal{F}$.
+\end{defn}
+
+\begin{thm}
+	Soit $(E',\mathcal{E}')$ un espace mesurable, $X \colon \Omega \to E$ une application $\mathcal{F}/\mathcal{E}$-mesurable et $f \colon E \to E'$ une application $\mathcal{E}/\mathcal{E}'$-mesurable.
+	Alors $f \circ X$ est $\mathcal{F}/\mathcal{E}'$-mesurable.
+\end{thm}
+
+\begin{thm}
+	($\forall i, X_i$ est $\mathcal{F}/\mathcal{B}(\R)$-mesurable)
+	$\iff$ ($(X_1,\ldots,X_d)$ est $\mathcal{F}/\mathcal{B}(\R^d)$-mesurable).
+\end{thm}
+
+\begin{thm}
+	Une application $f \colon \R^d \to R^n$ continue est $\mathcal{B}(\R^d)/\mathcal{B}(\R^n)$-mesurable.
+	On dit alors qu’elle est borélienne.
+\end{thm}
+
+\begin{cor}
+	Sont mesurables : $f \circ X$, $X + Y$, $XY$, $X \vee Y$, $X \wedge Y$, $\sup_n X_n$, $\inf_n X_n$, $\liminf_n X_n$, $\limsup_n X_n$ et $\lim_n X_n$ si les fonctions en jeu sont mesurables.
+\end{cor}
+
+\begin{defn}
+	Mesure sur $(E,\mathcal{E})$ : fonction $\mu \colon \mathcal{E} \to \intff{0}{+\infty}$ telle que $\mu(\emptyset) = 0$ et, pour des événements $(A_n)_{n \in \N}$ deux à deux disjoints, $\mu \left( \bigcup_{n \in \N} A_n \right) = \sum_{n \in \N} \mu(A_n)$.
+\end{defn}
+
+\begin{lem}[Borel-Cantelli]
+	%Soit un espace probabilisé $(\Omega,\mathcal{A},\proba)$ et $(A_n)_{n \in \N}$ une famille d'éléments de $\matcal{A}$.
+	$\sum_{n \geq 1} \proba(A_n) < +\infty \implies \proba(\limsup_n A_n) = 0$
+\end{lem}
+
+\begin{note}
+	$\mathcal{I}_d$ est l'ensemble des pavés (fermés) de $\R^d$.
+\end{note}
+
+\begin{defn}
+	Une mesure $\mu$ sur $(\R^d,\mathcal{B}(\R^d))$ est locament finie si $\forall x \in \R^d, \exists I \subset \mathcal{I}_d, x \in I, \mu(I) < \infty$.
+\end{defn}
+
+\begin{thm}
+	Deux mesures localement finies sur $\R^d$ qui coïncident sur $\mathcal{I}_d$ sont égales.
+\end{thm}
+
+\begin{thm}[Mesure de Lebesgue, Kolmogorov]
+	Il existe une unique mesure $\lambda$ sur $(\R^d,\mathcal{B}(\R^d))$ qui coïncide avec la mesure de volume sur les pavés.
+	Elle est invariante par translation.
+\end{thm}
+
+\begin{thm}
+	Il existe une unique mesure $\mu \otimes \nu$, dite mesure produit de $\mu$ et $\nu$ sur $(E_1 \times E_2, \mathcal{E}_1 \otimes \mathcal{E}_2)$ telle que $\forall A \in \mathcal{E}_1, \forall B \in \mathcal{E}_2, \mu \otimes \nu(A \times B) = \mu(A) \nu(B)$.
+\end{thm}
+
+\begin{note}
+	Une propriété est vraie $\mu$-presque-partout ($\mu$-p.p.) ou $\mu$-presque-sûrement ($\mu$-p.s.) lorsque son complémentaire est de mesure nulle.
+\end{note}
+
+\begin{thm}
+	Soit $f$ v.a. positive, de $\mu$-intégrale nulle.
+	Alors $f$ est nulle $\mu$-p.p.
+\end{thm}
+
+\begin{thm}[Convergence monotone]
+	Soit $(f_n)_{n \geq 1}$ mesurables positives qui convergent en croissant $\mu$-p.p. vers $f$.
+	Alors $\lim_n \int f_n \diff \mu = \int f \diff \mu$.
+\end{thm}
+
+\begin{lem}[Lemme de Fatou]
+	Soit $f_n$ des fonctions mesurables positives.
+	Alors $\int (\lim \inf f_n) \leq \lim \inf (\int f_n)$.
+\end{lem}
+
+\begin{thm}[Convergence dominée]
+	Soit des fonctions mesurables $(f_n)$, $f_n \overset{\text{p.p.}}{\to} f$.
+	S'il existe $g$ positive intégrable telle que $\forall n, \abs{f_n} \leq g$ alors $f$ est intégrable et $\int f_n \to \int f$.
+\end{thm}
+
+\begin{thm}[Fubini-Tonnelli]
+	Soit $f \colon E \times F \to \R_+$ sur $(E \times F, \mathcal{E} \otimes \mathcal{F}, \mu \otimes \nu)$.
+	Alors
+	$$\iint_{E \times F} f(x,y) \diff \mu \otimes \nu(x,y) = \int_F \left[ \int_E f(x,y) \diff \mu(x) \right] \diff \nu(y) = \int_E \left[ \int_F f(x,y) \diff \nu(y) \right] \diff \mu(x)\ .$$
+\end{thm}
+
+\begin{thm}[Fubini]
+	Le résultat précédent est encore vrai en supposant $f$ intégrable et non plus positive.
+\end{thm}
+
+\begin{thm}[Continuité sous le signe somme]
+	La fonction $f \colon t \mapsto \int f(x,t) \diff \mu(x)$ est continue sous les htypothèses suivantes : $f(\cdot,t)$ est mesurable, $f(x,\cdot)$ est continue et $\abs{f(x,\cdot)} \leq g(x)$ avec $g$ intégrable.
+\end{thm}
+
+\begin{thm}
+	On a $\frac{\diff}{\diff t}\left( \int f(x,t) \diff \mu(x) \right) = \int \frac{\partial f}{\partial t}(x,t) \diff \mu(x)$ et la dérivabilité sous les hypothèses suivantes : $f(\cdot,t)$ est mesurable, $f(x,\cdot)$ est dérivable p.p. et $\abs{\frac{\partial f}{\partial t}(x,\cdot)} \leq g(x)$ avec $g$ intégrable.
+\end{thm}
+
+\begin{thm}
+	On a $\proba_1 = \proba_2$ sur $\R^d$ si et seulement si, $\forall f$ mesurable positive (ou mesurable bornée), $\int f \diff \proba_1 = \int f \diff \proba_2$.
+\end{thm}
+
+\begin{thm}
+	On dit que $\nu$ est absolument continue par rapport à $\mu$ si $\forall A, \mu(A) = 0 \implies \nu(A) = 0$.
+	On écrit $\nu \ll \mu$.
+\end{thm}
+
+\begin{thm}[Radon-Nykodym]
+	$(\nu \ll \mu) \iff (\exists f \geq 0, \forall g \text{ mesurable bornée }, \int g \diff \nu = \int g \cdot f \diff \mu)$.
+	$f$ s'appelle densité de $\nu$ par rapport à $\mu$.
+\end{thm}
+
+\begin{tabular}{c|c|c|c}
+	Domaine & Densité & Expression de $f(x)$ & Notation \\
+	\hline
+	$\R^d$ & Densité uniforme sur $A \subset \R^d$ & $\dfrac{\indic_A (x)}{\int \indic_A}$ & $\mathcal{U}(A)$ \\
+	\hline
+	$\R$ & Densité exponentielle, $\alpha > 0$ & $\alpha e^{-\alpha x} \indic_{\R_+}(x)$ & $\mathcal{E}(\alpha)$ \\
+	\hline
+	$\R$ & Densité gaussienne, $m \in \R$, $\sigma^2 > 0$ & $\dfrac{e^{-(x - m)^2 / (2 \sigma^2)}}{\sqrt{2 \pi \sigma^2}}$ & $\mathcal{N}(m,\sigma^2)$ \\
+	\hline
+	$\R^d$ & Gaussienne multivariée, $m \in \R^d$, $\Sigma \in \M_{r,r}(\R)$ définie positive & $\dfrac{e^{-\frac{1}{2} \transp{(x - m)} \Sigma^{-1} (x - m)}}{\sqrt{(2 \pi)^d \det(\Sigma)}}$ & $\mathcal{N}_d(m,\Sigma)$ \\
+	\hline
+	$\R$ & Densité de Cauchy, $m \in \R$, $\alpha > 0$ & $\dfrac{1}{\pi} \dfrac{\alpha}{(x - m)^2 + \alpha^2}$ & \\
+	\hline
+	$\R$ & Densité Gamma, $a > 0$, $b > $ & $x^{a - 1} \dfrac{b^a e^{-bx}}{\Gamma(a)}$ & $\Gamma(a,b)$ \\
+\end{tabular}
+
+Fonction gamma d'Euler : $\Gamma \colon a \mapsto \int_0^{+\infty} x^{a - 1} e^{-x} \diff x$. 

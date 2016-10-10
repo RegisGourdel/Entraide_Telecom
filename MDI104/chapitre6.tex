@@ -1,0 +1,49 @@
+\begin{defn}
+	\textbf{Noyau de probabilité} : application $\mathcal{Q} \colon \begin{array}{ccl}
+		\R^n \times \mathcal{B}(\R^p) & \to & \intff{0}{1} \\
+		(x,A) & \mapsto & \mathcal{Q}_x(A)
+	\end{array}$
+	telle que $\forall x \in \R^n$, $\mathcal{Q}_x$ est une probabilité sur $\mathcal{B}(\R^p)$ et $\forall A \in \mathcal{B}(\R^p)$, $\mathcal{Q}(\cdot,A)$ est mesurable.
+\end{defn}
+
+\begin{defn}
+	Support d'une probabilité : complémentaire du plus grand ouvert de probabilité nulle.
+\end{defn}
+
+\begin{defn}
+	Soit $X$ et $Y$ des v.a. dans $\R^n$ et $\R^p$ et $E$ le support de $X$.
+	La \textbf{loi conditionnelle} de $Y$ sachant $X$ est l'unique famille de noyaux $(\mathcal{Q}_x)_{x \in E}$ définie pour toutes fonctions $\psi$ et $\theta$ mesurables bornées par
+	$$\esp(\psi(X) \theta(Y)) = \esp \left( \psi(X) \int_{\R^p} \theta(y) \diff \mathcal{Q}_X(y) \right) = \int_{\R^n} \psi(x) \int_{\R^p} \theta(y) \diff \mathcal{Q}_x(y) \diff \proba_X(x)$$
+\end{defn}
+
+\begin{thm}
+	Pour toute fonction $\psi \colon \R^n \times \R^p \to \R$ mesurable bornée, $\esp(\psi(X,Y)) = \int_{\R^n \times \R^p} \psi(x,y) \diff \mathcal{Q}_X(y) \diff \proba_X(x)$.
+\end{thm}
+
+\begin{thm}
+	Si $X$ et $Y$ sont indépendantes, $\forall x \in E, \mathcal{Q}_x = \proba_Y$.
+	Si $Y = T(X)$, $\forall x \in E, \mathcal{Q}_x = \delta_{T(x)}$.
+\end{thm}
+
+\begin{thm}
+	Soit $X$ et $Y$ deux v.a. discrètes de supports respectifs $E_X$ et $E_Y$.
+	Alors $\forall x \in E_X, \mathcal{Q}_x = \sum_{y \in E_Y} \proba(Y = y \mid X = x) \delta_y$.
+\end{thm}
+
+\begin{thm}
+	Soit $X \colon \Omega \to \R^n$ et $Y \colon \Omega \to \R^p$, de densité jointe $f_{(X,Y)}$.
+	La loi conditionnelle de $Y$ sachant $X$ est donnée par $\diff \mathcal{Q}_x(y) = \frac{f_{(X,Y)}(x,y)}{\int_{\R^p} f_{(X,Y)}(x,y) \diff y} \diff y$.
+\end{thm}
+
+\begin{defn}
+	On appelle \textbf{espérance conditionnelle} de $\theta(Y)$ sachant $X = x$ la quantité $\esp(\theta(Y) \mid X = x) = \int \theta(y) \diff \mathcal{Q}_x(y)$.
+\end{defn}
+
+\begin{pop}
+	On a $\esp(\esp(\theta(Y) \mid X)) = \esp(\theta(Y))$.
+\end{pop}
+
+\begin{thm}
+	Soit $X$ et $Y$ deux v.a. discrètes et $E_Y$ le support de $Y$.
+	Alors $\esp(\theta(Y) \mid X = x) = \sum_{y \in E_Y} \theta(y) \proba(Y = y \mid X = x)$.
+\end{thm}

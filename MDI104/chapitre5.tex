@@ -1,0 +1,109 @@
+\begin{defn}
+	\textbf{Variable aléatoire} $X$ sur $E$ : application mesurable de $\Omega$ dans $E$.
+\end{defn}
+
+\begin{defn}
+	\textbf{Loi} de $X$ : fonction $\proba \circ X^{-1} = \proba_X \colon \mathcal{E} \to \intff{0}{1} \ H \mapsto \proba(X^{-1}(H))$.
+\end{defn}
+
+\begin{defn}
+	\textbf{Fonction de répartition} de $X$ v.a.r. : $F_X \colon \R \to \intff{0}{1} \ x \mapsto \proba(X \leq x)$.
+\end{defn}
+
+\begin{defn}
+	Une fonction $F$ est dite absolument continue si $\forall \epsilon > 0, \exists \delta > 0, \forall \intff{a_1}{b_1},\ldots,\intff{a_p}{b_p}$ disjoints,\\
+	$\left( \sum_{k = 1}^p (b_k - a_k) < \delta \right) \implies \left( \sum_{k = 1}^p \abs{F(b_k) - F(a_k)} < \epsilon \right)$.
+\end{defn}
+
+\begin{thm}[v.a à \textbf{densité}]
+	Soit $X$ tel que $\proba_X \ll \lambda$, $\exists f \geq 0$ intégrable tel que $\forall g$ mesurable bornée, $\diff \proba_X(x) = f(x) \diff x$.
+	C'est équivalent au fait que $F_X$ soit absolument continue.
+\end{thm}
+
+\begin{defn}
+	\textbf{Espérance} de $X$ : $\esp(X) := \int X \diff \proba$. En particulier $\proba(X \in A) = \esp(\indic_A(X))$.
+\end{defn}
+
+\begin{thm}[\textbf{Théorème de transfert}]
+	Soit $X \colon \Omega \to E$ et $g \colon E \to \R$ mesurables. Alors $\esp(g(X)) = \int_{\Omega} g(X(\omega)) \diff \proba(\omega) = \int_\R g(x) \diff \proba_X(x) = \left( \int g(x) f_X(x) \diff x \right)$.
+\end{thm}
+
+\begin{thm}[Inégalité de \textbf{Markov}]
+	$\proba(\abs{X} > \epsilon) \leq \frac{\esp(\abs{X}^p)}{\epsilon^p}$.
+\end{thm}
+
+\begin{thm}[Inégalité de \textbf{Hölder}]
+	Soit $p, q \geq 0$, $\frac{1}{p} + \frac{1}{q} = 1$, alors
+	$\esp(\abs{XY}) \leq \esp(\abs{X}^p)^{\frac{1}{p}} \esp(\abs{Y}^q)^{\frac{1}{q}}$.
+\end{thm}
+
+\begin{thm}[Inégalité de \textbf{Jensen}]
+	Soit $\varphi \colon \R \to \R$ convexe et $X$ une v.a.r. telle que $\esp(\abs{X}) < \infty$ et $\esp(\abs{\varphi(X)}) < \infty$.
+	Alors $\varphi(\esp(X)) \leq \esp(\varphi(X))$.
+\end{thm}
+
+\begin{defn}
+	\textbf{Moment} d'ordre $p \geq 0$ : $\esp(X^p)$ lorsque $\esp(\abs{X}^p) < \infty$.
+\end{defn}
+
+\begin{pop}
+	Une variable d'ordre $p$ possède tous ses moments d'ordre inférieur.
+\end{pop}
+
+\begin{defn}
+	\textbf{Variance} de $X$ d'ordre $2$ : $\Var(X) := \esp \left( (X - \esp(X))^2 \right) = \esp(X^2) - \esp(X)^2$.
+	Écart-type : $\sigma_X := \sqrt{\Var(X)}$.
+\end{defn}
+
+\begin{defn}
+	\textbf{Covariance} de $X$ et $Y$ d'ordre $2$ : $\Cov(X,Y) := \esp \left( (X - \esp(X)) (Y - \esp(Y)) \right) = \esp(XY) - \esp(X)\esp(Y)$.
+	Coefficient de corrélation : $\rho_{X,Y} = \frac{\Cov(X,Y)}{\sigma_X \sigma_Y}$.
+	$X$ et $Y$ sont décorrelées si $\Cov(X,Y) = 0$.
+	C'est le produit scalaire associé à $\Var$.
+	En particulier $\Var(X + Y) = \Var(X) + \Var(Y) + 2\Cov(X,Y)$.
+\end{defn}
+
+\begin{defn}
+	Sur $\R^d$ on a $F_X(x_1,\ldots,x_d) = \proba(X_1 \leq x_1,\ldots,X_d \leq x_d) = \proba_X \left( \prod_{k = 1}^d \intof{-\infty}{x_k} \right)$.
+\end{defn}
+
+\begin{thm}
+	Les propositions suivantes sont équivalentes :
+	\begin{itemize}
+		\item $X_1,\ldots,X_d$ sont indépendantes,
+		\item $\forall x_1,\ldots,x_d \in \R, F_X(x_1,\ldots,x_d) = \prod_{k = 1}^d F_{X_i}(x_i)$,
+		\item pour toutes fonctions $h_1,\ldots,h_d$ mesurables $\R \to \R$ telles que les v.a. $h(X_i)$ sont toutes positives ou toutes intégrables, $\esp \left( \prod_{k = 1}^d h_i(X_i) \right) = \prod_{k = 1}^d \esp(h_i(X_i))$.
+		\item même égalité avec des $h_i$ positives continues et à support compact,
+		\item (si les $X_i$ admettent des densités) $\exists f_X, \forall x_1,\ldots,x_d \in \R, f_X(x_1,\ldots,x_d) = \prod_{k = 1}^d f_{X_i}(x_i)$.
+	\end{itemize}
+\end{thm}
+
+\begin{defn}
+	Une famille de v.a. est dite indépendante si toute sous-famille finie l'est.
+\end{defn}
+
+\begin{lem}
+	Soit $(X_i)_{i \in I}$ des v.a. indépendantes et $J, K$ disjoints inclus dans $I$.
+	Alors $(X_i)_{i \in J}$ et $(X_i)_{i \in K}$ sont indépendantes.
+\end{lem}
+
+\begin{defn}
+	Soit $\phi \colon \begin{array}{ccl}
+		O \subset \R^n & \to & \R^n \\
+		x & \mapsto & (\phi_1(x),\ldots,\phi_d(x))
+		\end{array}$
+	avec $O$ ouvert.
+	Si toutes les dérivées partielles existent sur $O$, la \textbf{jacobienne} de $\phi$ en $x$ est la matrice $D_x(\phi) = \left( \frac{\partial \phi_i}{\partial x_j}(x) \right)_{1 \leq i,j \leq n}$.
+	Le \textbf{jacobien} de $\phi$ est donné par $\forall x, J_{\phi}(x) := \det(D_x(\phi))$.
+\end{defn}
+
+\begin{defn}
+	Soit $O \subset \R^n$ ouvert et $\phi \colon O \to \R^n$.
+	C'est un $\cont^1$-\textbf{difféomorphisme} de $O$ sur $\Delta \subset \R^n$ lorsque : les dérivées partielles de $\phi$ existent et sont continues sur $O$, $\phi$ est bijective de $O$ sur $\Delta$ et $J_{\phi}$ ne s'annule pas sur $O$.
+	Alors $\phi^{-1}$ est également continuement dérivable et on a $J_{\phi^{-1}} = \frac{1}{J_{\phi} \circ \phi^{-1}}$.
+\end{defn}
+
+\begin{thm}[\textbf{Formule du changement de variables}]
+	Soit $U$ et $V$ deux ouverts de $\R^d$, $\phi \colon U \to V$ un difféomorphisme et $f \colon V \to \R_+$.
+	Alors $\int_U f \circ \phi = \int_V f \abs{J_{\phi^{-1}}}$ ou encore $\int_U f \circ \phi \cdot \abs{J_{\phi}} = \int_V f$.
+\end{thm}

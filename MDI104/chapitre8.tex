@@ -1,0 +1,24 @@
+\begin{defn}
+	$\esp(X) = \transp{(\esp(X_1),\ldots,\esp(X_d))}$ est bien définie si et seulement si toutes ses composantes le sont.
+\end{defn}
+
+\begin{defn}
+	Matrice de covariance d'un vecteur $X$ d'ordre $2$ : $\Cov(X) := \left( \Cov(X_i,X_j) \right)_{1 \leq i,j \leq d} \in \Sym_d^+(\R)$.
+	La diagonale de $\Cov(X)$ est égale au vecteur des variances et, dans le cas où les $X_i$ sont décorrélées, $\Cov(X)$ est diagonale.
+\end{defn}
+
+\begin{pop}
+	Soit $A \in \M_{n,d}(\R)$ et $b \in \M_{d,1}(\R)$.
+	On a $\esp(AX + b) = A \esp(X) + b$, $\Cov(AX + b) = A \Cov(X) \transp{A}$, et $\Cov(X) = \esp(X_c \transp{X_c})$ où $X_c := X - \esp(X)$ est le vecteur recentré.
+\end{pop}
+
+On utilisera $m \in \R^d$ et $\Gamma \in \Sym_d^+(\R)$.
+
+\begin{defn}
+	$X$ est un \textbf{vecteur gaussien} (ou variable gaussienne multivariée ou variable normale multivariée) si et seulement si $\forall a \in \R^d$, la loi de $\scal{a}{X}$ est une loi gaussienne (éventuellement de variance nulle).
+\end{defn}
+
+\begin{thm}
+	$X$ est un vecteur gaussien d'espérance $m$ et de matrice de covariance $\Gamma$ si et seulement si sa fonction caractéristique est $t \mapsto \exp \left( i \scal{t}{m} - \frac{1}{2} \transp{t} \Gamma t \right)$.
+	On écrit $X \sim \mathcal{N}_d(m,\Gamma)$.
+\end{thm}
