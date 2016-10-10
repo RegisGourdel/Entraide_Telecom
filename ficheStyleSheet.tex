@@ -70,14 +70,21 @@
 %
 % Redéfinition de caractéristiques sur le format des titres de sections etc...
 %
+\titleformat{\section}
+	[hang]% style : hang, display, runin, leftmargin, ...
+	{\Large\bfseries}% fonte numéro + titre
+	{\thesection}% numéro
+	{1em}% espace entre le numéro et le titre
+	{}% fonte titre
+
 \titlespacing{\section}{0pt}
 	{8pt}{3pt}
 
 \titleformat{\subsection}
 	[hang]% style : hang, display, runin, leftmargin, ...
 	{\normalsize\bfseries\sffamily}% fonte numéro + titre
-	{\thesubsection}% numéro
-	{1em}% espace entre le numéro et le titre
+	{}% numéro
+	{0pt}% espace entre le numéro et le titre
 	{}% fonte titre
 
 \titlespacing{\subsection}{0pt}
@@ -86,3 +93,12 @@
 
 \renewcommand*\rmdefault{ppl}
 \date{}
+
+%
+% Ce qui suit permet de corriger le bug de titlesec sur la numérotation des sections
+%
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
