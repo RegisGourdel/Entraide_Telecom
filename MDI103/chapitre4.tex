@@ -1,0 +1,94 @@
+\begin{defn}
+	Soit $E$ un $\K$-ev.
+	L'application $\scal{\cdot}{\cdot} \colon E \times E \to \R$ est appelé \textbf{produit scalaire} si c'est une forme bilinéaire définie positive.
+	Si l'espace d'arrivé est $\C$ et qu'il y a sesqui-linéarité c'est un \textbf{produit hermitien}.
+	$E$ muni de $\scal{\cdot}{\cdot}$ est un \textbf{espace pré-hilbertien}.
+\end{defn}
+
+\begin{pop}[Inégalité de \textbf{Cauchy-Schwarz}]
+	$\forall f,g \in E, \abs{\scal{f}{g}}^2 \leq \scal{f}{f} \scal{g}{g}$, l'égalité nécessitant la colinéarité.
+\end{pop}
+
+\begin{pop}
+	Soit $E$ pré-hilbertien.
+	Alors $\norme{\cdot} \colon x \mapsto \sqrt{\scal{x}{x}}$ est une norme sur $E$.
+\end{pop}
+
+\begin{defn}
+	Un espace pré-hilbertien est dit \textbf{espace de Hilbert} s'il est complet pour cette norme.
+\end{defn}
+
+\begin{thm}
+	Soit $H$ de Hilbert et $C \subset H$ un convexe fermé non vide.
+	Pour tout $f \in H$ il existe un unique point $g$ de $C$, appelé projection de $f$ sur $C$ vérifiant $\norme{f - g} = d(f,C)$.
+	Elle se caractérise comme l'unique point de $C$ tel que $\forall h \in C, \Re(\scal{f - g}{h - g}) \leq 0$.
+	Si $C$ est un s-ev, $g$ est l'unique point de $C$ tel que $f - g \in C^\perp$.
+\end{thm}
+
+\begin{lem}[Identité du parallélogramme]
+	$\norme{u}^2 + \norme{v}^2 = \frac{1}{2} \left( \norme{u + v}^2 + \norme{u - v}^2 \right)$.
+\end{lem}
+
+\begin{pop}
+	Si $F$ est un s-ev fermé de $H$, alors tout élément de $H$ se décompose de manière unique sous la forme $f = g + h, g \in F, h \in F^\perp$, où $g$ est la projection de $h$ sur $F$ et $h$ la projection de $f$ sur $F^\perp$.
+	Si $A \subset H$ on a toujours $A^\perp = \overline{\Vect(A)}^\perp$ et donc $\left( A^\perp \right)^\perp = \overline{\Vect(A)}$.
+\end{pop}
+
+\begin{defn}
+	On dit que $A \subset H$ est total si $\Vect(A)$ est dense dans $H$, i.e. si $A^\perp = \{ 0 \}$.
+\end{defn}
+
+\begin{thm}[Riesz]
+	Pour tout $f \in H$, $v \mapsto \scal{v}{f}$ est une forme linéaire continue sur $H$.
+	Réciproquement, si $\tilde{f}$ est une forme linéaire continue sur $H$, $\exists ! f \in H, \tilde{f} = \scal{\cdot}{f}$.
+\end{thm}
+
+\begin{defn}
+	On pose $\mathcal{T}_x = (y \mapsto f(y - x))$ (translatée de $f$ par $x$).
+	On dit qu'un opérateur $T$ agissant sur des fonctions est invariant par translation si $T(\mathcal{T}_x f) = \mathcal{T}_x (T f)$.
+\end{defn}
+
+\begin{thm}
+	Soit $T \colon L^2 \left( \R^N \right) \to C_b \left( \R^N \right)$ un opérateur linéaire, invariant par translation et continu.
+	Alors\\ $\exists g \in L^2 \left( \R^N \right), \forall f, T(f) = g \star f$.
+\end{thm}
+
+\begin{pop}
+	Soit $(x_n)_{n \in \N}$ des vecteurs deux à deux orthogonaux dans un espace de Hilbert.
+	Alors\\ $\left( \sum_{n = 0}^N x_n \text{ converge lorsque } N \to \infty \right) \iff \left( \sum_n \norme{x_n}^2 < \infty \right)$.
+\end{pop}
+
+\begin{defn}
+	On appelle \textbf{base hilbertienne} de $H$ séparable un système orthonormé fini ou infini qui est total.
+\end{defn}
+
+\begin{thm}
+	Tout espace de Hilbert séparable admet une base hilbertienne.
+\end{thm}
+
+\begin{thm}[Égalité de \textbf{Parseval}]
+	Soit $H$ séparable et $(e_n)_n$ une base hilbertienne de $H$.
+	Alors tout élément de $H$ peut s'écrire comme la somme d'une série convergente : $f = \sum_n \scal{f}{e_n} e_n = \sum_n c_n(f) e_n$ et les coordonnées $c_n(f)$ vérifient $\norme{f}^2 = \sum_n \abs{c_n(f)}^2$.
+\end{thm}
+
+\begin{cor}
+	Tout espace de Hilbert séparable est isométrique à $l^2 (\N)$.
+	Il suffit d'associer à $f$ son vecteur de coordonnées sur une base hilbertienne.
+	En particulier on a $\scal{f}{g} = \sum_n c_n(f) \overline{c_n(g)}$.
+\end{cor}
+
+\begin{thm}
+	Le système $\{ e_k \colon x \mapsto e^{2i\pi kx} \}_{k \in \Z}$ est une base hilbertienne de $L_p^2 (0,1)$ (fonctions $1$-périodiques).
+\end{thm}
+
+\begin{defn}
+	\textbf{Polynôme trigonométrique} : fonction $f \in \Vect(\{ e_k \}_k)$, i.e. dont la suite des $c_n(f)$ dans la base des $e_k$ est à support fini.
+\end{defn}
+
+\begin{defn}[Convolution circulaire]
+	Si $f$ et $g$ sont $1$-périodique, on note $f \star_c g \colon x \mapsto \int_0^1 f(t)g(x - t) \diff t$ là où cette quantité est définie, et cette fonction est aussi $1$-périodique.
+\end{defn}
+
+\begin{thm}
+	Soit $f,g \in L_p^2 (0,1)$. On a $c_n (f \star_c g) = c_n (f) c_n (g)$ et $c_n (f \cdot g) = \sum_k c_k(f) c_{n - k}(g)$.
+\end{thm} 

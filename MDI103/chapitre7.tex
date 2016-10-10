@@ -1,0 +1,26 @@
+\begin{defn}[Transformée de Fourier sur $L^1 (\intfo{0}{1})$]
+	$\hat{f} \colon \begin{array}{rcl}
+		\Z & \to & \R \\
+		\xi & \mapsto & \int f(x) e^{-2i\pi \xi x} \diff x
+	\end{array}$.
+\end{defn}
+
+\begin{pop}
+	Soit $f,g \in L^1 (\intfo{0}{1})$, $\lambda, \alpha \in \R$.
+	\begin{enumerate}
+		\item $\hat{f}$ est bornée $\norme{f}_1$ et donc $\mathcal{F}$ est continue de $L^1$ dans $l^\infty$.
+		\item $\hat{f}(\xi) \underset{\abs{\xi} \to +\infty}{\longrightarrow} 0$
+		\item $\mathcal{F} (f \star g) = \hat{f} \cdot \hat{g}$
+		\item Si $g(x) = f(x) e^{2i\pi \alpha x}$, $\alpha \in \Z$, alors $\hat{g}(\xi) = \hat{f}(\xi - \alpha)$.
+		\item Si $g(x) = f(x - \alpha)$, $\alpha \in \R$, alors $\hat{g}(\xi) = \hat{f}(\xi) e^{-2i\pi \alpha \xi}$.
+		\item Si $g(x) = \overline{f(-x)}$ alors $\hat{g}(\xi) = \overline{\hat{f}(\xi)}$.
+	\end{enumerate}
+\end{pop}
+
+%\begin{defn}
+%	On appelle noyau de Féjer numéro $n \in \N^*$ et on note $g_n$, la fonction définie sur $\intfo{0}{1}$ par $t \mapsto \frac{1}{n} \sum_{k = 0}^{n - 1} \sum_{l = -l}{k} e^{2i\pi lt} = \sum_{m = -n + 1}^{m = n - 1} \frac{n - \abs{m}}{n} e^{2i\pi mt}$.
+%	On note $G_n$ la fonction sur $\Z$, $m \mapsto \left\{ \begin{array}{l}
+%		0 \text{ si } \abs{m} \geq n \\
+%		\frac{n - \abs{m}}{n} \text{ sinon}
+%		\end{array}\right.$.
+%\end{defn}

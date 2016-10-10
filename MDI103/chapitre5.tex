@@ -1,0 +1,103 @@
+\begin{defn}
+	Soit $f \in L^1$.
+	Sa \textbf{transformée de Fourier} est $\mathcal{F}(f) = \hat{f} := \xi \mapsto \int f(x) e^{-2i\pi \xi x} \diff x$.
+\end{defn}
+
+\begin{pop}
+	Soit $f,g \in L^1, \lambda,\alpha \in \R$.
+	\begin{enumerate}[(i)]
+		\item $\hat{f}$ est bornée par $\norme{f}_1$, donc $\mathcal{F}$ est linéaire continue de $L^1$ dans $L^\infty$,
+		\item $\hat{f}$ est continue,
+		\item $\hat{f}(\xi)$ tend vers $0$ lorsque $\abs{\xi}$ tend vers $+\infty$,
+		\item $\mathcal{F}(f \star g) = \hat{f} \cdot \hat{g}$,
+		\item $\int \hat{f} \cdot g = \int f \cdot \hat{g}$,
+		\item Si $g(x) = f(x) e^{2i\pi \alpha x}$ alors $\hat{g}(\xi) = \hat{f}(\xi - \alpha)$,
+		\item Si $g(x) = f(x - \alpha)$ alors $\hat{g}(\xi) = \hat{f}(\xi) e^{-2i\pi \alpha \xi}$,
+		\item Si $g(x) = \overline{f(-x)}$ alors $\hat{g}(\xi) = \overline{\hat{f}(\xi)}$,
+		\item Si $g(x) = f(x / \lambda)$ avec $\lambda > 0$ alors $\hat{g}(\xi) = \lambda \hat{f}(\lambda \xi)$.
+	\end{enumerate}
+\end{pop}
+
+\begin{defn}[Un couple de fonctions auxiliaires]
+	Soit $n \in \N^*$.
+	On a $H_n := x \mapsto e^{-\frac{\abs{x}}{n}}$ et $h_n := x \mapsto n \frac{2}{1 + 4\pi^2 (nx)^2}$.
+	On remarque que $H_n(nx) = H_1(x)$ (homotéthie) et $h_n(x) = n h_1(nx)$ de sorte que $\int h_n = \int h_1$.
+\end{defn}
+
+\begin{pop}
+	\begin{enumerate}[(i)]
+		\item $\forall n \geq 1, \forall 1 \leq p \leq \infty, h_n \in L^p$ et $H_n \in L^p$,
+		\item $\mathcal{F}(H_n) = h_n$,
+		\item $\int h_n(t) \diff t = 1$,
+		\item Si $f \in L^p, p < \infty$, alors $h_n \star f$ tend vers $f$ dans $L^p$,
+		\item Si $f \in L^1$, alors $\forall x \in \R, (f \star h_n)(x) = \int \hat{f}(\xi) H_n(\xi) e^{2i\pi x \xi} \diff \xi$,
+		\item Si $f$ est bornée et continue en $x$ alors $(f \star h_n)(x) \underset{n \to \infty}{\longrightarrow} f(x)$.
+	\end{enumerate}
+\end{pop}
+
+\begin{defn}
+	Si $f \in L^1$, sa \textbf{transformée de Fourier inverse} est $\bar{\mathcal{F}}(f) \colon x \mapsto \int f(t) e^{2i\pi xt} \diff t$ (continue).
+\end{defn}
+
+\begin{thm}[Théorème d'inversion]
+	Si $f \in L^1$ et $\hat{f} \in L^1$ alors $\bar{\mathcal{F}}(\hat{f}) \overset{\text{p.p.}}{=} f$ (donc égalité dans $L^1$).
+	En particulier, si $\hat{f} \in L^1$ alors $f$ est égale p.p. à une fonction continue car $\\bar{\mathcal{F}}$ a les mêmes propriétés que $\mathcal{F}$.
+\end{thm}
+
+\begin{cor}
+	Si $f \in L^1$ et $\hat{f} = 0$ alors $f = 0$, i.e. $\mathcal{F}$ est injective.
+\end{cor}
+
+\begin{thm}[Extension à $L^2$]
+	\begin{enumerate}
+		\item Si $f \in L^1 \cap L^2$ alors $\hat{f} \in L^2$ et $\norme{\hat{f}}_2 = \norme{f}_2$.
+		\item Il existe une unique application dans $\Orth(L^2) \cap \cont^0(L^2,L^2)$ égale à $\mathcal{F}$ sur $L^1 \cap L^2$, notée encore $\mathcal{F}$.
+		\item $\im(\mathcal{F})$ est dense dans $L^2$.
+		\item $\mathcal{F}$ est bijective de $L^2$ dans lui-même.
+	\end{enumerate}
+\end{thm}
+
+\begin{thm}
+	On étend $\bar{\mathcal{F}}$ de la même manière et il vient :
+	$\quad \forall f \in L^2, \bar{\mathcal{F}}(\mathcal{F}(f)) = f,\qquad
+		\forall f,g \in L^2, f \star g = \bar{\mathcal{F}}(\hat{f} \cdot \hat{g})$.
+\end{thm}
+
+\begin{defn}
+	$\cont_c^\infty$ : ensemble des fonctions indéfiniment dérivables à support compact. C'est un $\C$-ev non réduit à $\{ 0 \}$.
+\end{defn}
+
+\begin{thm}
+	Soit $1 \leq p < \infty$.
+	\begin{enumerate}
+		\item Si $g \in \cont_c^0$ et $h \in \cont_c^\infty$ alors $g \star h \in \cont_c^\infty$ et $(g \star h)^{(n)} = \left( g \star h^{(n)} \right)$.
+		\item $\forall f \in L^p, f \star \rho_n \overset{L^p}{\to} f$ en notant $\rho \colon x \mapsto e^{-\frac{1}{x}} e^{-\frac{1}{1 - x}}$, $\rho_1 = \frac{\rho}{\int \rho}$ et $\forall n \geq 1, \rho_n \colon x \mapsto n \rho_1(nx)$.
+		\item Les fonctions $\cont_c^\infty$ sont denses dans $L^p$.
+	\end{enumerate}
+\end{thm}
+
+\begin{thm}[Échange de régularité et de décroissance à l'infini]
+	\begin{enumerate}
+		\item Si $f \in \cont^1 \cap L^1$ et $f' \in L^1$ alors $\mathcal{F}(f')(\xi) = 2i\pi \xi \hat{f}(\xi)$.
+		\item Si $f \in L^1$ et $(x \mapsto x f(x)) \in L^1$ alors $\hat{f}$ est continûment dérivable et $\mathcal{F}(f)' = \mathcal{F}(x \mapsto -2i\pi x f(x))$.
+		\item Si $f \in \cont^n \cap L^1$ et $\forall k \leq n, f^{(k)} \in L^1$ alors $\mathcal{F}\left( f^{(n)} \right) (\xi) = (2i\pi \xi)^n \hat{f}(\xi)$.
+		\item Si $f \in L^1$ et $\forall k \leq n, (x \mapsto x^k f(x)) \in L^1$ alors $\hat{f}$ est $n$ fois continûment dérivable et $\mathcal{F}(f)^{(n)} = \mathcal{F}(x \mapsto (-2i\pi x)^n f(x))$.
+	\end{enumerate}
+\end{thm}
+
+\begin{defn}
+	On dit que $f$ est dans la \textbf{classe de Schwartz} $\mathcal{S}$ si $f \in \cont^\infty$ et $\forall n,k \in \N, f^{(n)}(x) x^k \underset{\abs{x} \to \infty}{\to} 0$.
+\end{defn}
+
+\begin{pop}
+	Soit $f,g \in \mathcal{S}$ et $P \in \K[X]$. On a $f^{(n)} \in \mathcal{S}, \quad f \cdot g \in \mathcal{S}, \quad P \cdot f \in \mathcal{S}, \quad \forall 1 \leq p \leq \infty, f \in L^p\quad$ et $\cont_c^\infty \subset \mathcal{S}$.
+	Donc $\mathcal{S}$ est dense dans tous les $L^p$ pour $p < \infty$.
+\end{pop}
+
+\begin{thm}
+	Si $f \in \mathcal{S}$ alors $\hat{f} \in \mathcal{S}$.
+\end{thm}
+
+\begin{thm}
+	La transformée de Fourier est une bijection entre $\mathcal{S}$ et lui-même et son inverse est $\mathcal{S}$.
+\end{thm} 

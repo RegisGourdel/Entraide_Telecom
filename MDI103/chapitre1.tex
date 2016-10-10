@@ -1,0 +1,40 @@
+\begin{note}
+	$\bar \R = \R \cup \{ -\infty, +\infty \}$, $\bar \R_+ = \R \cup \{ +\infty \}$, $\bar \R_- = \R \cup \{ -\infty \}$
+\end{note}
+
+\begin{defn}
+	Soit $(x_i)_{i \in I}$ une famille de $E \subset \bar \R$, alors :
+	\begin{itemize}
+	\item Si $I$ est finie $\sum_{i \in I} x_i$ est correctement définie dès que $(x_i)$ ne prend pas à la fois des valeurs $-\infty$ et $+\infty$.
+	\item Si $E = \bar \R_+$ et $I$ quelconque, on définit $\sum_{i \in I} x_i = \sup \left\{ \sum_{i \in J} x_i \mid J \subset I \text{ de cardinal fini} \right\}$.
+		En particulier, si $I$ est dénombrable, $\sum_{i \in I} x_i = \lim_p \sum_{n = 0}^p x_{i_n}$.
+	\item Si $\sum_{i \in I} x_{i+} < \infty$ et $\sum_{i \in I} x_{i-} < \infty$, on dit que $(x_i)$ est absolument sommable.
+	\end{itemize}
+\end{defn}
+
+\begin{defn}
+	Pour des ensembles on note $\liminf_n A_n = \bigcup_n \bigcap_{p \geq n} A_p$ et $\liminf_n A_n = \bigcap_n \bigcup_{p \geq n} A_p$.
+\end{defn}
+
+\begin{note}
+	Soit $\alpha \in \N^p$ et $f \colon \R^p \to \R^q$.
+	On note $\partial^{\alpha} f(x_1,\ldots,x_p) = \left( \frac{\partial}{\partial x_1} \right)^{\alpha_1} \cdots \left( \frac{\partial}{\partial x_p} \right)^{\alpha_p} f(x_1,\ldots,x_p)$.
+\end{note}
+
+\begin{defn}
+	Soit $f \colon \Omega \to \R^q$ avec $\Omega \subset \R^p$ ouvert.
+	On dit que $f$ est \textbf{différentiable} en $x \in \Omega$ si $\exists D_x f \in \mathcal{L}(\R^p, \R^q), \forall y \to x, f(y) = f(x) + D_x f(y - x) + o(\abs{y - x})$.
+	Si $f$ est différentiable en tout point de $\Omega$ et que $x \mapsto D_x f$ est continue sur $\Omega$, on dit que $f$ est continûment différentiable sur $\Omega$.
+\end{defn}
+
+\begin{thm}
+	Les deux propositions suivantes sont équivalentes :
+	\begin{enumerate}[(i)]
+	\item $f$ est continûment dérivable par rapport à chacune de ses variables,
+	\item $f$ est continûment différentiable sur $\Omega$.
+	\end{enumerate}
+\end{thm}
+
+\begin{defn}[\textbf{Théorème de Schwartz}]
+	Si $f$ est $\cont^n$ dans un voisinage de $x$, alors $\forall \alpha \in \N^p$ tel que $\alpha^* = \sum_{i = 1}^p \alpha_i$, l'ordre de dérivation utilisé pour calculer $\partial^{\alpha} f(x)$ ne modifie pas le résultat.
+\end{defn}

@@ -1,0 +1,124 @@
+\begin{defn}
+	On appelle $d \colon X \times X \to \R_+$ une \textbf{distance} sur $X$ si $d$ vérifie les propriétés de séparation, de symétrie et d'inégalité triangulaire.
+	$X$ muni de $d$ est alors un \textbf{espace métrique}.
+\end{defn}
+
+\begin{pop}[Seconde inégalité triangulaire]
+	$\forall (x,y,z) \in X^3, d(x,z) \geq \abs{d(x,y) - d(y,z)}$.
+\end{pop}
+
+\begin{pop}
+	Les ouverts sont stables par union et par intersection finie. Si on note $\mathcal{T}$ l'ensemble des ouverts, on dit que $(X,\mathcal{T})$ forment un \textbf{espace topologique}.
+\end{pop}
+
+\begin{pop}
+	Les ouverts d'un espace métrique sont les unions de boules ouvertes.
+\end{pop}
+
+\begin{defn}
+	Soit $A \subset X$.
+	On appelle \textbf{fermeture} de $A$ et on note $\bar{A}$ le plus petit fermé contenant $A$, $\bar{A} = \bigcap_{O \in \mathcal{T}, A \in \compl{O}} \compl{O}$.
+	On appelle \textbf{intérieur} de $A$ et on note $\AA$ le plus grand ouvert inclus dans $A$, $\AA = \bigcup_{O \in \mathcal{T}, O \in A} \compl{O}$.
+\end{defn}
+
+\begin{defn}
+	\textbf{Support} d'une application : $\Supp f = \overline{\{ f \neq 0\} }$.
+\end{defn}
+
+\begin{pop}
+	Si $X$ et $Y$ sont des espaces métriques et $f \colon X \to Y$, il y a équivalence entre :
+	\begin{enumerate}[(i)]
+		\item $f$ est continue (i.e. pour toute suite $(x_n)_n \to x$ alors $(f(x_n))_n \to f(x)$),
+		\item pour tout ouvert $O \subset Y$, l'ensemble $f^{-1}(O)$ est un ouvert de $X$,
+		\item pour tout fermé $F \subset Y$, l'ensemble $f^{-1}(O)$ est un fermé de $X$,
+	\end{enumerate}
+\end{pop}
+
+\begin{pop}[Caractérisation séquentielle des fermés]
+	Il est équivalent de dire que $F$ est fermé ou que pour toute suite $(x_n)_n \in F^{\N}$ qui converge vers un point $x$, on a $x \in F$.
+\end{pop}
+
+\begin{pop}[Caractérisation séquentielle de la fermeture]
+	$\bar{E} = \left\{ x \in X \mid \exists (x_n) \in E^{\N}, \lim_n x_n = x \right\}$.
+\end{pop}
+
+\begin{defn}
+	Soit $E$ un ev sur un corps $\K$ ($\R$ ou $\C$).
+	Une application $\norme{\cdot}$ de $E$ dans $\R_+$, est une \textbf{norme} sur $E$ si
+	\begin{enumerate}[(i)]
+		\item $\norme{x} = 0$ si et seulement si $x = 0$,
+		\item $\forall x \in E, \forall \lambda \in K, \norme{\lambda x} = \abs{\lambda} \cdot \norme{x}$,
+		\item $\forall (x,y) \in E \times E, \norme{x + y} \leq \norme{x} + \norme{y}$.
+	\end{enumerate}
+	On dit que $(E,\norme{\cdot})$ est un \textbf{espace vectoriel normé} (evn).
+\end{defn}
+
+\begin{thm}
+	Une application linéaire $f$ entre deux evn $E$ et $F$ est continue si et seulement si $\exists C \geq 0, \forall x \in E, \norme{f(x)}_F \leq C \norme{x}_E$.
+\end{thm}
+
+\begin{defn}[Norme opérateur]
+	$\norme{f}_{\mathcal{A}(E,F)} = \inf \{ C \mid \forall x \in E \norme{f(x)}_F \leq C \norme{x}_E \}$.
+\end{defn}
+
+\begin{defn}
+	$\norme{\cdot}_1$ et $\norme{\cdot}_2$ sur $E$ sont \textbf{équivalentes} entre elles si $\exists A,B > 0, \forall x \in E, A \norme{x}_1 \leq \norme{x}_2 \leq B \norme{x}_1$.
+\end{defn}
+
+\begin{pop}
+	Deux normes sur un même e.v. définissent une même topologie si et seulement si elles sont équivalentes.
+\end{pop}
+
+\begin{defn}
+	Si $F$ et $G$ sont des evn alors $(F \times G, \norme{\cdot}_{F \times G})$ est un evn avec $\norme{(f,g)}_{F \times G} = \max (\norme{f}_F,\norme{g}_G)$.
+\end{defn}
+
+\begin{thm}
+	Soit $T \colon F \times G \to H$ bilinéaire. Alors $T$ est continue si et seulement si $\exists A \geq 0, \forall (f,g) \in F \times G, \norme{T(f,g)}_H \leq A \norme{f}_F \norme{g}_G$.
+\end{thm}
+
+\begin{defn}
+	Soit $A \subset E$ evn.
+	On dit que $A$ est \textbf{dense} dans $E$ si $\forall x \in E, \forall \epsilon > 0, \exists y \in A, \norme{x - y} \leq \epsilon$.
+\end{defn}
+
+\begin{defn}
+	Un evn est dit \textbf{séparable} s'il contient un sous-ensemble dense et dénombrable.
+\end{defn}
+
+\begin{pop}
+	$E$ est séparable si et seulement s'il contient un ensemble dénombrables de boules $(A_i)_{i \in \N}$ tel que tout ouvert de $E$ s'écrit comme une union de boules prises dans cet ensemble.
+\end{pop}
+
+\begin{pop}
+	Soit $F \subset E$ un hyperplan.
+	Alors il existe $G$ de dimension $1$ tel que $F \oplus G = E$.
+	D'autre part, si $G$ est un s-ev tel que $F \oplus G = E$, alors $G$ est de dimension $1$.
+\end{pop}
+
+\begin{pop}
+	Un hyperplan dans un evn est soit dense soit fermé.
+\end{pop}
+
+\begin{defn}
+	Une suite $(x_n)$ dans un e.v.n. est dite \textbf{de Cauchy} si $\forall \epsilon > 0, \exists N, \forall m,n > N, \norme{x_m - x_n} \leq \epsilon$.
+	Un evn est dit \textbf{complet} (ou de Banach) si toute suite de Cauchy converge vers un point de l'espace.
+\end{defn}
+
+\begin{pop}
+	Un complet est complet si et seulement si toute série absolument convergente est convergente.
+\end{pop}
+
+\begin{pop}
+	Soient $E$ et $F$ deux evn, $F$ complet, et $G$ un s-ev dense dans $E$.
+	Si $A \colon G \to F$ est un opérateur linéaire continu, alors il existe un prolongement unique $\~{A} \colon E \to F$ linéaire continu et $\norme{\~{A}} = \norme{A}$.
+\end{pop}
+
+\begin{thm}
+	Si E est un evn alors il existe un e.v.n. F tel que
+	\begin{enumerate}
+		\item L’evn $F$ est complet.
+		\item $\exists I \in \mathcal{L}(E,F)$ isométrique et telle que $I(E)$ est dense dans $F$.
+	\end{enumerate}
+	De plus, si $F_2$ est un autre evn vérifiant les deux propriétés et que $I_2$ est l’isométrie correspondante alors $I_2 \circ I^{-1}$ se prolonge en une isométrie bijective entre $F$ et $F_2$, i.e. $F$ est unique à une isométrie près.
+\end{thm}

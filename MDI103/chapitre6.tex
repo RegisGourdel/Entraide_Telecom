@@ -1,0 +1,48 @@
+\begin{defn}[Continuité sur $\intfo{0}{1}$ torique]
+	Une fonction définie sur $\intfo{0}{1}$ est dite continue si elle est continue au sens classique et qu'en plus elle admet une limite en $1$ égale à sa valeur en $0$.
+\end{defn}
+
+\begin{defn}
+	Les espaces $L^p (\intfo{0}{1})$ sont définis comme sur $\R$, avec pour norme $\norme{f}_p = \left( \int_0^1 \abs{f(t)}^p \diff t \right)^{\frac{1}{p}}$ pour $p < \infty$.
+\end{defn}
+
+\begin{defn}
+	Soit $1 \leq p < \infty$, $l^p := \left\{ (u_n)_{n \in \Z} \mid \sum_{n \in \Z} \abs{u_n}^p < \infty \right\}$ et, pour $u \in l^p$, $\norme{u}_p = \left( \sum_{n \in \Z} \abs{u_n}^p \right)^{\frac{1}{p}}$.
+	$l^\infty$ est l'espace des suites bornées et $\norme{u}_\infty = \sup_n(\abs{u_n})$.
+\end{defn}
+
+\begin{pop}
+	\begin{enumerate}[(i)]
+		\item Si $p < q$, alors $L^q (\intfo{0}{1}) \subset L^p \intfo{0}{1}$, $L^\infty (\intfo{0}{1}) \subset L^2 (\intfo{0}{1}) \subset L^1 (\intfo{0}{1})$.
+		\item Si $p < q$, alors $l^p \subset l^q$, $l^1 \subset l^2 \subset l^\infty$.
+		\item $\cont^0 (\intfo{0}{1})$ est dense dans $L^p (\intfo{0}{1})$ pour $p$ fini.
+		\item Les suites à support fini sont denses dans $l^p$ pour $p$ fini.
+	\end{enumerate}
+\end{pop}
+
+\begin{defn}
+	Convolution sur les suites : $(u \star v)_n = \sum u_k v_{n - k}$.
+\end{defn}
+
+\begin{defn}
+	Convolution entre fonctions sur $\intfo{0}{1}$ : $(f \star g)(x) = \int_0^x f(t) g(x - t) \diff t + \int_x^1 f(t) g(1 + x - t) \diff t$.
+	Cela peut se ramener à une convolution sur $\R$ et les règles de calcul précédentes sont donc encore vraies.
+\end{defn}
+
+\begin{pop}
+	Soit $p$ et $q$ des exposants conjugués.
+	\begin{enumerate}
+		\item Si $f \in L^p(\intfo{0}{1})$ et $g \in L^q(\intfo{0}{1})$ alors $f \star g$ est continue bornée sur $\intfo{0}{1}$.
+		\item Si $u \in l^p$ et $v \in l^q$ alors $u \star v$ est une suite bornée.
+		\item Si $f \in L^1(\intfo{0}{1})$ et $g \in L^p(\intfo{0}{1})$ alors $f \star g \in L^p(\intfo{0}{1})$.
+		\item Si $u \in l^1$ et $v \in l^p$ alors $u \star v \in l^p$.
+	\end{enumerate}
+\end{pop}
+
+\begin{defn}
+	$t$-translatée de $f$ : $f_t \colon x \mapsto f \left( (x - t) - \lfloor x - t \rfloor \right)$, définie sur $\intfo{0}{1}$.
+\end{defn}
+
+\begin{thm}
+	Si $f \in L^p(\intfo{0}{1})$ avec $p < \infty$ akirs $x \mapsto f_x$ est uniformément continue de $\R$ dans $L^p (\intfo{0}{1})$.
+\end{thm} 

@@ -1,0 +1,204 @@
+\begin{thm}
+	Il existe une unique mesure $\lambda_N$ sur $\left(\R^N,\mathcal{B}\left( \R^N \right) \right)$ qui vérifie, pour tout pavé $\intff{a}{b} = \prod_{i = 1}^N \intff{a_i}{b_i}$, $\lambda_N (\intff{a}{b}) = \prod_{i = 1}^N (b_i - a_i)$.
+	On l'appelle mesure de Lebesgue de dimension $N$.
+\end{thm}
+
+\begin{pop}
+	La mesure de Lebesgue est invariante par translation.
+\end{pop}
+
+\begin{defn}
+	Soit $f \colon \R^N \to \R$ ou $\bar\R$.
+	On dit que $f$ est \textbf{borélienne} si elle est mesurable de $\left(\R^N,\mathcal{B}\left( \R^N \right) \right)$ dans  $\left(\R,\mathcal{B}\left( \R \right) \right)$ ou $\left(\bar\R,\mathcal{B}\left( \bar\R \right) \right)$.
+\end{defn}
+
+\begin{defn}
+	On dit que $f$ est \textbf{intégrable} si c'est une fonction borélienne et $\int \abs{f} = \int f_+ + \int f_- < \infty$.
+	On note $\mathcal{L}^1(\R^N)$ l'ensemble des fonctions intégrables définies sur $\R^N$.
+\end{defn}
+
+\begin{thm}
+	$\mathcal{L}^1(\R^N)$ est un e.v., $f \to \int f$ définit une forme linéaire sur cet espace et $f \leq g \implies \int f \leq \int g$.
+\end{thm}
+
+\begin{thm}[\textbf{Théorème de convergence monotone}]
+	Soit $(f_n)_{n \in \N}$ une suite de fonctions boréliennes de $\R^N$ dans $\R_+$ ou $\bar\R_+$, et $f$ sa limite simple.
+	Alors $f$ est borélienne et si de plus $(f_n(x))_n$ est croissante pour tout $x$ alors $\int f = \lim_n \int f_n$.
+\end{thm}
+
+\begin{defn}
+	$A \in \mathcal{B}\left( \R^N \right)$ est dit \textbf{négligeable} si $\lambda_N(A) = 0$.
+\end{defn}
+
+\begin{lem}
+	Soit $f$ borélienne positive.
+	Alors $\int f = 0$ si et seulement si $\{ f \neq 0 \}$ est négligeable.
+\end{lem}
+
+\begin{defn}
+	Soit $f$ et $g$ boréliennes.
+	On dira qu'elles sont égales presque partout et on notera $f \overset{\text{p.p.}}{=} g$ si $\{ f \neq g \}$ est négligeable.
+\end{defn}
+
+\begin{lem}[Lemme de Fatou]
+	Soit $(f_n)$ une suite de fonctions boréliennes positives.
+	On a $\int \liminf_n f_n \leq \liminf_n \int f_n$.
+\end{lem}
+
+\begin{thm}[\textbf{Théorème de convergence dominée}]
+	Soit $(f_n)$ une suite de fonctions boréliennes.
+	S'il existe $g$ intégrable telle que $\forall n \geq 1, \abs{f_n} \overset{\text{p.p.}}{\leq} g$ et qu'il existe $f$ borélienne telle que $f_n \overset{\text{p.p.}}{\to} f$, alors $f$ est intégrable et on a $\lim_n \int \abs{f_n - f} = 0$, d'où en particulier $\int f = \lim_n \int f_n$.
+	On note alors $f_n \overset{L^1}{\to} f$.
+\end{thm}
+
+\begin{thm}
+	Soit $(f_n)$ une suite de fonctions boréliennes.
+	Si les $f_n$ sont à valeurs positives ou si $\int \sum_n \abs{f_n} < \infty$, alors $\int \sum_{n \geq 1} f_n = \sum_{n \geq 1} \int f_n$.
+\end{thm}
+
+\begin{thm}[Théorèmes de \textbf{Fubini} et \textbf{Tonelli}]
+	Soit $f$ borélienne sur $\R^N$ avec $N = N_1 + N_2$ et $N_1, N_2 \geq 0$.
+	Alors $\forall x \in \R^{N_1}$, $y \mapsto f(x,y)$ est borélienne sur $\R^{N_2}$, $x \mapsto \int f_\pm (x,y) \diff y$ sont boréliennes de $\R^{N_1} \to \bar\R$, et de même en échangeant les rôles de $x$ et $y$.
+
+	Supposons maintenant que l'une des conditions suivantes soient vérifiées :
+	\begin{enumerate}[(i)]
+		\item $f \overset{\text{p.p.}}{\geq} 0$ (critère de Tonelli)
+		\item $\int \abs{f} < \infty$ (critère de Fubini)
+	\end{enumerate}
+	Alors on a $\int f = \int_{\R^{N_1}} \left( \int_{\R^{N_2}} f(x,y) \diff y \right) \diff x = \int_{\R^{N_2}} \left( \int_{\R^{N_1}} f(x,y) \diff x \right) \diff y$.
+\end{thm}
+
+\begin{defn}
+	Soit $U$ et $V$ deux ouverts de $\R^N$.
+	On dit que $\phi \colon U \to V$ est un difféomorphisme si $\phi$ est bijective, continûment dérivable sur $U$ et son application réciproque $\phi^{-1}$ est continûment dérivable sur $V$.
+\end{defn}
+
+\begin{defn}
+	Soit $\phi$ continûment dérivable sur $U$ ouvert.
+	La fonction $J_{\phi} \colon \begin{array}{rcl} U & \to & \R \\ x & \mapsto & \det [D_x(\phi)] = \det [\partial \phi(x)] \end{array}$ est appelée Jacobien de $\phi$, où $D_x(\phi)$ dénote l'application différentielle de $f$ en $x$ et $\partial \phi (x)$ la matrice jacobienne associée.
+\end{defn}
+
+\begin{thm}[\textbf{Changement de variable} dans $\R^N$]
+	Soit $U$ et $V$ deux ouverts de $\R^N$ et $\phi \colon U \to V$ un difféomorphisme.
+	Alors pour tout $f$ borélienne sur $V$, on a $f \circ \phi$ borélienne sur $U$ et $\int_U f \circ \phi = \int_V \frac{f}{\abs{J_\phi \circ \phi^{-1}}}$.
+\end{thm}
+
+\begin{rem}
+	Formulations équivalentes : $\int_U (f \circ \phi) \cdot \abs{J_\phi} = \int_V f, \qquad \int_V f \circ \phi^{-1} = \int_U f \cdot \abs{J_\phi}$.
+\end{rem}
+
+\begin{defn}
+	Nous appelons $\left( L^1 \left( \R^N \right), \norme{\cdot}_1 \right)$ l'e.v.n. des classes d'équivalence des fonctions intégrables.
+\end{defn}
+
+\begin{thm}
+	L'intégrale définit une application linéaire continue de $L^1 \left( \R^N \right)$ dans $\R$.
+\end{thm}
+
+\begin{thm}
+	L'espace $\mathcal{C}_c \left( \R^N \right)$ des fonctions continues à support compact est dense dans $L^1 \left( \R^N \right)$.
+\end{thm}
+
+\begin{defn}
+	Pour tout réel $p \in \intfo{1}{\infty}$, nous appelons $\mathcal{L}^p \left( \R^N \right)$ l'espace des fonctions boréliennes $f \colon \R^N \to \R$, $\C$, $\bar\R$ ou $\bar\C$ vérifiant $\abs{f}^p \in \mathcal{L}^1 \left( \R^N \right)$
+	On appelle $\mathcal{L}^{\infty} \left( \R^N \right)$ l'espace des fonctions boréliennes $f$ à valeurs complexes pour lesquelles il existe $g$ bornée telle que $f \overset{\text{p.p.}}{=} g$.
+\end{defn}
+
+\begin{lem}[Inégalité de \textbf{Young}]
+	Soit $a,,b \in \R_+$ et $(p,q) \in \intoo{1}{\infty}^2$ tels que $\frac{1}{p} + \frac{1}{q} = 1$.
+	Alors $ab \leq \frac{a^p}{p} + \frac{b^q}{q}$.
+\end{lem}
+
+\begin{thm}[Inégalité de \textbf{Hölder}]
+	Soit $1 \leq p \leq \infty$ et $1 \leq q \leq \infty$ tels que $\frac{1}{p} + \frac{1}{q} = 1$.
+	Si $f \in \mathcal{L}^p \left( \R^N \right)$ et $g \in \mathcal{L}^q \left( \R^N \right)$, alors $fg \in \mathcal{L}^1 \left( \R^N \right)$ et $\norme{fg}_1 \leq \norme{f}_p \norme{g}_q$.
+\end{thm}
+
+\begin{thm}[Inégalité de \textbf{Minkowski}]
+	Soit $1 \leq p \leq \infty$.
+	Si $f,g \in \mathcal{L}^p \left( \R^N \right)$, alors $f + g \in \mathcal{L}^p \left( \R^N \right)$ et $\norme{f + g}_p \leq \norme{f}_p + \norme{g}_p$.
+\end{thm}
+
+\begin{thm}[Inégalité de \textbf{Jensen}]
+	Soit $-\infty \leq a < b \leq \infty$.
+	On dispose de $\varphi \colon \intoo{a}{b} \to \R$ convexe, $\lambda \colon \R^N \to \R_+$ borélienne de mase totale $1$ et $g \colon \R^N \to \intoo{a}{b}$ borélienne telle que $g \cdot \lambda$ est intégrable.
+	Alors $\varphi \left( \int g \lambda \right) \leq \int (\varphi \circ g) \lambda$.
+\end{thm}
+
+\begin{thm}
+	Soit $1 \leq p \leq \infty$.
+	L'espace $\mathcal{L}^p \left( \R^N \right)$ est un ev sur $\C$ et $\norme{\cdot}_p$ est une semi-norme sur lui.
+\end{thm}
+
+\begin{defn}
+	Soit $1 \leq p \leq \infty$.
+	On appelle $\left( L^p \left( \R^N \right), \norme{\cdot}_p \right)$ l'evn des classes d'équivalence des fonctions de $\mathcal{L}^p \left( \R^N \right)$.
+\end{defn}
+
+\begin{defn}
+	On a $f_n \overset{L^p}{\to} f$ si $\lim_n \norme{f_n - f}_p = 0$.
+\end{defn}
+
+\begin{thm}[\textbf{Convergence dominée} dans $\mathcal{L}^p \left( \R^N \right)$]
+	Soit $1 \leq p < \infty$ et $(f_n)_{n \in \N} \subset \mathcal{L}^p \left( \R^N \right)$ une suite vérifiant $f_n \overset{\text{p.p.}}{\to} f$ et $\exists g \in \mathcal{L}^p \left( \R^N \right), \forall n \in \N, \abs{f_n} \overset{\text{p.p.}}{\leq} g$.
+	Alors $f \in \mathcal{L}^p \left( \R^N \right)$ et $f_n \overset{L^p}{\to} f$.
+\end{thm}
+
+\begin{thm}
+	Soit $1 \leq p < \infty$, $(f_n)_{n \in \N} \subset \mathcal{L}^p \left( \R^N \right)$ et $f \in \mathcal{L}^p \left( \R^N \right)$.
+	On suppose $f_n \overset{L^p}{\to} f$.
+	Alors il existe une sous-suite $(f_{n_k})_{k \in N}$ telle que $f_{n_k} \overset{\text{p.p.}}{\to} f$ lorsque $k \to \infty$ et $\exists g \in \mathcal{L}^p \left( \R^N \right), \forall k \in \N, \abs{f_{n_k}} \overset{\text{p.p.}}{\leq} g$.
+\end{thm}
+
+\begin{pop}(Séries absolument convergentes dans $L^p \left( \R^N \right)$)
+	Soit $1 \leq p < \infty$ et $(f_n)_{n \in \N} \subset \mathcal{L}^p \left( \R^N \right)$.
+	On suppose $\sum_n \norme{f_n}_p < \infty$.
+	Alors :
+	\begin{enumerate}[(i)]
+		\item $\sum_{n = 0}^{+\infty} \abs{f_n(x)} \overset{\text{p.p.}}{<} \infty$, on pose $f(x) \overset{\text{p.p.}}{=} \sum_{n = 0}^{+\infty} f_n(x)$,
+		\item $f \in \mathcal{L}^p \left( \R^N \right)$,
+		\item $\sum_{k = 0}^{n} f_k \overset{L^p}{\underset{n}{\to}} f$ et $\exists h \in \mathcal{L}^p \left( \R^N \right), \forall n \in \N, \abs{\sum_{k = 0}^{n} f_k} \overset{\text{p.p.}}{\leq} h$.
+	\end{enumerate}
+\end{pop}
+
+\begin{thm}
+	Soit $1 \leq p < \infty$.
+	L'evn $(L^p,\norme{\cdot}_p)$ est complet.
+\end{thm}
+
+\begin{thm}
+	Soit $1 \leq p < \infty$.
+	L'espace $\cont_c \left( \R^N \right)$ est dense dans $\left(L^p \left( \R^N \right) ,\norme{\cdot}_p \right)$.
+\end{thm}
+
+\begin{thm}
+	Si $f \in L^1 \left( \R^N \right)$ alors $t \mapsto \mathcal{T}_t f$ est continue de $\R^N$ dans $L^1 \left( \R^N \right)$.
+\end{thm}
+
+\begin{defn}
+	\textbf{Produit de convolution} de $f$ et $g$ boréliennes : $f \star g \colon x \mapsto \int f(x - y)g(y) \diff y$, en tout point où cette intégrale est correctement définie.
+\end{defn}
+
+\begin{thm}
+	Si $f,g \in \mathcal{L}^1 \left( \R^N \right)$, alors $f \star g$ est défini et fini presque partout.
+	Dans $L^1 \left( \R^N \right)$ on a $\norme{f \star g}_1 \leq \norme{f}_1 \norme{g}_1$ et $\int f \star g = \int f \times \int g$.
+\end{thm}
+
+\begin{thm}
+	Le produit de convolution, comme application de $L^1 \left( \R^N \right) \times L^1 \left( \R^N \right) \to L^1 \left( \R^N \right)$ est commutatif et associatif.
+\end{thm}
+
+\begin{thm}
+	Soit $1 \leq p,q \leq \infty$ tels que $\frac{1}{p} + \frac{1}{q} = 1$. On a :
+	\begin{enumerate}[(i)]
+		\item la convolution définie sur $L^p \times L^q$ est à valeurs dans $\mathcal{C}_b \left( \R^N \right)$,
+		\item la convolution sur $L^p \left( \R^N \right) \times L^q \left( \R^N \right)$ vue comme application à valeurs dans $L^\infty \left( \R^N \right)$ est bilinéaire continue,
+		\item si, de plus, $p$ et $q$ sont finis, alors $f \star g$ tend vers $0$ à l'infini.
+	\end{enumerate}
+\end{thm}
+
+\begin{thm}
+	Soit $f \in L^1$ et $g \in L^p$ avec $p$ fini.
+	ALors $f \star g$ est défini et fini en presque tout point.
+	De plus, $(f,g) \mapsto f \star g$ sur $L^1 \times L^p$ est à valeurs dans $L^p$ et bilinéaire continu avec $\norme{f \star g}_p \leq \norme{f}_1 \norme{g}_p$.
+\end{thm} 
