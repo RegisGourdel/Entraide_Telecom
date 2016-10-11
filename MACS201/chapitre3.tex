@@ -56,3 +56,21 @@
 		Consider a $\nu$-dominated model $\mathcal{P}$ for $X$ and let $S = g(X)$ be a $d$-dimensional statistic.
 		Then $S$ is a sufficient statistic for the model $\mathcal{P}$ if and only if there exists a non-negative Borel function $h$ on $\mathsf{X}$ such that $\forall P \in \mathcal{P}$, there exists a Borel function $f_P \colon \R^d \to \R_+$ such that $\frac{\diff P^X}{\diff \nu} = h \cdot f_P \circ g$.
 	\end{thm}
+	
+	\begin{defn}
+		Consider a $\nu$-dominated model $\mathcal{P}$ for $X$.
+		For all $P \in \mathcal{P}$, let us denote by $f_P$ the density of $P^X$ with respect to $\nu$.
+		The \textbf{likelihood function} is defined as $P \mapsto f_P \circ X$ on $P \in \mathcal{P}$.
+	\end{defn}
+	
+	Then, $f_{P_1}(X) \geq f_{P_2}(X)$ is an indication that $\KL \left( P_*^X \| P_1^X \right) \leq \KL \left( P_*^X \| P_2^X \right)$ where $P_*$ is the true distribution of $X$.
+
+	\begin{rem}
+		Interestingly, we note that if one has a sufficient statistic $S = g(X)$, by the Fisher Factorization theorem, to compare $f_{P_1}(X)$ and $f_{P_2}(X)$, we only need to observe $S$.
+	\end{rem}
+
+	With a parametric model we define the likelihood function directly on $\Theta$, $\theta \mapsto f_\theta \circ X$ where $f_\theta$ denotes the density of $P_\theta$ with respect to $\nu$.
+	
+	\begin{defn}
+		A statistic $\hat{\theta}_n$ valued in $\Theta$ such that $f_{\hat{\theta}_n} \circ X = \max_{\theta \in \Theta} f_\theta \circ X$ is called a \textbf{maximum likelihood estimator (MLE)}.
+	\end{defn}
