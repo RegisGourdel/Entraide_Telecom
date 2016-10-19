@@ -1,0 +1,31 @@
+\subsection{Random processes}
+
+	We consider a probability space $(\Omega, \mathcal{F}, \proba)$, an index $T$ and a measurable space $(\mathsf{X}, \mahtcal{X})$ called the observation space.
+
+	\begin{defn}
+		A \textbf{random process} defined on $(\Omega, \mathcal{F}, \proba)$, indexed on $T$ and valued in $(\mathsf{X}, \mahtcal{X})$ is a collection $(X_t)_{t \in T}$ of r.v. defined on $(\Omega, \mathcal{F}, \proba)$ and taking values in $(\mathsf{X}, \mahtcal{X})$.
+	\end{defn}
+
+	\begin{defn}
+		For each $\omega \in \Omega$, the application $t \mapsto X_t(\omega)$ is called the \textbf{path} associated to the experiment $\omega$.
+	\end{defn}
+
+	\begin{defn}
+		A \textbf{filtration} of a measurable space $(\Omega, \mathcal{F})$ is an increasing sequence $(\mathcal{F}_t)_{t \in T}$ of sub-$\sigma$-fields of $\mathcal{F}$.
+		A \textbf{filtered probability space} $(\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \in T}, \proba)$ is a probability space endowed with a filtration.
+		A random process $(X_t)_{t \in T}$ defined on $(\Omega, \mathcal{F}, \proba)$ is said to be \textbf{adapted} to the filtration if for each $t \in T$, $X_t$ is $\mathcal{F}_t$-measurable.
+		Then we note $((X_t, \mathcal{F}_t))_{t \in T}$.
+	\end{defn}
+
+	\begin{defn}
+		The \textbf{natural filtration} of a process $(X_t)_{t \in T}$ is the smallest filtration with respect to which $(X_t)_{t \in T}$ is adapted, i.e. $\forall t \in T, \mathcal{F}_t^X = \sigma(X_s, s \leq t)$.
+	\end{defn}
+
+	\begin{defn}
+		We call \textbf{finite dimensional distributions}, or \textbf{fidi distributions}, of the process $X$ the collection of probability measures $(\proba_I)_{I \in \mathcal{I}}$ where $\proba_I$ denotes the probability distribution of the random vector $\{ X_t, t \in I \}$.
+	\end{defn}
+
+	Let $J \subset I$ two finite subsets.
+	Let us denote bu $\Pi_{I,J}$ the canonical projection of $\mathsf{X}^I$ onto $\mathsf{X}^J$ defined by $\forall x = (x_t)_{t \in I} \in \mathsf{X}^I, \Pi_{I,J}(x) = (x_t)_{t \in J}$.
+	Then $\proba_I \circ \Pi_{I,J}^{-1} = \proba_J$.
+	We denote $\Pi_I = \Pi_{T,I}$ and $\Pi_s = \Pi_{ \{ s \} }$ where $s \in T$.
