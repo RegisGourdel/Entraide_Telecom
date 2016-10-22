@@ -1,9 +1,5 @@
 On remarque que $\mathcal{L}(\mathcal{C})$ s'identifie au nombre moyen de questions à poser pour identifier une valeur $X \in \mathcal{X}$.
 
-\begin{defn}
-	[...]
-\end{defn}
-
 \begin{thm}
 	On a $0 \leq H(X) \leq \log( \abs{\mathcal{X}} )$.
 \end{thm}
@@ -44,7 +40,7 @@ On remarque que $\mathcal{L}(\mathcal{C})$ s'identifie au nombre moyen de questi
 	On définit $H(X ; Y \mid Z) = \sum_{x,y,z} p(x,y,z) \log \left( \frac{p(x,y \mid z)}{p(x \mid z) p(y \mid z)} \right) = H(X \mid Z) - H(X \mid Y, Z)$.
 \end{defn}
 
-\begin{thm}
+\begin{thm}[Chain rule sur $I$]
 	$I(X_1,\ldots,X_n ; Y) = \sum_{i = 1}^n I(X_i ; Y \mid X^{i - 1})$.
 \end{thm}
 
