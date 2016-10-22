@@ -13,7 +13,7 @@
 		We say that $\mathcal{P}$ is a $\nu$-dominated model for $X$, or that $\mathcal{P}^X$ is $\nu$-dominated, if $\forall P \in \mathcal{P}, P^X \ll \nu$.
 	\end{defn}
 
-	\begin{lem}
+	\begin{lem}[Halmos and Savage]
 		Let $\nu \in \mes_+(\mathsf{X},\mathcal{X})$.
 		Consider a $\nu$-dominated model $\mathcal{P}$ for the variable $X$.
 		Then there exists a countable collection $(P_n)_{n \geq 1}$ in $\mathcal{P}$ such that $\mathcal{P}^X$ is also dominated by $\mu = \sum_{n \geq 1} 2^{-n} P_n^X$.
@@ -73,4 +73,33 @@
 	
 	\begin{defn}
 		A statistic $\hat{\theta}_n$ valued in $\Theta$ such that $f_{\hat{\theta}_n} \circ X = \max_{\theta \in \Theta} f_\theta \circ X$ is called a \textbf{maximum likelihood estimator (MLE)}.
+	\end{defn}
+
+\subsection{Statistical testing}
+
+	We define two hypothesis, respectively called the \emph{null hypothesis} and the \emph{alternative hypothesis}.
+	\begin{itemize}
+		\item[\textbullet] $(\mathbf{H}_0)$ the observation variable $X$ has distribution $P^X$ with $P \in \mathcal{P}_0$,
+		\item[\textbullet] $(\mathbf{H}_1)$ $X$ has distribution $P^X$ with $P \in \mathcal{P}_1$,
+	\end{itemize}
+	with $\{ \mathcal{P}_0, \mathcal{P}_1 \}$ a partition of a statistical model $\mathcal{P}$.
+	$(\mathbf{H}_i)$ is simple if $\mathcal{P}_i$ reduces to one point.
+	
+	\begin{defn}
+		A \textbf{statistical test} is a statistic $\delta$ with values in $\{ 0, 1 \}$.
+		If $\delta = 0$ we say that we accept $(\mathbf{H}_0)$.
+		Otherwise we reject it.
+	\end{defn}
+	
+	To evaluate the performance of a test $\delta$, two type of risks are considered :
+	\begin{itemize}
+		\item[\textbullet] The \emph{first type} risk is defined as $P \mapsto P(\delta = 1)$ as $P \in \mathcal{P}_0$.
+		\item[\textbullet] The \emph{second type} risk is defined as $P \mapsto P(\delta = 0)$ as $P \in \mathcal{P}_1$.
+	\end{itemize}
+	We call \emph{power} of $\delta$ the application $P \mapsto P(\delta = 1)$ as $P \in \mathcal{P}_1$.
+
+	\begin{defn}
+		Let $\alpha \in \intff{0}{1}$.
+		We say that a test $\delta$ is of level $\alpha$ if $\sup_{P \in \mathcal{P}_0} P(\delta = 1) \leq \alpha$.
+		We say that $\delta$ is uniformly more powerful then $\delta'$ for level $\alpha$ if both are of level $\alpha$ and $\forall P \in \mathcal{P}_1, P(\delta = 1) \geq P(\delta' = 1)$.
 	\end{defn}

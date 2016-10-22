@@ -48,3 +48,16 @@ On remarque que $\mathcal{L}(\mathcal{C})$ s'identifie au nombre moyen de questi
 	$I(X_1,\ldots,X_n ; Y) = \sum_{i = 1}^n I(X_i ; Y \mid X^{i - 1})$.
 \end{thm}
 
+\subsection{Typicalité}
+
+	\begin{defn}
+		Soit $X_1,\ldots,X_n$ i.i.d..
+		On appelle $A_\varepsilon^n = \left\{ x^n \mid 2^{-n(H(x) + \varepsilon)} \leq p(x^n) \leq 2^{-n(H(x) - \varepsilon)} \right\}$ \textbf{ensemble typique}.
+	\end{defn}
+
+	\begin{thm}
+		\begin{itemize}
+			\item[\textbullet] Pour $n$ suffisamment grand, $\proba(A_\varepsilon^n) \geq 1 - \varepsilon$.
+			\item[\textbullet] $(1 - \varepsilon) 2^{-n(H(x) - \varepsilon)} \leq \abs{A_\varepsilon^n} \leq 2^{-n(H(x) + \varepsilon)}$
+		\end{itemize}
+	\end{thm}
