@@ -1,9 +1,9 @@
 \subsection{Random processes}
 
-	We consider a probability space $(\Omega, \mathcal{F}, \proba)$, an index $T$ and a measurable space $(\mathsf{X}, \mahtcal{X})$ called the observation space.
+	We consider a probability space $(\Omega, \mathcal{F}, \proba)$, an index $T$ and a measurable space $(\mathsf{X}, \mathcal{X})$ called the observation space.
 
 	\begin{defn}
-		A \textbf{random process} defined on $(\Omega, \mathcal{F}, \proba)$, indexed on $T$ and valued in $(\mathsf{X}, \mahtcal{X})$ is a collection $(X_t)_{t \in T}$ of r.v. defined on $(\Omega, \mathcal{F}, \proba)$ and taking values in $(\mathsf{X}, \mahtcal{X})$.
+		A \textbf{random process} defined on $(\Omega, \mathcal{F}, \proba)$, indexed on $T$ and valued in $(\mathsf{X}, \mathcal{X})$ is a collection $(X_t)_{t \in T}$ of r.v. defined on $(\Omega, \mathcal{F}, \proba)$ and taking values in $(\mathsf{X}, \mathcal{X})$.
 	\end{defn}
 
 	\begin{defn}
@@ -27,5 +27,63 @@
 
 	Let $J \subset I$ two finite subsets.
 	Let us denote bu $\Pi_{I,J}$ the canonical projection of $\mathsf{X}^I$ onto $\mathsf{X}^J$ defined by $\forall x = (x_t)_{t \in I} \in \mathsf{X}^I, \Pi_{I,J}(x) = (x_t)_{t \in J}$.
-	Then $\proba_I \circ \Pi_{I,J}^{-1} = \proba_J$.
+	Then $\proba_I \circ \Pi_{I,J}^{-1} = \proba_J$ (compatibility condition).
 	We denote $\Pi_I = \Pi_{T,I}$ and $\Pi_s = \Pi_{ \{ s \} }$ where $s \in T$.
+
+	\begin{thm}[Kolmogorov]
+		Let $\mathcal{I}$ be the set of all finite subsets of $T$.
+		Suppose that, for all $I \in \mathcal{I}$, $\nu_I$ is a probability measure on $(\mathsf{X}^I,\mathcal{X}^{\otimes I})$ and that the collection $\{ \nu_I, I \in \mathcal{I} \}$ satisfies $\forall I, J \in \mathcal{I}, I \subset J, \nu_I \circ \Pi_{I,J}^{-1} = \nu_J$.
+		Then there exists a unique probability measure $\proba$ on $(\mathsf{X}^T,\mathcal{X}^{\otimes T})$ such that, $\forall I \in \mathcal{I}, \nu_I = \proba \circ \Pi_I^{-1}$.
+	\end{thm}
+
+	\begin{defn}
+		Let $X = (X_t)_{t \in T}$ be a random process defined on $(\Omega,\mathcal{F},\proba)$.
+		The \textbf{law in the sense of fidi distribution} is the image measure $\proba^X$, that is, the unique probability measure defined on $(\mathsf{X}^T,\mathcal{X}^{\otimes T})$ that satisfies $\forall I \in \mathcal{I}, \proba^X \circ \Pi_I^{-1} = \proba_I$, i.e. $\forall (A_t)_{t \in I} \in \mathcal{X}^I, \proba^X \left( \prod_{i \in I} A_t \times \mathsf{X}^{T \setminus I} \right) = \proba (X_t \in A_t, t \in I)$.
+	\end{defn}
+	
+	\begin{defn}
+		The canonical functions defined on $(\mathsf{X}^T,\mathcal{X}^{\otimes T})$ is the collection of measurable functions $(\xi_t)_{t \in T}$ valued in $(\mathsf{X},\mathcal{X})$ as $\forall  \omega = (\omega_t)_{t \in T} \in \mathsf{X}^T, \xi_t(\omega) = \omega_t$.
+		When $(\mathsf{X}^T,\mathcal{X}^{\otimes T})$ is endowed with the image measure $\proba^X$ then the \textbf{canonical process} $(\xi_t)_{t \in T}$ defined on $(\mathsf{X}^T,\mathcal{X}^{\otimes T},\proba^X)$ has the same fidi distribution as $X$.
+	\end{defn}
+
+
+\subsection{Gaussian processes}
+
+	\begin{defn}
+		The real valued r.v. $X$ is Gaussian if its characteristic function satisfies
+		$\phi_X(u) = \esp(e^{iuX}) = \exp(i \mu u - \sigma^2 u^2 / 2)$
+		where $\mu \in \R$ and $\sigma \in \R_+$.
+	\end{defn}
+
+	If $\sigma \neq 0$ then $X$ admits a probability density function $p(x) = \frac{1}{\sigma \sqrt{2 \pi}} \exp \left( - \frac{(x - \mu)^2}{2 \sigma^2} \right)$.
+
+	\begin{defn}
+		A random vector $\transp{[X_1, \ldots, X_n]}$ valued in $\R^n$ is a Gaussian vector if any linear combination of $X_1, \ldots, X_n$ is a Gaussian variable.
+	\end{defn}
+
+	Let $\mu$ denote the mean vector of $\transp{[X_1, \ldots, X_n]}$ and $\Gamma$ its covariance matrix.
+	Then $\forall u \in \R^n, Y = \transp{u} X$ is Gaussian, $\esp(Y) = \transp{u} \mu$ and $\Var(Y) = \transp{u} \Gamma u$.
+	Thus $\phi_X(u) = \esp \left[ \exp \left( i \transp{u} X \right) \right] = \exp \left( i \transp{u} \mu - \frac{1}{2} \transp{u} \Gamma u \right)$.
+	
+	\begin{pop}
+		The probability distribution of an $n$-dimensional Gaussian vector $X$ is determined by its mean vector and covariance matrix $\Gamma$.
+		We denote $X \sim \normale(\mu,\Gamma)$.
+		Conversely, for all vector $\mu \in \R^n$ and all non-negative symmetric matrix $\Gamma$, the distribution $\normale(\mu,\Gamma)$ is well defined.
+	\end{pop}
+
+	\begin{lem}
+		Let $X \sim \normale(\mu,\Gamma)$ with $\mu \in \R^n$ and $\Gamma$ a $n \times n$ non-negative symmetric matrix.
+		Then $X$ has independent components if and only if $\Gamma$ is diagonal.
+	\end{lem}
+
+	\begin{pop}
+		Let $X \sim \normale(\mu,\Gamma)$ with $\mu \in \R^n$ and $\Gamma$ a $n \times n$ non-negative symmetric matrix.
+		If $\Gamma$ is full rank, the probability distribution of $X$ admits a density defined in $\R^n$ by
+		$p(x) = \frac{1}{(2 \pi)^{n/2} \sqrt{\det(\Gamma)}} \exp \left( - \frac{1}{2} \transp{(x - \mu)} \Gamma^{-1} (x - \mu) \right)$.
+	\end{pop}
+
+	\begin{defn}
+		A real-valued random process $X = (X_t)_{t \in T}$ is called a Gaussian vector process if, for all finite set of indices $I = \{ t_1, \ldots, t_n \}$, $\transp{[X_{t_1}, \ldots, X_{t_n}]}$ is a Gaussian vector.
+	\end{defn}
+
+	

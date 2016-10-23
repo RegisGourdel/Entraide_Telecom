@@ -103,3 +103,76 @@
 		We say that a test $\delta$ is of level $\alpha$ if $\sup_{P \in \mathcal{P}_0} P(\delta = 1) \leq \alpha$.
 		We say that $\delta$ is uniformly more powerful then $\delta'$ for level $\alpha$ if both are of level $\alpha$ and $\forall P \in \mathcal{P}_1, P(\delta = 1) \geq P(\delta' = 1)$.
 	\end{defn}
+
+
+\subsection{Simple hypotheses}
+
+	We consider $\mathcal{P}_0 = \{ P_0 \}$ and $\mathcal{P}_1 = \{ P_1 \}$, with $f_0$ and $f_1$ the densities of $P_0^X$ and $P_1^X$ with respect to a common dominating measure.
+	
+	\begin{defn}
+		The statistic $T = \frac{f_1(X)}{f_0(X)}$ is called the \textbf{likelihood ratio statistic}.
+		Let $t \in \intff{0}{\infty}$.
+		The test defined by
+		$\delta = \left\{ \begin{array}{ll}
+			1 & \text{if}\ T \geq t \\
+			0 & \text{otherwise}
+			\end{array}\right. $
+		is called the \textbf{likelihood ratio test} with threshold $t$.
+	\end{defn}
+	
+	\begin{thm}
+		Denote by $T$ the likelihood ratio corresponding to $\mathcal{P}_0$ and $\mathcal{P}_1$.
+		Let $t \in \intff{0}{\infty}$ and set $\alpha_t = P_0(T \geq t)$.
+		Then the likelihood ratio test with threshold $t$ is uniformly more powerful than any other test $\delta'$ for the level $\alpha_t$.
+		Moreover, if $\delta'$ is of level $\alpha_t$ and as powerful as $\delta$, then they coïncide on the set $\{ T \neq t \}$ $P_i$-a.s. for $i \in \{ 0, 1 \}$.
+	\end{thm}
+
+
+%\subsection{EM algorithm}
+
+\subsection{Fisher information matrix}
+
+	We consider a parametric $\nu$-dominated model $\mathcal{P} = (P_\theta)_{\theta \in \Theta}$ for the observation variable $X$ valued in $(\mathsf{X},\mathcal{X})$, and denote by $f_\theta$ the density of $P_\theta$ with respect to $\nu$.
+	We assume that $\Theta$ is an open subset of $\R^n$ and denote by $\norm{f} := \left( \int_{\mathsf{X}} \abs{f(x)}^2 \nu(\diff x) \right)^{\frac{1}{2}}$ the norm of the Hilbert space $L^2(\mathsf{X},\mathcal{X},\nu)$.
+	Observe that $\forall \theta \in \Theta, \xi_\theta = \sqrt{f_\theta} \in L^2(\mathsf{X},\mathcal{X},\nu)$.
+
+	\begin{defn}
+		We say that $\mathcal{P}$ is \textbf{Hellinger differentiable} at $\theta$ if $\theta' \mapsto \xi_\theta$ defined from $\Theta \to L^2(\mathsf{X},\mathcal{X},\nu)$ admits a derivative at $\theta$ : $\exists ! \Dot{\xi}_\theta \in (L^2(\mathsf{X},\mathcal{X},\nu))^d, \lim_{\theta' \to \theta} \frac{1}{\abs{\theta' - \theta}} \norm{\xi_{\theta'} - \xi_{\theta} - \Dot{\xi}_\theta^T(\theta' - \theta)} = 0$.
+	\end{defn}
+
+	\begin{lem}
+		Let $\theta \in \Theta$ and $V \subset \Theta$ be a neighborhood of $\theta$.
+		Suppose that for $\nu$-a.e. $x$ and all $\theta' \in V$, we can write $\xi_{\theta'}(x) = \xi_{\theta}(x) + \int_{t = 0}^1 g_{t \theta' + (1-t) \theta}^T(x) (\theta' - \theta) \diff t$, where, for all $x \in \mathsf{X}$, $g$ satisfies one of the following assertions,
+		\begin{enumerate}[(i)]
+			\item we have $\lim_{\epsilon \downarrow 0} \norm{\sup_{\abs{\theta' - \theta} \leq \epsilon} \abs{g_{\theta'} - g_\theta}} = 0$,
+			\item for $\nu$-a.e. $x$, $\theta' \mapsto g_{\theta'}(x)$ is continuous and $\exists \epsilon > 0, \norm{\sup_{\abs{\theta' - \theta} \leq \epsilon} \abs{g_{\theta'}}} < \infty$.
+		\end{enumerate}
+		Then $\mathcal{P}$ is Hellinger differentiable at $\theta$ with derivative $g_\theta$.
+	\end{lem}
+	
+	The derivarive of $\theta \mapsto \ln f_\theta(X)$ is  called the score function.
+	
+	\begin{lem}
+		Suppose that $A := \{ f_\theta > 0 \}$ does not depend on $\theta$ and $\forall x \in A, \theta \mapsto \ln f_\theta(x)$ is continuoulsy differentiable on $\Theta$ with derivative $\theta \mapsto \dot{l}_\theta(x)$.
+		Suppose moreover that $\forall \theta \in \Theta$ there exists a neighborhood $V$ of $\theta$ such that $\int \sup_{\theta' \in V} \left( \abs{\dot{l}_\theta(x)}^2 f_\theta(x) \right) \nu(\diff x) < \infty$.
+		Then $\mathcal{P}$ is Hellinger differentiable with Hellinger derivative given by $\dot{\xi}_\theta(x) = \frac{1}{2} \dot{l}_\theta(x) \xi_\theta(x) \indic_A(x)$.
+	\end{lem}
+
+	\begin{defn}
+		Let $\mathcal{P}$ be Hellinger differentiable with Hellinger derivative $\dot{\xi}_\theta$.
+		The \textbf{Fisher information matrix} is defined as $\mathcal{I}(\theta) := 4 \int_{\mathsf{X}} \dot{\xi}_\theta(x) \transp{\dot{\xi}_\theta(x)} \nu (\diff x)$.
+	\end{defn}
+
+	With the conditions of the previous lemma we have $\mathcal{I}(\theta) = \esp_\theta \left[ \left( \dot{l}_\theta(X) \right)^2 \right]$.
+	
+	\begin{thm}
+		Let $\mathcal{P}$ be Hellinger differentiable with Hellinger derivative $\dot{\xi}_\theta$.
+		Let $T = g(X)$ be a scalar statistic such that, for some $\epsilon > 0$, $\sup_{\abs{\theta' - \theta} \leq \epsilon} \esp_{\theta} \left( T^2 \right) < \infty$.
+		Define $\psi \colon \theta \to \esp_\theta(T)$.
+		Then $\psi$ is differentiable at $\theta$ and, if $\mathcal{I}(\theta)$ is positive definite, we have $\Var_\theta(T) \geq \transp{\dot{\psi}(\theta)} \mathcal{I}(\theta)^{-1} \dot{\psi}(\theta)$.
+	\end{thm}
+	
+	\begin{defn}
+		Let $T$ be as in the previous theorem.
+		If $\forall \theta \in \Theta, \Var_\theta(T) = \transp{\dot{\psi}(\theta)} \mathcal{I}(\theta)^{-1} \dot{\psi}(\theta)$, we say that $T$ is an efficient estimator of $\psi(\theta)$.
+	\end{defn}
