@@ -1,48 +1,50 @@
-On remarque que $\mathcal{L}(\mathcal{C})$ s'identifie au nombre moyen de questions à poser pour identifier une valeur $X \in \mathcal{X}$.
+\subsection{Entropie et information mutuelle}
 
-\begin{thm}
-	On a $0 \leq H(X) \leq \log( \abs{\mathcal{X}} )$.
-\end{thm}
+	On remarque que $\mathcal{L}(\mathcal{C})$ s'identifie au nombre moyen de questions à poser pour identifier une valeur $X \in \mathcal{X}$.
 
-\begin{defn}
-	Soit $(X,Y) \sim p(x,y)$.
-	On a $H(X,Y) = - \sum_{x,y} p(x,y) \log(p(x,y)) = - \esp_{p(x,y)} \left( \log (p(X,Y)) \right)$.
-	Et pour des v.a. $X_1, \ldots, X_n$ il vient $H(X_1,\ldots,X_n) = - \esp_{p(x_1,\ldots,x_n)} \left( \log( p(X_1,\ldots,X_n)) \right)$.
-\end{defn}
+	\begin{thm}
+		On a $0 \leq H(X) \leq \log( \abs{\mathcal{X}} )$.
+	\end{thm}
 
-\begin{defn}[Entropie conditionnelle]
-	$H(Y \mid X)
-		= \sum_x p(x) H(Y \mid X = x)
-		= - \sum_{x,y} p(x,y) \log(p(y \mid x))
-		= - \esp [ \log(p(Y \mid X)) ]$
-\end{defn}
+	\begin{defn}
+		Soit $(X,Y) \sim p(x,y)$.
+		On a $H(X,Y) = - \sum_{x,y} p(x,y) \log(p(x,y)) = - \esp_{p(x,y)} \left( \log (p(X,Y)) \right)$.
+		Et pour des v.a. $X_1, \ldots, X_n$ il vient $H(X_1,\ldots,X_n) = - \esp_{p(x_1,\ldots,x_n)} \left( \log( p(X_1,\ldots,X_n)) \right)$.
+	\end{defn}
 
-\begin{thm}[\emph{Chain rule}]
-	$H(X_1,\ldots,X_n) = \sum_{i = 1}^n H(X_i \mid X^{i - 1})$ où $X^i \triangleq X_1,\ldots,X_i$.
-\end{thm}
+	\begin{defn}[Entropie conditionnelle]
+		$H(Y \mid X)
+			= \sum_x p(x) H(Y \mid X = x)
+			= - \sum_{x,y} p(x,y) \log(p(y \mid x))
+			= - \esp [ \log(p(Y \mid X)) ]$
+	\end{defn}
 
-\begin{pop}
-	L'information mutuelle $I(X;Y) = \sum_{x,y} p(x,y) \log \left( \frac{p(x,y)}{p(x)p(y)} \right)$ vérifie
-	\begin{itemize}
-		\item[\textbullet] $I(X;Y) = H(X) + H(Y) - H(X,Y)$
-		\item[\textbullet] $I(X;Y) = H(X) - H(X \mid Y) = H(Y) - H(Y \mid X) = I(Y;X)$
-		\item[\textbullet] $I(X;X) = H(X)$
-		\item[\textbullet] $I(X;Y) = D_{KL}( p_{X,Y} \| p_X \cdot p_Y )$
-		\item[\textbullet] $I(X;Y) = 0 \iff X \indep Y$
-		\item[\textbullet] $H(Y \mid X) \leq H(Y)$
-		\item[\textbullet] $H(X^n) \leq \sum_{i = 1}^n H(X_i)$
-		\item[\textbullet] $H(X)$ est concave en $p_X$
-		\item[\textbullet] $H(f(X)) \leq H(x)$ pour toute fonction $f$ déterministe.
-	\end{itemize}
-\end{pop}
+	\begin{thm}[\emph{Chain rule}]
+		$H(X_1,\ldots,X_n) = \sum_{i = 1}^n H(X_i \mid X^{i - 1})$ où $X^i \triangleq X_1,\ldots,X_i$.
+	\end{thm}
 
-\begin{defn}
-	On définit $H(X ; Y \mid Z) = \sum_{x,y,z} p(x,y,z) \log \left( \frac{p(x,y \mid z)}{p(x \mid z) p(y \mid z)} \right) = H(X \mid Z) - H(X \mid Y, Z)$.
-\end{defn}
+	\begin{pop}
+		L'information mutuelle $I(X;Y) = \sum_{x,y} p(x,y) \log \left( \frac{p(x,y)}{p(x)p(y)} \right)$ vérifie
+		\begin{itemize}
+			\item[\textbullet] $I(X;Y) = H(X) + H(Y) - H(X,Y)$
+			\item[\textbullet] $I(X;Y) = H(X) - H(X \mid Y) = H(Y) - H(Y \mid X) = I(Y;X)$
+			\item[\textbullet] $I(X;X) = H(X)$
+			\item[\textbullet] $I(X;Y) = D_{KL}( p_{X,Y} \| p_X \cdot p_Y )$
+			\item[\textbullet] $I(X;Y) = 0 \iff X \indep Y$
+			\item[\textbullet] $H(Y \mid X) \leq H(Y)$
+			\item[\textbullet] $H(X^n) \leq \sum_{i = 1}^n H(X_i)$
+			\item[\textbullet] $H(X)$ est concave en $p_X$
+			\item[\textbullet] $H(f(X)) \leq H(x)$ pour toute fonction $f$ déterministe.
+		\end{itemize}
+	\end{pop}
 
-\begin{thm}[Chain rule sur $I$]
-	$I(X_1,\ldots,X_n ; Y) = \sum_{i = 1}^n I(X_i ; Y \mid X^{i - 1})$.
-\end{thm}
+	\begin{defn}
+		On définit $H(X ; Y \mid Z) = \sum_{x,y,z} p(x,y,z) \log \left( \frac{p(x,y \mid z)}{p(x \mid z) p(y \mid z)} \right) = H(X \mid Z) - H(X \mid Y, Z)$.
+	\end{defn}
+
+	\begin{thm}[Chain rule sur $I$]
+		$I(X_1,\ldots,X_n ; Y) = \sum_{i = 1}^n I(X_i ; Y \mid X^{i - 1})$.
+	\end{thm}
 
 \subsection{Typicalité}
 
@@ -56,4 +58,66 @@ On remarque que $\mathcal{L}(\mathcal{C})$ s'identifie au nombre moyen de questi
 			\item[\textbullet] Pour $n$ suffisamment grand, $\proba(A_\varepsilon^n) \geq 1 - \varepsilon$.
 			\item[\textbullet] $(1 - \varepsilon) 2^{-n(H(x) - \varepsilon)} \leq \abs{A_\varepsilon^n} \leq 2^{-n(H(x) + \varepsilon)}$
 		\end{itemize}
+	\end{thm}
+	
+	\begin{note}
+		On note $a_n \doteq b_n$ si $\forall \varepsilon > 0, \exists N \in \N, \forall n \geq N, \abs{\frac{1}{n} \log \left( \frac{a_n}{b_n} \right)} \leq \varepsilon$.
+	\end{note}
+
+	On a ici $\abs{A_\varepsilon^n} \doteq 2^{n H(X)}$.
+
+	\begin{defn}
+		L'ensemble des \textbf{séquences conjointement typiques} est\\
+		$\Tilde{A}_\varepsilon^n = \left\{ (x^n,y^n) \mid x^n \in A_\varepsilon^n, y^n \in A_\varepsilon^n, \abs{-\frac{1}{n} \log p(x^n,y^n) - H(X,Y)} \leq \varepsilon \right\}$, où $p(x^n,y^n) \triangleq \prod_{i = 1}^n p_{X,Y}(x_i,y_i)$.
+	\end{defn}
+	
+	\begin{thm}
+		Soit $(X^n,Y^n) = \left\{ (X_1,Y_1), \ldots, (X_n,Y_n) \right\}$ i.i.d. selon $p_{X,Y}(x,y)$.
+		On a :
+		\begin{itemize}
+			\item[\textbullet] $\forall \varepsilon > 0, \exists N \in \N, \forall n \geq N, p(\Tilde{A}_\varepsilon^n) \geq 1 - \varepsilon$.
+			\item[\textbullet] $\abs{\Tilde{A}_\varepsilon^n} \doteq 2^{n H(X,Y)}$.
+			\item[\textbullet] Si $p_{X,Y}(x,y) = p_X(x) \cdot p_Y(y)$ alors $\proba((X^n,Y^n) \in \Tilde{A}_\varepsilon^n) \doteq 2^{-n I(X;Y)}$.
+		\end{itemize}
+	\end{thm}
+
+
+\subsection{Entropie différentielle}
+
+	\begin{defn}
+		Soit $X \sim f_X$.
+		Son \textbf{entropie différentielle} est donnée par $h(X) = - \int f_X(x) \log(f_X(x)) \diff x$.
+	\end{defn} 
+
+	\begin{defn}
+		L'\textbf{entropie différentielle de $X$ par rapport à $Y$} est
+		$h(X \mid Y) = - \int f_{X,Y}(x,y) \log f_{X \mid Y}(x \mid y) \diff x \diff y$.
+	\end{defn}
+
+	\begin{defn}
+		La distance de Kullback-Leibler entre $X \sim f$ et $Y \sim g$ est
+		$D(X \| Y) \triangleq D(f \| g) = \int_{\R} f(x) \log_2 \left( \frac{f(x)}{g(x)} \right) \diff x$.
+	\end{defn}
+
+	\begin{thm}
+		On a $D(f \| g) \geq 0$ avec égalité si et seulement si $f = g$.
+	\end{thm}
+
+	\begin{defn}
+		Soit $(X,Y) \sim f_{X,Y}(x,y)$.
+		Leur \textbf{information mutuelle} est $I(X;Y) = \iint f_{X,Y}(x,y) \log \left( \frac{f_{X,Y}(x,y)}{f_X(x) f_Y(y)} \right) \diff x \diff y$.
+	\end{defn}
+
+	\begin{cor}
+		On a $I(X;Y) \geq 0$ avec égalité si et seulement si $X \indep Y$.
+	\end{cor}
+
+	\begin{thm}
+		Soit $X$ une variable aléaoire et $\Bar{X}$ une variable aléatoire vectorielle.
+		\begin{enumerate}[(i)]
+			\item $h(X + c) = h(X)$
+			\item $h(aX) = h(X) + \log(\abs{a})$ et $h(A\Bar{X}) = h(\Bar{X}) + \log(\abs{\det(A)})$ avec $A$ une matrice.
+			\item Si $V(X) = \sigma^2$ alors $h(X) \leq \frac{1}{2} \log(2 \pi e \sigma^2)$ (entropie d'une variable gaussienne).
+				Soit $K = \esp(\transp{\Bar{X}} \Bar{X})$, alors $h(\Bar{X}) \leq \frac{1}{2} \log \left( (2 \pi e)^n \abs{K} \right)$.
+		\end{enumerate}
 	\end{thm}
