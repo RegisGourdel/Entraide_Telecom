@@ -1,0 +1,29 @@
+\subsection{Deffinition using conditioning}
+
+	\begin{defn}
+		Let $(\Omega, \mathcal{F}, (\mathcal{F}_k)_{k \in \N}, \proba)$ be a filtered probability space and $(\mathsf{X}, \mathcal{X})$ be a measurable space.
+		An adapteted stochastic process $((X_k, \mathcal{F}_k))_{k \in \N}$ on $\mathsf{X}$ is a \textbf{Markov chain} if $\forall k \in \N, \forall A \in \mathcal{X}, \proba(X_{k + 1} \in A \mid \mathcal{F}_k) = \proba(X_{k + 1} \in A \mid A_k)$.
+	\end{defn}
+
+	\begin{pop}
+		Let $((X_k, \mathcal{F}_k))_{k \in \N}$ be an adapted stochastic process.
+		The following propoerties are equivalent :
+		\begin{enumerate}[(i)]
+			\item $((X_k, \mathcal{F}_k))_{k \in \N}$ is a Markov chain,
+			\item $\forall k \in \N, \forall Y \in L^1(\Omega, \sigma(X_l, l \geq k), \proba), \esp(Y \mid \mathcal{F}_k) = \esp(Y \mid X_k)$ $\proba$-a.s.
+			\item $\forall k \in \N, \forall Y \in L^1(\Omega, \sigma(X_l, l \geq k), \proba), \forall Z \in L^\infty(\Omega, \mathcal{F}_k, \proba), \esp(YZ \mid X_k) = \esp(Y \mid X_k) \esp(Z \mid X_k)$ $\proba$-a.s.
+		\end{enumerate}
+	\end{pop}
+
+
+\subsection{How to use kernels}
+
+	Let $N$ be a kernel and $f$ be a measurable function defined on $\mathsf{Y}$.
+	We denote by $N f$ the function defined on $\mathsf{X}$ by $Nf \colon x \mapsto \int_{\mathsf{Y}} N(x,\diff y) f(y)$ whenever this integral is well-defined (for instance if $f$ is non-negative).
+
+	\begin{pop}
+		Let $N$ be a kernel on $\mathsf{X} \times \mathcal{Y}$.
+		Then $\forall f \in \mathbf{F}_+(\mathsf{Y}, \mathcal{Y}), N f \in \mathbf{F}_+(\mathsf{X}, \mathcal{X})$.
+		Moreover, if $N$ is a probability kernel, then $\forall f \in \mathbf{F}_b(\mathsf{X}, \mathcal{X}), Nf \in \mathbf{F}_b(\mathsf{Y}, \mathcal{Y})$.
+	\end{pop}
+
