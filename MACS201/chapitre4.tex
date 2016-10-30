@@ -83,7 +83,49 @@
 	\end{pop}
 
 	\begin{defn}
-		A real-valued random process $X = (X_t)_{t \in T}$ is called a Gaussian vector process if, for all finite set of indices $I = \{ t_1, \ldots, t_n \}$, $\transp{[X_{t_1}, \ldots, X_{t_n}]}$ is a Gaussian vector.
+		A real-valued random process $X = (X_t)_{t \in T}$ is called a \textbf{Gaussian process} if, for all finite set of indices $I = \{ t_1, \ldots, t_n \}$, $\transp{[X_{t_1}, \ldots, X_{t_n}]}$ is a Gaussian vector.
 	\end{defn}
 
+	\begin{thm}
+		Let $T$ be any set of indices, $\mu \colon T \to \R$ and $\gamma \colon T \times T \to \R$ such that all restrictions $\Gamma_I$ to the set $I \times I$ with $I \subset T$ finite are nonnegative symmetrice matrices.
+		Then one can define a probability space $(\Omega, \mathcal{F}, \proba)$ and a gaussien process $(X_t)_{t \in T}$ defined on this space with mean $\mu$ and covariance function $\gamma$, that is such that, $\forall s, t \in T, \mu(t) = \esp[X_t]$ and $\gamma(s,t) = \esp[(X_s - \mu(s))(X_t - \mu(t))]$.
+	\end{thm}
+
+	\begin{defn}
+		Let $T$, $\mu$ and $\gamma$ be as above.
+		We denote by $\normale(\mu,\gamma)$ the law of the Gaussian process with mean $\mu$ and covariance $\gamma$ in the sense of fidi distribution.
+	\end{defn}
+
+
+\subsection{Strict stationarity of a random process in discrete time}
+
+	Suppose that $T = \Z$ or $T = \N$.
+
+	\begin{defn}
+		We denote by $S \colon \mathsf{X}^T \to \mathsf{X}^T$ and call the \textbf{shift operator} the mapping defined by $\forall x = (x_t)_{t \in T}, S(x) = (x_{t + 1})_{t \in T}$.
+		For all $\tau \in T$ we define $S^\tau$ by $S^\tau (x) = (x_{t + \tau})_{t \in \tau}$.
+		The operator $B = S^{-1}$ is called the \textbf{backshift operator}.
+	\end{defn}
+
+	\begin{defn}
+		A random process $(X_t)_{t \in T}$ is \textbf{strictly stationary} if $X$ and $S \circ X$ have the same law, i.e. $\proba^{S \circ X} = \proba^X$.
+	\end{defn}
+
+\subsection{Stationarity preserving transformations}
+
+	In this section, we set $T = \Z$, $\mathsf{X} = \C^d$ and $\mathcal{X} = \mathcal{B}(\C^d)$ for some integer $d \geq 1$.
 	
+	\begin{defn}
+		Let $\phi$ be a measurable function from $\left( \mathsf{X}^T, \mathcal{X}^{\otimes T} \right)$ to $\left( \mathsf{Y}^T, \mathcal{Y}^{\otimes T} \right)$ and $X = (X_t)_{t \in T}$ be a process with values in $(\mathsf{X},\mathcal{X})$.
+		A $\phi$-filtering process $Y = (Y_t)_{t \in T}$ is defined as $\forall t, Y = \phi \circ X$ or, equivalently, $Y_t = \Pi_t(\phi(X))$.
+		Thus $Y$ makes its values in $(\mathsf{Y}, \mathcal{Y})$.
+		If $\phi$ is linear, we will say that $Y$ is obtained by linear filtering of $X$.
+	\end{defn}
+
+	\begin{defn}
+		A $\phi$-filter is \textbf{shift invariant} if $\phi$ commutes with $S$.
+	\end{defn}
+
+	\begin{rem}
+		A shift invariant $\phi$-filter preserves the strict stationarity and is entirely determined by its composition with the canonical projection $\Pi_0$
+	\end{rem}

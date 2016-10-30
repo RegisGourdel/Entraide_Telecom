@@ -1,0 +1,53 @@
+\subsection{$L^2$ processes}
+
+	\begin{defn}
+		The process $X = (X_t)_{t \in T}$ defined on $(\Omega,\mathcal{F},\proba)$ with values in $\C^d$ is an $L^2$ process if $\forall t \in T, X_t = L^2(\Omega,\mathcal{F},\proba)$.
+		Its \textbf{mean function} is defined on $T$ by $\mu(t) = \esp(X_t)$ and the \textbf{covariance function} is defined on $T \times T$ by $\Gamma(s,t) = \Cov(X_s,X_t) = \esp \left( (X_s - \mu(s)) \herm{(X_t - \mu(t))} \right)$.
+	\end{defn}
+
+	\begin{pop}
+		Let $\Gamma$ be the covariance function of a $L^2$ process $X = (X_t)_{t \in T}$ with values in $\C^d$.
+		The following properties hold.
+		\begin{enumerate}[(i)]
+			\item Hermitian symmetry : $\forall s, t \in T, \Gamma(s,t) = \herm{\Gamma(t,s)}$.
+			\item Nonnegativity : $\forall n \in \N^*, t_1,\ldots, t_n \in T, a_1, \ldots, a_n \in \C^d, \sum_{1 \leq k,m \leq n} \herm{a_k} \Gamma(t_k,t_m) a_m \geq 0$.
+		\end{enumerate}
+		Conversely, if $\Gamma$ satisfies these two properties, there exists an $L^2$ process with values in $\C^d$ with covariance function $\Gamma$.
+	\end{pop}
+
+	In the scalar case ($d = 1$), we also use he notation $\gamma(s,t)$.
+
+\subsection{Weakly sationary processes}
+
+	\begin{defn}
+		Let $\mu \in \C^d$ and $\Gamma \colon \Z \to \C^{d \times d}$.
+		A process $(X_t)_{t \in \Z}$ with values in $\C^d$ is said \textbf{weakly stationary} with mean $\mu$ and autocovariance function $\Gamma$ if all the following assertions hold:
+		\begin{enumerate}[(i)]
+			\item $X$ is an $L^2$ process, i.e. $\esp \left( \abs{X_t}^2 \right) < + \infty$,
+			\item $\forall t \in \Z, \esp(X_t) = \mu$,
+			\item $\forall (s,t) \in \Z \times \Z, \Cov(X_s,X_t) = \Gamma(s - t)$.
+		\end{enumerate}
+	\end{defn}
+
+	A strictly stationary $L^2$ process is weakly stationary.
+
+	\begin{pop}
+		The autocovariance function $\gamma \colon \Z \to \C$ of a complex valued weakly stationary process satisfies the following:
+		\begin{enumerate}[(i)]
+			\item Hermition symmetry : $\forall s \in \Z, \gamma(-s) = \overline{\gamma(s)}$.
+			\item Nonnegative definiteness : $\forall i \in \N^*, a_1, \ldots, a_n \in \C, \sum_{s = 1}^n \sum_{t = 1}^n \overline{a_s} \gamma(s - t) a-t \geq 0$.
+		\end{enumerate}
+	\end{pop}
+	
+	\begin{defn}
+		Let $X$ be a weakly stationary process with autocovariance function $\gamma$ such that $\gamma(0) \neq 0$.
+		The \textbf{autocorrelation function} of $X$ is defined as $\forall \tau \in \Z, \rho(\tau) = \frac{\gamma(\tau)}{\gamma(0)}$.
+		It is normalized in the sense that $\rho(0) = 1$ and $\forall s \in \Z, \abs{\rho(s)} \leq 1$.
+	\end{defn}
+
+	\begin{defn}
+		A \textbf{weak white noise} is a centered weakly stationary process whose autocovariance function satisfies $\gamma(0) = \sigma^2 > 0$ and $\forall s \neq 0, \gamma(s) = 0$.
+		We will denote $(X_t) \sim \WN(0,\sigma^2)$.
+		When a white noise is an i.i.d. process it is called a \textbf{strong white noise}.
+		We will denote $(X_t) \sim \IID(0,\sigma^2)$.
+	\end{defn}
