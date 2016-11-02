@@ -51,3 +51,85 @@
 		When a white noise is an i.i.d. process it is called a \textbf{strong white noise}.
 		We will denote $(X_t) \sim \IID(0,\sigma^2)$.
 	\end{defn}
+
+
+\subsection{Spectral measure}
+
+	\begin{thm}(Heglotz)
+		A sequence $(\gamma(h))_{h \in \Z}$ is a nonnegative definite hermitian sequence iff there exists a finite nonnegative measure $\nu$ on $(\T,\mathcal{\T})$ such that
+		$$\forall h \in \Z, \gamma(h) = \int_\T e^{ih \lambda} \nu(\diff \lambda)\ .$$
+		Moreover this relation defines $\nu$ uniquely.
+	\end{thm}
+
+	\begin{rem}
+		This applies to all autocovariance function of a weakly stationary process $X$.
+		In this case $\nu$ is called the \textbf{spectral measure} of $X$.
+		If $\nu$ admits a density $f$, it is called the \textbf{spectral density function}.
+	\end{rem}
+
+	\begin{cor}
+		Let $(\gamma(h))_{h \in \Z} \in l^2(\Z)$.
+		Then it is a nonnegative definite hermitian sequence iff for almost every $\lambda$, $f(\lambda) = \frac{1}{2\pi} \sum_{h \in \Z} \gamma(h) e^{-ih \lambda}$ is nonnegative, where the convergence holds in $L^2(\T)$.
+	\end{cor}
+
+	\begin{defn}
+		A weakly stationary process $X$ is called \textbf{linearly predictable} if $\exists n \geq 1, \forall t \geq n, X_t \in \Span(X_1,\ldots,X_n)$ (in the $L^2$ sense).
+	\end{defn}
+
+	\begin{pop}
+		Let $\gamma$ be the autocovariance function of a weakly stationary process $X$.
+		If $\gamma(0) \neq 0$ and $\gamma(t) \overset{t \to \infty}{\to} 0$ then $X$ is not linearly predictable.
+	\end{pop}
+
+\subsection{Spectral representation of a weakly stationary process}
+
+	\begin{defn}
+		A \textbf{random fields with orthogonal increments} $W$ on $(\mathsf{X},\mathcal{X})$ is a $L^2$ random process indexed on $\mathcal{X}$, say $W = (W(A))_{A \in \mathcal{X}}$ such that
+		\begin{enumerate}[(i)]
+			\item $\forall A \in \mathcal{X}, \esp(W(A)) = 0$,
+			\item $\forall A,B \in \mathcal{X}$ such that $A \cap B = \emptyset$, $W(A)$ and $W(B)$ are uncorrelated and $W(A \cup B) = W(A) + W(B)$,
+			\item for all nonincreasing sequence $(A_n)_{n \in \N} \subset \mathcal{X}, \bigcap_{n = 0}^\infty A_n = \emptyset$, we have $\Var(W(A_n)) \to 0$.
+		\end{enumerate}
+	\end{defn}
+
+	\begin{lem}
+		Let $W$ a random field with orthogonal increments on $(\mathsf{X},\mathcal{X})$.
+		Let $A \in \mathcal{X}$ and set $\nu(A) = \Var(W(A))$.
+		Then $\nu$ is a finite nonnegative measure on $(\mathsf{X},\mathcal{X})$.
+		Moreover $\forall A, B \in \mathcal{X}, \Cov(W(A),W(B)) = \nu(A \cap B)$.
+	\end{lem}
+
+	The measure $\nu$ is called the \textbf{intensity measure} of $W$.
+	
+	\begin{lem}
+		Let $W$ be a $L^2$ random process indexed by $\mathcal{X}$ such that $\forall A \in \mathcal{X}, \esp(W(A)) = 0$.
+		Suppose $\exists \nu, \forall A,B \in \mathcal{X}, \Cov(W(A),W(B)) = \nu(A \cap B)$.
+		Then $W$ is a random field with orthogonal increments on with intensity measure $\nu$.
+	\end{lem}
+
+	\begin{thm}
+		Let $W$ be a random field with orthgonal increments with intensity measure $\nu$.
+		Then there exists a unique isometric operator $w$ from $L^2(\mathsf{X},\mathcal{X},\nu)$ to $L^2(\Omega,\mathcal{F},\proba)$ such that $\forall A \in \mathcal{X}, w(\indic_A) = W(A)$.
+		For all $f \in L^2(\mathsf{X},\mathcal{X},\nu)$ we further have $\esp(w(f)) = 0$ and $w(L^2(\mathsf{X},\mathcal{X},\nu) = \overline{\Span}(W(A), A \in \mathcal{X})$.
+	\end{thm}
+
+	\begin{thm}
+		Let $\nu$ be a finite nonnegative measure on $(\mathsf{X},\mathcal{X})$ and $J \colon L^2(\mathsf{X},\mathcal{X},\nu) \to L^2(\Omega,\mathcal{F},\proba)$ an isometric operator such that $\forall f, \esp(J(f)) = 0$.
+		Then there exists a random field $W$ with orthogonal increments on $\mathsf{X}$ with intensity measure $\nu$ such that $\forall f, J(f) = \int_{\mathsf{X}} f \diff W$.
+	\end{thm}
+
+	\begin{pop}
+		Let $W$ be a r.f.o.i. on $(\T,\mathcal{B}(\T))$ with intensity measure $\nu$.
+		Then the sequence $(X_t)_{t \in \Z}$ defined by $X_t = \int_\T e^{it \lambda} \diff W(\lambda)$ is a centered weakly stationary process with spectral measure $\nu$.
+	\end{pop}
+
+	\begin{defn}
+		Let $X$ be a $L^2$ process.
+		Its \textbf{linear closure} is defined as $\mathcal{H}_{\infty}^X = \overline{\Span}(X_t, t \in \Z)$ (closure in $L^2(\Omega,\mathcal{F},\proba)$).
+	\end{defn}
+
+	\begin{thm}
+		Let $X$ be a centered weakly stationary process with spectral measure $\nu$.
+		Then there exists a r.f.o.i. $\Hat{X}$ on $(\T,\mathcal{B}(\T))$ with intensity measure $\nu$, called the \textbf{spectral field}, such that $\forall t \in \Z, X_t = \int e^{it \lambda} \diff \Hat{X}(\lambda)$.
+		Moreover, the mapping $f \mapsto \int f \diff \Hat{X}$ defines the unique operator from $L^2(\T,\mathcal{B}(\T),\nu)$ to $\mathcal{H}_{\infty}^X$ that maps each function $\lambda \mapsto e^{it \lambda}$ to $X_t$.
+	\end{thm}
