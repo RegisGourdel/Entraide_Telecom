@@ -38,7 +38,7 @@
 			\item Nonnegative definiteness : $\forall i \in \N^*, a_1, \ldots, a_n \in \C, \sum_{s = 1}^n \sum_{t = 1}^n \overline{a_s} \gamma(s - t) a-t \geq 0$.
 		\end{enumerate}
 	\end{pop}
-	
+
 	\begin{defn}
 		Let $X$ be a weakly stationary process with autocovariance function $\gamma$ such that $\gamma(0) \neq 0$.
 		The \textbf{autocorrelation function} of $X$ is defined as $\forall \tau \in \Z, \rho(\tau) = \frac{\gamma(\tau)}{\gamma(0)}$.
@@ -100,7 +100,7 @@
 	\end{lem}
 
 	The measure $\nu$ is called the \textbf{intensity measure} of $W$.
-	
+
 	\begin{lem}
 		Let $W$ be a $L^2$ random process indexed by $\mathcal{X}$ such that $\forall A \in \mathcal{X}, \esp(W(A)) = 0$.
 		Suppose $\exists \nu, \forall A,B \in \mathcal{X}, \Cov(W(A),W(B)) = \nu(A \cap B)$.
@@ -133,3 +133,17 @@
 		Then there exists a r.f.o.i. $\Hat{X}$ on $(\T,\mathcal{B}(\T))$ with intensity measure $\nu$, called the \textbf{spectral field}, such that $\forall t \in \Z, X_t = \int e^{it \lambda} \diff \Hat{X}(\lambda)$.
 		Moreover, the mapping $f \mapsto \int f \diff \Hat{X}$ defines the unique operator from $L^2(\T,\mathcal{B}(\T),\nu)$ to $\mathcal{H}_{\infty}^X$ that maps each function $\lambda \mapsto e^{it \lambda}$ to $X_t$.
 	\end{thm}
+
+
+\subsection{Innovation process}
+
+	Let $X = (X_t)_{t \in \Z}$ denote a centered weakly stationary process.
+
+	\begin{defn}
+		We call \textbf{innovation process} the process $\epsilon = (\epsilon_t)_{t \in \Z}$ defined by $\epsilon_t = X_t - \proj(X_t \mid \mathcal{H}_{t - 1}^X)$.
+	\end{defn}
+
+	\begin{defn}
+		We call \textbf{predictor of order $p$} the random variable $\proj(X_t \mid \mathcal{H}_{t - 1,p}^X)$ and the \textbf{partial innovation process} of order $p$ the process $\epsilon_p^+ = (\epsilon_{t,p}^+)_{t \in \Z}$ defined by $\epsilon_{t,p}^+ = X_t - \proj(X_t \mid \mathcal{H}_{t - 1,p}^X)$.
+		The \textbf{prediction coefficients} are any coefficients $\phi_p^+ = (\phi_{k,p}^+)_{k \in \iniff{1}{p}}$ which satisfy $\forall t \in \Z, \proj(X_t \mid \mathcal{H}_{t - 1,p}^X) = \sum_{k = 1}^p \phi_{k,p}^+ X_{t - k}$.
+	\end{defn}
