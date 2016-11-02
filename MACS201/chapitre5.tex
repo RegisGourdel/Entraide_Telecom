@@ -147,3 +147,15 @@
 		We call \textbf{predictor of order $p$} the random variable $\proj(X_t \mid \mathcal{H}_{t - 1,p}^X)$ and the \textbf{partial innovation process} of order $p$ the process $\epsilon_p^+ = (\epsilon_{t,p}^+)_{t \in \Z}$ defined by $\epsilon_{t,p}^+ = X_t - \proj(X_t \mid \mathcal{H}_{t - 1,p}^X)$.
 		The \textbf{prediction coefficients} are any coefficients $\phi_p^+ = (\phi_{k,p}^+)_{k \in \iniff{1}{p}}$ which satisfy $\forall t \in \Z, \proj(X_t \mid \mathcal{H}_{t - 1,p}^X) = \sum_{k = 1}^p \phi_{k,p}^+ X_{t - k}$.
 	\end{defn}
+	
+	\begin{cor}
+		The innovation process of a centered weakly stationary process is a (centered) weak white noise.
+		Its variance is called the \textbf{innovation variance} of the process.
+	\end{cor}
+
+	\begin{defn}
+		If the variance of its innovation process is zero, we say that $X$ is \textbf{deterministic}.
+		Otherwise we say that $X$ is \textbf{regular}.
+	\end{defn}
+
+	We define the intersection of the whole past of $X$ as $\mathcal{H}_{-\infty}^X = \bigcap_{t \in \Z} \mathcal{H}_t^X$.

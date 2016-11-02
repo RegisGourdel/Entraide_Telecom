@@ -1,0 +1,28 @@
+\subsection{Invariant measures and stationarity}
+
+	Let $P$ be a Markov kernel on $(\mathsf{X},\mathcal{X})$.
+
+	\begin{defn}
+		A non zero $\sigma$-finite positive measure $\mu \in \mes_+(\mathsf{X},\mathcal{X})$ is said to be \textbf{invariant} with respect to $P$ (or $P$-invariant) if $\mu = \mu P$.
+	\end{defn}
+
+	\begin{thm}
+		A Markov chain $(X_k)_{k \in \N}$ defined on $(\Omega,\mathcal{F},\proba)$ with kernel $P$ is a stationary process iff its initial distribution is invariant with respect to $P$.
+	\end{thm}
+
+	\begin{defn}
+		A non-empty set $B \in \mathcal{X}$ is called \textbf{absorbing} if $\forall x \in B, P(x,B) = 1$.
+	\end{defn}
+
+	\begin{thm}
+		\begin{enumerate}[(i)]
+			\item The set of invariant probability measures for $P$ is a convex subset of the convex cone $\mes_+(\mathsf{X},\mathcal{X})$.
+			\item Let $\pi$ be an invariant probability and $\mathsf{X}_1 \subset \mathsf{X}$ with $\pi(\mathsf{X}_1) = 1$.
+				There exists $B \subset \mathsf{X}_1$ such that $\pi(B) = 1$ and $B$ is absorbing for $P$.
+		\end{enumerate}
+	\end{thm}
+
+	\begin{defn}
+		A random variable $\tau \colon \Omega \to \Bar{\N} = \N \cup \{ \infty \}$ is called a \textbf{stopping time} if $\forall k \in \N, \{ \tau \leq k \} \in \mathcal{F}_k$.
+		The family $\mathcal{F}_\tau$ of events $A$ such that $\forall k \in \N, A \cap \{ \tau \leq k \} \in \mathcal{F}_k$ is called the $\sigma$-field of events prior to times $\tau$.
+	\end{defn}

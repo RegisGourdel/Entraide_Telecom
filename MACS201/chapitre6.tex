@@ -27,3 +27,35 @@
 		Moreover, if $N$ is a probability kernel, then $\forall f \in \mathbf{F}_b(\mathsf{X}, \mathcal{X}), Nf \in \mathbf{F}_b(\mathsf{Y}, \mathcal{Y})$.
 	\end{pop}
 
+
+\subsection{The canonical Chain, notation $\proba_\xi$ and $\esp_\xi$}
+
+	\begin{thm}
+		Let $P$ be a Markov kernel on $\mathsf{X} \times \mathcal{X}$ and $\nu \in \mes_1(\mathsf{X}, \mathcal{X})$.
+		Then, there exists a unique probability $\proba_\nu$ on $(\mathsf{X}^\N,\mathcal{X}^{\otimes \N})$ is a Markov chain with initial distribution $\nu$ and kernel $P$.
+	\end{thm}
+
+	\begin{defn}
+		The \textbf{canonical Markov chain} with kernel $P$ on $\mathsf{X} \times \mathcal{X}$ is the canonical process $(X_n)_{n \in \N}$ on the canonical filtered space $(\mathsf{X}^\N,\mathcal{X}^{\otimes \N},(\mathcal{F}_k)_{k \in \N})$ endowed with the collection of probability measures $\{ \proba_\nu, \nu \in \mes_1(\mathsf{X},\mathcal{X}) \}$ given by the previous theorem.
+	\end{defn}
+
+	The expectation associated to $\proba_\nu$ is denoted by $\esp_\nu$ and for $x \in \mathsf{X}$, $\proba_x$ and $\esp_x$ are shorthand for $\proba_{\delta_x}$ and $\esp_{\delta_x}$.
+	
+	\begin{pop}
+		\begin{enumerate}[(i)]
+			\item $\forall A \in \mathcal{X}^{\otimes}$, the function $x \mapsto \proba_x(A)$ is $\mathcal{X}$-measurable.
+			\item $\forall \xi \in \mes_1(\mathsf{X},\mathcal{X}), \forall A \in \mathcal{X}^{\otimes}, \proba_\xi(A) = \int_{\mathsf{X}} \proba_x(A) \xi(\diff x)$
+			\item $\forall \xi \in \mes_1(\mathsf{X}, \forall Y \in \F_+(\mathsf{X}^\N,\mathcal{X}^{\otimes \N}), \esp_\xi(Y) = \int_{\mathsf{X}} \esp_x(Y) \xi(\diff x)$
+			\item $\forall \xi \in \mes_1(\mathsf{X}, \forall Y \in L^1(\mathsf{X}^\N,\mathcal{X}^{\otimes \N}, \proba_\xi), \esp(\abs{Y}) < \infty$ for $\xi$-a.e. $x$ and $\esp_\xi(Y) = \int_{\mathsf{X}} \esp_x(Y) \xi(\diff x)$
+			\item $\forall \xi \in \mes_1(\mathsf{X}, \forall Y \in L^1(\mathsf{X}^\N,\mathcal{X}^{\otimes \N}, \proba_\xi), \esp_\xi(Y \mid X_0) = \esp_{X_0}(Y)$ $\proba_\xi$-a.s.
+		\end{enumerate}
+	\end{pop}
+
+	\begin{defn}
+		An event is $\proba_*$-a.s. if it is $\proba_\nu$-a.s. for all initial distribution $\nu$.
+	\end{defn}
+
+	\begin{lem}
+		Let $A \in \mathcal{X}^{\otimes \N}$.
+		We have $X \in A$ $\proba$-a.s. if and only if it is true $\proba_x$-a.s. for all $x \in \mathsf{X}$.
+	\end{lem}
