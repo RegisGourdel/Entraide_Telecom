@@ -1,4 +1,4 @@
-\subsection{Relations d'équivalence et structueres quotient}
+\subsection{Relations d'équivalence et structures quotient}
 
 	\begin{defn}
 		Une \textbf{relation} $\rel$ sur un ensemble $E$ est la donnée d'une partie $\rel \subset E \times E$.
@@ -17,5 +17,92 @@
 	\end{defn}
 	
 	\begin{defn}
-	Soit $\sim$ une relation d'équivalence 
+	Soit $\sim$ une relation d'équivalence sur $E$ et $A \subset E$.
+	On dit que $A$ est une classe d'équivalence pour la relation $\sim$ si $A$ est non vide, $\forall x,y \in A, x \sim y$ et $\forall x \in A, \forall y \not\in A, x \not\sim y$.
 	\end{defn}
+
+	\begin{note}
+		On note $E / \sim$ l'ensemble des classes d'équivalences pour $\sim$, appelé \textbf{ensemble quotient} de $E$ par $\sim$.
+	\end{note}
+
+	\begin{pop}
+		Les classes d'équivalence forment une partition de $E$.
+	\end{pop}
+
+	\begin{cor}
+		On a $\abs{E} = \sum_{A \in E/\sim} \abs{A}$.
+	\end{cor}
+
+	On dispose de la projection canonique de $E$ sur $E/\sim$, $\pi \colon x \mapsto \bar{x} = \{ y \in E \mid x \sim y \}$, où $x$ est un représentant de $\bar{x}$.
+	On dit que $\mathcal{S} \subset E$ est un \textbf{système de représentants} si $\pi_{|\mathcal{S}} \colon \mathcal{S} \overset{\sim}{\to} E/\sim$.
+
+	\begin{thm}
+		Soit $f \colon E \to F$ une application.
+		On a équivalence entre les deux assertions suivantes :
+		\begin{enumerate}
+			\item $f$ est compatible à $\sim$, i.e. $\forall x,y \in E, x \sim y \implies f(x) = f(y)$
+			\item $\exists g \colon E/\sim \to F, f = g \circ \pi$.
+		\end{enumerate}
+		Si ces conditions sont vérifiées, cette application $g$ est unique.
+		On dit qu'elle est l'application déduite de $f$ par passage au quotient par $\sim$.
+	\end{thm}
+
+	\begin{defn}
+		Un \textbf{groupe} $(G,*,e)$ est la donnée de $G$ non vide, $*$ une loi de composition interne et $e \in G$ tels que $*$ est associative, $e$ est neutre et tout élement est inversible.
+		On dit que ce groupe est \textbf{abélien} si $*$ est commutative.
+	\end{defn}
+
+	\begin{defn}
+		Un sous-ensemble $H$ du groupe $G$ est appelé \textbf{sous groupe} si : $e \in H$, il est stable par inversion et par composition.
+	\end{defn}
+
+	\begin{pop}
+		Une intersection quelconque de sous-groupes de $G$ est encore un sous-groupe de $G$.
+	\end{pop}
+
+	\begin{pop}
+		Soit $G$ un groupe et $S \subset G$.
+		Notons $\langle S \rangle \subset G$ l'intersection de tous les sous-groupes de $G$ qui contiennent $S$.
+		Alors $\langle S \rangle$ est un sous-groupe de $G$ contenant $S$ et c'est le plus petit d'entre eux.
+		On l'appelle \textbf{sous-groupe} engendré par $S$ dans $G$.
+	\end{pop}
+
+	\begin{pop}
+		On a aussi $S = \{ s_1^{m_1} * \cdots * s_r^{m_r} \mid r \in \N, s_i \in S, m_i \in \Z \}$.
+	\end{pop}
+
+	\begin{pop}
+		Soit $H$ un sous-groupe de $G$.
+		On définit $x \sim y \iff x^{-1}y \in H$.
+		Alors $\sim$ est une relation d'équivalence et $G/\sim$ est noté $G/H$ $(x \mod H) = xH$.
+	\end{pop}
+
+	\begin{defn}
+		Soit $H$ un sous-groupe de $G$.
+		On définit l'\textbf{indice} de $H$ dans $G$ par $[G : H] = \abs{G/H}$ (éventuellement infini).
+	\end{defn}
+
+	\begin{pop}
+		Soit $G$ un groupe fini.
+		Alors tout sous-groupe $H$ de $G$ est fini, d'indice fini et on a $\abs{G} = \abs{H} \cdot [G : H]$.
+	\end{pop}
+
+
+\subsection{Action d'un groupe sur un ensemble}
+
+	\begin{defn}
+		Une action de $(G,*,e)$ sur un ensemble $X$ est la donnée d'une application
+		$\begin{array}{ccc} G \times X & \to & X \\ (g,x) & \mapsto & g \cdot x \end{array}$
+		telle que $\forall x \in X, e \cdot x = x$ et $\forall g, g' \in G, \forall x \in X, g \cdot (g' \cdot x) = (g * g') \cdot x$.
+	\end{defn}
+
+	\begin{defn}
+		Soit $G$ agissant sur $X$.
+		Pour tout élément $x \in X$, on définit son stabilisateur $G_x = \{ g \in G \mid g \cdot x = x \}$ et son orbite $O_x = G \cdot x = \{ g \cdot x \mid g \in G \}$.
+	\end{defn}
+
+	\begin{pop}
+		Le stabilisateur $G_x$ est un sous-groupe de $G$.
+	\end{pop}
+
+	
