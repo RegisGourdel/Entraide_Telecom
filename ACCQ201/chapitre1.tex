@@ -105,4 +105,62 @@
 		Le stabilisateur $G_x$ est un sous-groupe de $G$.
 	\end{pop}
 
-	
+	\begin{pop}
+		La relation $\sim$ définie par $(x \sim x') \iff (\exists g \in G, x' = g \cdot x)$ est une relation d'équivalence.
+		Les orbites de l'action sont alors précisément le classes d'équivalences pour $\sim$.
+	\end{pop}
+
+	\begin{ex}
+		Des actions classiques de $H$ sur $G$, avec $H$ sous-groupe de $G$, sont :
+		\begin{enumerate}
+			\item translation à gauche, $(h,x) \mapsto x h^{-1}$,
+			\item translation à droite, $(h,x) \mapsto hx$,
+			\item conjugaison, $(h,x) \mapsto h x h^{-1}$.
+		\end{enumerate}
+	\end{ex}
+
+	\begin{pop}
+		Soit $G$ agissant sur $X$.
+		Alors $\forall x \in X$, $g \mapsto g \cdot x$ induit par passage au quotient une bijection $G/G_x \overset{\sim}{\to} O_x$ et en particulier $\abs{O_x} = [G : G_x]$.
+	\end{pop}
+
+	\begin{thm}[Formule de Burnside]
+		Soit $G$ un groupe fini agissant sur $X$ fini.
+		Alors
+		$$\abs{X/G} = \frac{1}{\abs{G}} \sum_{g \in G} \abs{\{ x \in X \mid g \codt x = x \} }$$
+		autrement dit le nombre d'orbites de l'action est égal à l'espérance du nombre de points fixes d'un élément aléatoire de $G$.
+	\end{thm}
+
+
+\subsection{Morphismes}
+
+	\begin{defn}
+		Un \textbf{(homo)morphisme} de $(G,*,e)$ dans $(G',*',e')$ est une application $f \colon G \to G'$ telle que : $f(e) = e'$, $\forall x \in G, f(x^{-1}) = f(x)^{-1}$, $\forall x,y \in G, f(x * y) = f(x) *' f(y)$.
+		Pour $G = G'$ c'est un \textbf{endomorphisme}, si $f$ est bijective c'est un \textbf{isomorphisme} et pour les deux à la fois c'est un \textbf{automorphisme}.
+	\end{defn}
+
+	\begin{pop}
+		Les images directes et réciproques de sous-groupes par un morphisme de groupes sont des sous-groupes.
+	\end{pop}
+
+	\begin{defn}
+		Soit $f \colon G \to G'$ un morphisme de groupes.
+		Alors
+		\begin{enumerate}
+			\item $\Ker(f) = f^{-1}(e')$ est un sous-groupe de $G$ appelé \textbf{noyau} de $f$,
+			\item $\Im(f) = f(G)$ est un sous-groupe de $G'$ appelé \textbf{image} de $f$.
+		\end{enumerate}
+	\end{defn}
+
+	\begin{pop}
+		Un morphisme $f \colon G \to G'$ est injectif si et seulement si $\Ker(f) = \{ e \}$.
+	\end{pop}
+
+
+\subsection{Groupe quotient d'un groupe abélien par un sous-groupe}
+
+	\begin{lem}
+		Soit $H$ s-g de $(G,+,0)$ abélien.
+		On munit $G/H$ d'une structure de groupe abélien avec la loi $+$ telle que $\bar{a} + \bar{b} = (a + H) + (b + H) = (a + b) + H = \overline{a + b}$.
+		L'ensemble quotient muni de cette loi est appelé \textbf{groupe quotient} de $G$ par $H$.
+	\end{lem}
