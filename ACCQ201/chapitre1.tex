@@ -159,8 +159,94 @@
 
 \subsection{Groupe quotient d'un groupe abélien par un sous-groupe}
 
+	Soit $H$ s-g de $(G,+,0)$ abélien.
+
 	\begin{lem}
-		Soit $H$ s-g de $(G,+,0)$ abélien.
 		On munit $G/H$ d'une structure de groupe abélien avec la loi $+$ telle que $\bar{a} + \bar{b} = (a + H) + (b + H) = (a + b) + H = \overline{a + b}$.
 		L'ensemble quotient muni de cette loi est appelé \textbf{groupe quotient} de $G$ par $H$.
 	\end{lem}
+
+	%\begin{rem}
+		%Lorsque $G$ n'est pas abélien il faut que $H$ soit distingué (ou normal).
+	%\end{rem}
+	
+	\begin{pop}
+		La projection canonique $\pi \colon G \to G/H$ est un morphisme de groupes, surjectif, de noyau $H$.
+	\end{pop}
+
+	\begin{thm}
+		Les sous-groupes de $G/H$ sont en bijection avec les sous-groupes de $G$ contenant $H$.
+	\end{thm}
+
+
+\subsection{Morphisme défini par passage au quotient}
+
+	\begin{thm}[de factorisation]
+		Soient $f \colon G \to G'$ un morphisme de groupes abéliens, $H$ un s-g de $G$ et $\pi \colon G \to G/H$ la projection canonique.
+		Alors
+		$$\left( H \subset \Ker(f) \right) \iff \left( \exists ! g \colon G/H \to G', f = g \circ \pi \right)$$
+		et on dit que $g$ se déduit de $f$ par passage au quotient par $H$.
+		De plus, on a alors $\Im(g) = \Im(f)$ et $\Ker(g) = \Ker(f)/H$.
+	\end{thm}
+
+	\begin{cor}
+		Si $f \colon G \to G'$ est un morphisme de groupes abéliens, $f$ induit par passage au quotient un isomorphisme
+		$$G/\Ker(f) \overset{\sim}{\to} \Im(f)\ .$$
+		En particulier, si $G$ est fini on a $\abs{G} = \abs{\Ker(f)} \cdot \abs{\Im(f)}$.
+	\end{cor}
+
+
+\subsection{Sous-groupes monogènes, ordre d'un élément}
+
+	\begin{defn}
+		Si  $x \in G$, on définit l'\textbf{ordre} de $x$, noté $\omega_G(x)$ comme le plus petit $n \in \N^*$ tel que $x^n = e$ s'il existe, et $+\infty$ sinon.
+	\end{defn}
+
+	\begin{lem}
+		Soit $f \colon G \to G'$ un morphisme de groupes injectif.
+		Alors $\forall x \in G, \omega(f(x)) = \omega(x)$.
+	\end{lem}
+
+	\begin{lem}
+		Pour tout diviseur $d$ de $\omega(x)$ on a $\omega(x^d) = \frac{w(x)}{d}$.
+	\end{lem}
+
+	\begin{lem}
+		Soit $G$ un groupe.
+		Pour tout $x \in G$, il existe un unique morphisme de groupes $f_x \colon \Z \to G$ envoyant $1$ sur $x$, c'est $k \mapsto x^k$ et son image est $\langle x \rangle$.
+	\end{lem}
+
+	\begin{lem}
+		Tout s-g non nul $H$ de $(\Z,+,0)$ est de la forme $H = N\Z$ où $N = [\Z : H] = \min(H \cap \N^*)$.
+	\end{lem}
+
+	\begin{pop}
+		Soit $G$ un groupe et $x \in G$.
+		\begin{enumerate}
+			\item Si $\omega(x) = \infty$, $f_x \colon \Z \overset{\sim}{\to} \langle x \rangle$.
+			\item Si $\omega(x) < \infty$, $\Ker(f_x) = \omega(x) \Z$, $f_x$ induit par passage au quotient un isomorphisme entre $\Z / \omega(x)\Z$ et $\langle x \rangle$ et $\langle x \rangle = \{ e, x, x^2, \ldots, x^{\omega(x) - 1} \}$.
+		\end{enumerate}
+		Dans les deux cas $\abs{\langle x \rangle} = \omega(x)$.
+	\end{pop}
+
+	\begin{cor}
+		Soit $x$ d'ordre fini.
+		Alors $\forall n \in \Z, \left( x^n = e \right) \iff \left( \omega(x) \mid n \right)$.
+	\end{cor}
+
+	\begin{thm}[\textbf{Lagrange}]
+		Soit $G$ un groupe fini.
+		Alors, pour tout $x \in G$, $x^{\abs{G}} = e$ et $\omega(x) \vert G$.
+	\end{thm}
+
+
+\subsection{Groupes cycliques}
+
+	\begin{pop}
+		Soit $(G,*,e)$ un groupe fini, $N = \abs{G}$ son ordre et $g_0 \in G$.
+		Les assertions suivantes sont équivalentes :
+		\begin{enumerate}[(i)]
+			\item 
+			\item 
+		\end{enumerate}
+	\end{pop}
