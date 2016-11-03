@@ -15,7 +15,7 @@
 		et on dit que c'est une relation d'équivalence si ces trois conditions sont vérifiées.
 		Dans ce cas on note aussi $x \sim_\rel y$ ou encore $x \equiv y \mod \rel$.
 	\end{defn}
-	
+
 	\begin{defn}
 	Soit $\sim$ une relation d'équivalence sur $E$ et $A \subset E$.
 	On dit que $A$ est une classe d'équivalence pour la relation $\sim$ si $A$ est non vide, $\forall x,y \in A, x \sim y$ et $\forall x \in A, \forall y \not\in A, x \not\sim y$.
@@ -127,7 +127,7 @@
 	\begin{thm}[Formule de Burnside]
 		Soit $G$ un groupe fini agissant sur $X$ fini.
 		Alors
-		$$\abs{X/G} = \frac{1}{\abs{G}} \sum_{g \in G} \abs{\{ x \in X \mid g \codt x = x \} }$$
+		$$\abs{X/G} = \frac{1}{\abs{G}} \sum_{g \in G} \abs{\{ x \in X \mid g \cdot x = x \} }$$
 		autrement dit le nombre d'orbites de l'action est égal à l'espérance du nombre de points fixes d'un élément aléatoire de $G$.
 	\end{thm}
 
@@ -148,7 +148,7 @@
 		Alors
 		\begin{enumerate}
 			\item $\Ker(f) = f^{-1}(e')$ est un sous-groupe de $G$ appelé \textbf{noyau} de $f$,
-			\item $\Im(f) = f(G)$ est un sous-groupe de $G'$ appelé \textbf{image} de $f$.
+			\item $\im(f) = f(G)$ est un sous-groupe de $G'$ appelé \textbf{image} de $f$.
 		\end{enumerate}
 	\end{defn}
 
@@ -169,7 +169,7 @@
 	%\begin{rem}
 		%Lorsque $G$ n'est pas abélien il faut que $H$ soit distingué (ou normal).
 	%\end{rem}
-	
+
 	\begin{pop}
 		La projection canonique $\pi \colon G \to G/H$ est un morphisme de groupes, surjectif, de noyau $H$.
 	\end{pop}
@@ -186,13 +186,13 @@
 		Alors
 		$$\left( H \subset \Ker(f) \right) \iff \left( \exists ! g \colon G/H \to G', f = g \circ \pi \right)$$
 		et on dit que $g$ se déduit de $f$ par passage au quotient par $H$.
-		De plus, on a alors $\Im(g) = \Im(f)$ et $\Ker(g) = \Ker(f)/H$.
+		De plus, on a alors $\im(g) = \im(f)$ et $\Ker(g) = \Ker(f)/H$.
 	\end{thm}
 
 	\begin{cor}
 		Si $f \colon G \to G'$ est un morphisme de groupes abéliens, $f$ induit par passage au quotient un isomorphisme
-		$$G/\Ker(f) \overset{\sim}{\to} \Im(f)\ .$$
-		En particulier, si $G$ est fini on a $\abs{G} = \abs{\Ker(f)} \cdot \abs{\Im(f)}$.
+		$$G/\Ker(f) \overset{\sim}{\to} \im(f)\ .$$
+		En particulier, si $G$ est fini on a $\abs{G} = \abs{\Ker(f)} \cdot \abs{\im(f)}$.
 	\end{cor}
 
 
@@ -246,7 +246,43 @@
 		Soit $(G,*,e)$ un groupe fini, $N = \abs{G}$ son ordre et $g_0 \in G$.
 		Les assertions suivantes sont équivalentes :
 		\begin{enumerate}[(i)]
-			\item 
-			\item 
+			\item $g_0$ est d'ordre $N$,
+			\item $G = \langle g_0 \rangle$,
+			\item il existe un isomorphisme $\varphi \colon \Z / N\Z \overset{\sim}{\to} G$ qui envoie $\bar{1}$ sur $g_0$,
+			\item tout élément $g \in G$ peut s'écrire $g = g_0^n$ pour un certain $n \in \N$.
 		\end{enumerate}
 	\end{pop}
+
+	\begin{defn}
+		Un groupe fini vérifiant les assertions précédentes est appelé \textbf{groupe cyclique}.
+		On dit que $g_0$ est un \textbf{générateur} de $G$.
+	\end{defn}
+
+	\begin{pop}
+		Soit $N \in \N^*$.
+		\begin{enumerate}
+			\item Si $d \mid n$, $d\Z / N\Z = \left\{ \bar{0}, \bar{d}, \ldots, \overline{\left( \frac{N}{d} - 1 \right)d} \right\}$ est un sous groupe de $\Z / N\Z$.
+				Inversement, tout s-g de $\Z / N\Z$ est de cette forme pour un entier $d$ divisant $N$ uniquement déterminé, mettant en bijection les s-g de $\Z / N\Z$ et les diviseurs de $N$.
+			\item Si $d_1$ et $d_2$ divisent $N$, on a $( d_2 \Z / N\Z \subset d_1 \Z / N\Z ) \iff (d_1 \mid d_2)$.
+			\item Le sous-groupe $d\Z / N\Z$ est cyclique, d'ordre $\frac{N}{d}$ et d'indice $[\Z/N\Z : d\Z/N\Z] = d$.
+			\item Les éléments de $d\Z / N\Z$ sont les éléments de $\Z / N\Z$ (additif) dont l'ordre divise $\frac{N}{d}$.
+			\item Soit $x \in \Z$.
+				On a $\langle \bar{x} \rangle = d\Z / N\Z$ où $d = \pgcd(x,N)$.
+				Alors $x$ est d'ordre $\frac{N}{d}$ (additif).
+				En particulier, $\bar{x}$ est générateur de $\Z / N\Z$ si et seulement si $x$ est premier avec $N$.
+		\end{enumerate}
+	\end{pop}
+
+	\begin{cor}[\textbf{Bézout}]
+		Soit $a, b \in \Z$ non tous les deux nuls.
+		Alors $\exists m,n \in \Z, ma + nb = \pgcd(a,b)$.
+	\end{cor}
+
+	\begin{cor}
+		Soit $(G,*,e)$ groupe cyclique d'ordre $N$.
+		Alors pour tout $y \in G$ et $d \mid N$ on a $(\exists x \in G, y = x^d) \iff \left( y^{\frac{N}{d}} = e \right)$.
+		Pour $k \in \N^*$ on a $(\exists x \in G, y = x^d) \iff \left( y^{\frac{N}{\pgcd(N,k)}} = e \right)$.
+		En particulier, si $k$ est premier avec $N$, tout élément de $G$ est une puissance $k$-ième.
+	\end{cor}
+
+	
