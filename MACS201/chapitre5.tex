@@ -138,6 +138,7 @@
 \subsection{Innovation process}
 
 	Let $X = (X_t)_{t \in \Z}$ denote a centered weakly stationary process.
+	Let $\mathcal{H}_t^X = \overline{\Span}(X_s, s \leq t)$ denote the \textbf{linear past} of $X$ up to time $t$.
 
 	\begin{defn}
 		We call \textbf{innovation process} the process $\epsilon = (\epsilon_t)_{t \in \Z}$ defined by $\epsilon_t = X_t - \proj(X_t \mid \mathcal{H}_{t - 1}^X)$.
@@ -159,3 +160,18 @@
 	\end{defn}
 
 	We define the intersection of the whole past of $X$ as $\mathcal{H}_{-\infty}^X = \bigcap_{t \in \Z} \mathcal{H}_t^X$.
+	We denote $\psi_s = \frac{\scal{X_t}{\epsilon_{t - s}}}{\sigma^2}$.
+	
+	\begin{thm}[\textbf{Wold decomposition}]
+		Let $X$ be a regular process, $\epsilon$ its innovation process and $\sigma^2$ its innovation variance, so that $\epsilon \sim \WN(0,\sigma^2)$.
+		Define the $L^2$ centered process $U$ as $U_t = \sum_{k = 0}^\infty \psi_k \epsilon_{t - k}$.
+		Define the $L^2$ centered process $V$ b $\forall t \in \Z, X_t = U_t + V_t$.
+		Then the following assertions hold,
+		\begin{enumerate}[(i)]
+			\item $U_t = \proj(X_t \mid \mathcal{H}_t^\epsilon)$ and $V_t = \proj(X_t \mid \mathcal{H}_{-\infty}^X)$,
+			\item $\epsilon$ and $V$ are uncorrelated: $\forall (t,s), \scal{V_t}{\epsilon_s} = 0$,
+			\item $U$ is a purely non-dterministic process and has same innovation as $X$.
+				Moreover $\forall t \in \Z, \mathcal{H}_t^\epsilon = \mathcal{H}_t^U$.
+			\item $V$ is a deterministic process and $\mathcal{H}_{-\infty}^V = \mathcal{H}_{-\infty}^X$.
+		\end{enumerate}
+	\end{thm}
