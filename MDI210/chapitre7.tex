@@ -112,3 +112,17 @@ Pour cette application quadratique on a $\nabla q(x) = b + Ax$ et $\hess q(x) = 
 	Soit $p \in \N$.
 	À partir d'un point $x_k$ on effectue $p$ itérations de la méthode de la plus forte pente; on obtient un point $y_k$ et on pose $d_k = y_k - x_k$.
 	Le point $x_{k + 1}$ est le point où $f(x_k + s d_k)$ atteint un minimum pour $s > 0$.
+
+
+%\subsection{Méthode des gradients conjugués}
+
+	%Dans le cas d'une fonction quadratique $q$, on part d'un point $x_0$ et on minimise $q$ suivant $n$ directions $d_0,\ldots,d_{n - 1}$ mutuellement conjuguées par rapport à $A$, i.e. vérifiant $\forall i,j \in \iniff{1}{n}, \scal{A d_i}{d_j} = 0$.
+	%Il vient alors $s_k = \argmin_s q(x_k + s d_k)= - \frac{\scal{d_k}{A x_k + b}}{\scal{A d_k}{d_k}}$.
+
+	%\begin{lem}
+		%Si $d_0,\ldots,d_{k - 1}$ sont mutuellement conjuguées par rapport à $A$, alors $\forall i < k, \scal{d_i}{\nabla q(x_k)} = 0$.
+	%\end{lem}
+
+	%\begin{thm}
+		%Si $d_0,\ldots,d_{k - 1}$ sont mutuellement conjuguées, le point $x_n$ est l'optimum de $q(x)$ sur $\R^n$.
+	%\end{thm}
