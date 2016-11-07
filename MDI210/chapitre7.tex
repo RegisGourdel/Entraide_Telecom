@@ -13,11 +13,11 @@ Prenons maintenant $f \colon \R^n \to \R$. On cherche à déterminer ses extrema
 \begin{defn}
 	Soit $x \in \R^n$ tel que $f$ est dérivable en $x$.
 	Le \textbf{gradient} de $f$ en $x$ est $\nabla f(x) = \transp{\left( \frac{\delta f}{\delta x_1}(x), \ldots, \frac{\delta f}{\delta x_n}(x) \right)}$.
-\end{defn} 
+\end{defn}
 
 \begin{pop}
 	Soit $A \in \M_n(\R)$ et $u$ et $v$ deux fonctions de $\R^n$.
-	Alors $\diff \transp{u} A) = \diff(\transp{u}) A$ et $\nabla (\scal{u}{v}) = \scal{\diff u}{v} + \scal{u}{\diff v}$.
+	Alors $\diff (\transp{u} A) = \diff(\transp{u}) A$ et $\nabla (\scal{u}{v}) = \scal{\diff u}{v} + \scal{u}{\diff v}$.
 \end{pop}
 
 \begin{defn}
@@ -35,7 +35,7 @@ Prenons maintenant $f \colon \R^n \to \R$. On cherche à déterminer ses extrema
 \end{thm}
 
 \begin{thm}[condition suffisante d'optimalité]
-	Si $f$ vérifie en $x^*$ $\nabla f(x^*) = 0$ et $\hess f(x^*)$ est une matrice \emph{définie} positive (i.e. $\forall h \in \R^n \setminus \{ 0 \}, \transp{h} \hess f(x^*) h > 0$).
+	Si $f$ vérifie en $x^*$, $\nabla f(x^*) = 0$ et $\hess f(x^*)$ est une matrice \emph{définie} positive (i.e. $\forall h \in \R^n \setminus \{ 0 \}, \transp{h} \hess f(x^*) h > 0$) alors $f$ admet un minimum local en $x^*$.
 \end{thm}
 
 \begin{defn}
@@ -68,14 +68,14 @@ Pour cette application quadratique on a $\nabla q(x) = b + Ax$ et $\hess q(x) = 
 
 \subsection{Généralités sur les méthodes d'optimisation sans contrainte}
 
-	Pour déterminer un point où $f$ atteint un minimum local, on construit une suité $(x_i)$ qui doit converger vers un point $x^*$ vérifiant une condition nécessaire d'optimalité.
+	Pour déterminer un point où $f$ atteint un minimum local, on construit une suite $(x_i)$ qui doit converger vers un point $x^*$ vérifiant une condition nécessaire d'optimalité.
 	On appelle \textbf{méthode de descente} toute méthode telle que $\forall k, x_{k + 1} = x_k + s_k d_k$ où $s_k \in \R_+$ et $d_k \in \R^n$ est une direction qui vérifie $\scal{d_k}{\nabla f(x_k)} < 0$.
 	On veut ainsi assurer au minimum $f(x_{k + 1}) \leq f(x_k)$.
-	
+
 	Lorsque la convergence d'un algorithme est établie, on s'intéresse à sa \emph{vitesse de convergence} :
 	\begin{itemize}
 		\item[\textbullet] Si $\frac{\norme{x_{k + 1} - x^*}}{\norme{x_k - x^*}} \leq \alpha < 1$ pour $k$ assez grand, on dit que la convergence est \emph{linéaire} de taux $\alpha$.
-		\item[\textbullet] Si $\frac{\norme{x_{k + 1} - x^*}}{\norme{x_k - x^*}} \overset{k \to \infty}{\to} 0$ on dit que la convergence est \emph{superlinéaire}.
+		\item[\textbullet] Si $\frac{\norme{x_{k + 1} - x^*}}{\norme{x_k - x^*}} \overset{k \to \infty}{\longrightarrow} 0$ on dit que la convergence est \emph{superlinéaire}.
 		\item[\textbullet] Si $\frac{\norme{x_{k + 1} - x^*}}{\norme{x_k - x^*}^\gamma}$ est borné avec $\gamma > 1$, on dit que la convergence est superlinéaire d'ordre $\gamma$. Dans le cas $\gamma = 2$ elle est dite quadratique.
 	\end{itemize}
 
@@ -87,7 +87,7 @@ Pour cette application quadratique on a $\nabla q(x) = b + Ax$ et $\hess q(x) = 
 	On dit que $d$ est une \emph{direction de descente} si $g'(0) = \scal{d}{\nabla f(x_k)} < 0$.
 
 	La \emph{direction de plus grande pente descendante} est donnée par $d = - \frac{\nabla f(x_k)}{\norme{\nabla f(x_k)}}$.
-	
+
 	\begin{algorithm}[h]
 		\caption{\textcolor{RoyalBlue}{Méthode de gradient}}
 		\Entree{Fonction $f$ à minimser.}
@@ -126,3 +126,41 @@ Pour cette application quadratique on a $\nabla q(x) = b + Ax$ et $\hess q(x) = 
 	%\begin{thm}
 		%Si $d_0,\ldots,d_{k - 1}$ sont mutuellement conjuguées, le point $x_n$ est l'optimum de $q(x)$ sur $\R^n$.
 	%\end{thm}
+
+%\subsection{Méthode de Newton}
+
+\subsection{Méthode de Newton unidimensionnelle}
+
+	On construit une suite $(x_k)$ telle que : si $f''(x_k) > 0$ ($f$ strictement convexe autour de $x_k$) on pose $x_{k + 1} = x_k - \frac{f'(x_k)}{f''(x_k)}$ (point où la forme quadratique obtenue par formule de Taylor à l'ordre 2 atteint son minimum), sinon la méthode échoue.
+
+
+\subsection{Dichotomie pour une fonction dérivable}
+
+	\begin{defn}
+		On dit qu'une fonction est \textbf{unimodale} s'il existe $x^* \in \R$ tel que la fonction est décroissante sur $\intof{-\infty}{x^*}$ et strictement croissante sur $\intfo{x^*}{\infty}$.
+	\end{defn}
+
+	On suppose $f$ dérivale et unimodale, donc avec un minimum global.
+	On cherche $x_{min}$ et $x_{max}$ tels que $f'(x_{min}) < 0$ et $f'(x_{max}) > 0$.
+	Puis on pose, à chaque itération, $x = \frac{x_{min} + x_{max}}{2}$.
+	Si $f'(x) > 0$ on remplace $x_{max}$ par $x$, sinon on remplace $x_{min}$ par $x$.
+	On répète jusqu'à vérifier un critère d'arrêt et l'on converge ainsi vers le minimum, pour lequel $f'(x) = 0$.
+
+
+\subsection{Interpolation quadratique}
+
+	On dispose de trois points $x_1 < x_2 < x_3$ tels que $f(x_2) \leq f(x_1)$ et $f(x_2) \leq f(x_3)$.
+	Par interpolation de ces trois points on peut alors approcher $f$ par une fonction quadratique $q$ qui admet un minimum en un point $x_4$.
+	On change alors le triplet :
+	\begin{itemize}
+		\item[\textbullet] Si $f(x_4) \leq f(x_2)$,
+			\begin{itemize}
+				\item si $x_4 \leq x_2$ : $(x_1,x_4,x_2)$,
+				\item sinon $(x_2,x_4,x_3)$.
+			\end{itemize}
+		\item[\textbullet] Sinon
+			\begin{itemize}
+				\item si $x_4 \leq x_2$ : $(x_4,x_2,x_3)$,
+				\item sinon $(x_1,x_2,x_4)$.
+			\end{itemize}
+	\end{itemize}

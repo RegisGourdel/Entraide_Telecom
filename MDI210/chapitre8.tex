@@ -1,1 +1,133 @@
- 
+ \subsection{Qualification des contraintes}
+
+	On consisère des fonctions $f$, $g_i$ ($1 \leq i \leq m$) et $h_j$ ($1 \leq j \leq p$) de $\R^n$ dans $\R$ de classe $\cont^1$.
+	Soit $(P)$ le problème consistant à minimiser $f(x)$ avec $x \in \R^n$ et
+	$\left\{ \begin{array}{l}
+		\forall i \in \iniff{1}{m}, g_i(x) \leq 0 \\
+		\forall j \in \iniff{1}{p}, h_j(x) = 0
+	\end{array} \right.$ (les contraintes).
+
+	On note $X$ le domaine réalisable (i.e. les $x$ qui respectent les contraintes). C'est un fermé de $\R^n$.
+	Si $\forall i \in \iniff{1}{m}, \forall x \in X, g_i(x) = 0$ on dit que la contrainte $g_i$ est \textbf{saturée} en $x$.
+	On supposera $X$ non vide.
+
+	\begin{thm}
+		Si $X$ est borné, alors $(P)$ admet au moins une solution.
+	\end{thm}
+
+	\begin{defn}
+		On dit que $f$ est \textbf{coercive} si $f(x) \overset{\norme{x} \to +\infty}{\longrightarrow} + \infty$.
+	\end{defn}
+
+	\begin{thm}
+		Si $f$ est coercive, $(P)$ admet au moins une solution.
+	\end{thm}
+
+	\begin{defn}
+		On dit qu'une direction $d$ est \textbf{admissible} en $x_0 \in X$ s'il existe $\phi \colon \R \to \R^n$ telle que :
+		\begin{itemize}
+			\item[\textbullet] $\phi(0) = x_0$,
+			\item[\textbullet] pour tout $t > 0$ assez petit, $\phi(t) \in X$,
+			\item[\textbullet] la dérivée à droite de $\phi$ en $0$ est $d$.
+		\end{itemize}
+	\end{defn}
+
+	\begin{note}
+		On note $A(x_0)$ l'ensemble des directions admissibles en $x_0$ et $I_0(x_0) = \{ i \in \iniff{1}{m} \mid g_i(x_0) = 0 \}$.
+	\end{note}
+
+	\begin{pop}
+		Soit $d \in A(x_0)$, alors $\forall i \in I_0(x_0), \scal{d}{\nabla g_i(x_0)} \leq 0$ et $\forall j \in \iniff{1}{p}, \scal{d}{\nabla h_j(x_0)} = 0$.
+		On note $B(x_0)$ les directions qui vérifient ces deux critères, d'où $A(x_0) \subset B(x_0)$.
+	\end{pop}
+
+	\begin{defn}
+		On dit que les contraintes sont \textbf{qualifiées} en $x_0 \in X$ si toute direction dans $B(x_0)$ est limite d'une suite de directions de $A(x_0)$.
+	\end{defn}
+
+	\begin{pop}
+		Les contraintes sont qualifiées en tout point de $X$ si les conditions suivantes sont vérifiées :
+		\begin{itemize}
+			\item les fonctions $g_i$ sont convexes,
+			\item les fonctions $h_j$ sont affines,
+			\item il existe $\tilde{x} \in X$ tel que $\forall i \in \iniff{1}{m}, g_i(\tilde{x}) < 0$ et $\forall j \in \iniff{1}{p}, h_j(\tilde{x}) = 0$.
+		\end{itemize}
+	\end{pop}
+
+	\begin{pop}
+		Supposons les fonction $h_j$ affines pour $j \in \iniff{1}{p}$. Si, en $x_0 \in X$, l'ensemble des gradients $\nabla g_i(x_0)$ où $i \in I_0(x_0)$ et $\nabla h_j(x_0)$ où $j \in \iniff{1}{p}$ sont linéairemenet indépendants, alors les contraintes sont qualifiées en $x_0$.
+	\end{pop}
+
+	\begin{thm}
+		On suppose que $(P)$ admet un minimum local en $x^*$ où les contraintes sont qualifiées.
+		Alors, si $d \in B(x^*)$, $\scal{d}{\nabla f(x^*)} \geq 0$ (aucune direction n'est de descente).
+	\end{thm}
+
+\subsection{Condition de Lagrange}
+
+	On considère $(P)$ sans les contraintes $g_i$ et avec des fonctions $h_j$ de classe $\cont^1$.
+
+	\begin{thm}
+		Soit $x^*$ un minimum local du problème.
+		On suppose que les contraintes sont qualifiées en $x^*$.
+		Alors il existe des réels $\mu_1,\ldots,\mu_p$ tels que $\nabla f(x^*) = \sum_{j = 1}^p \mu_j \nabla h_j(x^*)$.
+	\end{thm}
+
+	\begin{thm}
+		La condition de Lagrange est suffisante lorsque $f$ est convexe dans un ouvert contenant $X$ et que les $h_j$ ($1 \leq j \leq p$) sont affines.
+	\end{thm}
+
+\subsection{Condition de Karush, Kuhn et Tucker}
+
+	On reprend le problème $(P)$ initial avec les $g_i$ et les $h_j$ de classe $\cont^1$.
+
+	\begin{thm}[Condition de Karush, Kuhn et Tucker]
+		On suppose les contraintes qualifiées en $x^*$ un minimum local du problème.
+		Alors il existe $\lambda_1,\ldots,\lambda_m \in \R_+$ et $\mu_1,\ldots,\mu_p \in \R$ tels que $\nabla f(x^*) = \sum_{j \in J} \mu_j \nabla h_j(x^*) - \sum_{i \in I_0(x^*)} \lambda_i \nabla g_i(x^*)$.
+	\end{thm}
+
+	\begin{thm}
+        La condition de Karush, Kuhn et Tucker en $x^*$ est suffisante pour avoir un minimum local lorsque, simultanément, $f$ et les $g_i$ pour $i \in I_0(x^*)$ sont convexes dans un voisinage de $x^*$,  et les $h_j$ pour $j \in \iniff{1}{p}$ sont affines dans un voisinage de $x^*$.
+	\end{thm}
+
+\subsection{Méthode de descente avec contraintes}
+
+    On veut minimiser $f(x)$ avec $\forall j \in \iniff{1}{m}, g_i(x) \leq 0$.
+    On approche alors un minimum par une suite $(x_k)$ avec la méthode du gradient en prenant les directions de plus grande descente dans $B(x_k)$, i.e. $d$ qui minimise $\scal{d}{\nabla f(x_k)}$ tout en vérifiant $\norme{d} = 1$ et $\forall i \in I_0(x_k), \scal{d}{\nabla g_i(x_k)} \leq 0$.
+
+
+\subsection{Cas des fonctions convexes}
+
+    On suppose ici que les $g_i$ sont convexes, les $h_j$ sont affines et $f$ est convexe.
+
+    \begin{defn}
+        Soit $C \subset \R$.
+        On dit que $C$ est \textbf{convexe} si $\forall (x,x') \in C^2, \intff{x}{x'} \subset C$.
+    \end{defn}
+
+    \begin{rem}
+        Le domaine réalisable de $(P)$ est convexe.
+    \end{rem}
+
+    \begin{thm}
+        Si $f$ est strictement convexe, $(P)$ admet au plus une solution optimale.
+    \end{thm}
+
+    \begin{thm}
+        Si $X$ est borné et $f$ strictement convexe, $(P)$ admet une unique solution.
+    \end{thm}
+
+    \begin{thm}
+        Si $f$ strictement convexe et coercive, $(P)$ admet une unique solution.
+    \end{thm}
+
+    \begin{thm}
+        On suppose qu'on a un minimum local en $x^*$ où les contraintes sont qualifiées.
+        Alors $(P)$ admet un minimum global en $x^*$.
+    \end{thm}
+
+    \begin{thm}
+        On suppose que la condition de Karush, Kuhn et Tucker est vérifiée en $x^*$ où les contraintes sont qualifiées.
+        Avec les hypothèses de cette partie, $x^*$ est un minimum global de $(P)$.
+        De plus, si $f$ est strictement convexe, $x^*$ est l'unique point où $(P)$ atteint le minimum global.
+    \end{thm}

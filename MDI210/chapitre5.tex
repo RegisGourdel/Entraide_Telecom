@@ -20,7 +20,7 @@ S'il existe des solutions réalisables mais que $z$ n'y admet pas de maximum fin
 
 Pour trouver le maximum on passe alors itérativement d'un sommet à un sommet adjacent de façon à augmenter la valeur de $z$.
 
-À partir des données initiales on construit un \emph{dictionnaire} de variables $x_1, \ldots, x_{n + m}$ où $x_1, \ldots, x_n$ sont appelées \emph{varaibles de décision}, \emph{varaibles de choix} ou encore \emph{varaibles principales} ou \emph{initiales} et $x_{n + 1}, \ldots, x_{n + m}$ (aussi positives) s'appellent \emph{variables d'écart} telles que $x_{n + i} = b_i - \sum_{j = 1}^n a_{ij} x_j$.
+À partir des données initiales on construit un \emph{dictionnaire} de variables $x_1, \ldots, x_{n + m}$ où $x_1, \ldots, x_n$ sont appelées \emph{variables de décision}, \emph{variables de choix} ou encore \emph{variables principales} ou \emph{initiales} et $x_{n + 1}, \ldots, x_{n + m}$ (aussi positives) s'appellent \emph{variables d'écart}, telles que $x_{n + i} = b_i - \sum_{j = 1}^n a_{ij} x_j$.
 
 Un dictionnaire est un système d'équations linéaires liant $x_1, \ldots, x_{n + m}$ et satisfaisant :
 \begin{itemize}
@@ -40,7 +40,7 @@ Une solution est dite \textbf{dégénérée} lorsque des variables principales s
 	}
 	\Sinon
 	{
-		$j_0 \lar \argmax_j \{ c_j, j \in J \}$ (choix autre que le maximum possible tant que supérieur à $0$) \;
+		$j_0 \lar \argmax_j \{ c_j, j \in J \}$ (choix autre que le maximum possible tant que $c_{j_0} > 0$) \;
 		\tcp{$x_{j_0}$ est la variable qui va rentrer en base}
 		$i_0 \lar \argmin_i \left\{ \frac{- b_i}{a_{i,j_0}}, i \in I, \mid a_{i,j_0} < 0 \right\}$ \;
 		\tcp{$x_{i_0}$ est la variable sortante}
@@ -54,7 +54,8 @@ Une solution est dite \textbf{dégénérée} lorsque des variables principales s
 	Il ne peut y avoir cyclage lorsque, à toute itération effectuée à partir d'un dictionnaire dégénéré, on choisit les variables entrante et sortante comme celles de plus petit indice parmi les candidats possibles.
 \end{thm}
 
-On obtient le \textbf{problème auxiliaire} en ajoutant une variable $x_0$ positive telle que $\forall i \in \iniff{1}{m}, \sum_{j = 1}^n a_{ij}x_j - x_0 \leq b_i$.
+On obtient le \textbf{problème auxiliaire} en ajoutant une variable $x_0$ positive telle que
+$$\forall i \in \iniff{1}{m}, \sum_{j = 1}^n a_{ij}x_j - x_0 \leq b_i\ .$$
 Ce problème toujours réalisable en prenant $x_0$ assez grand et s'il n'était pas réalisable initialement (i.e. avec $x_0 = 0$) on peut chercher le $x_0$ minimum.
 
 \textbf{Méthode à deux phases} : pour un dictionnaire non réalisable a priori on introduit $x_0$ et une fonction cible $w = -x_0$. On fait rentrer $x_0$ en base et on itère pour essayer de trouver un dictionnaire réalisable.

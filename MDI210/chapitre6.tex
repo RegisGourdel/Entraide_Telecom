@@ -20,24 +20,34 @@ Le \textbf{problème dual} $(D)$ du problème primal $(P)$ s'écrit : minimiser 
 \end{thm}
 
 \begin{pop}
-	Si $(P)$ admet une solution primale telle que, dans son dernier dictionnaire obtenu par la méthode du simplexe, $z = z^* + \sum_{k = 1}^{n + m} d_k x_k$ alors une solution optimale de $(D)$ est donnée par $\forall i, y_i^* = - d_{n + i}$.
+	Si $(P)$ admet une solution primale telle que, dans son dernier dictionnaire obtenu par la méthode du simplexe, $z = z^* + \sum_{k = 1}^{n + m} d_k x_k$, alors une solution optimale de $(D)$ est donnée par $\forall i, y_i^* = - d_{n + i}$.
 \end{pop}
 
 \begin{thm}[des écarts complémentaires]
 	Une solution $(x_1^*, \ldots, x_n^*)$ de $(P)$ est optimale si et seulement s'il existe $(y_1^*, \ldots, y_m^*)$ une solution de $(D)$ vérifiant :
-	\begin{enumerate}[(i)]
+	\begin{itemize}
 		\item[\textbullet] $\forall i \in \iniff{1}{m}, \left( \sum_{j = 1}^n a_{ij} x_j^* < b \right) \implies \left( y_i^* = 0 \right)$
 		\item[\textbullet] $\forall i \in \iniff{1}{n}, \left( x_j^* > 0 \right) \implies \left( \sum_{i = 1}^m a_{ij} y_i^* = c_j \right)$
-	\end{enumerate}
+	\end{itemize}
 	De plus $(y_1^*, \ldots, y_m^*)$ constitue une solution optimale de $(D)$.
 \end{thm}
 
-\begin{thm}
-	Supposons que la base optimale de $(P)$ est non dégénérée.
-	Pour des variations $\delta b_i$ des $b_i$ on considère le problème $(P_\delta)$ avec les contraintes linéaires $\forall i \in \iniff{1}{m}, \sum_{j = 1}^n a_{ij} x_j \leq b_i + \delta b_i$.
-	On suppose que les $\delta b_i$ sont suffisamment faibles pour que la base optimale de $(P)$ soit encore réalisable pour $(P_\delta)$.
-	La variation de $z$ vaut alors $\sum_{i = 1}^m \delta b_i yi^*$ où $(y_1^*, \ldots, y_m^*)$ est solution optimale de $(D)$.
-\end{thm}
+\subsection{Signification économique du dual :}
+
+	\begin{itemize}
+		\item[\textbullet] $b_i$ est la quantité totale de la ressource $i$,
+		\item[\textbullet] $a_{ij}$ est la quantité de la ressource $i$ consommée par la fabrication d'une unité de produit $j$,
+		\item[\textbullet] $x_j$ est la quantité fabriquée de produit $j$,
+		\item[\textbullet] $c_j$ est la valeur unitaire du produit $j$,
+		\item[\textbullet] $y_i$ est le prix implicite, la valeur unitaire de la ressource $i$.
+	\end{itemize}
+
+	\begin{thm}
+		Supposons que la base optimale de $(P)$ est non dégénérée.
+		Pour des variations $\delta b_i$ des $b_i$ on considère le problème $(P_\delta)$ avec les contraintes linéaires $\forall i \in \iniff{1}{m}, \sum_{j = 1}^n a_{ij} x_j \leq b_i + \delta b_i$.
+		On suppose que les $\delta b_i$ sont suffisamment faibles pour que la base optimale de $(P)$ soit encore réalisable pour $(P_\delta)$.
+		La variation de $z$ vaut alors $\sum_{i = 1}^m \delta b_i yi^*$ où $(y_1^*, \ldots, y_m^*)$ est solution optimale de $(D)$.
+	\end{thm}
 
 L'utilisation du problème dual permet de résoudre un problème où la solution nulle n'est pas réalisable mais où $\forall j, c_j \leq 0$.
 Un tel problème est dit \textbf{dual-réalisable}.
