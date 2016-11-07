@@ -1,16 +1,16 @@
 La forme standard d'un problème d'optimisation est la suivante :
 \begin{itemize}
-	\item[\textbullet] on maximise une forme linéaire $z$ de $n$ variables $x_1, \ldots, x_n$,
-	\item[\textbullet] avec $m$ contraintes linéaires : $\forall i \in \iniff{1}{m}, \sum_{j = 1}^n a_{ij}x_j \leq b$,
+	\item[\textbullet] on maximise une forme linéaire $z = \sum_{j = 1}^n c_j x_j$, la \textbf{fonction objectif},
+	\item[\textbullet] avec $m$ contraintes linéaires : $\forall i \in \iniff{1}{m}, \sum_{j = 1}^n a_{ij}x_j \leq b_i$,
 	\item[\textbullet] et $n$ contraintes de positivité : $\forall j \in \iniff{1}{n}, x_j \geq 0$.
 \end{itemize}
 
 Ces équations déterminent un \textbf{polyèdre des contraintes} qui est convexe.
 Les $n$-uplets $(x_1,\ldots,x_n)$ qui satisfont ces contraintes s'appellent \textbf{solutions réalisables} du problème.
 Ce sont les points intérieurs (au sens large) du polyèdre des contraintes.
-La solution optimale est celle qui maximise $z$.
+La \textbf{solution optimale} est celle qui maximise $z$.
 
-S'il n'existe aucune solution réalisable, le problème des dit infaisable.
+S'il n'existe aucune solution réalisable, le problème est dit infaisable.
 S'il existe des solutions réalisables mais que $z$ n'y admet pas de maximum fini alors le problème est dit non-borné.
 
 \begin{thm}
@@ -20,9 +20,41 @@ S'il existe des solutions réalisables mais que $z$ n'y admet pas de maximum fin
 
 Pour trouver le maximum on passe alors itérativement d'un sommet à un sommet adjacent de façon à augmenter la valeur de $z$.
 
-À partir des données initiales on construit un \emph{dictionnaire} de variables : 
-%%%% [...]
+À partir des données initiales on construit un \emph{dictionnaire} de variables $x_1, \ldots, x_{n + m}$ où $x_1, \ldots, x_n$ sont appelées \emph{varaibles de décision}, \emph{varaibles de choix} ou encore \emph{varaibles principales} ou \emph{initiales} et $x_{n + 1}, \ldots, x_{n + m}$ (aussi positives) s'appellent \emph{variables d'écart} telles que $x_{n + i} = b_i - \sum_{j = 1}^n a_{ij} x_j$.
+
+Un dictionnaire est un système d'équations linéaires liant $x_1, \ldots, x_{n + m}$ et satisfaisant :
+\begin{itemize}
+	\item[\textbullet] les équations expriment $z$ et $m$ des $n + m$ variables (\textbf{variables de base}) en fonction des $n$ autres variables (\textbf{variables hors-base}),
+	\item[\textbullet] équivalence avec le dictionnaire définissant les variables d'écart et la fonction objectif.
+\end{itemize}
+
+Pour une base fixée on obtient une \textbf{solution basique} en mettant à $0$ toutes les variables hors base.
+Une solution est dite \textbf{dégénérée} lorsque des variables principales sont nulles.
+
+\begin{algorithm}[h]
+	\caption{\textcolor{RoyalBlue}{Itération de l'algorithme du simplexe}}
+	\Entree{Un dictionnaire : $I \uplus J = \iniff{1}{n + m}, z = z^* + \sum_{j \in J} c_j x_j, \forall i \in I, x_i = b_i + \sum_{j \in J} a_{ij} x_j, b_i \geq 0$}
+	\Si{$\forall j \in J, c_j \leq 0$}
+	{
+		Fin de l'algorithme, on retourne $z^*$ qui est une solution optimale.
+	}
+	\Sinon
+	{
+		$j_0 \lar \argmax_j \{ c_j, j \in J \}$ (choix autre que le maximum possible tant que supérieur à $0$) \;
+		\tcp{$x_{j_0}$ est la variable qui va rentrer en base}
+		$i_0 \lar \argmin_i \left\{ \frac{- b_i}{a_{i,j_0}}, i \in I, \mid a_{i,j_0} < 0 \right\}$ \;
+		\tcp{$x_{i_0}$ est la variable sortante}
+		On extrait $x_{j_0}$ de l'expression courante de $x_{i_0}$ \;
+		On remplace $x_{j_0}$ par sa nouvelle expression dans $z$ et dans l'expression des autres $x_i$ \;
+		On réitère avec le nouveau dictionnaire construit \;
+	}
+\end{algorithm}
 
 \begin{thm}[Théorème de Bland]
 	Il ne peut y avoir cyclage lorsque, à toute itération effectuée à partir d'un dictionnaire dégénéré, on choisit les variables entrante et sortante comme celles de plus petit indice parmi les candidats possibles.
 \end{thm}
+
+On obtient le \textbf{problème auxiliaire} en ajoutant une variable $x_0$ positive telle que $\forall i \in \iniff{1}{m}, \sum_{j = 1}^n a_{ij}x_j - x_0 \leq b_i$.
+Ce problème toujours réalisable en prenant $x_0$ assez grand et s'il n'était pas réalisable initialement (i.e. avec $x_0 = 0$) on peut chercher le $x_0$ minimum.
+
+\textbf{Méthode à deux phases} : pour un dictionnaire non réalisable a priori on introduit $x_0$ et une fonction cible $w = -x_0$. On fait rentrer $x_0$ en base et on itère pour essayer de trouver un dictionnaire réalisable.

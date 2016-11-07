@@ -1,0 +1,114 @@
+\begin{defn}
+	Soit $E$ et $F$ des espaces vectoriels normés de dimensions finies et $U$ un ouvert de $E$.
+	Une fonction $f \colon U \to F$ est différentiable en $a \in U$ s'il existe une application linéaire $\diff f(a) \colon E \to F$ appellée différentielle de $f$ en $a$, et une fonction $r \colon U \to F$ continue et nulle en $a$ telles que
+	$$\forall x \in U, f(x) = f(a) + \diff f(a) \cdot (x - a) + r(x) \cdot \norme{x - a}\ .$$
+\end{defn}
+
+\begin{defn}
+	On appelle matrice jacobienne de $f$ en $x$ relativement aux bases $\mathcal{B}$ et $\mathcal{B}'$ la matrice $\Jac_{f ; \mathcal{B}, \mathcal{B}'}(x) = \Mat( \diff f(x) ; \mathcal{B} , \mathcal{B}')$.
+\end{defn}
+
+Prenons maintenant $f \colon \R^n \to \R$. On cherche à déterminer ses extrema, locaux ou globaux.
+
+\begin{defn}
+	Soit $x \in \R^n$ tel que $f$ est dérivable en $x$.
+	Le \textbf{gradient} de $f$ en $x$ est $\nabla f(x) = \transp{\left( \frac{\delta f}{\delta x_1}(x), \ldots, \frac{\delta f}{\delta x_n}(x) \right)}$.
+\end{defn} 
+
+\begin{pop}
+	Soit $A \in \M_n(\R)$ et $u$ et $v$ deux fonctions de $\R^n$.
+	Alors $\diff \transp{u} A) = \diff(\transp{u}) A$ et $\nabla (\scal{u}{v}) = \scal{\diff u}{v} + \scal{u}{\diff v}$.
+\end{pop}
+
+\begin{defn}
+	Si $f$ admet des dérivées partielles d'ordre en $x$, on a sa \textbf{matrice hessienne} dans $\mathcal{B}$ la base canonique, $\hess f(x) = \Jac_{f ; \mathcal{B}}(x) = \left( \frac{\partial^2 f}{\partial x_i \partial x_j}(x) \right)_{1 \leq i,j \leq n}$.
+	Si $f$ est de classe $\cont^2$, la matrice hessienne est symétrique.
+\end{defn}
+
+\begin{pop}
+	Si $f$ est de classe $\cont^2$ en $a$, on peut écrire la formule de Taylor d'ordre 2 :
+	$$f(a + h) = f(a) + \scal{\nabla f(a)}{h} + \frac{1}{2} \scal{\hess f(a) \cdot h}{h} + o \left( \norme{h}^2 \right)\ .$$
+\end{pop}
+
+\begin{thm}[condition nécessaire d'optimalité]
+	Si $f$ admet un minimum local en $x^*$, alors $\nabla f(x^*) = 0$ et $\hess f(x^*)$ est une matrice positive (i.e. $\forall h \in \R^n, \transp{h} \hess f(x^*) h \geq 0$).
+\end{thm}
+
+\begin{thm}[condition suffisante d'optimalité]
+	Si $f$ vérifie en $x^*$ $\nabla f(x^*) = 0$ et $\hess f(x^*)$ est une matrice \emph{définie} positive (i.e. $\forall h \in \R^n \setminus \{ 0 \}, \transp{h} \hess f(x^*) h > 0$).
+\end{thm}
+
+\begin{defn}
+	Soit $A \in \Sym_n(\R)$, $b \in \R^n$ et $c \in \R$.
+	Une application $q \colon \R^n \to \R$ de la forme $x \mapsto c + \scal{x}{c} + \frac{1}{2} \scal{Ax}{x}$ est appellée \textbf{fonction quadratique}.
+\end{defn}
+
+Pour cette application quadratique on a $\nabla q(x) = b + Ax$ et $\hess q(x) = A$.
+
+
+\subsection{Fonctions convexes}
+
+	\begin{thm}
+		Si $f$ est convexe et admet des dérivées partielles, alors $f$ admet un minimum global en $x^*$ ssi $\nabla f(x^*) = 0$.
+	\end{thm}
+
+	\begin{thm}
+		Si $f$ est convexe et admet un minimum local en $x^*$, alors c'est un minimum global.
+	\end{thm}
+
+	\begin{thm}
+		Si $f$ est de classe $\cont^2$ alors les propositions suivantes sont équivalentes :
+		\begin{enumerate}[(a)]
+			\item $f$ est convexe,
+			\item $\forall a, h \in \R^n, f(a + h) \geq f(a) + \scal{\nabla f(a)}{h}$ (la surface de $\R^{n + 1}$ d'équation $x_{n + 1} = f(x)$ est au-dessus de ses hyperplans tangents),
+			\item pour tout $x \in \R^n$, $\hess f(x)$ est positive.
+		\end{enumerate}
+	\end{thm}
+
+
+\subsection{Généralités sur les méthodes d'optimisation sans contrainte}
+
+	Pour déterminer un point où $f$ atteint un minimum local, on construit une suité $(x_i)$ qui doit converger vers un point $x^*$ vérifiant une condition nécessaire d'optimalité.
+	On appelle \textbf{méthode de descente} toute méthode telle que $\forall k, x_{k + 1} = x_k + s_k d_k$ où $s_k \in \R_+$ et $d_k \in \R^n$ est une direction qui vérifie $\scal{d_k}{\nabla f(x_k)} < 0$.
+	On veut ainsi assurer au minimum $f(x_{k + 1}) \leq f(x_k)$.
+	
+	Lorsque la convergence d'un algorithme est établie, on s'intéresse à sa \emph{vitesse de convergence} :
+	\begin{itemize}
+		\item[\textbullet] Si $\frac{\norme{x_{k + 1} - x^*}}{\norme{x_k - x^*}} \leq \alpha < 1$ pour $k$ assez grand, on dit que la convergence est \emph{linéaire} de taux $\alpha$.
+		\item[\textbullet] Si $\frac{\norme{x_{k + 1} - x^*}}{\norme{x_k - x^*}} \overset{k \to \infty}{\to} 0$ on dit que la convergence est \emph{superlinéaire}.
+		\item[\textbullet] Si $\frac{\norme{x_{k + 1} - x^*}}{\norme{x_k - x^*}^\gamma}$ est borné avec $\gamma > 1$, on dit que la convergence est superlinéaire d'ordre $\gamma$. Dans le cas $\gamma = 2$ elle est dite quadratique.
+	\end{itemize}
+
+
+\subsection{Méthodes de gradient}
+
+	Soit $x_k \in \R^n$ tel que $\nabla f(x_k) \neq 0$ et $d \in \R^n$.
+	Posons, pour $s \in \R$, $g(s) = f(x_k + sd)$.
+	On dit que $d$ est une \emph{direction de descente} si $g'(0) = \scal{d}{\nabla f(x_k)} < 0$.
+
+	La \emph{direction de plus grande pente descendante} est donnée par $d = - \frac{\nabla f(x_k)}{\norme{\nabla f(x_k)}}$.
+	
+	\begin{algorithm}[h]
+		\caption{\textcolor{RoyalBlue}{Méthode de gradient}}
+		\Entree{Fonction $f$ à minimser.}
+		On choisit un point de départ $x_0$ \;
+		$k \lar 0$ \;
+		\Tq{un test d'arrêt n'est pas vérifié}
+		{
+			$d_k \lar - \nabla f(x_k)$ \;
+			$s_k \lar \argmin_{s \geq 0} f(s_k + s d_k)$ \;
+			$x_{k + 1} \lar x_k + s_k d_k$ \;
+			$k \lar k + 1$ \;
+		}
+		\Sortie{$x_k$}
+	\end{algorithm}
+
+	La condition d'arrêt peut être $k > N$, $\norme{\nabla f(x_k)}_2 < \epsilon$ ou $\abs{f(x_{k + 1}) - f(x_k)} \leq \epsilon$.
+	Les directions successives empruntées sont ici orthogonales.
+
+
+\subsection{Méthode de la plus forte pente accélérée}
+
+	Soit $p \in \N$.
+	À partir d'un point $x_k$ on effectue $p$ itérations de la méthode de la plus forte pente; on obtient un point $y_k$ et on pose $d_k = y_k - x_k$.
+	Le point $x_{k + 1}$ est le point où $f(x_k + s d_k)$ atteint un minimum pour $s > 0$.
