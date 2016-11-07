@@ -1,1 +1,13 @@
+\begin{defn}
+	Un canal $Q$ à entrée binaire est à sortie symétrique s'il existe $\pi \in \mathfrak{S}_n$ telle que $\pi^2 = \Id$ et $\forall y, Q(y \mid 0) = Q(\pi(y) \mid 1)$.
+\end{defn}
 
+\begin{rem}
+	La capacité d'un tel canal est atteinte pour la distribution uniforme en entrée.
+\end{rem}
+
+\begin{thm}
+	Soit $Q$ à entrée binaire et à sortie symétrique de capacité $I_0$.
+	Soit $R \in \iniff{0}{I_0}$ et $\varepsilon \in \inoo{0}{1}$.
+	Alors il existe un code polaire de longueur $N = 2^n$ avec $n \in \N^*$ de taux $R$ et tel que $P_e^N \leq \varepsilon$.
+\end{thm}
