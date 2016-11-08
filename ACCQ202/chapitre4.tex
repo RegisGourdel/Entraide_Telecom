@@ -11,3 +11,35 @@
 	Soit $R \in \iniff{0}{I_0}$ et $\varepsilon \in \inoo{0}{1}$.
 	Alors il existe un code polaire de longueur $N = 2^n$ avec $n \in \N^*$ de taux $R$ et tel que $P_e^N \leq \varepsilon$.
 \end{thm}
+
+La \textbf{polarisation} transforme une famille de canaux moyens en une famille de canaux soit très bons,
+soit très mauvais par séparation des canaux
+$$Q \longrightarrow (Q^-,Q^+) \longrightarrow (Q^{--},Q^{-+},Q^{+-},Q^{++}) \longrightarrow \ldots$$
+où $Q^- \colon U_1 \to (Y_1,Y_2)$ et $Q^+ \colon U_2 \to (U_1,Y_1,Y_2)$
+
+\begin{pop}
+	\begin{itemize}
+		\item[\textbullet] $I(U_1,U_2 ; Y_1,Y_2) = I(X_1,X_2 ; Y_1,Y_2) = 2 I_0$
+		\item[\textbullet] $I(U_1,U_2 ; X_1,X_2) = I(U_1 ; Y_1,Y_2) + I(U_2 ; U_1,Y_1,Y_2)$
+	\end{itemize}
+\end{pop}
+
+\begin{cor}
+	On a $I(U_1,U_2 ; Y_1,Y_2) = I(U_1 ; Y_1,Y_2) + I(U_2 ; U_1,Y_1,Y_2) = 2 I_0$, d'où $I_0 = \frac{I(Q^-) + I(Q^+)}{2}$ et $I(Q^-) \leq I_0 \leq I(Q^+)$.
+\end{cor}
+
+\begin{lem}[Lemme du progrès garanti]
+	$\forall \varepsilon \in \intoo{0}{1}, \exists \delta > 0$ tel que, si $I(Q) \in \inoo{\min(\varepsilon, 1 - \varepsilon)}{\max(\varepsilon, 1 - \varepsilon)}$ alors $I(Q^+) - I(Q^-) > \delta$ et $\varepsilon(\delta) \overset{\delta \to 0}{\longrightarrow} 0$.
+\end{lem}
+
+Dans le cas général $(X_1,\ldots,X_{2^n}) = (U_1,\ldots,U_{2^n}) \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}^{\oplus n}$.
+
+\begin{thm}
+	Soit $\varepsilon > 0$. Notons
+	$$\begin{align}
+		K_n^+ & = \frac{1}{2^n} \# \{ Q^{b_1,\ldots,b_n} \mid I(Q^{b_1,\ldots,b_n}) \geq 1 - \varepsilon \} \\
+		K_n^- & = \frac{1}{2^n} \# \{ Q^{b_1,\ldots,b_n} \mid I(Q^{b_1,\ldots,b_n}) \leq \varepsilon \} \\
+		K_n^0 & = \frac{1}{2^n} \# \{ Q^{b_1,\ldots,b_n} \mid \varepsilon < I(Q^{b_1,\ldots,b_n}) < 1 - \varepsilon \}
+	\end{align}$$
+	Alors $K_n^+ \overset{n \to \infty}{\longrightarrow} I_0$, $K_n^- \overset{n \to \infty}{\longrightarrow} 1 - I_0$ et $K_n^0 \overset{n \to \infty}{\longrightarrow} 0$.
+\end{thm}
