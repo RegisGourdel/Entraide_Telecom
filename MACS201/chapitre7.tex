@@ -22,7 +22,27 @@
 		\end{enumerate}
 	\end{thm}
 
+
+\subsection{Stopping times}
+
 	\begin{defn}
 		A random variable $\tau \colon \Omega \to \Bar{\N} = \N \cup \{ \infty \}$ is called a \textbf{stopping time} if $\forall k \in \N, \{ \tau \leq k \} \in \mathcal{F}_k$.
 		The family $\mathcal{F}_\tau$ of events $A$ such that $\forall k \in \N, A \cap \{ \tau \leq k \} \in \mathcal{F}_k$ is called the $\sigma$-field of events prior to times $\tau$.
 	\end{defn}
+
+	\begin{defn}
+		For $A \in \mathcal{X}$, the \textbf{first hitting time} of the set $A$ by the process $(X_n)_{n \in \N}$ is $\tau_A = \inf \{ n \geq 0 \mid X_n \in A \}$ and \textbf{return time} is $\sigma_A = \inf \{ n \geq 1 \mid X_n \in A \}$, where, by convention, $\inf \emptyset = + \infty$.
+		The successive return times $\sigma_A^{(n)}$ are defined successively by $\sigma_A^{(0)} = 0$ and $\forall k \geq 0, \sigma_A^{(k + 1)} = \inf \left\{ n > \sigma_A^{(n)} \mid X_n \in A \right\}$.
+	\end{defn}
+
+	\begin{pop}
+		Let $(\Omega, \mathcal{F}, (\mathcal{F}_k)_{k \in \N}, \proba)$ be a filtered space and $\tau$ and $\sigma$ be two stopping times for $(\mathcal{F}_k)_{k \in \N}$.
+		Denote by $\mathcal{F}_\tau$ and $\mathcal{F}_\sigma$ the $\sigma$-fields of the events prior to $\tau$ and $\sigma$ respectively.
+		Then,
+		\begin{enumerate}[(i)]
+			\item $\tau \wedge \sigma$, $\tau \vee \sigma$ and $\tau + \sigma$ are stopping times,
+			\item if $\tau \leq \sigma$, then $\mathcal{F}_\tau \subset \mathcal{F}_\sigma$,
+			\item $\mathcal{F}_{\tau \wedge \sigma} = \mathcal{F}_\tau \cap \mathcal{F}_\sigma$,
+			\item $\{ \tau < \sigma \} \in \mathcal{F}_\tau \cap \mathcal{F}_\sigma$ and $\{ \tau = \sigma \} \in \mathcal{F}_\tau \cap \mathcal{F}_\sigma$.
+		\end{enumerate}
+	\end{pop}

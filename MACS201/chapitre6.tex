@@ -26,7 +26,69 @@
 		Then $\forall f \in \mathbf{F}_+(\mathsf{Y}, \mathcal{Y}), N f \in \mathbf{F}_+(\mathsf{X}, \mathcal{X})$.
 		Moreover, if $N$ is a probability kernel, then $\forall f \in \mathbf{F}_b(\mathsf{X}, \mathcal{X}), Nf \in \mathbf{F}_b(\mathsf{Y}, \mathcal{Y})$.
 	\end{pop}
+	
+	\begin{lem}
+		Let $M \colon \F_+(\mathsf{Y},\mathcal{Y}) \to \F_+(\mathsf{X},\mathcal{X})$ be an additive and positively homogeneous function such that $\lim_{n \to \infty} M(f_n) = M(\lim_{n \to \infty} f_n)$ for every non-decreasing sequence $(f_n)_{n \in \N}$.
+		Then the function $N$ defined on $\mathsf{X} \times \mathcal{Y}$ by $N(x,A) = M(\indic_A)(x)$ is a kernel and $\forall f \in \F_+(\mathsf{Y},\mathcal{Y}), M(f)(x) = \int_{\mathsf{Y}} N(x, \diff y) f(y)$.
+	\end{lem}
+	
+	\begin{pop}
+		Let $N$ be a kernel on $\mathsf{X} \times \mathcal{Y}$ and $\mu \in \mes_+(\mathsf{X},\mathcal{X})$.
+		Then $\mu N \in \mes_+(\mathsf{Y},\mathcal{Y})$.
+		If $N$ is a probability kernel, then $\mu(\mathsf{X}) = \mu N(\mathsf{X})$.
+	\end{pop}
 
+	\begin{pop}
+		Let $M$ and $N$ be two kernels on $\mathsf{X} \times \mathcal{Y}$ and $\mathsf{Y} \times \mathcal{Z}$.
+		There exists a kernel $MN$ on $\mathsf{X} \times \mathcal{Z}$, called the \textbf{composition} or the \textbf{product} of $M$ and $N$ such that $\forall x \in \mathsf{X}, \forall A \in \mathcal{Z}, MN(x,A) = \int_{\mathsf{Y}} M(x, \diff y) N(y, A)$.
+	\end{pop}
+
+	\begin{pop}
+		Let $M$ and $N$ be kernels on $\mathsf{X} \times \mathcal{Y}$ and $\mathsf{Y} \times \mathcal{Z}$.
+		Then $\forall x \in \mathsf{X}, \forall f \in \F_+(\mathsf{Z},\mathcal{Z}), MNf(x) = M[Nf](x)$.
+	\end{pop}
+	
+	\begin{pop}
+		Let $M$ ba a kernel on $\mathsf{X} \times \mathcal{Y}$ and $N$ be a kernel on $\mathsf{Y} \times \mathcal{Z}$.
+		Then, there exists a kernel $M \otimes N$ on $\mathsf{X} \times (\mathcal{Y} \otimes \mathcal{Z})$, called the \textbf{tensor product} of $M$ and $N$, such that
+		$$\forall f \in \F_+(\mathsf{Y} \times \mathsf{Z}, \mathcal{Y} \otimes \mathcal{Z}),\
+		M \otimes N f(x) = \int_{\mathsf{Y} \times \mathsf{Z}} f(v) M \otimes N(x, \diff v)
+		                 = \int_{\mathsf{Y}} \left( \int_{\mathsf{Z}} f(y,z) N(y, \diff z) \right) M(x, \diff y)\ .$$
+	\end{pop}
+	
+	\begin{lem}
+		Let $M$ ba a kernel on $\mathsf{X} \times \mathcal{Y}$ and $N$ be a kernel on $\mathsf{Y} \times \mathcal{Z}$.
+		\begin{enumerate}[(i)]
+			\item If $M$ and $N$ are both finite kernels, then $M \otimes N$ is a finite kernel.
+			\item If $M$ and $N$ are both probability kernels, then $M \otimes N$ is a probability kernel.
+			\item Then tensor product of kernels is associative : $(M \otimes N) \otimes P = M \otimes (N \otimes P)$.
+		\end{enumerate}
+	\end{lem}
+
+
+\subsection{Homogeneous Markov chains}
+
+	\begin{defn}
+		Let $(\mathsf{X},\mathcal{X})$ be a measurable space, $\nu$ a probability measure on $(\mathsf{X},\mathcal{X})$, $P$ a Markov kernel on $\mathsf{X} \times \mathcal{X}$ and $(\Omega,\mathcal{F},(\mathcal{F}_k)_{k \in \N},\proba)$ a filtered probability space.
+		An adapted stochastic process $((X_k, \mathcal{F}_k))_{k \in \N}$ is called a \textbf{homogeneous Markov chain} with Markov kernel $P$ and initial distribution $\nu$ is
+		$$\forall k \in \N, \forall A \in \mathcal{X},\qquad \proba(X_0 \in A) = \nu(A) \qquad \text{and} \qquad \proba(X_{k + 1} \in A \mid \mathcal{F}_k) = P(X_k,A)\ \proba\text{-a.s.}$$ 
+	\end{defn}
+	
+	\begin{note}
+		Unless specify, we consider the natural filtration and write that $(X_k)_{k \in \N}$ is a homogeneous Markov chain.
+	\end{note}
+	
+	\begin{pop}
+		An $\mathsf{X}$-valued random process $(X_k)_{k \in \N}$ is a homogeneous Markov chain with kernel $P$ and initial distribution $\nu$ if and only if, for all $k \in \N$, the distribution of $(X_1,\ldots,X_n)$ is $\nu \otimes P^{\otimes k}$.
+	\end{pop}
+	
+	We also get that the distribution of $X_k$ is $\nu P^k$.
+
+	\begin{thm}
+		Let $\mathsf{X} = \R^d$ with $d \geq 1$ endowed with $\mathcal{X} = \mathcal{B}(\R^d)$, $P$ a Markov kernel on $(\mathsf{X},\mathcal{X})$ and $\nu$ a probability measure on $(\mathsf{X},\mathcal{X})$.
+		Let $(Z_k)_{k \in \N}$ be a sequence of i.i.d. random variables uniformly distributed on $\inff{0}{1}$.
+		There exists a measurable application $g$ from $(\inff{0}{1}, \mathcal{B}(\inff{0}{1}))$ to $(\mathsf{X},\mathcal{X})$ and a measurable application $f$ from $(\mathsf{X} \times \inff{0}{1}, \mathcal{X} \otimes \mathcal{B}(\inff{0}{1}))$ to $(\mathsf{X},\mathcal{X})$ such that the sequence $(X_k)_{k \in \N}$ defined by $X_0 = g(Z_0)$ and $\forall k \geq 0, X_{k + 1} = f(X_k, Z_{k + 1})$ is a homogeneous Markov chain with initial distribution $\nu$ and Markov kernel $P$.
+	\end{thm}
 
 \subsection{The canonical Chain, notation $\proba_\xi$ and $\esp_\xi$}
 
