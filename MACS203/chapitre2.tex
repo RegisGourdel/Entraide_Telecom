@@ -1,0 +1,101 @@
+\subsection{Variables aléatoires}
+
+	\begin{defn}
+		Soit $\T$ un ensemble et $\{ X_\tau, \tau \in \T \}$ une famille quelconque de v.a.
+		La $\sigma$-algèbre $\mathcal{X}$ engendrée par cettefamille est la plus petite $\sigma$-algèbre sur $\Omega$ telle que $X_\tau$ est $\mathcal{X}$-mesurable pour tout $\tau \in \T$, i.e.
+		$$\mathcal{X} = \sigma(X_\tau, \tau \in \T) = \sigma(\{ X_\tau^{-1}(A) \mid \tau \in \T, A \in \mathcal{B}(\R) \})\ .$$
+	\end{defn}
+
+	\begin{lem}
+		Soit $X$ et $Y$ deux v.a. sur $(\Omega,\mathcal{A},\proba)$ à valeurs respectivement dans $\R$ et $\R^n$.
+		Alors $X$ est $\sigma(Y)$-mesurable ssi $\exists f \colon \R^n \to \R, X = f(Y)$.
+	\end{lem}
+
+
+\subsection{Espérance de variables aléatoires}
+
+	\begin{thm}
+		Soit $X \in \mathcal{L}^1(\mathcal{A},\proba)$ et $g \colon \R^d \to \Bar{\R}$ une fonction convexe telle que $\esp(\abs{g(X)}) < \infty$.
+		Alors $\esp(g(X)) \geq g(\esp(X))$.
+	\end{thm}
+
+	\begin{defn}
+		Soit $X$ une v.a. à valeurs dans $\R^d$.
+		Sa fonction caractéristique est $\Phi_X \colon \begin{array}{ccc}
+			\R^d & \to & \C
+			u & \mapsto & \esp \left[ e^{i \scal{u}{X}} ]
+		\end{array}$.
+	\end{defn}
+
+	\begin{lem}
+		$\Phi_X(0) = 1$ et $\Phi_X$ est continue bornée (par 1) sur $\R^d$.
+	\end{lem}
+
+	\begin{pop}
+		Soit $X \sim \mathcal{N}(b,V)$.
+		On a $\Phi_X(u) = e^{\scal{u}{b} - \frac{1}{2} \scal{u}{Vu}}$.
+	\end{pop}
+
+	\begin{pop}
+		Soit $X$ réelle avec $\esp(\abs{X}^p) < \infty$ pour un certain $p \in \N^*$.
+		Alors $\Phi_X$ est $p$ fois dérivable et $\forall k \in \iniff{1}{p}, \Phi_X^{(k)}(0) = i^k \esp(X^k)$.
+	\end{pop}
+
+	% ...
+
+
+\subsection{Espaces $\mathcal{L}^p$ et convergences fonctionnelles des v.a.}
+
+	La corrélation entre deux v.a. $X$ et $Y$ est $\Cor(X,Y) = \frac{\Cov(X,Y)}{\norme{X}_2 \norme{Y}_2}}$.
+	
+	Le théorème de Pythagore s'écrit
+	$$\esp(XY) = 0 \implies \esp[(X + Y)^2] = \esp \left[ X^2 \right] + \esp \left[ Y^2 \right]
+		\qquad \text{ou} \qquad
+		\Cov(X,Y) = 0 \implies \Var(X + Y) = \Var(X) + \Var(Y)\ .$$
+	et la loi du parallélogramme s'écrit $\norme{X + Y}_2^2 + \norme{X - Y}_2^2 = 2 \norme{X}_2^2 + 2 \norme{Y}_2^2$.
+
+	% ...
+	
+	\begin{defn}
+		Soit $(X_n)_n$ et $X$ dans $\mathcal{L}^0$.
+		On dit que $(X_n)_n$ \textbf{converge en probabilité} vers $X$ si $\forall \varepsilon > 0, \lim_{n \to \infty} \proba[\abs{X_n - X} \geq 0] = 0$.
+	\end{defn}
+
+	\begin{lem}
+		La convergence p.s. ou la  convergence en norme dans $L^p$ impliquent la convergence en probabilité.
+	\end{lem}
+
+	\begin{lem}
+		La convergence en probabilité est équivalente à la convergence au sens de la distance $D \colon (X,Y) \mapsto \esp(\abs{X - Y} \wedge 1)$
+	\end{lem}
+	
+	\begin{thm}
+		$(L^0,D)$ est un espace métrique complet.
+	\end{thm}
+
+	\begin{thm}
+		Soit $(X_n)_n$ et $X$ des v.a. dans $\mathcal{L}^0$.
+		\begin{enumerate}[(i)]
+			\item $X_n \longrightarrow X$ p.s. ssi $\sup_{m \geq n} \abs{X_m - X} \longrightarrow 0$ en probabilité.
+			\item $X_n \longrightarrow X$ en probabilité ssi de toute suite croissantes $(n_k)_k \subset \N$, on peut extraire une sous-suite $(n_{k_j})_j$ telle que $X_{n_{k_j}} \longrightarrow X$ p.s.
+		\end{enumerate}
+	\end{thm}
+
+	\begin{cor}[Slutsky]
+		Soit $\phi$ continue.
+		Si $X_n \longrightarrow X$ en probabilités, alors $\phi(X_n) \longrightarrow \phi(X)$ en probabilité.
+	\end{cor}
+
+	\begin{defn}
+		Une famille $C$ de v.a. est dite \textbf{uniformément intégrable} (U.I.) si $\lim_{c \to \infty} \sup_{X \in C} \esp \left[ \abs{X} \indic_{\abs{X} \geq c} \right] = 0$.
+	\end{defn}
+
+	\begin{thm}
+		Soit $(X_n)_n$ et $X$ des v.a. dans $\mathcal{L}^1$.
+		Alors $X_n \longrightarrow  X$ dans $L^1$ si et seulement si $X_n \longrightarrow X$ en probabilité et $(X_n)_n$ est U.I.
+	\end{thm}
+
+
+\subsection{Convergence en loi}
+
+	

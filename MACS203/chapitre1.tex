@@ -1,0 +1,223 @@
+les théorèmes de convergence monotone, dominée, et le lemme de Fatou,
+- les inégalités de Markov, Chebysev, Cauchy-Schwarz, Hölder, Minkowsky, et
+de Jensen,
+- la complétude des espaces L p , p ≥ 1,
+- le théorème de Fubini,
+- la notion d’indépendance, la loi des grands nombres et le théorème central
+limite
+
+
+\subsection{Espaces mesurables et mesures}
+
+	\begin{defn}
+		Soit $\mathcal{A} \subset \mathcal{P}(\Omega)$.
+		On dit que
+		\begin{enumerate}[(i)]
+			\item $\mathcal{A}$ est une \textbf{algèbre} sur $\Omega$ si $\Omega \in \mathcal{A}$ et est stable par passage au complémentaire et par réunion,
+			\item $\mathcal{A}$ est une $\sigma$-algèbre si c'est une algèbre stable par union dénombrable.
+				On dit alors que $(\Omega,\mathcal{A})$ est un \textbf{espace mesurable}.
+		\end{enumerate}
+	\end{defn}
+
+	\begin{defn}
+		Soit $\mathcal{I} \subset \mathcal{P}(\Omega)$.
+		On dit que $\mathcal{I}$ est un \textbf{$\pi$-système} s'il est stable par intersection finie.
+	\end{defn}
+
+	\begin{defn}
+		Soit $\mathcal{A}$ une algèbre sur $\Omega$ et $\mu \colon \mathcal{A} \to \R_+$.
+		\begin{enumerate}[(i)]
+			\item $\mu$ est dite \textbf{additive} si $\mu(\emptyset) = 0$ et $\forall A,B \in \mathcal{A}, A \cap B = \emptyset \implies \mu(A \cup B) = \mu(A) + \mu(B)$.
+			\item $\mu$ est dite \textbf{$\sigma$-additive} si $\mu(\emptyset) = 0$ et $\forall (A_n)_{n \in \N} \subset \mathcal{A}$, si les $A_n$ sont disjoints, $\mu(\cup_n A_n) = \sum_n \mu(A_n)$.
+			\item Une fonction $\sigma$-additive $\mu$ sur un espace mesurable $(\Omega,\mathcal{A})$ est appelée \textbf{mesure} et on dit que $(\Omega,\mathcal{A},\mu)$ est un \textbf{espace mesuré}.
+			\item Un espace mesuré $(\Omega,\mathcal{A},\mu)$ est dit \textbf{fini} si $\mu(\Omega) < \infty$, et \textbf{$\sigma$-fini} s'il existe $(\Omega_n)_{n \in \N} \subset \mathcal{A}$ telle que $\mu(\Omega_n) < \infty$ et $\bigcup_{n \in \N} \Omega_n = \Omega$.
+		\end{enumerate}
+	\end{defn}
+
+	\begin{pop}
+		Soit $\mathcal{I}$ un $\pi$-système, et $\mu, \nu$ deux mesures finies sur $(\Omega,\sigma(\mathcal{I}))$.
+		Si $\mu = \nu$ sur $\mathcal{I}$ alors $\mu = \nu$ sur $\sigma(\mathcal{I})$.
+	\end{pop}
+
+	\begin{thm}[Extension de Carathéodory]
+		Soit $\mathcal{A}_0$ une algèbre sur $\Omega$ et $\mu \colon \mathcal{A}_0 \to \R_+$ $\sigma$-additive.
+		Alors il existe une mesure $\mu$ sur $\mathcal{A} := \sigma(\mathcal{A_0})$ telle que $\mu = \mu_0$ sur $\mathcal{A}_0$.
+		Si de plus $\mu_0(\Omega) < \infty$ alors une telle extension est unique.
+	\end{thm}
+
+	\begin{defn}
+		\begin{enumerate}[(i)]
+			\item Sur un espace mesuré $(\Omega,\mathcal{A},\mu)$, $N \in \mathcal{A}$ est dit \textbf{négligeable} si $\mu(N) = 0$.
+			\item Soit $P(\omega)$ une propriété qui ne dépend que de $\omega \in \Omega$.
+				On dit que $P$ est vraie $\mu$-presque partout si $\{ w \in \Omega \mid P(\omega)\ \text{n'est pas vraie}) \}$ est inclus dans un ensemble négligeable.
+		\end{enumerate}
+	\end{defn}
+	
+	\begin{pop}
+		Soit $(\Omega,\mathcal{A},\mu)$ un espace mesuré et $(A_i)_{i \leq n} \subset \mathcal{A}$.
+		Alors,
+		\begin{enumerate}[(i)]
+			\item $\mu(\cup_{i \leq n} A_i) \leq \sum_{i = 1}^n \mu(A_i)$,
+			\item Si de plus $\mu(\Omega) < \infty$, on a $\mu(\cup_{i \leq n} A_i) = \sum_{k \leq n} (-1)^{k - 1} \sum_{i_1 < \ldots < i_k \leq n} \mu(A_{i_1} \cap \cdots \cap A_{i_k})$.
+		\end{enumerate}
+	\end{pop}
+
+	\begin{pop}
+		Soit $(\Omega,\mathcal{A},\mu)$ un espace mesuré et $(A_i)_n \subset \mathcal{A}$.
+		Alors,
+		\begin{enumerate}[(i)]
+			\item $A_n \uparrow A \implies \mu(A_n) \uparrow \mu(A)$,
+			\item $\left( A_n \downarrow A \wedge (\exists k, \mu(A_k) < \infty) \right) \implies \mu(A_n) \downarrow  \mu(A)$.
+		\end{enumerate}
+	\end{pop}
+
+	\begin{lem}[de Fatou pour les ensembles]
+		Soit $(A_n)_n$ une suite dans $\mathcal{A}$.
+		Alors, $\mu(\liminf A_n) \leq \liminf \mu(A_n)$.
+	\end{lem}
+
+	\begin{lem}[inverse Fatou pour les ensembles]
+		Supposons $(\Omega,\mathcal{A},\mu)$ fini.
+		Soit $(A_n)_n$ une suite dans $\mathcal{A}$.
+		Alors, $\mu(\limsup A_n) \geq \limsup \mu(A_n)$.
+	\end{lem}
+
+	\begin{lem}[de Borel-Cantelli]
+		$\sum_n \mu(A_n) < \infty \implies \mu(\limsup A_n) = 0$.
+	\end{lem}
+
+
+\subsection{L'intégrale de Lebesgue}
+
+	\begin{defn}
+		On dit qu'une fonction $f \colon (\Omega,\mathcal{A}) \to (\R,\mathcal{B}(\R))$ est \textbf{mesurable} si l'image réciproque de tout ensemble borélien est dans $\mathcal{A}$.
+		On note $\mathcal{L}^0(\mathcal{A})$ l'ensemble des fonctions mesurables, $\mathcal{L}^0_+(\mathcal{A})$ si elles sont positives et $\mathcal{L}^\infty(\mathcal{A})$ si elles sont bornées.
+	\end{defn}
+	
+	\begin{rem}
+		Si $f \colon \Omega \to \R$ est continue avec $\Omega$ un espace topologique, alors $f$ est $\mathcal{B}(\Omega)$-mesurable et on dit qu'elle est \textbf{borélienne}.
+	\end{rem}
+	
+	\begin{pop}
+		\begin{enumerate}[(i)]
+			\item Pour $f,g \in \mathcal{L}^0(\mathcal{A}), h \in \mathcal{L}^0(\mathcal{B}(\R)), \lambda \in \R$, on a $f + g, \lambda f, fg, f\circ g \in \mathcal{L}_0(\mathcal{A})$.
+			\item Pour une suite $(f_n)_n \subset \mathcal{L}_0(\mathcal{A})$, on a $\inf f_n, \liminf f_n, \sup f_n, \limsup f_n \in \mathcal{L}^0(\mathcal{A})$.
+		\end{enumerate}
+	\end{pop}
+
+	\begin{thm}[\textbf{des classes monotones}]
+		Soit $\mathcal{H}$ une classe de fonctions réelles bornées sur $\Omega$ vérifiant
+		\begin{description}
+			\item[H1] $\mathcal{H}$ est un espace vectoriel contenant la fonction constante $\indic$,
+			\item[H2] pour toute suite croissante $(f_n)_n \subset \mathcal{H}$ de fonctions positives dont la limite $f := \lim \uparrow f_n$ est bornée, on a $f \in \mathcal{H}$.
+		\end{description}
+		Soit $\mathcal{I}$ un $\pi$-système tel que $\{ \indic_A, A \in \mathcal{I} \} \subset \mathcal{H}$.
+		Alors $\mathcal{L}^\infty(\sigma(\mathcal{I})) \subset \mathcal{H}$.
+	\end{thm}
+
+	\begin{note}
+		L'intégrale $\int f \diff \mu$ sera aussi notée $\mu(f)$ par abus de notation.
+	\end{note}
+	
+	\begin{defn}
+		Pour $f \in \mathcal{L}^0_+(\mathcal{A})$, l'intégrale de $f$ par rapport à $\mu$ est définie par $\mu(f) := \sup \left\{ \mu(g) \mid g \in \mathcal{S}^+, g \leq f \right\}$ où $\mathcal{S}^+$ contient les fonctions de la forme $g = \sum_i a_i \indic_{A_i}, a_i \in \Bar{\R}_+$ et $\mu(g) = \sum_i a_i \mu(A_i)$.
+	\end{defn}
+	
+	\begin{lem}
+		$\forall f_1, f_2 \in \mathcal{L}_0^+(\mathcal{A}, f_1 \leq f_2 \implies 0 \leq \mu(f_1) \leq \mu(f_2)$ et $\mu(f_1) = 0 \iff f_1 \overset{\mu\text{-p.p.}}{=} 0$.
+	\end{lem}
+	
+	\begin{thm}[\textbf{convergence monotone}]
+		Soit $(f_n)_n \subset \mathcal{L}^0_+(\mathcal{A})$ une suite croissante $\mu$-p.p., i.e. $\forall n, f_n \overset{\mu \text{-p.p.}}{\leq} f_{n + 1}$.
+		Alors $\mu(\lim \uparrow f_n) = \lim \uparrow \mu(f_n)$.
+	\end{thm}
+	
+	\begin{lem}[\textbf{Fatou}]
+		Soit $(f_n)_n \subset \mathcal{L}_+^0(\mathcal{A})$.
+		On a $\mu(\liminf f_n) \leq \liminf \mu(f_n)$.
+	\end{lem}
+	
+	\begin{defn}
+		$f \in \mathcal{L}_0(\mathcal{A})$ est dite \textbf{$\mu$-intégrable} si $\mu(\abs{f}) < \infty$ et son intégrale est définie par $\mu(f) := \mu(f^+) - \mu(f^-)$.
+		On note $\mathcal{L}^1(\mathcal{A},\mu)$ leur ensemble.
+	\end{defn}
+	
+	% ...
+	
+	\begin{thm}[\textbf{convergence dominée}]
+		Soit $(f_n)_n \subset \mathcal{L}_0(\mathcal{A})$ une suite telle que $f_n \overset{\mu \text{-p.p.}}{\longrightarrow} f \in \mathcal{L}_0(\mathcal{A})$.
+		Si $\sup_n \abs{f_n} \in \mathcal{L}^1(\mathcal{A},\mu)$, alors $f_n \to f$ dans $\mathcal{L}^1(\mathcal{A},\mu$, i.e. $\mu(\abs{f_n - f}) \to 0$.
+		En particulier, $\mu(f_n) \to \mu(f)$.
+	\end{thm}
+	
+	\begin{lem}[\textbf{Scheffé}]
+		Soit $(f_n)_n \subset \mathcal{L}^1(\mathcal{A},\mu)$ telle que $f_n \overset{\mu \text{-p.p.}}{\longrightarrow} f \in \mathcal{L}_1(\mathcal{A},\mu)$.
+		Alors $f_n \to f$ dans $\mathcal{L}_1(\mathcal{A},\mu)$ ssi $\mu(\abs{f_n}) \to \mu(\abs{f})$.
+	\end{lem}
+
+
+\subsection{Transformées de mesures}
+
+	\begin{defn}
+		Soit $(\Omega_1, \mathcal{A}_1, \mu_1)$ un espace mesuré, $(\Omega_2, \mathcal{A}_2)$ un espace mesurable et $f \colon \Omega_1 \to \Omega_2$ une fonction mesurable.
+		Alors $\mu_2 = \mu_1 \circ f^{-1}$, notée $\mu_1 f^{-1}$, définit une mesure appelée \textbf{mesure image}.
+	\end{defn}
+
+	\begin{thm}[transfert]
+		Soit $\mu_2 = \mu_1 f^{-1}$ et $h \in \mathcal{L}^0(\mathcal{A}_2)$.
+		Alors $h \in \mathcal{L}^1(\mathcal{A}_2, \mu_2) \iff h \circ f \in \mathcal{L}^1(\mathcal{A}_2, \mu_2)$.
+		Dans ces conditions on a $\int_{\Omega_2} h \diff(\mu_1 f^{-1}) = \int_{\Omega_1} h \circ f \diff \mu_1$.
+	\end{thm}
+
+	\begin{defn}
+		Soit $(\Omega,\mathcal{A},\mu)$ un espace mesuré et $f \in \mathcal{L}_+^0(\mathcal{A})$.
+		On définit $\forall A \in \mathcal{A}, \nu(A) := \mu(f \indic_A) = \int_A f \diff \mu$.
+		\begin{enumerate}[(i)]
+			\item $\nu = f \cdot \nu$ est une mesure appelée mesure de \textbf{densité} $f$ par rapport à $\mu$.
+			\item Soit $\mu_1, \mu_2$ deux mesures sur un espace mesurable $(\Omega,\mathcal{A})$.
+				On dit que $\mu_2$ est \textbf{absolument continue} par rapport à $\mu_1$, $\mu_2 \prec \mu_1$, si $\forall A \in \mathcal{A}, \mu_2(A) = 0 \implies \mu_1(A) = 0$.
+				Sinon on dit que $\mu_2$ est étrangère à $\mu_1$.
+			\item Si $\mu_2 \prec \mu_1$ et $\mu_1 \prec \mu_2$, on dit que $\mu_1$ et $\mu_2$ sont \textbf{équivalentes}, $\mu_1 \sim \mu_2$.
+				Si $\mu_2 \not\prec \mu_1$ et $\mu_1 \not\prec \mu_2$, on dit que $\mu_1$ et $\mu_2$ sont \textbf{singulières}.
+		\end{enumerate}
+	\end{defn}
+
+	\begin{thm}
+		\begin{enumerate}[(i)]
+			\item Pour $g \colon \Omega \to \Bar\R_+$ $\mathcal{A}$ mesurable, on a $(f \cdot \mu)(g) = \mu(fg)$.
+			\item Pour $g \in \mathcal{L}_+^0(\mathcal{A})$, on a $g \in \mathcal{L}^1(\mathcal{A}, f \cdot \mu)$ ssi $fg \in \mathcal{L}^1(\mathcal{A}, \mu)$ et alors $(f \cdot \mu)(g) = \mu(fg)$.
+		\end{enumerate}
+	\end{thm}
+
+
+\subsection{Inégalités remarquables}
+
+	\begin{thm}
+		Soit $f$ une fonction $\mathcal{A}$-mesurable, et $g \colon \R \to \R_+$ une fonction borélienne croissante positive.
+		\begin{enumerate}[(i)]
+			\item $g \circ f$ est mesurable et $\forall c \in \R, \mu(g \circ f) \geq g(c) \mu(\{ f \geq c \})$ (\textbf{Inégalité de Markov}),
+			\item Si $f^2 \in \mathcal{L}_1(\mathcal{A},\mu)$, $\forall c > 0, c^2 \mu(\{ \abs{f} \geq c \}) \leq \mu(f^2)$ (\textbf{inégalité de Tchebyshev}).
+		\end{enumerate}
+	\end{thm}
+
+
+\subsection{Espaces produits}
+
+	\begin{thm}[\textbf{Fubini}]
+		L'application $\mu \colon A \maspto \int (\int \indic_A \diff \mu_1) \diff \mu_2 = \int (\int \indic_1 \diff \mu_2) \diff \mu_1$ sur $\mathcal{A}_1 \otimes \mathcal{A}_2$ est une mesure sur $(\Omega_1 \times \Omega_2, \mathcal{A}_1 \otimes \mathcal{A}_2)$, appelée \textbf{mesure produit} de $\mu_1$ et $\mu_2$, et notée $\mu_1 \otimes \mu_2$.
+		C'est l'unique mesure sur $\Omega_1 \times \Omega_2$ vérifiant $\forall (A_1, A_2) \in \mathcal{A}_1 \times \mathcal{A}_2, \mu(A_1 \times A_2) = \mu_1(A_1) \mu(A_2)$.
+		
+		De plus, pour tout $f$ dans $\mathcal{L}^0_+(\mathcal{A}_1 \times \mathcal{A}_2)$ ou $\mathcal{L}^1(\mathcal{A}_1 \otimes \mathcal{A}_2, \mu_1 \otimes \mu_2)$, $\int f \diff \mu = \int (\int f \diff \mu_1) \diff \mu_2 = \int(\int f \diff \mu_2) \diff \mu_1 \in \Bar{\R}_+$.
+	\end{thm}
+
+	Soit $g \colon \Omega_1 \to \Omega_2$ avec $\Omega_1$ et $\Omega_2$ des ouverts de $\R^n$.
+	Si $g$ est différentiable en $x$, on note $Dg(x) := \left( \frac{\partial g_i}{\partial x_j} \right)_{1 \leq i,j \leq n}$ sa matrice jacobienne en $x$.
+
+	$g$ est un $\cont^1$-difféomorphisme si $g$ est une bijection telle que $g$ et $g^{-1}$ sont de classe $\cont^1$.
+	Dans ce cas $\det[Dg^{-1}(y)] = \frac{1}{\det[Dg \circ g^{-1}(y)]}$.
+
+	\begin{thm}
+		Soit $\mu_1$ une mesure sur $(\Omega_1, \mathcal{B}(\Omega_1))$ de densité par rapport à la mesure de Lebesgue $f_1 \in \mathcal{L}_0^+(\mathcal{B}(\Omega_1))$, i.e. $\mu_1(\diff x) = \indic_{\Omega_1} f_1(x) \cdot \diff  x$.
+		Soit $g$ un $\cont^1$-difféomorphisme.
+		La mesure image $\mu_2 = \mu_1 g^{-1}$ est absolument continue par rapport à la mesure de Lebesgue, de densité $f_2 \colon y \mapsto \indic_{\Omega_2}(y) f_1 (g^{-1}) \abs{\det[D g^{-1}(y)]}$ et pour toute fonction $h \colon \Omega_2 \to \R$ positive ou $\mu_2$-intégrable, $\int_{\Omega_1} h \circ g(x) f_1(x) \diff x = \int_{\Omega_2} h(y) f_2(y) \diff y$.
+	\end{thm}
