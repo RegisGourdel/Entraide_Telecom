@@ -1,12 +1,6 @@
 les théorèmes de convergence monotone, dominée, et le lemme de Fatou,
 - les inégalités de Markov, Chebysev, Cauchy-Schwarz, Hölder, Minkowsky, et
 de Jensen,
-- la complétude des espaces L p , p ≥ 1,
-- le théorème de Fubini,
-- la notion d’indépendance, la loi des grands nombres et le théorème central
-limite
-
-
 \subsection{Espaces mesurables et mesures}
 
 	\begin{defn}
@@ -204,7 +198,7 @@ limite
 \subsection{Espaces produits}
 
 	\begin{thm}[\textbf{Fubini}]
-		L'application $\mu \colon A \maspto \int (\int \indic_A \diff \mu_1) \diff \mu_2 = \int (\int \indic_1 \diff \mu_2) \diff \mu_1$ sur $\mathcal{A}_1 \otimes \mathcal{A}_2$ est une mesure sur $(\Omega_1 \times \Omega_2, \mathcal{A}_1 \otimes \mathcal{A}_2)$, appelée \textbf{mesure produit} de $\mu_1$ et $\mu_2$, et notée $\mu_1 \otimes \mu_2$.
+		L'application $\mu \colon A \mapsto \int (\int \indic_A \diff \mu_1) \diff \mu_2 = \int (\int \indic_1 \diff \mu_2) \diff \mu_1$ sur $\mathcal{A}_1 \otimes \mathcal{A}_2$ est une mesure sur $(\Omega_1 \times \Omega_2, \mathcal{A}_1 \otimes \mathcal{A}_2)$, appelée \textbf{mesure produit} de $\mu_1$ et $\mu_2$, et notée $\mu_1 \otimes \mu_2$.
 		C'est l'unique mesure sur $\Omega_1 \times \Omega_2$ vérifiant $\forall (A_1, A_2) \in \mathcal{A}_1 \times \mathcal{A}_2, \mu(A_1 \times A_2) = \mu_1(A_1) \mu(A_2)$.
 		
 		De plus, pour tout $f$ dans $\mathcal{L}^0_+(\mathcal{A}_1 \times \mathcal{A}_2)$ ou $\mathcal{L}^1(\mathcal{A}_1 \otimes \mathcal{A}_2, \mu_1 \otimes \mu_2)$, $\int f \diff \mu = \int (\int f \diff \mu_1) \diff \mu_2 = \int(\int f \diff \mu_2) \diff \mu_1 \in \Bar{\R}_+$.
