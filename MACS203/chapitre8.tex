@@ -1,0 +1,26 @@
+\subsection{Martingales et temps d'arrêt}
+
+	\begin{defn}
+		Soit $(X_n)_{n \geq 0}$ un processus aléatoire adapté sur l'espace probabilisé filtré $(\Omega, \mathcal{A}, \F, \proba)$.
+		On dit que $X$ est une \textbf{surmartingale} (resp. \textbf{sous-martingale}) si $X_n$ est $\proba$-intégrable pour tout $n$ et $\forall n \in \N^*, \esp[X_n \mid \mathcal{F}_{n - 1}] \leq (\text{resp.}\ \geq) X_{n - 1}$.
+		$X$ est une \textbf{martingale} s'il est à la fois surmartingale et sous-martingale.
+	\end{defn}
+
+	\begin{defn}
+		Pour un processus aléatoire $X = (X_n)_{n \geq 0}$, on définit le \textbf{processus arrêté} au temps d'arrrêt $\nu$ par $\forall n \in \N, X^\nu_n := X_{n \wedge \nu}$.
+	\end{defn}
+	
+	\begin{lem}
+		Soit $X$ une surmartingale (resp. sous-martingale, martingale) et $\nu$ un temps d'arrêt.
+		Alors le processus arrêté $X^\nu$ est une surmartingale (resp. sous-martingale, martingale).
+	\end{lem}
+
+	\begin{thm}
+		Soit $X$ une martingale (resp. surmartingale) et $\underline{\nu}$, $\overline{\nu}$ deux temps d'arrêt bornés dans $\mathcal{T}$ vérifiant $\underline{\nu} \leq \overline{\nu}$ p.s.
+		Alors $\esp[X_{\overline{\nu}} \mid \mathcal{F}_{\underline{\nu}}] = (\text{resp.}\ \leq) X_{\underline{\nu}}$.
+	\end{thm}
+
+	\begin{pop}
+		Soit $X = (X_n)_n$ un processus aléatoire $\F$-adapté, $\forall n \in \N, \esp(\abs{X_n}) < \infty$.
+		Alors $X$ est une martingale ssi $\esp[X_\nu] = \esp[X_0]$ pour tout temps d'arrêt $n$ borné.
+	\end{pop}
