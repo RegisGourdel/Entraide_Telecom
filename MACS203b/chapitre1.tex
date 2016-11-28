@@ -1,0 +1,88 @@
+\subsection{Un peu de calcul sur les événements}
+
+	\begin{pop}
+		Si $(A_n)_n$ est croissante, $\proba(\bigcup_n A_n) = \lim_{n \to \infty} \proba(A_n)$.
+		Si $(A_n)_n$ est décroissante, $\proba(\bigcap_n A_n) = \lim_{n \to \infty} \proba(A_n)$.
+	\end{pop}
+	
+	\begin{defn}
+		$\limsup_{n \to \infty} A_n = \bigcap_{n \in \N} \bigcup_{k \geq n} A_k$.
+	\end{defn}
+	
+	Donc $\omega \in \limsup_n A_n \iff \forall n, \exists k \geq n, \omega \in A_k$.
+	Donc $\limsup_n A_n$ est réalisé ssi une infinité de $A_n$ est réalisé.
+	
+	\begin{lem}[de Borel-Cantelli]
+		Si $\sum_n \proba(A_n) < \infty$, alors $\proba(\limsup_n A_n) = 0$.
+	\end{lem}
+
+	Autrement dit, il y a une proba 1 pour que seulement un nombre fini de $A_n$ soient réalisés.
+	
+	\begin{proof}
+		Soit $B_n = \bigcup_{k \geq N} A_k$, $\proba(\limsup A_n) = \proba(\bigcap_n B_n) = \lim_n \pi(B_n)$.
+		Or $\proba(B_n) = \proba(\bigcup_{k \geq n} A_k) \leq \sum_{k \geq n} \proba(A_k) \overset{n \to \infty}{\longrightarrow} 0$ (par hypothèse).
+	\end{proof}
+
+
+\subsection{Convergence p.s., en probabilité et dans $L^p$}
+
+	\begin{defn}
+		\begin{enumerate}[(i)]
+			\item On dit que $X_n \overset{\text{p.s.}}{\longrightarrow} X$ (\textbf{converge presque sûrement}), si $\forall \omega \proba\text{-p.p}, X_n(\omega) \to X(\omega)$.
+				Cela signifie qu'il existe $A \in \mathcal{F}$ tel que $\proba(A) = 1$ et $\forall \omega \in A, \lim_n X_n(\omega) = X(\omega)$.
+			\item On dit que $X_n$ converge en probabilité vers $X$ si $\forall \epsilon > 0, \proba(\norme{X_n - X} > \epsilon) \underset{\longrightarrow}{n \to \infty} 0$.
+			\item On dit que $X_n$ converge vers $X$ dans $L^p(\Omega, \R^d)$ si $X_n, X \in L^p$ et $\esp \left( \norme{X_n - X}^p \right) \underset{n \to \infty}{\longrightarrow} 0$. 
+		\end{enumerate}
+	\end{defn}
+
+	\begin{pop}
+		On note $X_n = \begin{pmatrix} X_n^1 \\ \vdots \\ X_n^d \end{pmatrix}$ où $X_n^k$ est la $k$\up{e} composante de $X_n$.
+		Alors $X_n \longrightarrow X_n$ p.s. (resp. en probabilité, dans $L^p$) ssi $\forall k \in \iniff{1}{d}, X_n^k \longrightarrow X^k$ p.s. (resp. en probabilité, dans $L^p$).
+	\end{pop}
+
+	\begin{proof}
+		Soit $X_n \overset{\proba}{\longrightarrow} X$.
+		On fixe $k \in \iniff{1}{d}$.
+		Soit $\epsilon > 0$.
+		On sait que $\abs{X_n^k - X^k}^2 < \norme{X_n - X}^2$.
+		Donc l'événement $\abs{X_n^k - X^k} > \epsilon$ implique $\proba(\abs{X_n^k - X^k} > \epsilon) \leq \proba(\norme{X_n - X} > \epsilon) \longrightarrow 0$.
+		Donc $\forall k, X_n^k \overset{\proba}{\longrightarrow} X^k$.
+		
+		Réciproquement, soit $\epsilon > 0$.
+		On a $\norme{X_n - X}^2 = \sum_k \abs{X_n^k - X^k}^2 \leq d \cdot \max_k \abs{X_n^k - X^k}^2$.
+		Donc $\proba(\norme{X_n - X} \geq \epsilon) \leq \proba(\sqrt{d} \max_n \abs{X_n^k - X^k} > \epsilon) = \proba \left(\exists k, \abs{X_n^k - X^k} > \frac{\epsilon}{\sqrt{d}} \right) \leq \sum_{k = 1}^d \proba \left( \abs{X_n^k - X^k} > \frac{\epsilon}{\sqrt{d}} \right) \longrightarrow 0$.
+	\end{proof}
+
+	\begin{pop}
+		La convergence p.s. et la convergence $L^p$ impliquent toutes les deux la convergence en probabilité.
+	\end{pop}
+
+	\begin{proof}
+		\begin{enumerate}[(i)]
+			\item Supposons $X_n \overset{\text{p.s.}}{\longrightarrow} X$.
+			Soit $\epsilon > O$.
+			On a $\proba(\norme{X_n - X} > \epsilon) = \esp(\indic_{\norme{X_n - X} > \epsilon})$.
+			Or $\norme{X_n - X} \longrightarrow 0$ p.p. donc  $\indic_{\norme{X_n - X} > \epsilon} \longrightarrow 0$ p.p.
+			$$\lim_n \esp(\indic_{\norme{X_n - X} > \epsilon}) = \esp (\lim_n \indic_{\norme{X_n - X} > \epsilon}) = \esp(0)\ .$$
+			\item $\proba(\norme{X_n - X} > \epsilon) \leq \frac{\esp(\norme{X_n - X}^p)}{\epsilon^p} \longrightarrow 0$.
+		\end{enumerate}
+	\end{proof}
+
+	\begin{pop}
+		Si $\forall \epsilon > 0, \sum_n \proba(\norme{X_n - X} > \epsilon) < \infty$ alors $X_n \overset{\text{p.s.}}{\longrightarrow} X$.
+	\end{pop}
+	
+	\begin{proof}
+		\begin{align}
+			\forall \epsilon > 0 & \proba(\limsup \{ \norme{X_n - X} > \epsilon \}) = 0 \\
+			\implies \forall \epsilon > 0 & \proba(\forall n, \exists k \geq n, \norme{X_k - X} > \epsilon) = 0 \\
+			\forall q \in \N^* & \proba(\exists n, \forall k \geq n, \norme{X_k - X} \leq 1/q) = 1
+		\end{align}
+		Donc $\proba(\bigcap_{q \in \N^*} A_q) = 1$, ce qui se lit
+		$$\proba(\forall q \in \N^*, \exists n, \forall k \geq n, \norme{X_k - X} \leq 1/q) = \proba(\lim_n \norme{X_n - X} = 0) = 1$$
+		d'où $X_n \overset{\text{p.s.}}{\longrightarrow} X$.
+	\end{proof}
+
+	\begin{pop}
+		$X_n \overset{\text{p.s.}}{\longrightarrow} X$ ssi on peut extraire une sous-suite $\varphi_n$ telle que $X_{\varphi_n} \overset{\text{p.s.}}{\longrightarrow} X$.
+	\end{pop}
