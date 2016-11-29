@@ -24,3 +24,26 @@
 		Soit $X = (X_n)_n$ un processus aléatoire $\F$-adapté, $\forall n \in \N, \esp(\abs{X_n}) < \infty$.
 		Alors $X$ est une martingale ssi $\esp[X_\nu] = \esp[X_0]$ pour tout temps d'arrêt $n$ borné.
 	\end{pop}
+
+	\begin{defn}
+		Une martingale $(X_n)_n$ est \textbf{fermée} s'il existe une v.a. réelle intégrable $Y$ telle que $\forall n \in \N, X_n = \esp(Y \mid X_n)$.
+	\end{defn}
+	
+	\begin{thm}
+		Toute martingale fermée est uniformément intégrable.
+	\end{thm}
+
+	\begin{thm}[Inégalité maximale de Doob]
+		Soit $M = (M_n)_{n \geq 0}$ une sous-martingale, et $M_n^* := \sup_{k \leq n} M_k$ son processus de maximum courant.
+		\begin{enumerate}[(i)]
+			\item $\forall c > 0, \forall n \in \N, c \proba(M_n^* \geq c) \leq \esp(M_n \indic_{M_n^* \geq c})$
+			\item Soit $p > 1$ et supposons que la sous-martingale $M$ est positive et $\forall n \in \N, M_n \in \mathcal{L}^p$.
+				Alors $M_n^* \in \mathcal{L}^p$ et $\norme{M_n^*}_p \leq \frac{p}{p - 1} \norme{M_n}_p$.
+		\end{enumerate}
+	\end{thm}
+
+	\begin{pop}[Décomposition de Doob]
+		Soit $(X_n)_n$ un processus aléatoire intégrable.
+		Il existe une martingale $(M_n)_n$ et un processus $\F$-prévisible $(V_n)_n$ tels que $M_0 = V_0 = 0$ et $\forall n \geq 0, X_n = X_0 + M_n + V_n$.
+		Cette décomposition est unique.
+	\end{pop}
