@@ -47,3 +47,17 @@
 		Il existe une martingale $(M_n)_n$ et un processus $\F$-prévisible $(V_n)_n$ tels que $M_0 = V_0 = 0$ et $\forall n \geq 0, X_n = X_0 + M_n + V_n$.
 		Cette décomposition est unique.
 	\end{pop}
+
+	\begin{rem}
+		On voit que : $X$ est une surmartingale ssi $V$ est décroissant, $X$ est une sous-martingale ssi $V$ est croissant et $X$ est une martingale ssi $V = 0$.
+	\end{rem}
+
+	\begin{pop}
+		Soit $X = (X_n)_n$ une martingale de carré intégrable, et $\Delta X_n := X_n - X_{n - 1}$.
+		Alors $X_n^2 = X_0^2 + N_n + [X]_n$ où $N_n := 2 \sum_{i = 1}^n  X_{i - 1} \Delta X_i$, $[X]_n := \sum_{i = 1}^n (\Delta X_i)^2$ et $N_0 = [X]_0 = 0$.
+		Dans cette décomposition, $(N_n)_n$ est une martingale nulle en zéro, et $([X]_n)_n$ est un processus $\F$-adapté croissant intégrable appelé \textbf{variation quadratique} de la martingale $X$.
+	\end{pop}
+
+	\begin{defn}
+		Un processus $X = (X_n)_{n \in \N}$ est une \textbf{martingale locale} s'il existe une suite de temps d'arrêt $(\tau_n)_n$ telle que $\tau_n \longrightarrow \infty$ $\proba$-p.s. et le processus arrêté $X^{\tau_n}$ est une martingale pour tout $n$.
+	\end{defn}
