@@ -73,11 +73,11 @@
 	\end{pop}
 	
 	\begin{proof}
-		\begin{align}
+		\begin{align*}
 			\forall \epsilon > 0 & \proba(\limsup \{ \norme{X_n - X} > \epsilon \}) = 0 \\
 			\implies \forall \epsilon > 0 & \proba(\forall n, \exists k \geq n, \norme{X_k - X} > \epsilon) = 0 \\
 			\forall q \in \N^* & \proba(\exists n, \forall k \geq n, \norme{X_k - X} \leq 1/q) = 1
-		\end{align}
+		\end{align*}
 		Donc $\proba(\bigcap_{q \in \N^*} A_q) = 1$, ce qui se lit
 		$$\proba(\forall q \in \N^*, \exists n, \forall k \geq n, \norme{X_k - X} \leq 1/q) = \proba(\lim_n \norme{X_n - X} = 0) = 1$$
 		d'où $X_n \overset{\text{p.s.}}{\longrightarrow} X$.
@@ -86,3 +86,137 @@
 	\begin{pop}
 		$X_n \overset{\text{p.s.}}{\longrightarrow} X$ ssi on peut extraire une sous-suite $\varphi_n$ telle que $X_{\varphi_n} \overset{\text{p.s.}}{\longrightarrow} X$.
 	\end{pop}
+	
+	\begin{pop}
+		$X_n \overset{\proba}{\longrightarrow} X \implies$ on peut extraire $X_{\varphi_n} \overset{\text{p.s.}}{\longrightarrow} X$.
+	\end{pop}
+
+	\begin{pop}
+		$X_n \overset{\proba}{\longrightarrow} X$ ssi de toute sous-suite $X_{\varphi_n}$ on peut extraire une autre sous-suite $X_{\varphi_{\psi_n}}$ telle que $X_{\varphi_{\psi_n}} \overset{\text{p.s.}}{\longrightarrow} X$.
+	\end{pop}
+
+	\begin{thm}[de continuité]
+		$X_n, X$ v.a. sur $\R^d$.
+		Soit $h \colon \R^d \to \R^p$ mesurable et continue sur $C$ tel que $\proba(X \in C) = 1$, alors
+		\begin{enumerate}[(i)]
+			\item Si $X_n \overset{\text{p.s.}}{\longrightarrow} X$ alors $h(X_n) \overset{\text{p.s.}}{\longrightarrow} h(X)$
+			\item Si $X_n \overset{\proba}{\longrightarrow} X$ alors $h(X_n) \overset{\proba}{\longrightarrow} h(X)$.
+		\end{enumerate}
+	\end{thm}
+
+	\begin{thm}[Loi forte des grands nombres]
+		Soit $(X_n)$ i.i.d. telle que $\esp(\norme{X_1}) < \infty$.
+		Alors $\frac{1}{n} \sum_{i = 1}^n X_i \overset{\text{p.s.}}{\longrightarrow} \esp(X_1)$.
+	\end{thm}
+
+	\begin{thm}[Loi faible des grands nombres]
+		Soit $(X_n)$ i.i.d. telle que $\esp(\norme{X_1}^2) < \infty$.
+		On a $\frac{1}{n} \sum_{i = 1}^n X_i \overset{\proba}{\longrightarrow} \esp(X_1)$.
+	\end{thm}
+
+
+\subsection{Convergence en loi}
+
+	Rappels : une mesure de proba $\mu$ sur $(\R^d, \mathcal{B}(\R^d)))$ est caractérisée par sa fonction de répartition $F_\mu$.
+	$F_\mu(x_1,\ldots,x_d) = \mu(\prod_i \intof{-\infty}{x_i})$.
+	
+	On a :
+	\begin{itemize}
+		\item[\textbullet] $F_\mu$ croissante.
+		\item[\textbullet] $F_\mu(-\infty) = 0$, $F_\mu(+\infty) = 1$
+		\item[\textbullet] $F_\mu$ est continue à droite et $\mu({x_0}) = F_\mu(x_0) - F_\mu(x_0^-)$
+	\end{itemize}
+
+	Soit $X \colon \Omega \to \R^d$ une v.a.
+	On note $P_X = \proba \circ X^{-1}$ la loi de $X$.
+	$P_X$ est une mesure de proba sur $\R^d$.
+	On note $F_X$ sa fonction de répartition.
+	Pour $d = 1$, $F_X(x) = \proba(X \leq x)$.
+	
+	\begin{defn}
+		Soit $(\mu_n)_n, \mu$ des mesures de proba sur $\R^d$.
+		On dit que $\mu_n$ converge faiblement (ou étroitement) vers $\mu$ si $F_{\mu_n}(x) \longrightarrow F_\mu(x)$ en tout $x$ point de continuité de $F_\mu$.
+		On note $\mu_n \Rightarrow \mu$.
+	\end{defn}
+
+	\begin{defn}
+		$(X_n)_n, X$ v.a. sur $\R^d$.
+		On dit que $X_n$ converge en loi vers $X$ (noté $X_n \overset{\mathcal{L}}{\longrightarrow} X$) si $P_{X_n} \implies P_X$.
+	\end{defn}
+
+	Exemple trivial : $X_n = \frac{1}{n}$ (v.a. constantes).
+	Alors $X_n \overset{\mathcal{L}}{\longrightarrow} 0$.
+
+	\begin{pop}
+		$\left. \begin{array}{r}
+			\text{cv ps} \\
+			\text{ou} \\
+			\text{cv}\ L^p \\
+		\end{array}\right\} \implies
+		\text{cv proba} \implies
+		\text{cv loi}$
+	\end{pop}
+
+	\begin{thm}[de représentation de Skorohod]
+		Soit $(\mu_n)_n, \mu$ des mesures de proba sur $\R^d$ telles que $\mu_n \implies \mu$.
+		Il existe un espace de proba et des v.a. $(Y_n), Y$ sur cet espace telles que :
+		\begin{itemize}
+			\item[\textbullet] $Y \sim \mu$, $\forall n, Y_n \sim \mu_n$
+			\item[\textbullet] $\forall \omega, Y_n(\omega) \longrightarrow Y(\omega)$
+		\end{itemize}
+	\end{thm}
+
+	\begin{proof}(pour $d = 1$)
+		Soit $F, F_n$ les fonctions de répartition de $\mu, \mu_n$/
+		Cas simple : supposons que $F$ et $F_n$ sont continues et strictement coissantes.
+		On choisit $\Omega = \inff{0}{1}$, $\proba$ la mesure de Lebesgue sur $\Omega$ et $\mathcal{F} = \mathcal{B}(\intff{0}{1})$.
+		On pose $Y(\omega) = F^{-1}(\omega), Y_n(\omega) = F_n^{-1}(\omega)$.
+		\begin{enumerate}
+			\item Montrons que $Y \sim \mu$ :
+				\begin{align*}
+				\proba(Y \leq t) & = \proba(\{ \omega \mid F^{-1}(\omega) \leq t \}) \\
+				                 & = \proba(\{ \omega \mid \omega \leq F(t) \})
+				                 & = \lambda_{\intff{0}{1}}( \{ \omega \mid \omega \leq F(t) \} ) \\
+				                 & = \lambda(\intff{0}{F(t)}) \\
+				                 & = F(t)
+				\end{align*}
+				De même $Y_n \sim \mu_n$.
+			\item Exercice : montrer $F_n^{-1}(\omega) \longrightarrow F^{-1}(\omega)$.
+				Dans le cas où $F_n, F$ ne sont pas bijectives, définir $F^{-1}(\omega) := \inf \{ t \mid F(t) \geq \omega \}$.
+		\end{enumerate}
+	\end{proof}
+
+	\begin{thm}[de continuité]
+		Soit $X_n \overset{\mathcal{L}}{\longrightarrow} X$ définie sur $(\Omega,\mathcal{F},\proba)$.
+		$h \colon \R^d \to \R^p$ continue sur $C$ telle que $\proba(X \in C) = 1$.
+		Alors  $h(X_n) \overset{\mathcal{L}}{\longrightarrow} h(X)$.
+	\end{thm}
+
+	\begin{proof}
+		Il existe un autre espace de proba $(\Omega', \mathcal{F}', \proba')$ et d'autres v.a. $Y_n, Y$ sur $\Omega'$ telles que :
+		\begin{itemize}
+			\item[\textbullet] $Y_n, Y$ ont même loi que $X_n, X$
+			\item[\textbullet] $\forall \omega \in \Omega', Y_n(\omega) \longrightarrow Y(\omega)$
+		\end{itemize}
+		Comme $Y_n \overset{\text{p.s.}}{\longrightarrow} Y$ on a $h(Y_n) \overset{\text{p.s.}}{\longrightarrow} h(Y)$, donc $h(Y_n) \overset{\mathcal{L}}{\longrightarrow} h(Y)$ signifie que $F_{h(Y_n)}(x) \longrightarrow F_{h(Y)}(x)$.
+		Or $F_{h(Y_n)}(x) = \proba'(h(Y_n) \leq x) = \proba(h(X_n) \leq x)$ puisque $X_n$ est égal en loi à $Y_n$.
+		Donc $F_{h(X_n)}(x) \longrightarrow F_{h(X)}(x)$.
+	\end{proof}
+	
+	\begin{thm}[de Portmanteau]
+		On a équivalence entre :
+		\begin{enumerate}[(i)]
+			\item $X_n \overset{\mathcal{L}}{\longrightarrow} X$,
+			\item $\forall f \colon \R^d \to \R$ continue bornée, $\esp(f(X_n)) \longrightarrow \esp(f(X))$,
+			\item $\forall A \subset \R^d$ tel que $\proba(X \in \delta A) = 0$, on a $\proba(X_n \in A) \longrightarrow P(X \in A)$ où $\delta A = \Bar{A} \setminus \mathring{A}$
+		\end{enumerate}
+	\end{thm}
+
+	\begin{proof}
+		\begin{itemize}
+			\item[\textbullet] (i $\implies$ ii)
+				On choisit $Y_n$ et $Y$ comme avant.
+				$Y_n \longrightarrow Y$ donc $f(Y_n) \longrightarrow f(Y)$ 
+			\item[\textbullet] 
+		\end{itemize}
+	\end{proof}
