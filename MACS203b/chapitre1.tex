@@ -220,3 +220,89 @@
 			\item[\textbullet] 
 		\end{itemize}
 	\end{proof}
+
+	\begin{lem}[d'Helly]
+		Soit $(F_n)_n$ une suite de fonctions de répartition.
+		Il existe une sous-suite $\varphi_n$ et $F \colon \R \to \intff{0}{1}$ croissante, continue à droite, telle que $F_{\varphi_n}(x) \longrightarrow_n F(x)$ en tout $x$ point de continuité de $F$.
+	\end{lem}
+
+	\begin{proof}
+		On indexe $\Q$ sur $\N$ de sorte que $\Q = \{ x_1, \ldots, x_n \}$.
+		De $(F_n(x_1))_n$ on peut extraire une sous-suite $(F_{\varphi_n^1}(x_1))_n$ qui converge vers un certain $F(x_1) \in \intff{0}{1}$.
+		
+		De $(F_{\varphi_n^1}(x_2))_n$ on peut trouver une extraction le long de laquelle la suite converge vers un certain $F(x_2)$.
+		De la sorte pour tout $k \in \N^*$ on construit $(\varphi_n^k)_n$ extrait de $(\varphi_n^{k - 1})_n$ tel que $\forall i \leq k, F_{\varphi_n^k}(x_i) \longrightarrow_n F(x_i)$.
+		
+		Posons maintenant $\psi_n = \varphi_n^n$.
+		On a $\lim_n \psi_n = +\infty$ et $\forall n, \forall i, n \geq i \implies \psi_i \in \{ \varphi_{n'}^i \mid n' \in \N^* \}$.
+		Donc $\lim_n F_{\psi_n}(x_i) = F(x_i)$.
+		
+		On pose, pour tout $x$ dans $\R \setminus \Q$, $F(x) := \inf \{ F(t) \mid t \geq x, t \in \Q \}$.
+		
+		On montre que $F$ est croissante (exercice).
+		On montre enfin que pour tout point de continuité $x$ de $F$, $\lim_n F_{\psi_n}(x) = F(x)$.
+		C'est vrai par construction pour $x$ rationnel.
+		Pour $x$ non-rationnel on a
+		$$F_{\psi_n}(r^-) \leq F_{\psi_n}(x) \leq F_{\psi_n}(r^+)$$
+		donc
+		$$F(r^-) \leq \underline{\lim}_n F_{\psi_n}(x) \leq \overline{\lim}_n F_{\psi_n}(x) \leq F(r^+)$$
+		et pour $\varepsilon \downarrow 0$,
+		$$F(x - \varepsilon) \leq \underline{\lim}_n F_{\psi_n}(x) \leq \overline{\lim}_n F_{\psi_n}(x) \leq F(x + \varepsilon)$$
+		d'où,
+		$$F(x^-) \leq \underline{\lim}_n F_{\psi_n}(x) \leq \overline{\lim}_n F_{\psi_n}(x) \leq F(x)\ .$$
+	\end{proof}
+	
+	On ajoute une condition pour que la limite vérifie $\lim_{x \to -\infty} F(x) = 0$ et $\lim_{x \to +\infty} F(x) = 1$.
+
+	\begin{defn}
+		$(\mu_n)_n$ est dite \textbf{tendue} si $\forall \varepsilon > 0, \exists \mathcal{K} \ \text{compact}, \forall n, \mu_n(\mathcal{K}) \geq 1 - \varepsilon$.
+	\end{defn}
+
+	Dans le cas $d = 1$ on peut prendre $\mathcal{K} = \intff{-K}{K}$.
+	
+	\begin{defn}
+		$(X_n)_n$ est tendue si $\forall \varepsilon > 0, \exists \mathcal{K} \ \text{compact}, \forall n, \proba(X_n \in \mathcal{K}) \geq 1 - \varepsilon$.
+	\end{defn}
+
+	\begin{thm}[de Prokhorov]
+		Soit $(\mu_n)_n$ tendue.
+		Il existe une mesure de probabilité $\mu$ sur $\R^d$ et une suite $(\varphi_n)_n$ telle que $\mu_{\varphi_n} \implies \mu$.
+	\end{thm}
+
+	\begin{pop}
+		Si toute sous-suite faiblement convergente de $(\mu_n)_n$ tendue converge vers $\mu^*$, alors $\mu_n \implies \mu^*$.
+	\end{pop}
+
+	\begin{proof}
+		Supposons par l'absurde $\mu_n \not\implies \mu^*$.
+		Alors $\exists f \in \cont_b, \int f \diff \mu_n \not\longrightarrow \int f \diff \mu^*$.
+		Donc $\abs{\int f \diff \mu_n - \int f \diff \mu^*} \not\longrightarrow 0$.
+		Il existe $\varepsilon > 0$ et $(\varphi_n)_n$ tels que $\forall n, \abs{\int f \diff \mu_{\varphi_n} \int f \diff \mu^*} > \varepsilon$.
+		D'après Prokhorov, puisque $(\mu_n)_n$ est tendue, on peut extraire de $(\varphi_n)_n$ une autre sous-suite $(\psi_n)_n$ telle que $\mu_{\psi_n} \implies \mu^*$.
+		Comme $f \in \cont_b$, $\int f \diff \mu_{\psi_n} \longrightarrow \int f \diff \mu^*$, ce qui contredit le fait que $\forall n, \abs{\int f \diff \mu_{\psi_n} \int f \diff \mu^*} > \varepsilon$.
+	\end{proof}
+
+
+\subsection{Fonction caractéristique, TCL}
+
+	La fonction caractéristique d'une mesure de proba $\mu$ sur $\R^d$ est
+	$$\varphi_\mu \colon \begin{array}{rcl} \R^d & \to & \C \\ t & \mapsto & \int e^{i \scal{t,x}} \diff \mu(x) \end{array}$$
+
+	...
+	
+	Rappel : $\varphi_\mu = \varphi_\nu \implies \mu = \nu$.
+
+	\begin{ex}
+		$\varphi_{\normale(0,1)}(t) = e^{-t^2/2}$.
+	\end{ex}
+
+	Pour $Y = AX + b$ on a $\varphi_Y(t) = e^{i \scal{t}{b}} \varphi_X(\transp{A}t)$.
+
+	\begin{pop}
+		$\varphi_\mu$ est continue en zéro.
+	\end{pop}
+
+	\begin{thm}[de Lévy]
+		Soit $(\mu_n)_n$, $\mu$ des mesures de probabilité sur $\R^d$.
+		$\mu_n \implies \mu$ ssi $\forall t \in \R^d, \varphi_{\mu_n}(t) \longrightarrow \varphi_\mu(t)$.
+	\end{thm}
