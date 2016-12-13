@@ -108,3 +108,31 @@ Exemples :
 ### Le versionnement
 
 On décline un produit en différents modèles.
+
+
+## Les nouvelles ressources de financement : le crowdfounding
+
+### Le Royalty based crowdfunding
+
+- avance sur chiffre d'affaire,
+- alternative au prêt et au capital,
+- il s'agit d'une avance remboursable si succès économique du projet avec effet de levier,
+- acquisition de fonds propre sans recourir à l'emprunt et sans se diluer,
+
+### Les Robo-Advisors
+
+Les épargnants ont une opinion assez dégradée de leurs conseillers financiers.
+Ils ne semblent pas suffisamment accompagnés concernant les produits financiers qui leur sont proposés.
+Or l'intérêt de l'État est que les gens consomment, d'où une incitation à contracter des prêts, etc...
+
+Les robo-advisors sont des outils de gestion d'épargne qui utilise les données de nos différents comptes.
+
+Les robot-conseillers français s'adressent à leurs clients en B2C et, pour certains, en B2B2C.
+Ils sont en rupture par rapport aux plateformes d'aide à la gestion purement B2B qui s'intègrent dans les systèmes de gestion ou bancaires.
+
+Derrière le vocable de robo-advisors, on identifie des propositions de valeur et des modèles de fonctionnement différents avec des métiers distincts :
+
+- gestion discrétionnaire,
+- délégation de gestion sur assurance-vie,
+- conseil en investissements financiers,
+- approche globale du patrimoine.
