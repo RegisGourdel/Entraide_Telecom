@@ -1,0 +1,49 @@
+\subsection{Cours 16/12/16}
+
+	\begin{thm}
+		Soit $(X_n)$ une sous-martingale.
+		On suppose que $\sup_n \esp[X_n^+] < +\infty$.
+		Alors $(X_n) \overset{\text{p.s.}}{\longrightarrow} X_{\infty} \in L^1$.
+	\end{thm}
+
+	\begin{thm}
+		Soit $p \in \intoo{1}{\infty}$ et $(X_n)_n$ une martingale ou une sous martingale positive telle que $\sup_n \esp \left[ \abs{X_n}^p \right] < +\infty$ (bornée dans $L^p$).
+		Alors $\exists X_\infty \in L^p, X_n \longrightarrow X_\infty$ (convergence p.s. et dans $L^p$).
+	\end{thm}
+
+	Attention, contrairement à la convergence dans $L^p$ pour $p > 1$, pour laquelle la convergence dans $L^p$ (et p.s.) résulte de la bornitude dans $L^p$, ce n'est pas le cas en général dans $L^1$.
+	On a besoin en général d'une condition supplémentaire.
+	
+	\begin{defn}
+		Une suite $(X_n)$ de v.a. est dite \textbf{équi-intégrable} si
+		$$\lim_{a \to +\infty} \limsup_n \esp \left[ \abs{X_n} \indic_{\{ \abs{X_n} > a \} } \right] = 0\ .$$
+	\end{defn}
+
+	\begin{rem}
+		Si $(X_n)$ est équi-intégrable,
+		$$\forall a \geq 0, \esp[\abs{X_1}] \leq a + \esp \left[ \abs{X_n} \indic_{\{ \abs{X_n} > a \} } \right] < +\infty\ .$$
+		Donc $\limsup_n \esp[\abs{X_n}] < +\infty$ ($(X_n)$ est bornée dans $L^1$).
+	\end{rem}
+
+	\begin{rem}
+		Soit $\phi \colon \R_+ \to \R_+$ borélienne telle que $\frac{\phi(x)}{x} = +\infty$.
+		Si $\sup_n \esp[\phi(\abs{X_n})] < +\infty$ alors $(X_n)$ est équi-intégrable.
+		En effet,
+		\begin{align*}
+			\forall a > 0, \esp[ \abs{X_n} \indic_{\{ \abs{X_n} > a \} } ]
+				& \leq \esp[ \phi(\abs{X_n}) \indic_{\{ \abs{X_n} > a \} } ] \frac{a}{\phi(a)} \\
+				& \leq \frac{a}{\phi(a)} \sup_n \esp[ \phi(\abs{X_n}) ]
+		\end{align*}
+	\end{rem}
+
+	\begin{pop}
+		Une suite équi-intégrable qui converge p.s. converge aussi dans $L^1$.
+	\end{pop}
+
+	\begin{defn}
+		On dit que $(X_n)$ est une $\mathcal{F}_n$-martingale régulière si $\exists X \in L^1, \forall n \in \N, X_n = \esp[X \mid \mathcal{F}_n]$.
+	\end{defn}
+
+	\begin{thm}
+		Une martingale converge p.s. et dans $L^1$ ssi c'est unee martingale régulière.
+	\end{thm}

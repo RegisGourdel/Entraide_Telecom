@@ -1,0 +1,23 @@
+\begin{rem}
+	La suite $(\esp[M_n^2])_{n \in \N}$ est croissante.
+\end{rem}
+
+\begin{thm}
+	Soit $(M_n)_{n \in \N}$ une martingale bornée dans $L^2$, i.e. $\sup_n \esp[M_n^2] < \infty$.
+	Alors il existe une v.a. $M_\infty \in L^2$ telle que $M_n \overset{L^2}{\longrightarrow} M_\infty$ et $M_n \overset{\text{p.s.}}{\longrightarrow} M_\infty$.
+\end{thm}
+
+\begin{thm}
+	Soit $(M_n)_{n \in \N}$ une martingale de carré intégrable telle que $\sum_{n \geq 1} \frac{1}{n^2} \esp[\abs{\Delta M_n}^2] < \infty$.
+	Alors $\frac{1}{n} M_n \longrightarrow 0$ p.s. et dans $L^2$.
+\end{thm}
+
+\begin{thm}[Loi forte des grands nombres]
+	Soit $(X_n)_{n \geq 0}$ une suite iid de v.a. intégrables.
+	Alors $\frac{1}{n} \sum_{i = 1}^n X_i \overset{\text{p.s.}}{\longrightarrow} \esp[X_1]$.
+\end{thm}
+
+\begin{lem}
+	Soit $(X_n)_{n \in \N}$ une sous-martingale, et $a < b$.
+	Alors la moyenne du nombre de traversées montantes de l'intervalle $\intff{a}{b}$ vérifie $\esp[U_n^{a,b}] \leq \frac{1}{b - a} \esp[(X_n - a)^+]$.
+\end{lem}
