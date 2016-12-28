@@ -1,0 +1,76 @@
+Soit $X$ une chaîne de Markov homogène de matrice de transition $P$.
+
+\begin{defn}
+	Une probabilité $\nu$ sur $E$ est représentée par un vecteur ligne $(\nu(x))_{x \in E}$.
+	On dit que $\nu$ est une probabilité invariante pour $X$ si $\nu P = \nu$.
+\end{defn}
+
+\begin{thm}
+	Soit $E$ un espace d'état fini.
+	Alors il existe au moins une probabilité invariante.
+\end{thm}
+
+Si $\forall x \in E, \forall n \in \N\pi_n(x) > 0$ on définit $Q_n(x,y) := \proba(X_n = y \mid X_{n + 1} = x) = \frac{P(y,x) \pi_n(y)}{\pi_{n + 1}(x)}$.
+
+\begin{defn}
+	On dit que $X$ (homogène) est \textbf{réversible} par rapport à une mesure de probabilité $\nu$ si $\forall x,y \in E, \nu(x) P(x,y) = \nu(y) P(y,x)$, i.e. si les lois marginales $\pi_n$ sont données par $\nu$, $Q_n = P$ pour tout $n$.
+\end{defn}
+
+\begin{pop}
+	Soit $\nu$ une mesure de probabilité par rapport à laquelle $X$ est invariant.
+	Alors $\nu$ est une probabilité invariante.
+\end{pop}
+
+\begin{defn}
+	Soit $x \in E$.
+	On définit le temps d'arrêt de premier retour à $x$ : $R_x := R_1^x = \inf \{ n \in \N^* \mid X_n = x \}$.
+	$x$ est dit \textbf{récurrent} si $\proba(R_x < \infty) = 1$, dont \textbf{récurrent positif} si $\esp_x(R_x) < \infty$ et \textbf{récurrent nul} si $\esp_x(R_x) = \infty$.
+	Sinon on dit que $x$ est \textbf{transitoire}.
+\end{defn}
+
+On introduit les mesures à valeurs dans $\inff{0}{\infty}$ définies par $\forall x,y \in E, \mu_x(y) = \esp_x \left[ \sum_{n = 0}^{R_x - 1} \indic_{\{ X_n = y \} } \right] = \sum_{n \in \N} \proba_x(R_x > n, X_n = y)$.
+
+\begin{pop}
+	Soit $x \in E$. Alors,
+	\begin{enumerate}[(i)]
+		\item $\mu_x P = \mu_x$ ssi $x$ est un état récurrent,
+		\item $\mu_x$ est une mesure finie ssi $x$ est récurrent positif, dans ce cas $\nu_x = \frac{\mu_x}{\esp_x(R_x)}$ est une probabilité invariante.
+	\end{enumerate}
+\end{pop}
+
+\begin{defn}
+	Soit $x, y \in E$.
+	On dit que :
+	\begin{itemize}
+		\item[\textbullet] $x$ \textbf{communique} avec $y$, noté $x \leftarrow y$ si $\exists n \in \N, x_1,\ldots,x_n, P(x,x_1) \cdots P(x_n,y) > 0$,
+		\item[\textbullet] $x$ et $y$ communiquent, noté $x \leftrightarrow y$, si $x \leftarrow y$ et $y \leftarrow x$.
+	\end{itemize}
+\end{defn}
+
+\begin{defn}
+	Une classe $E_0 \subset E$ est dite \textbf{irréductible} si $\forall x,y \in E_0, x \lrar y$.
+	$X$ est dite irréductible si $E$ est irréductible.
+	Une classe $E_0 \subset E$ est dite \textbf{fermée} si $\forall x,y \in E, (x \in E_0 \wedge x \leftarrow y) \implies y \in E_0$.
+	Si $\{ x_0 \}$ est fermée, on dit que $x_0$ est absorbant.
+\end{defn}
+
+On introduit le \textbf{nombre de visite d'un état} $x$ : $N^x := \sum_{n \in \N} \indic_{\{ X_n = x \} }$.
+
+\begin{pop}
+	Soit $x,y \in E$.
+	\begin{enumerate}[(i)]
+		\item Si $x \leftarrow y$ et $x$ est récurrent, alors $y$ est récurrent et $N^y = \infty$, $\proba_x$-p.s.
+		\item Si $x \leftrightarrow y$, alors $x$ et $y$ sont simultanément soit transitoires soit récurrents.
+	\end{enumerate}
+\end{pop}
+
+\begin{thm}
+	Supposons $X$ irréductible.
+	Alors $X$ est récurrente positive si et seulement si $X$ admet une loi invariante $\nu$.
+	De plus, $\nu$ est unique, strictement positive, donnée par $\forall x \in E, \nu(x) = \frac{1}{\esp_x(R_x)}$.
+\end{thm}
+
+\begin{pop}
+	Soit $X$ une chaîne de Markov sur un espace d'état dénombrable $E$, et $x \in E$ récurrent.
+	Alors, pour toute mesure $\nu$ sur $E$, $\nu \geq \nu P \implies \nu = \nu(x) \mu_x$.
+\end{pop}

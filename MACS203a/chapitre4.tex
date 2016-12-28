@@ -1,0 +1,65 @@
+\begin{defn}
+	Un \textbf{processus} est une suite $(X_n)_n$ de v.a. sur $(\Omega,\mathcal{A})$ à valeurs dans un ensemble mesuré $(E,\mathcal{E})$.
+\end{defn}
+
+\begin{defn}
+	Une \textbf{filtration} de $\mathcal{A}$ est une suite croissante $\F = (\mathcal{F}_n)_{n \geq 0}$ de sous-$\sigma$-algèbres de $\mathcal{A}$.
+	On dit que $(\Omega,\mathcal{A},\F)$ est un espace probabilisable filtré et $(\Omega,\mathcal{A},\F,\proba)$ un espace probabilisé filtré.
+\end{defn}
+
+\begin{ex}
+	La suite $(\mathcal{F}_n^X)_{n \in \N} = (\sigma(X_i, i \leq n))_{n \in \N}$ est une filtration de $\mathcal{A}$ appelée \textbf{filtration naturelle} de $X$.
+\end{ex}
+
+\begin{defn}
+	Soit $X = (X_n)_n$ un processus aléatoire et $(\mathcal{F}_n)_n$ une filtration de $\mathcal{A}$.
+	On dit que $X$ est :
+	\begin{itemize}
+		\item[\textbullet] $\F$-\textbf{adapté} si $\forall n \in \N$, $X_n$ est $\mathcal{F}_n$-mesurable,
+		\item[\textbullet] $\F$-\textbf{prévisible} si $\forall n \in \N$, $X_n$ est $\mathcal{F}_{n - 1}$-mesurable, où $\mathcal{F}_{-1} := \{ \emptyset, \Omega \}$.
+	\end{itemize}
+\end{defn}
+
+\begin{defn}
+	Un \textbf{temps d'arrêt} $\nu$ est une variable aléatoires à valeurs dans $\N \cup \{ \infty \}$ telle que $\forall n \in \N, \{ \nu = n \} \in \mathcal{F}_n$.
+	On note $\mathcal{T}$ l'ensemble des temps d'arrêt.
+\end{defn}
+
+\begin{pop}
+	Soit $(X_n)_{n \in \N}$ un processus $\F$-adapté à valeurs dans $(E,\mathcal{E})$.
+	Pour tout $A \in \mathcal{E}$, on définit le \textbf{premier temps d'atteinte} $T_A := \inf \{ n \in \N \mid X_n \in A \}$, avec la convention $\inf \emptyset = \infty$.
+	Alors $T_A$ est un temps d'arrêt.
+\end{pop}
+
+\begin{pop}
+	Soit $\tau, \theta, (\tau_n)_{n \in \N}$ des temps d'arrêt.
+	\begin{enumerate}[(i)]
+		\item $\tau \wedge \theta$, $\tau \vee \theta$ et $\tau + \theta$ sont des temps d'arrêt,
+		\item soit $c \geq 0$ une constante, alors $\tau + c$ et $(1 + c) \tau$ sont des temps d'arrêt,
+		\item $\liminf_n \tau_n$ et $\limsup_n \tau_n$ sont des temps d'arrêt.
+	\end{enumerate}
+\end{pop}
+
+\begin{pop}
+	Soit $(X_n)_n$ un processus aléatoire à valeurs dans un espace mesuré $(E,\mathcal{E})$ et $\tau$ un temps d'arrêt.
+	Alors $X_\tau \colon \omega \in \Omega \mapsto X_{\tau(\omega)}(\omega)$ est une v.a.
+\end{pop}
+
+\begin{pop}
+	Pour tout temps d'arrêt $\tau \in \mathcal{T}$, $\mathcal{F}_\tau \subset \mathcal{A}$ est une sous-$\sigma$-algèbre de $\mathcal{A}$.
+	Si $X$ est un processus aléatoire $\F$-adapté, $X_\tau$ est $\mathcal{F}_\tau$-mesurable.
+\end{pop}
+
+\begin{defn}
+	L'\textbf{information disponible à un temps d'arrêt} est $\mathcal{F}_\tau := \{ A \in \mathcal{A} \mid \forall n \in \N, A \cap \{ \tau = n \} \in \mathcal{F}_n \}$.
+\end{defn}
+
+\begin{pop}
+	Pour tout temps d'arrêt $\tau \in \mathcal{T}$, $\mathcal{F}_\tau$ est une sous-$\sigma$-algèbre de $\mathcal{A}$.
+	Si $X$ est un processus aléatoire $\F$-adapté, $X_\tau$ est $\mathcal{F}_\tau$-mesurable.
+\end{pop}
+
+\begin{pop}
+	Soit $\tau$ et $\theta$ deux temps d'arrêt.
+	Alors $\{ \tau \leq \theta \}$, $\{ \tau \geq \theta \}$ et $\{ \tau = \theta \}$ appartiennent à $\mathcal{F}_\tau \cap \mathcal{F}_\theta$, et pour toute v.a. $X$ intégrable, on a $\esp(\esp(X \mid \mathcal{F}_\tau) \mid \mathcal{F}_\theta) = \esp(\esp(X \mid \mathcal{F}_\theta) \mid \mathcal{F}_\tau) = \esp(X \mid \mathcal{F}_{\tau \wedge \theta})$.
+\end{pop}

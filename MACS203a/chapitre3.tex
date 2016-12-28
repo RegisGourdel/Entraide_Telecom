@@ -1,0 +1,47 @@
+Soit un espace probabilisé $(\Omega,\mathcal{A},\proba)$ et $\mathcal{F}, \mathcal{G}$ des sous-$\sigma$-algèbres de $\mathcal{A}$.
+
+\begin{thm}
+	Pour toute v.a. $X \in \L^1(\mathcal{A},\proba)$, il existe une v.a. $Z$ telle que
+	\begin{enumerate}[(i)]
+		\item $Z$ est $\mathcal{F}$-mesurable,
+		\item $\esp{\abs{Z}} < \infty$,
+		\item pour tout événement $F \in \mathcal{F}$, on a $\esp(X \indic_F) = \esp(Z \indic_F)$.
+	\end{enumerate}
+	De plus $Z$ est unique p.s.
+\end{thm}
+
+\begin{defn}
+	La v.a. vérifiant les propriétés ce-dessus est appeleé \textbf{version de l'espérance conditionnelle} de $X$ sachant $\mathcal{F}$, notée $\esp(X \mid \mathcal{F})$.
+	Si $\mathcal{F} = \sigma(Y_1,\ldots,Y_n)$, on écrit simplement $\esp(X \mid Y_1,\ldots,Y_n)$.
+\end{defn}
+
+\begin{ex}
+	On a $\esp(X \mid \{ \emptyset,\Omega \}) = \esp(X)$ et $\esp(X \mid \sigma(X)) = X$.
+\end{ex}
+
+\begin{pop}
+	L'opérateur $\esp( \cdot \mid \mathcal{F})$ est linéaire et $\forall X \in \L^1(\mathcal{A},\proba)$ on a :
+	\begin{enumerate}[(i)]
+		\item $\esp(\esp(X \mid \mathcal{F})) = \esp(X)$
+		\item si $X$ est $\mathcal{F}$-mesurable, $\esp(X \mid \mathcal{F}) \overset{\text{p.s.}}{=} X$,
+		\item si $X \geq 0$, $\esp(X \mid \mathcal{F}) \overset{\text{p.s.}}{\geq} 0$,
+		\item si $g \colon \R^n \to \R$ est convexe et $\esp(\abs{g(X)}) < \infty$ alors $\esp(g(X) \mid \mathcal{F}) \geq g(\esp(X \mid \mathcal{F}))$,
+		\item si $\mathcal{F} \subset \mathcal{G}$, $\esp(\esp(X \mid \mathcal{G}) \mid \mathcal{F}) = \esp(X \mid \mathcal{F})$,
+		\item si $\mathcal{G}$ est indépendante de $\sigma(\sigma(X),\mathcal{F})$, $\esp(X \mid \sigma(\mathcal{F},\mathcal{G})) = \esp(X \mid \mathcal{F})$.
+	\end{enumerate}
+\end{pop}
+
+\begin{pop}
+	La convergence monotone, le lemme de Fatou et la convergence dominée restent vraies pour l'espérance conditionnelle.
+\end{pop}
+
+\begin{pop}
+	Soit $X \in \L^0(\mathcal{A})$ et $Y \in \L^0(\mathcal{F})$.
+	On suppose $\esp(\abs{X}) < \infty$ et $\esp(\abs{XY}) < \infty$.
+	Alors $\esp(XY \mid \mathcal{F}) = Y \cdot \esp(X \mid \mathcal{F})$.
+\end{pop}
+
+\begin{pop}
+	Soit $X,Y$ deux v.a. à valeurs dans $\R^n$ et $\R^m$ respectivement, et $g \colon \R^n \times \R^m \to \R$ une fonction telle que $\esp(\abs{g(X,Y)}) < \infty$.
+	Si $X$ et $Y$ sont indépendantes alors $\esp(g(X,Y) \mid X) = G(X)$ où $\forall x \in \R^n, G(x) := \esp(g(x,Y))$.
+\end{pop}

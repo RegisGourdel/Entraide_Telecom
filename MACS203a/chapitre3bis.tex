@@ -1,0 +1,14 @@
+\begin{defn}
+	$X$ est un \textbf{vecteur gaussien} (ou variable gaussienne multivariée ou variable normale multivariée) si et seulement si $\forall a \in \R^d$, la loi de $\scal{a}{X}$ est une loi gaussienne (éventuellement de variance nulle).
+\end{defn}
+
+\begin{thm}
+	$X$ est un vecteur gaussien d’espérance $m$ et de matrice de covariance $\Gamma$ si et seulement si sa fonction caractéristique est $t \mapsto \exp \left( i \scal{t}{m} - \frac{1}{2} \transp{t} \Gamma t \right)$.
+	On écrit $X \sim \normale_d(m,\Gamma)$.
+\end{thm}
+
+\begin{pop}
+	Soit $(X,Y)$ un vecteur gaussien à valeurs dans $\R^n \times \R^m$, de moyenne $\mu = \begin{pmatrix} \mu_X \\ \mu_Y \end{pmatrix}$ et de matrice de variances-covariances $V = \begin{pmatrix} V_X & \transp{V_{XY}} \\ V_{XY} & V_Y \end{pmatrix}$.
+	Supposons que $\Var(Y) = V_Y$ est inversible.
+	Alors la loi conditionnelle de $X$ sachant $Y = y$ est gaussienne de moyenne $\esp(X \mid Y = y) = \mu_X + V_{XY} V_Y^{-1} (y - \mu_Y)$ et variance $\Var(X \mid Y = y) = V_X - V_{XY} V_Y^{-1} \transp{V_{XY}}$.
+\end{pop}

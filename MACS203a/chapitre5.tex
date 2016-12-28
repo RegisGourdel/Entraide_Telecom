@@ -1,0 +1,32 @@
+Soit $X = (X_n)_{n \in \N}$ un processus stochastique défini sur un espace probabilisé $(\Omega,\mathcal{A},\proba)$ et à valeurs dans un espace d'états discret $E$, fini ou dénombrable.
+
+\begin{note}
+	$\pi_n$ est la distribution marginale de $X_n$ : $\forall x \in E, \pi_n(x) := \proba(X_n = x)$.
+\end{note}
+
+\begin{defn}
+	On dit que $X$ est un \textbf{chaîne de Markov} si $\forall A \subset E, \forall n \in \N^*, \proba[X_n \in A \mid \mathcal{F}_{n - 1}^X] = \proba[X_n \in A \mid X_{n - 1}]$.
+\end{defn}
+
+Les \textbf{probabilités de transition} sont représentées par les \textbf{matrices de transition} $P_n$ définies par $\forall n \in \N, \forall x,y \in E, P_n(x,y) := \proba [X_n = y \mid X_{n - 1} = x]$.
+Ce sont des matrices stochastiques : leurs composantes sont positives et leurs lignes somment à l'unité.
+
+\begin{pop}
+	Soit $(P_n)_{n \in \N^*}$ une suite de matrices stochastiques sur $E$.
+	Pour toute distribution initiale $\pi_0$ il existe une chaîne de Markov de loi initiale $\pi_0$ et de matrices de transition $(P_n)_{n \in \N^*}$.
+\end{pop}
+
+Les probabilités marginales $\pi_n$ se déduisent par $\forall n \in \N^*, \pi_n = \pi_0 P_1 \ldots P_n$, où $\pi_0$ est un vecteur ligne de taille $\Card(E)$.
+
+\begin{pop}[Formule de Chapman-Kolmogorov]
+	$\forall x,y \in E, \forall k \in \intff{0}{n}, \proba(X_n = y \mid X_0 = x) = \sum_{z \in E} \proba(X_n = y \mid X_k = z) \proba(X_k = z \mid X_0 = x)$.
+\end{pop}
+
+\begin{thm}[Propriété de Markov forte]
+	Soit $(X_n)_{n \in \N}$ une chaîne de Markov et $\tau$ un temps d'arrêt à valeurs dans $\N$.
+	Alors $\forall A \subset E, \forall n \in \N^*, \proba(X_{\tau + n} \in A \mid \mathcal{F}_{\tau + n - 1}^X) = \proba(X_{\tau + n} \in A \mid X_{\tau + n - 1})$.
+\end{thm}
+
+\begin{defn}
+	Une chaîne de Markov est dite \textbf{homogène} si sa matrice de transition $P_n$ est indépendante de $n$.
+\end{defn}
