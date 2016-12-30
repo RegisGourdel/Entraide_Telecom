@@ -22,6 +22,10 @@ Les probabilités marginales $\pi_n$ se déduisent par $\forall n \in \N^*, \pi_
 	$\forall x,y \in E, \forall k \in \intff{0}{n}, \proba(X_n = y \mid X_0 = x) = \sum_{z \in E} \proba(X_n = y \mid X_k = z) \proba(X_k = z \mid X_0 = x)$.
 \end{pop}
 
+\begin{note}
+	$\proba_x$ est la probabilité conditionelle sachant $X_0 = x$, et $\esp_x$ est l'espérance associée.
+\end{note}
+
 \begin{thm}[Propriété de Markov forte]
 	Soit $(X_n)_{n \in \N}$ une chaîne de Markov et $\tau$ un temps d'arrêt à valeurs dans $\N$.
 	Alors $\forall A \subset E, \forall n \in \N^*, \proba(X_{\tau + n} \in A \mid \mathcal{F}_{\tau + n - 1}^X) = \proba(X_{\tau + n} \in A \mid X_{\tau + n - 1})$.

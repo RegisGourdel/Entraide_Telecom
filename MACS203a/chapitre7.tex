@@ -1,5 +1,63 @@
-Soit $X$ une chaîne de Markov irréductible.
+\subsection{Théorèmes ergodiques}
 
-\begin{thm}
-	$\forall x,y \in E, \frac{1}{n} N_n^y := \frac{1}{n} \sum_{i = 0}^n \indic_{ \{ X_i = y \} } \longrightarrow \frac{1}{\esp_y(R^y)}$, $\proba_x$-p.s.
-\end{thm}
+	\begin{thm}
+		Soit $X$ une chaîne de Markov irréductible, $\forall x,y \in E, \frac{1}{n} N_n^y := \frac{1}{n} \sum_{i = 0}^n \indic_{ \{ X_i = y \} } \longrightarrow \frac{1}{\esp_y(R^y)}$, $\proba_x$-p.s.
+	\end{thm}
+
+	En particulier il vient $\forall x,y \in E, \frac{1}{n} \sum_{i = 0}^n \proba(X_i = x) = \frac{1}{n} \sum_{i = 0}^n \pi_i(x) \longrightarrow \nu(x)$, $\proba_y$-p.s. avec $\nu$ une loi invariante.
+
+	\begin{thm}
+		Soit $X$ une chaîne de Markov irréductible et récurrente positive sur $E$ dénombrable, de matrice de transition $P$ et d'unique loi invariante $\nu$.
+		Alors, pour toute fonction $g \colon E \times E \to \R$ positive ou telle que $\esp_\nu \left[ \abs{g(X_0,X_1)}] < \infty$, on a $\forall \pi_0, \frac{1}{n} \sum_{i = 1}^n g(X_{i - 1},X_i) \overset{\text{p.s.}}{\longrightarrow} \esp_\nu \left[ g(X_0,X_1) ] = \sum_{x \in E} \nu(x) \sum_{y \in E} P(x,y)g(x,y)$.
+	\end{thm}
+
+	\begin{thm}
+		Soit $X$ et $g$ comme précedemment.
+		Supposons qu'il existe $x \in E$ tel que
+		$$s(x)^2 := \esp_x \left[ \sum_{i = 1}^{R_x} \left( g(X_{i - 1},X_i) - \esp_\nu(g(X_0,X_1)) \right)^2 \right] < \infty\ .$$
+		Alors $\sigma^2 := \nu(x)s(x)^2$ est une constante (indépendante de $x$) et
+		$$\sqrt{x} \left( \frac{1}{n} \sum_{i = 1}^n g(X_{i - 1},X_i) - \esp_\nu(g(X_0,X_1)) \right) \longrightarrow \normale(0,\sigma^2)\ \text{en loi.}$$
+	\end{thm}
+
+
+\subsection{Convergence des lois marginales et apériodicité}
+
+	\begin{note}
+		Pour tout état $x \in E$ on définit $I(x) := \{ n \in \N^* \mid P^n(x,x) > 0 \}$ et $\mathbf{p}(x) := \pgcd(I(x))$.
+	\end{note}
+
+	\begin{pop}
+		Soit $X$ une chaîne de Markov irréductible.
+		Alors la fonction $\mathbf{p}(x) = \mathbf{p}_X$ est constante.
+	\end{pop}
+
+	\begin{defn}
+		Soit $X$ une chaîne de Markov irréductible.
+		On dit que $X$ est \textbf{apériodique} si $\mathbf{p}_X = 1$.
+	\end{defn}
+
+	\begin{lem}
+		Pour $x \in E$, $\mathbf{p}(x) = 1 \iff \exists \mathbf{n}(x) \in \N, \forall n \geq \mathbf{n}(x), P^n(x,x) > 0$.
+	\end{lem}
+
+	\begin{thm}
+		Soit $X$ une chaîne de Markov irréductible, apériodique et récurrente positive d'unique loi invariante $\nu$.
+		Alors $\forall x \in E, \pi_n(x) \longrightarrow \nu(x)$.
+	\end{thm}
+
+	\begin{pop}
+		Soit $X^1$ et $X^2$ deux chaînes de Markov indépendantes de même matrice de transition $P$ irréductible apériodique.
+		Alors la chaîne produit $Y := (X^1,X^2)$ est irréductible apériodique.
+		Si de plus $P$ est récurrente positive, il en est de même pour $Y$.
+	\end{pop}
+
+	\begin{pop}
+		Soit $X$ une chaîne de Markov irréductible apériodique sur $E$ fini.
+		Alors sa matrice de transition $P$ vérifie la \textbf{condition de Dobelin} : il existe $k \in \N, \epsilon > 0$ et une loi $\delta$ sur $E$ tels que $\forall x,y \in E, P^k(x,y) \geq \epsilon \cdot \delta(y)$. 
+	\end{pop}
+
+	\begin{thm}
+		Soit $P$ une matrice de transition vérifiant la condition de Dobelin.
+		Alors il existe une unique loi invariante $\nu \geq \epsilon \cdot \delta$ vérifiant
+		$$\sup_{x \in E} \sum_{y \in E} \abs{P^n(x,y) - \nu(y)} \leq 2(1 - \epsilon)^{\lfloor n/k \rfloor}\ .$$
+	\end{thm}

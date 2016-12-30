@@ -25,7 +25,7 @@ Si $\forall x \in E, \forall n \in \N\pi_n(x) > 0$ on définit $Q_n(x,y) := \pro
 	Soit $x \in E$.
 	On définit le temps d'arrêt de premier retour à $x$ : $R_x := R_1^x = \inf \{ n \in \N^* \mid X_n = x \}$.
 	$x$ est dit \textbf{récurrent} si $\proba(R_x < \infty) = 1$, dont \textbf{récurrent positif} si $\esp_x(R_x) < \infty$ et \textbf{récurrent nul} si $\esp_x(R_x) = \infty$.
-	Sinon on dit que $x$ est \textbf{transitoire}.
+	Sinon on dit que $x$ est \textbf{transitoire} ou \textbf{transient}.
 \end{defn}
 
 On introduit les mesures à valeurs dans $\inff{0}{\infty}$ définies par $\forall x,y \in E, \mu_x(y) = \esp_x \left[ \sum_{n = 0}^{R_x - 1} \indic_{\{ X_n = y \} } \right] = \sum_{n \in \N} \proba_x(R_x > n, X_n = y)$.
