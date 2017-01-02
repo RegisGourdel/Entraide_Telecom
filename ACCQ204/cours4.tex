@@ -17,7 +17,7 @@
 \subsection{Les codes BCH}
 
 	\begin{defn}
-		\textbf{Code BCH} : code cyclique ayant $2t$ zéros consécutifs (qui corrige $t$ erreurs, $d_\min \geq 2t + 1$).
+		\textbf{Code BCH} : code cyclique ayant $2t$ zéros consécutifs (qui corrige $t$ erreurs, $d_{\min} \geq 2t + 1$).
 	\end{defn}
 	
 	Construction d'un code BCH, avec $n = p^m - 1$, $p$ premier :
@@ -106,7 +106,7 @@
 	\end{proof}
 
 	Système fondamental de décodage, $t$ équations avec $t$ inconnues :
-	$$\left\{ \begin{array}
+	$$\left\{ \begin{array}{l}
 		\sum_{j = 0}^{n - 1} \Lambda_j E_{(k - j) \mod{n}} = 0 \\
 		\forall i \in \intiff{t + 1}{2t}, \sum_{j = 1}{t} \Lambda_j S_{k - j} = S_k
 		\end{array} \right.$$
