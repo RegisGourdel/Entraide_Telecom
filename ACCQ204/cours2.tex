@@ -1,0 +1,52 @@
+\begin{defn}
+	\textbf{Code cyclique} : code linéaire en bloc $\mathcal{C}$ défini sur $\GF(q)$ tel que $\forall c = (c_0,\ldots,c_{n - 1}) \in \mathcal{C}, (c_{n - 1},c_0,\ldots,c_{n - 2}) \in \mathcal{C}$.
+\end{defn}
+
+\subsection{Représentation polynomiale}
+
+	\begin{defn}
+		$c(X) = c_0 + c_1 X + \ldots + c_{n - 1} X_{n - 1}$
+	\end{defn}
+
+	Décalage cyclique : $X c(X) \pmod{X^n - 1}$.
+	
+	\begin{defn}
+		\textbf{Polynôme générateur} : $g(X)$ l'unique mot de code unitaire de degré minimal.
+	\end{defn}
+
+	Tous les mots de code sont multiples de $g(X)$, et $g(X) \mid X^n - 1$.
+	Pour écrire $c(X) = g(X) m(X)$ de manière unique, avec $m$ un mot d'info de degré $<  k$, il faut $\deg(g(X)) = n - k$.
+
+	\begin{thm}
+		$\mathcal{C}$ est un sous-ensemble cyclique de $\GF(q)[X] / X^n - 1$ ssi $\mathcal{C}$ est un idéal de $\GF(q)[X] / X^n - 1$.
+	\end{thm}
+
+	On a le morphisme $\phi \colon p(X) \in \GF(q)[X] \to p(X) \pmod{X^n - 1}$.
+	$\phi^{-1}(\mathcal{C})$ est un idéal de $\GF(q)[X]$, qui est un corps, donc tous ces idéaux sont principaux et il y a existence et unicité de $g(X)$.
+
+
+\subsection{Polynôme de parité}
+
+	\begin{defn}
+		Le \textbf{polynôme de parité} est $h(X) = \frac{X^n - 1}{g(X)}$.
+	\end{defn}
+
+	Pour avoir unicité de l'écriture des mots de code : $\deg(h) < k$.
+
+
+\subsection{Forme systématique}
+
+	$c(X) = m(X)g(X)$ : pour rendre $m(X)$ visible dans $g(X)$, on mettra ses coefficients dans les plus hauts degrés.
+	
+	Forme souhaitée : $c(X) = X^{n - k} m(X) + t(X)$.
+	
+	Division euclidienne : $X^{n - k} m(X) = \underset{\in \mathcal{C}}{\underbrace{q(X)g(X)}} + r(X)$.
+	On écrit donc $c(X) = X^{n - k} m(X) - r(X)$.
+
+
+\subsection{Polynôme syndrôme}
+
+	Le mot reçu est $r(X) = c(X) + e(X)$, où $e$ est la représentation polynomiale de l'erreur.
+	Alors $s(X)$ est égal au reste de $r(X)/g(X)$ ou de $e(X)/g(X)$.
+
+	Si $\deg(e(X)) < \frac{d_\min}{2}$ alors $s(X)$ est unique.

@@ -1,0 +1,53 @@
+\subsection{Polynôme sur un corps}
+
+	Tout polynôme $P(X)$ défini sur un corps $F$ peut être factorisé de façon unique en produit de polynômes premiers (irréductible, unitaire, de degré $> 1$).
+
+	Soit un anneau quotient $F[X]/P(X)$.
+	Si $p(X)$ est unitaire, c'est l'ensemble des polynômes de degré inférieur à $P(X)$.
+	C'est un corps ssi $P(X)$ est premier, et c'est alors une extension de $F$.
+
+
+\subsection{Construction de $\GF(p^m)$}
+
+	Soit $P$ premier dans $\GF(p)[X]$, de degré $m$.
+	Alors $\GF(p)[X]/P(X)$ est un corps fini à $p^m$ éléments.
+
+
+\subsection{Élément primitif}
+
+	$\alpha \in \GF(p^m)$ est \textbf{primitif} si tout élément de $\GF(p^m) \setminus \{ 0 \}$ est une puissance de $\alpha$.
+	Tout corps fini en possède au moins un.
+
+	$(\GF(p^m) \setminus \{ 0 \}, \cdot)$ est un groupe cyclique généré par $\alpha$.
+
+	\begin{defn}
+		$P(X)$ est un polynôme \textbf{primitif} ssi il annule un élément primitif.
+	\end{defn}
+
+
+\subsection{Factorisation de $X^n - 1$, où $n = p^m - 1$}
+
+	Soit $\beta \in \GF(p^m) \setminus \{ 0 \}$, d'ordre $r$.
+	Alors $\beta^{p^m - 1} = (\beta^r)^{\frac{p^m - 1}{r}} = 1$ donc $\beta$ est racine de $X^n - 1$ ($r$ divise l'ordre du groupe).
+
+	$X^n - 1 = \prod_{\beta \in \GF(p^m) \setminus \{ 0 \} } (X - \beta)$ et on veut factoriser dans $\GF(p)$ maintenant.
+
+
+\subsection{Polynôme minimal}
+
+	\begin{defn}
+		Le \textbf{polynôme minimal} de $\beta \in \GF(p^m)$ est le polynôme de plus petit degré dans $\GF(p)$ qui annule $\beta$.
+	\end{defn}
+
+	\begin{pop}[de Frobenius]
+		$\forall q \in \GF(p^m)[X], \forall a \in \N, q(X)^{p^a} = \left[ \sum_{i = 0}^{\deg(q)} q_i X^i \right]^{p^a} = \sum_{i = 0}^{\deg(q)} q_i^{p^a} X^{ip^a}$.
+	\end{pop}
+
+	\begin{thm}
+		Si $f(X)$ est le polynôme minimal de $\beta \in \GF(p^m)$ alors c'est aussi le polynôme minimal de $\beta^p$.
+	\end{thm}
+
+	Deux éléments de $\GF(p^m)$ sont conjugués s'ils ont le même polynôme minimal.
+	Les conjugués de $\beta$ sont $\{ \beta, \beta^p, \beta^{p^2}, \ldots, \beta^{p^{r - 1}} \}$ où $r = \min \{ i \in \N^* \mid \beta^{p^i} = \beta \}$.
+
+	Le polynôme minimal de $\beta$ s'écrit $f(X) = (X - \beta)(X - \beta^p) \cdots (X - \beta^{p^{r - 1}})$.

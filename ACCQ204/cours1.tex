@@ -1,6 +1,7 @@
-\subsection{Les codes en blocs}
+\subsection{Définition des codes en blocs}
 
-	Principe : $\underset{m}{k\ \text{bits}} \longrightarrow \underset{c}{n\ \text{bits}}$ avec $n > k$.
+	Principe : $\underset{m}{k\ \text{bits}} \longrightarrow \underset{c \in \mathcal{C}}{n\ \text{bits}}$ avec $n > k$.
+	On a $\dim(\mathcal{C}) = k$.
 	
 	\begin{defn}
 		Rendement : $R = \frac{k}{n}$.
@@ -17,4 +18,36 @@
 \subsection{Les codes linéaires en blocs}
 
 	$\mathcal{C}$ est un sev de $\GF(2)^n$.
-	Alors $d_\min = \min_{c \neq 0} w_H(c)$.
+	Alors $d_\min = \min_{c \neq 0} w_H(c)$ (poids de Hamming).
+
+	\begin{defn}
+		Matrice génératrice : $G = [ I_{k \times k} \mid P_{k \times (n - k)} ] \in \M_{k \times n}$ sous forme systématique telle que $c = m \cdot G = [ m \mid n - k\ \text{bits de parité}]$.
+	\end{defn}
+
+	\begin{defn}
+		Matrice de parité : $H \in \M_{(n - k) \times n}$ la matrice génératrice de $\mathcal{C}^\perp$, donc $\forall c \in \mathcal{C}, c \cdot \transp{H} = 0$.
+		Sous forme systématique : $H = [ -\transp{P} \mid I_{n - k}]$.
+	\end{defn}
+
+	\begin{defn}
+		Vecteur syndrôme : $s = r \transp{H}$ avec $r$ le mot reçu.
+		Alors $s = 0$ ssi $R$ est un mot de code.
+	\end{defn}
+
+	\begin{thm}[Borne de singleton]
+		$d_\min \leq n - k + 1$, d'où la correction d'erreur $2t \leq d_\min - 1 \leq n - k$.
+	\end{thm}
+
+	On effectue alors un décodage par maximum likelyhood : si les éléments de l'alphabet de départ sont équiprobables, on cherche $\max p(y \mid x)$.
+
+
+\subsection{Transformations}
+
+	\begin{itemize}
+		\item[\textbullet] Extension : rajouter des bits de parité.
+		\item[\textbullet] Allongement : rajouter des bits d'info.
+		\item[\textbullet] Perforation : supprimer des bits de parité.
+		\item[\textbullet] Raccourcissement : supprimer des bits d'info.
+		\item[\textbullet] Augmentation : ajouter des bits d'info sans modifier la longueur.
+		\item[\textbullet] Expurgation : supprimer des bits d'info sans modifier la longueur.
+	\end{itemize}

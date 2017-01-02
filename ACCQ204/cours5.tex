@@ -1,0 +1,72 @@
+Cas particulier des codes BCH.
+
+\begin{defn}
+	Un code RS correcteur de $t$ erreurs est un code cyclique de longueur $2^m - 1$ ayant uniquement $2t$ zéros consécutifs.
+\end{defn}
+
+\begin{ex}
+	Avec $\{ 1, 2, 3, 4 \}$, $g(X) = (X - \alpha)(X - \alpha^2)(X - \alpha^3)(X - \alpha^4) \in \GF(2^m)[X]$.
+\end{ex}
+
+Pour les RS, le corps des symboles et le corps localisateur d'erreurs sont les mêmes.
+Se sont des codes non binaires.
+
+On a $\deg(g(X)) = 2t$, $g(X) = (X - \alpha) \cdots (X - \alpha^{2t})$ et $n - k = 2t$, d'où $d_\min = 2t + 1$ (code à distance maximale).
+
+\begin{ex}
+	On prend $RS(15,11,5)$, sur $\GF(16) \simeq \GF(2)[X] / 1 + X + X^4$, avec $n = 2^4 - 1$.
+	
+	Il corrige 2 erreurs : $g(X) = X^4 + \alpha^{13} X^3 + \alpha^6 X^2 + \alpha^3 X + \alpha^{10} \in \GF(16)[X]$.
+	On a $n - k = 4$, donc $k = 11$ et $d_\min = 5$.
+\end{ex}
+
+\begin{ex}
+	DVB : $RS(204,188)$ (c'est un RS raccourci, $204 \neq 2^m - 1$).
+	La chaîne de transmission (le code source) impose d'utiliser 188 octets, donc sur $\GF(2^8) = \GF(256) \simeq \GF(2)[X] / X^8 + X^6 + X^3 + X^2 + 1$.
+	
+	Il corrige 8 erreurs : $2t = 16$ et l'on a $g(X) = (X + 1)(X + \alpha) \cdots (X + \alpha^{15})$.
+	Alors $\deg(g(X)) = 16 \implies k = 239$ mais on veut $k = 188$.
+	Donc on raccourcit le code : on rajoute des zéros pour le codage, on les enlève pour la transmission et on les rajoute pour le décodage.
+\end{ex}
+
+
+\subsection{Algorithme d'Euclide}
+
+	Les zéros du code sont $\{ 0,\ldots,2t - 1 \}$.
+	On a $\forall i \in \intiff{0}{n - 1}, \Lambda(\alpha^{-i}) E(\alpha^{-i}) = \lambda_i e_i = 0$.
+	Donc $\Lambda(X) E(X) = 0 \mod{X^n - 1}$, d'où $\Lambda(X)E(X) = \Omega(X) (X^n - 1)$.
+	
+	Il vient $[\Lambda(X)E(X) = \Omega(X) (X^n - 1)] \mod{X^{2t}}$, puis $\Lambda(X) [E(X) \mod{X^{2t}}] = \Omega(X) \mod{X^{2t}}$ et $\Lambda(X) S(X) = \Omega(X) \mod{X^{2t}}$.
+	Donc $\Lambda(X)S(X) + q(X)X^{2t} = \Omega(X)$, $\Omega(X)$ est un diviseur commun de $S(X)$ et $X^{2t}$.
+
+	Dans l'algorithe d'Euclide de base on calcule $\pgcd(a(X),b(X))$, en supposant $\deg(b) \leq \deg(a)$, par :
+	\begin{align*}
+		a(X) & = b(X) q_1(X) + r_1(X) \\
+		b(x) & = r_1(X) q_2(X) + r_2(X) \\
+		\hdots & \hdots \\
+		r_i(x) & = r_{i + 1}(X) q_{i + 2}(X) + r_{i + 2}(X)
+	\end{align*}
+	et on s'arrête dès que le degré d'un reste est nul.
+	
+	Dans la version généralisée on a
+	$$f_i(X)a(X) + g_i(X)b(X) = r_i(X)$$
+	avec
+	$$\begin{array}
+		f_i(X) = f_{i - 2}(X) + f_{i - 1}(X) q_i(X) \\
+		g_i(X) = g_{i - 2}(X) + g_{i - 1}(X) q_i(X) \\
+		f_{-1}(X) = 1 \qquad f_0(X) = 0 \qquad f_1(X) = 1 \\
+		g_{-1}(X) = 0 \qquad g_0(X) = 1 \qquad g_1(X) = q_1(X) \\
+		\end{array}$$
+
+	L'algorithme d'Euclide généralisé appliqué à $S(X), X^{2t}$ donne donc $\Lambda(X)$ et $\Omega(X)$.
+	On arrête l'algorithme dès que $r_i(X)$ est de degré $\leq t - 1$.
+
+
+\subsection{Algorithme de Forney pour connaître les valeurs des erreurs}
+
+	Soit $\Omega(X)$ le polynôme évaluateur d'erreur.
+	En dérivant $\Lambda(X)E(X) = \Omega(X)(X^n - 1)$ on obtient
+	$$\Lambda'(X)E(X) + E'(X)\Lambda(X) = \Omega'(X)(X^n - 1) + n \Omega(X)X^{n - 1}$$
+
+	Pour $i$ une position d'erreur, $\lambda_i = \Lambda(\alpha^{-i}) = 0$ et $e_i = E(\alpha^{-i})$.
+	Donc $\Lambda'(\alpha^{-i}) E(\alpha^{-i}) = n \Omega(\alpha^{-i}) \alpha^{n - 1 - i}$.
