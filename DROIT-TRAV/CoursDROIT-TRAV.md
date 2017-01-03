@@ -73,3 +73,22 @@ L'impossibilité peut être restreinte à une certaine zone géographique.
 ## Obligations de l'employeur
 
 La tenue de travail doit être fournie par l'employeur qui en a aussi la charge de l'entretien.
+
+
+# Cours 4
+
+### Mise en situation
+Une entreprise des TIC délocalise en Pologne.
+
+##### Côté salariés :
+- Il n'y a pas de difficulté financière sérieuse qui justifierait la décision.
+- Action pénale envisageable, pour délit de banqueroute (droit pénal des affaires) ou délit d'abus de biens sociaux (droit pénal commercial).
+- Quelles sont les indemnités prévues ?
+- Que se passe-t-il pour les personnes soumises à des clauses de mobilité ?
+
+##### Côté employeur, justification de la décision :
+- Secteur qui ne nécessite pas une présence physique sur le territoire.
+- Salaires moins élevés en Pologne.
+- Droit du travail plus souple.
+- Avantages autres en Pologne ? Moins de surveillance étatique, plus de sécurité possible,...
+- Meilleur accès au marché polonais.
