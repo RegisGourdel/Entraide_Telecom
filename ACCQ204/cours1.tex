@@ -8,17 +8,17 @@
 	\end{defn}
 	
 	\begin{note}
-		$C(k,n,d_\min)$.
+		$C(k,n,d_{\min})$.
 	\end{note}
 	
 	\begin{defn}
-		Capacité de détection : $t \leq d_\min - 1$. Capacité de correction : $t \leq \lfloor \frac{d_\min - 1}{2} \rfloor$.
+		Capacité de détection : $t \leq d_{\min} - 1$. Capacité de correction : $t \leq \lfloor \frac{d_{\min} - 1}{2} \rfloor$.
 	\end{defn}
 	
 \subsection{Les codes linéaires en blocs}
 
 	$\mathcal{C}$ est un sev de $\GF(2)^n$.
-	Alors $d_\min = \min_{c \neq 0} w_H(c)$ (poids de Hamming).
+	Alors $d_{\min} = \min_{c \neq 0} w_H(c)$ (poids de Hamming).
 
 	\begin{defn}
 		Matrice génératrice : $G = [ I_{k \times k} \mid P_{k \times (n - k)} ] \in \M_{k \times n}$ sous forme systématique telle que $c = m \cdot G = [ m \mid n - k\ \text{bits de parité}]$.
@@ -35,7 +35,7 @@
 	\end{defn}
 
 	\begin{thm}[Borne de singleton]
-		$d_\min \leq n - k + 1$, d'où la correction d'erreur $2t \leq d_\min - 1 \leq n - k$.
+		$d_{\min} \leq n - k + 1$, d'où la correction d'erreur $2t \leq d_{\min} - 1 \leq n - k$.
 	\end{thm}
 
 	On effectue alors un décodage par maximum likelyhood : si les éléments de l'alphabet de départ sont équiprobables, on cherche $\max p(y \mid x)$.

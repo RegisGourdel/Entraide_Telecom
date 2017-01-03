@@ -11,13 +11,13 @@ Cas particulier des codes BCH.
 Pour les RS, le corps des symboles et le corps localisateur d'erreurs sont les mêmes.
 Se sont des codes non binaires.
 
-On a $\deg(g(X)) = 2t$, $g(X) = (X - \alpha) \cdots (X - \alpha^{2t})$ et $n - k = 2t$, d'où $d_\min = 2t + 1$ (code à distance maximale).
+On a $\deg(g(X)) = 2t$, $g(X) = (X - \alpha) \cdots (X - \alpha^{2t})$ et $n - k = 2t$, d'où $d_{\min} = 2t + 1$ (code à distance maximale).
 
 \begin{ex}
 	On prend $RS(15,11,5)$, sur $\GF(16) \simeq \GF(2)[X] / 1 + X + X^4$, avec $n = 2^4 - 1$.
 	
 	Il corrige 2 erreurs : $g(X) = X^4 + \alpha^{13} X^3 + \alpha^6 X^2 + \alpha^3 X + \alpha^{10} \in \GF(16)[X]$.
-	On a $n - k = 4$, donc $k = 11$ et $d_\min = 5$.
+	On a $n - k = 4$, donc $k = 11$ et $d_{\min} = 5$.
 \end{ex}
 
 \begin{ex}
@@ -51,11 +51,11 @@ On a $\deg(g(X)) = 2t$, $g(X) = (X - \alpha) \cdots (X - \alpha^{2t})$ et $n - k
 	Dans la version généralisée on a
 	$$f_i(X)a(X) + g_i(X)b(X) = r_i(X)$$
 	avec
-	$$\begin{array}
+	$$\begin{array}{l}
 		f_i(X) = f_{i - 2}(X) + f_{i - 1}(X) q_i(X) \\
 		g_i(X) = g_{i - 2}(X) + g_{i - 1}(X) q_i(X) \\
 		f_{-1}(X) = 1 \qquad f_0(X) = 0 \qquad f_1(X) = 1 \\
-		g_{-1}(X) = 0 \qquad g_0(X) = 1 \qquad g_1(X) = q_1(X) \\
+		g_{-1}(X) = 0 \qquad g_0(X) = 1 \qquad g_1(X) = q_1(X)
 		\end{array}$$
 
 	L'algorithme d'Euclide généralisé appliqué à $S(X), X^{2t}$ donne donc $\Lambda(X)$ et $\Omega(X)$.

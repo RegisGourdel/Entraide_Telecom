@@ -16,7 +16,7 @@ Ce sont des matrices stochastiques : leurs composantes sont positives et leurs l
 	Pour toute distribution initiale $\pi_0$ il existe une chaîne de Markov de loi initiale $\pi_0$ et de matrices de transition $(P_n)_{n \in \N^*}$.
 \end{pop}
 
-Les probabilités marginales $\pi_n$ se déduisent par $\forall n \in \N^*, \pi_n = \pi_0 P_1 \ldots P_n$, où $\pi_0$ est un vecteur ligne de taille $\Card(E)$.
+Les probabilités marginales $\pi_n$ se déduisent par $\forall n \in \N^*, \pi_n = \pi_0 P_1 \ldots P_n$, où $\pi_0$ est un vecteur ligne de taille $\card(E)$.
 
 \begin{pop}[Formule de Chapman-Kolmogorov]
 	$\forall x,y \in E, \forall k \in \intff{0}{n}, \proba(X_n = y \mid X_0 = x) = \sum_{z \in E} \proba(X_n = y \mid X_k = z) \proba(X_k = z \mid X_0 = x)$.
