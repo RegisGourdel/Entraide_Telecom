@@ -286,7 +286,10 @@
 \subsection{Fonction caractéristique, TCL}
 
 	La fonction caractéristique d'une mesure de proba $\mu$ sur $\R^d$ est
-	$$\varphi_\mu \colon \begin{array}{rcl} \R^d & \to & \C \\ t & \mapsto & \int e^{i \scal{t,x}} \diff \mu(x) \end{array}$$
+	$$\varphi_\mu \colon \begin{array}{rcl}
+		\R^d & \to & \C \\
+		t & \mapsto & \int e^{i \scal{t}{x}} \diff \mu(x)
+	\end{array}$$
 
 	...
 	
@@ -305,4 +308,89 @@
 	\begin{thm}[de Lévy]
 		Soit $(\mu_n)_n$, $\mu$ des mesures de probabilité sur $\R^d$.
 		$\mu_n \implies \mu$ ssi $\forall t \in \R^d, \varphi_{\mu_n}(t) \longrightarrow \varphi_\mu(t)$.
+	\end{thm}
+	
+	\begin{proof}
+		Première implication :
+		Si $X_n \overset{\mathcal{L}}{\longrightarrow} X$ signifie $\forall f \in \cont_b(\R^d), \esp(f(X_n)) \longrightarrow \esp(f(X))$.
+		Soit $t \in \R^d$ fixé.
+		$f \colon x \mapsto e^{i\scal{t}{t}}$ est continue bornée.
+		Donc
+		$$\esp(f(X_n)) \longrightarrow \esp(f(X))$$
+		$$\esp(e^{i \scal{t}{X_n}}) \longrightarrow \esp(e^{i \scal{t}{X}})\ .$$
+		
+		Deuxième implication :
+		Supposons
+		$$\forall t, \phi_{X_n}(t) \longrightarrow \phi_X(t) \quad (*)$$
+		On note $\mu_n = \proba \circ X_n^{-1}$ et $\mu = \proba \circ X^{-1}$ les lois de $X_n$ et $X$.
+		$(*)$ implique que $(\mu_n)$ est tendue.
+		
+		Conclusion de la preuve : montrons que $\mu_n \longrightarrow \mu$.
+		Choisissons $(\mu_{\phi_n})$ convergeant faiblement, disons $\mu_{\phi_n} \Longrightarrow \nu$.
+		Il suffit de montrer $\mu = \nu$.
+		Si $\mu_{\phi_n} \Longrightarrow \nu$, alors $\forall t, \phi_{\mu_{\phi_n}}(t) \longrightarrow \phi_{\nu}(t)$.
+		Or $\forall t, \phi_{\mu_n}(t) \longrightarrow \phi_\mu(t)$ par hypothèse.
+		Donc $\forall t, \phi_{\mu}(t) = \phi_\nu(t)$.
+		Donc $\mu = \nu = \lim_n \mu_n$.
+		
+		Reste à montrer que $\forall t, \phi_{\mu_n}(t) \longrightarrow \phi_\mu(t)$ implique que $(\mu_n)$ est tendue.
+		Dans le cas $d = 1$, pour tout $\mathcal{A} \subset \R$ on a:
+		\begin{align*}
+		\frac{1}{a} \int_{-a}^a (1 - \phi_{\mu_n}(t)) \diff t
+			& = \frac{1}{a} \int_{-a}^a \left(1 - \int e^{itx} \diff \mu_n(x) \right) \diff t \\
+			& = \frac{1}{a} \int_{-a}^a \int (1 - e^{itx}) \diff \mu_n(x) \diff t \\
+			& = \int \frac{1}{a} \int_{-a}^a (1 - e^{itx}) \diff t \diff \mu_n(x) \\
+			& = \int \frac{1}{a} \left[ t - \frac{e^{itx}}{ix} \right]_{-a}^a \diff \mu_n(x) \\
+			& = \int \left( 2 - \frac{e^{iax} - e^{-iax}}{iax} \right) \diff \mu_n(x) \\
+			& = 2 \int \underset{\geq 0}{\underbrace{ \left( 1 - \frac{\sin(\abs{ax})}{\abs{ax}} \right) }} \diff \mu_n(x) \\
+			& \geq 2 \int_{\mathcal{A}} \left( 1 - \frac{\sin(\abs{ax})}{\abs{ax}} \right) \diff \mu_n(x) \\
+			& \geq \int_{\mathcal{A}} 2 \left( 1 - \frac{1}{\abs{ax}} \right) \diff \mu_n(x)
+		\end{align*}
+		On choisit $\mathcal{A} = \left\{ x \in \R \mid 2 \left( 1 - \frac{1}{\abs{ax}} \right) > 1 \right\}$.
+		
+		Alors
+		\begin{align*}
+		2 \left( 1 - \frac{1}{\abs{ax}} \right)
+			& \iff 1 - \frac{1}{a \abs{x}} > \frac{1}{2} \\
+			& \iff \frac{1}{a \abs{x}} < \frac{1}{2}
+		\end{align*}
+	\end{proof}
+
+	\begin{thm}[Procédé de Cramer-Wold]
+		Soit $X_n, X$ des v.a. sur $\R^d$.
+		On a $X_n \overset{\mathcal{L}}{\longrightarrow} X \iff \forall t, \scal{t}{X_n} \overset{\mathcal{L}}{\longrightarrow} \scal{t}{X}$.
+	\end{thm}
+	
+	\begin{proof}
+		La première implication est donnée par le théorème de continuité.
+		
+		Implication réciproque :
+		Soit $t \in \R^d$ tel que $\scal{t}{X_n} \overset{\mathcal{L}}{\longrightarrow} \scal{t}{X}$.
+		Par le théorème de Lévy on a : $\forall u \in \R, \phi_{\scal{t}{X_n}}(u) \longrightarrow \phi_{\scal{t}{X}}(u)$.
+		Donc $\phi_{\scal{t}{X_n}}(1) \longrightarrow \phi_{\scal{t}{X}}(1)$.
+		Donc $\esp(e^{i \scal{t}{X_n}}) \longrightarrow \esp(e^{i \scal{t}{X}})$, d'où $\phi_{X_n}(t) \longrightarrow \phi_X(t)$.
+	\end{proof}
+
+
+\subsection{Théorème centrale limite}
+
+	\begin{note}
+		$\normale(m,\sigma^2)$ désigne la loi de densite $\rho(x) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x - m)^2}{2 \sigma^2}}$, et si $\sigma^2 = 0$ c'est la loi $\delta_m$.
+	\end{note}
+
+	Pour $X$ un vecteur gaussien, sa fonction caractéristique vérifie $\phi_X(t) = e^{i\scal{t}{m}} e^{-\frac{\transp t \Sigma t}{2}}$ où ...
+	
+	\begin{thm}[central limite]
+		...
+	\end{thm}
+
+	\begin{thm}[de Linderbergh]
+		Soit un tableau de v.a. $(X_{i,n})_{1 \leq i \leq n}$ tel que
+		\begin{itemize}
+			\item[\textbullet] $\forall n$, les v.a $X_{1,n},\ldots,X_{n,n}$ sont indépendantes,
+			\item[\textbullet] $\forall n, \forall i \leq n, \esp(X_{i,n}) = 0$,
+			\item[\textbullet] $\lim_n \sum_{i = 1}^n \Cov(X_{i,n}) = \Sigma$
+			\item[\textbullet] $\forall \varepsilon > 0, \lim_n \sum_{i = 1}^n \esp(\norme{X_{i,1}^2 \indic_{\norme{X_{i,n}} > \varepsilon) = 0$.
+		\end{itemize}
+		Alors $\sum_{i = 1}^n X_{i,n} \overset{\mathcal{L}}{\longrightarrow} \normale(0,\Sigma)$.
 	\end{thm}
