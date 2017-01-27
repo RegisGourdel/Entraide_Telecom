@@ -1,101 +1,56 @@
-\subsection{Un peu de calcul sur les événements}
+\subsection{Calcul sur les événements}
 
 	\begin{pop}
-		Si $(A_n)_n$ est croissante, $\proba(\bigcup_n A_n) = \lim_{n \to \infty} \proba(A_n)$.
-		Si $(A_n)_n$ est décroissante, $\proba(\bigcap_n A_n) = \lim_{n \to \infty} \proba(A_n)$.
+		\begin{itemize}
+			\item[\textbullet] Si $(A_n)_n$ est croissante, $\proba(\bigcup_n A_n) = \lim_{n \to \infty} \proba(A_n)$.
+			\item[\textbullet] Si $(A_n)_n$ est décroissante, $\proba(\bigcap_n A_n) = \lim_{n \to \infty} \proba(A_n)$.
+			\item[\textbullet] Si $\forall n, \proba(A_n) = 0$ alors $\proba \left( \bigcup_n A_n \right) = 0$.
+			\item[\textbullet] Si $\forall n, \proba(A_n) = A$ alors $\proba \left( \bigcap_n A_n \right) = 1$.
+		\end{itemize}
 	\end{pop}
 	
 	\begin{defn}
-		$\limsup_{n \to \infty} A_n = \bigcap_{n \in \N} \bigcup_{k \geq n} A_k$.
+		$\limsup_{n \to \infty} A_n = \bigcap_{n \in \N} \bigcup_{k \geq n} A_k$, i.e. $\omega \in \limsup_n A_n \iff \forall n, \exists k \geq n, \omega \in A_k$.
 	\end{defn}
 	
-	Donc $\omega \in \limsup_n A_n \iff \forall n, \exists k \geq n, \omega \in A_k$.
 	Donc $\limsup_n A_n$ est réalisé ssi une infinité de $A_n$ est réalisé.
 	
-	\begin{lem}[de Borel-Cantelli]
+	\begin{lem}[de \textbf{Borel-Cantelli}]
 		Si $\sum_n \proba(A_n) < \infty$, alors $\proba(\limsup_n A_n) = 0$.
 	\end{lem}
 
 	Autrement dit, il y a une proba 1 pour que seulement un nombre fini de $A_n$ soient réalisés.
-	
-	\begin{proof}
-		Soit $B_n = \bigcup_{k \geq N} A_k$, $\proba(\limsup A_n) = \proba(\bigcap_n B_n) = \lim_n \pi(B_n)$.
-		Or $\proba(B_n) = \proba(\bigcup_{k \geq n} A_k) \leq \sum_{k \geq n} \proba(A_k) \overset{n \to \infty}{\longrightarrow} 0$ (par hypothèse).
-	\end{proof}
 
 
 \subsection{Convergence p.s., en probabilité et dans $L^p$}
 
 	\begin{defn}
 		\begin{enumerate}[(i)]
-			\item On dit que $X_n \overset{\text{p.s.}}{\longrightarrow} X$ (\textbf{converge presque sûrement}), si $\forall \omega \proba\text{-p.p}, X_n(\omega) \to X(\omega)$.
-				Cela signifie qu'il existe $A \in \mathcal{F}$ tel que $\proba(A) = 1$ et $\forall \omega \in A, \lim_n X_n(\omega) = X(\omega)$.
-			\item On dit que $X_n$ converge en probabilité vers $X$ si $\forall \epsilon > 0, \proba(\norme{X_n - X} > \epsilon) \underset{\longrightarrow}{n \to \infty} 0$.
-			\item On dit que $X_n$ converge vers $X$ dans $L^p(\Omega, \R^d)$ si $X_n, X \in L^p$ et $\esp \left( \norme{X_n - X}^p \right) \underset{n \to \infty}{\longrightarrow} 0$. 
+			\item On dit que $X_n \overset{\proba}{\longrightarrow} X$ (\textbf{converge en probabilité}) si $\forall \epsilon > 0, \proba(\norme{X_n - X} > \epsilon) \underset{n \to \infty}{\longrightarrow} 0$.
+			\item On dit que $X_n \overset{\text{p.s.}}{\longrightarrow} X$ (\textbf{converge presque sûrement}), si $\forall \omega\ \proba\text{-p.p}, X_n(\omega) \to X(\omega)$.
+				Autrement dit il existe $A \in \mathcal{F}$ tel que $\proba(A) = 1$ et $\forall \omega \in A, \lim_n X_n(\omega) = X(\omega)$.
+			\item On dit que $X_n \overset{L^p}{\longrightarrow} X$ (\textbf{converge vers $X$ dans $L^p(\Omega, \R^d)$}) si $X_n, X \in L^p$ et $\esp \left( \norme{X_n - X}^p \right) \underset{n \to \infty}{\longrightarrow} 0$. 
 		\end{enumerate}
 	\end{defn}
 
 	\begin{pop}
-		On note $X_n = \begin{pmatrix} X_n^1 \\ \vdots \\ X_n^d \end{pmatrix}$ où $X_n^k$ est la $k$\up{e} composante de $X_n$.
-		Alors $X_n \longrightarrow X_n$ p.s. (resp. en probabilité, dans $L^p$) ssi $\forall k \in \iniff{1}{d}, X_n^k \longrightarrow X^k$ p.s. (resp. en probabilité, dans $L^p$).
+		On note $X_n = \left( X_n^{(1)},\ldots,X_n^{(d)} \right)$ sur $\mathcal{X} = \R^d$.
+		Alors $X_n \overset{\text{p.s.}}{\longrightarrow} X$ p.s. (resp. en probabilité, dans $L^p$) ssi $\forall k \in \iniff{1}{d}, X_n^{(k)} \overset{\text{p.s.}}{\longrightarrow} X^{(k)}$ (resp. en probabilité, dans $L^p$).
 	\end{pop}
-
-	\begin{proof}
-		Soit $X_n \overset{\proba}{\longrightarrow} X$.
-		On fixe $k \in \iniff{1}{d}$.
-		Soit $\epsilon > 0$.
-		On sait que $\abs{X_n^k - X^k}^2 < \norme{X_n - X}^2$.
-		Donc l'événement $\abs{X_n^k - X^k} > \epsilon$ implique $\proba(\abs{X_n^k - X^k} > \epsilon) \leq \proba(\norme{X_n - X} > \epsilon) \longrightarrow 0$.
-		Donc $\forall k, X_n^k \overset{\proba}{\longrightarrow} X^k$.
-		
-		Réciproquement, soit $\epsilon > 0$.
-		On a $\norme{X_n - X}^2 = \sum_k \abs{X_n^k - X^k}^2 \leq d \cdot \max_k \abs{X_n^k - X^k}^2$.
-		Donc $\proba(\norme{X_n - X} \geq \epsilon) \leq \proba(\sqrt{d} \max_n \abs{X_n^k - X^k} > \epsilon) = \proba \left(\exists k, \abs{X_n^k - X^k} > \frac{\epsilon}{\sqrt{d}} \right) \leq \sum_{k = 1}^d \proba \left( \abs{X_n^k - X^k} > \frac{\epsilon}{\sqrt{d}} \right) \longrightarrow 0$.
-	\end{proof}
 
 	\begin{pop}
-		La convergence p.s. et la convergence $L^p$ impliquent toutes les deux la convergence en probabilité.
+		Si $X_n \overset{\text{p.s.}}{\longrightarrow} X$ ou $X_n \overset{L^p}{\longrightarrow} X$ alors $X_n \overset{\proba}{\longrightarrow} X$.
 	\end{pop}
-
-	\begin{proof}
-		\begin{enumerate}[(i)]
-			\item Supposons $X_n \overset{\text{p.s.}}{\longrightarrow} X$.
-			Soit $\epsilon > O$.
-			On a $\proba(\norme{X_n - X} > \epsilon) = \esp(\indic_{\norme{X_n - X} > \epsilon})$.
-			Or $\norme{X_n - X} \longrightarrow 0$ p.p. donc  $\indic_{\norme{X_n - X} > \epsilon} \longrightarrow 0$ p.p.
-			$$\lim_n \esp(\indic_{\norme{X_n - X} > \epsilon}) = \esp (\lim_n \indic_{\norme{X_n - X} > \epsilon}) = \esp(0)\ .$$
-			\item $\proba(\norme{X_n - X} > \epsilon) \leq \frac{\esp(\norme{X_n - X}^p)}{\epsilon^p} \longrightarrow 0$.
-		\end{enumerate}
-	\end{proof}
 
 	\begin{pop}
 		Si $\forall \epsilon > 0, \sum_n \proba(\norme{X_n - X} > \epsilon) < \infty$ alors $X_n \overset{\text{p.s.}}{\longrightarrow} X$.
 	\end{pop}
-	
-	\begin{proof}
-		\begin{align*}
-			\forall \epsilon > 0 & \proba(\limsup \{ \norme{X_n - X} > \epsilon \}) = 0 \\
-			\implies \forall \epsilon > 0 & \proba(\forall n, \exists k \geq n, \norme{X_k - X} > \epsilon) = 0 \\
-			\forall q \in \N^* & \proba(\exists n, \forall k \geq n, \norme{X_k - X} \leq 1/q) = 1
-		\end{align*}
-		Donc $\proba(\bigcap_{q \in \N^*} A_q) = 1$, ce qui se lit
-		$$\proba(\forall q \in \N^*, \exists n, \forall k \geq n, \norme{X_k - X} \leq 1/q) = \proba(\lim_n \norme{X_n - X} = 0) = 1$$
-		d'où $X_n \overset{\text{p.s.}}{\longrightarrow} X$.
-	\end{proof}
 
 	\begin{pop}
-		$X_n \overset{\text{p.s.}}{\longrightarrow} X$ ssi on peut extraire une sous-suite $\varphi_n$ telle que $X_{\varphi_n} \overset{\text{p.s.}}{\longrightarrow} X$.
-	\end{pop}
-	
-	\begin{pop}
-		$X_n \overset{\proba}{\longrightarrow} X \implies$ on peut extraire $X_{\varphi_n} \overset{\text{p.s.}}{\longrightarrow} X$.
+		$X_n \overset{\proba}{\longrightarrow} X$ ssi de toute sous-suite $X_{\varphi(n)}$ on peut extraire une autre sous-suite $X_{\varphi \circ \psi(n)}$ telle que $X_{\varphi \circ \psi(n)} \overset{\text{p.s.}}{\longrightarrow} X$.
 	\end{pop}
 
-	\begin{pop}
-		$X_n \overset{\proba}{\longrightarrow} X$ ssi de toute sous-suite $X_{\varphi_n}$ on peut extraire une autre sous-suite $X_{\varphi_{\psi_n}}$ telle que $X_{\varphi_{\psi_n}} \overset{\text{p.s.}}{\longrightarrow} X$.
-	\end{pop}
-
-	\begin{thm}[de continuité]
+	\begin{thm}[de \textbf{continuité}]
 		$X_n, X$ v.a. sur $\R^d$.
 		Soit $h \colon \R^d \to \R^p$ mesurable et continue sur $C$ tel que $\proba(X \in C) = 1$, alors
 		\begin{enumerate}[(i)]
@@ -144,9 +99,6 @@
 		On dit que $X_n$ converge en loi vers $X$ (noté $X_n \overset{\mathcal{L}}{\longrightarrow} X$) si $P_{X_n} \implies P_X$.
 	\end{defn}
 
-	Exemple trivial : $X_n = \frac{1}{n}$ (v.a. constantes).
-	Alors $X_n \overset{\mathcal{L}}{\longrightarrow} 0$.
-
 	\begin{pop}
 		$\left. \begin{array}{r}
 			\text{cv ps} \\
@@ -166,42 +118,11 @@
 		\end{itemize}
 	\end{thm}
 
-	\begin{proof}(pour $d = 1$)
-		Soit $F, F_n$ les fonctions de répartition de $\mu, \mu_n$/
-		Cas simple : supposons que $F$ et $F_n$ sont continues et strictement coissantes.
-		On choisit $\Omega = \inff{0}{1}$, $\proba$ la mesure de Lebesgue sur $\Omega$ et $\mathcal{F} = \mathcal{B}(\intff{0}{1})$.
-		On pose $Y(\omega) = F^{-1}(\omega), Y_n(\omega) = F_n^{-1}(\omega)$.
-		\begin{enumerate}
-			\item Montrons que $Y \sim \mu$ :
-				\begin{align*}
-				\proba(Y \leq t) & = \proba(\{ \omega \mid F^{-1}(\omega) \leq t \}) \\
-				                 & = \proba(\{ \omega \mid \omega \leq F(t) \})
-				                 & = \lambda_{\intff{0}{1}}( \{ \omega \mid \omega \leq F(t) \} ) \\
-				                 & = \lambda(\intff{0}{F(t)}) \\
-				                 & = F(t)
-				\end{align*}
-				De même $Y_n \sim \mu_n$.
-			\item Exercice : montrer $F_n^{-1}(\omega) \longrightarrow F^{-1}(\omega)$.
-				Dans le cas où $F_n, F$ ne sont pas bijectives, définir $F^{-1}(\omega) := \inf \{ t \mid F(t) \geq \omega \}$.
-		\end{enumerate}
-	\end{proof}
-
 	\begin{thm}[de continuité]
 		Soit $X_n \overset{\mathcal{L}}{\longrightarrow} X$ définie sur $(\Omega,\mathcal{F},\proba)$.
 		$h \colon \R^d \to \R^p$ continue sur $C$ telle que $\proba(X \in C) = 1$.
 		Alors  $h(X_n) \overset{\mathcal{L}}{\longrightarrow} h(X)$.
 	\end{thm}
-
-	\begin{proof}
-		Il existe un autre espace de proba $(\Omega', \mathcal{F}', \proba')$ et d'autres v.a. $Y_n, Y$ sur $\Omega'$ telles que :
-		\begin{itemize}
-			\item[\textbullet] $Y_n, Y$ ont même loi que $X_n, X$
-			\item[\textbullet] $\forall \omega \in \Omega', Y_n(\omega) \longrightarrow Y(\omega)$
-		\end{itemize}
-		Comme $Y_n \overset{\text{p.s.}}{\longrightarrow} Y$ on a $h(Y_n) \overset{\text{p.s.}}{\longrightarrow} h(Y)$, donc $h(Y_n) \overset{\mathcal{L}}{\longrightarrow} h(Y)$ signifie que $F_{h(Y_n)}(x) \longrightarrow F_{h(Y)}(x)$.
-		Or $F_{h(Y_n)}(x) = \proba'(h(Y_n) \leq x) = \proba(h(X_n) \leq x)$ puisque $X_n$ est égal en loi à $Y_n$.
-		Donc $F_{h(X_n)}(x) \longrightarrow F_{h(X)}(x)$.
-	\end{proof}
 	
 	\begin{thm}[de Portmanteau]
 		On a équivalence entre :
@@ -212,45 +133,10 @@
 		\end{enumerate}
 	\end{thm}
 
-	\begin{proof}
-		\begin{itemize}
-			\item[\textbullet] (i $\implies$ ii)
-				On choisit $Y_n$ et $Y$ comme avant.
-				$Y_n \longrightarrow Y$ donc $f(Y_n) \longrightarrow f(Y)$ 
-			\item[\textbullet] 
-		\end{itemize}
-	\end{proof}
-
 	\begin{lem}[d'Helly]
 		Soit $(F_n)_n$ une suite de fonctions de répartition.
 		Il existe une sous-suite $\varphi_n$ et $F \colon \R \to \intff{0}{1}$ croissante, continue à droite, telle que $F_{\varphi_n}(x) \longrightarrow_n F(x)$ en tout $x$ point de continuité de $F$.
 	\end{lem}
-
-	\begin{proof}
-		On indexe $\Q$ sur $\N$ de sorte que $\Q = \{ x_1, \ldots, x_n \}$.
-		De $(F_n(x_1))_n$ on peut extraire une sous-suite $(F_{\varphi_n^1}(x_1))_n$ qui converge vers un certain $F(x_1) \in \intff{0}{1}$.
-		
-		De $(F_{\varphi_n^1}(x_2))_n$ on peut trouver une extraction le long de laquelle la suite converge vers un certain $F(x_2)$.
-		De la sorte pour tout $k \in \N^*$ on construit $(\varphi_n^k)_n$ extrait de $(\varphi_n^{k - 1})_n$ tel que $\forall i \leq k, F_{\varphi_n^k}(x_i) \longrightarrow_n F(x_i)$.
-		
-		Posons maintenant $\psi_n = \varphi_n^n$.
-		On a $\lim_n \psi_n = +\infty$ et $\forall n, \forall i, n \geq i \implies \psi_i \in \{ \varphi_{n'}^i \mid n' \in \N^* \}$.
-		Donc $\lim_n F_{\psi_n}(x_i) = F(x_i)$.
-		
-		On pose, pour tout $x$ dans $\R \setminus \Q$, $F(x) := \inf \{ F(t) \mid t \geq x, t \in \Q \}$.
-		
-		On montre que $F$ est croissante (exercice).
-		On montre enfin que pour tout point de continuité $x$ de $F$, $\lim_n F_{\psi_n}(x) = F(x)$.
-		C'est vrai par construction pour $x$ rationnel.
-		Pour $x$ non-rationnel on a
-		$$F_{\psi_n}(r^-) \leq F_{\psi_n}(x) \leq F_{\psi_n}(r^+)$$
-		donc
-		$$F(r^-) \leq \underline{\lim}_n F_{\psi_n}(x) \leq \overline{\lim}_n F_{\psi_n}(x) \leq F(r^+)$$
-		et pour $\varepsilon \downarrow 0$,
-		$$F(x - \varepsilon) \leq \underline{\lim}_n F_{\psi_n}(x) \leq \overline{\lim}_n F_{\psi_n}(x) \leq F(x + \varepsilon)$$
-		d'où,
-		$$F(x^-) \leq \underline{\lim}_n F_{\psi_n}(x) \leq \overline{\lim}_n F_{\psi_n}(x) \leq F(x)\ .$$
-	\end{proof}
 	
 	On ajoute une condition pour que la limite vérifie $\lim_{x \to -\infty} F(x) = 0$ et $\lim_{x \to +\infty} F(x) = 1$.
 
@@ -272,15 +158,6 @@
 	\begin{pop}
 		Si toute sous-suite faiblement convergente de $(\mu_n)_n$ tendue converge vers $\mu^*$, alors $\mu_n \implies \mu^*$.
 	\end{pop}
-
-	\begin{proof}
-		Supposons par l'absurde $\mu_n \not\implies \mu^*$.
-		Alors $\exists f \in \cont_b, \int f \diff \mu_n \not\longrightarrow \int f \diff \mu^*$.
-		Donc $\abs{\int f \diff \mu_n - \int f \diff \mu^*} \not\longrightarrow 0$.
-		Il existe $\varepsilon > 0$ et $(\varphi_n)_n$ tels que $\forall n, \abs{\int f \diff \mu_{\varphi_n} \int f \diff \mu^*} > \varepsilon$.
-		D'après Prokhorov, puisque $(\mu_n)_n$ est tendue, on peut extraire de $(\varphi_n)_n$ une autre sous-suite $(\psi_n)_n$ telle que $\mu_{\psi_n} \implies \mu^*$.
-		Comme $f \in \cont_b$, $\int f \diff \mu_{\psi_n} \longrightarrow \int f \diff \mu^*$, ce qui contredit le fait que $\forall n, \abs{\int f \diff \mu_{\psi_n} \int f \diff \mu^*} > \varepsilon$.
-	\end{proof}
 
 
 \subsection{Fonction caractéristique, TCL}
@@ -309,68 +186,12 @@
 		Soit $(\mu_n)_n$, $\mu$ des mesures de probabilité sur $\R^d$.
 		$\mu_n \implies \mu$ ssi $\forall t \in \R^d, \varphi_{\mu_n}(t) \longrightarrow \varphi_\mu(t)$.
 	\end{thm}
-	
-	\begin{proof}
-		Première implication :
-		Si $X_n \overset{\mathcal{L}}{\longrightarrow} X$ signifie $\forall f \in \cont_b(\R^d), \esp(f(X_n)) \longrightarrow \esp(f(X))$.
-		Soit $t \in \R^d$ fixé.
-		$f \colon x \mapsto e^{i\scal{t}{t}}$ est continue bornée.
-		Donc
-		$$\esp(f(X_n)) \longrightarrow \esp(f(X))$$
-		$$\esp(e^{i \scal{t}{X_n}}) \longrightarrow \esp(e^{i \scal{t}{X}})\ .$$
-		
-		Deuxième implication :
-		Supposons
-		$$\forall t, \phi_{X_n}(t) \longrightarrow \phi_X(t) \quad (*)$$
-		On note $\mu_n = \proba \circ X_n^{-1}$ et $\mu = \proba \circ X^{-1}$ les lois de $X_n$ et $X$.
-		$(*)$ implique que $(\mu_n)$ est tendue.
-		
-		Conclusion de la preuve : montrons que $\mu_n \longrightarrow \mu$.
-		Choisissons $(\mu_{\phi_n})$ convergeant faiblement, disons $\mu_{\phi_n} \Longrightarrow \nu$.
-		Il suffit de montrer $\mu = \nu$.
-		Si $\mu_{\phi_n} \Longrightarrow \nu$, alors $\forall t, \phi_{\mu_{\phi_n}}(t) \longrightarrow \phi_{\nu}(t)$.
-		Or $\forall t, \phi_{\mu_n}(t) \longrightarrow \phi_\mu(t)$ par hypothèse.
-		Donc $\forall t, \phi_{\mu}(t) = \phi_\nu(t)$.
-		Donc $\mu = \nu = \lim_n \mu_n$.
-		
-		Reste à montrer que $\forall t, \phi_{\mu_n}(t) \longrightarrow \phi_\mu(t)$ implique que $(\mu_n)$ est tendue.
-		Dans le cas $d = 1$, pour tout $\mathcal{A} \subset \R$ on a:
-		\begin{align*}
-		\frac{1}{a} \int_{-a}^a (1 - \phi_{\mu_n}(t)) \diff t
-			& = \frac{1}{a} \int_{-a}^a \left(1 - \int e^{itx} \diff \mu_n(x) \right) \diff t \\
-			& = \frac{1}{a} \int_{-a}^a \int (1 - e^{itx}) \diff \mu_n(x) \diff t \\
-			& = \int \frac{1}{a} \int_{-a}^a (1 - e^{itx}) \diff t \diff \mu_n(x) \\
-			& = \int \frac{1}{a} \left[ t - \frac{e^{itx}}{ix} \right]_{-a}^a \diff \mu_n(x) \\
-			& = \int \left( 2 - \frac{e^{iax} - e^{-iax}}{iax} \right) \diff \mu_n(x) \\
-			& = 2 \int \underset{\geq 0}{\underbrace{ \left( 1 - \frac{\sin(\abs{ax})}{\abs{ax}} \right) }} \diff \mu_n(x) \\
-			& \geq 2 \int_{\mathcal{A}} \left( 1 - \frac{\sin(\abs{ax})}{\abs{ax}} \right) \diff \mu_n(x) \\
-			& \geq \int_{\mathcal{A}} 2 \left( 1 - \frac{1}{\abs{ax}} \right) \diff \mu_n(x)
-		\end{align*}
-		On choisit $\mathcal{A} = \left\{ x \in \R \mid 2 \left( 1 - \frac{1}{\abs{ax}} \right) > 1 \right\}$.
-		
-		Alors
-		\begin{align*}
-		2 \left( 1 - \frac{1}{\abs{ax}} \right)
-			& \iff 1 - \frac{1}{a \abs{x}} > \frac{1}{2} \\
-			& \iff \frac{1}{a \abs{x}} < \frac{1}{2}
-		\end{align*}
-	\end{proof}
 
 	\begin{thm}[Procédé de Cramer-Wold]
 		Soit $X_n, X$ des v.a. sur $\R^d$.
 		On a $X_n \overset{\mathcal{L}}{\longrightarrow} X \iff \forall t, \scal{t}{X_n} \overset{\mathcal{L}}{\longrightarrow} \scal{t}{X}$.
 	\end{thm}
 	
-	\begin{proof}
-		La première implication est donnée par le théorème de continuité.
-		
-		Implication réciproque :
-		Soit $t \in \R^d$ tel que $\scal{t}{X_n} \overset{\mathcal{L}}{\longrightarrow} \scal{t}{X}$.
-		Par le théorème de Lévy on a : $\forall u \in \R, \phi_{\scal{t}{X_n}}(u) \longrightarrow \phi_{\scal{t}{X}}(u)$.
-		Donc $\phi_{\scal{t}{X_n}}(1) \longrightarrow \phi_{\scal{t}{X}}(1)$.
-		Donc $\esp(e^{i \scal{t}{X_n}}) \longrightarrow \esp(e^{i \scal{t}{X}})$, d'où $\phi_{X_n}(t) \longrightarrow \phi_X(t)$.
-	\end{proof}
-
 
 \subsection{Théorème centrale limite}
 
@@ -390,7 +211,7 @@
 			\item[\textbullet] $\forall n$, les v.a $X_{1,n},\ldots,X_{n,n}$ sont indépendantes,
 			\item[\textbullet] $\forall n, \forall i \leq n, \esp(X_{i,n}) = 0$,
 			\item[\textbullet] $\lim_n \sum_{i = 1}^n \Cov(X_{i,n}) = \Sigma$
-			\item[\textbullet] $\forall \varepsilon > 0, \lim_n \sum_{i = 1}^n \esp(\norme{X_{i,1}^2 \indic_{\norme{X_{i,n}} > \varepsilon) = 0$.
+			\item[\textbullet] $\forall \varepsilon > 0, \lim_n \sum_{i = 1}^n \esp(\norme{X_{i,1}}^2 \indic_{\norme{X_{i,n}}} > \varepsilon) = 0$.
 		\end{itemize}
 		Alors $\sum_{i = 1}^n X_{i,n} \overset{\mathcal{L}}{\longrightarrow} \normale(0,\Sigma)$.
 	\end{thm}

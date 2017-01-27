@@ -1,0 +1,66 @@
+\begin{note}
+	\begin{itemize}
+		\item[\textbullet] $(\Omega,\mathcal{F},\proba)$ espace de proba,
+		\item[\textbullet] $(X_i)_{i \in \N}$ v.a. iid
+		\item[\textbullet] $\forall i \in \N, X_i = \transp{ (X_i^{(1)},\ldots,X_i^{(d)}) }$,
+		\item[\textbullet] $\norme{\cdot}$ norme euclidienne.
+	\end{itemize}
+\end{note}
+
+\subsection{Introduction}
+
+	\begin{defn}
+		Estimateur $\hat{\theta}_n$ à valeurs dans $\Theta \subset \R^q$ : transformation mesurable de $(X_1,\ldots,X_n)$.
+		$\hat{\theta}_n$ est faiblement consistant si $\hat{\theta}_n \overset{\proba}{\longrightarrow} \theta_0$.
+		$\hat{\theta}_n$ est fortement consistant si $\hat{\theta}_n \overset{\text{p.s.}}{\longrightarrow} \theta_0$.
+		$\hat{\theta}_n$ est asymptotiquement normal si $\sqrt{n}(\hat{\theta}_n - \theta_0) \Longrightarrow \normale(0,\sigma_0^2)$.
+	\end{defn}
+
+	\begin{rem}
+		La consistance est différente du biais.
+		En effet, soit $\bar{X}^n = \frac{1}{n} \sum_{i = 1}^n X_i$, $\hat{\theta}_n = \bar{X}^n + \frac{1}{n}$ est fortement consistant (si $\esp(X_1) < \infty$) et biaisé car $\esp(\hat{\theta}_n) - \esp(X_1) = \frac{1}{n}$.
+		
+		À l'inverse $\hat{\theta}_n = X_1$ est sans biais mais non consistant.
+	\end{rem}
+	
+	\begin{defn}
+		$\hat{\theta}_n$ est un M-estimateur si $\hat{\theta}_n \in \argmin_{\theta \in \Theta} M(\theta)$.
+		$\hat{\theta}_n$ est un Z-estimateur si $\Psi_n(\hat{\theta}_n) = 0$.
+	\end{defn}
+	
+	\begin{ex}
+		\begin{itemize}
+			\item[\textbullet] Moindres carrés : $\hat{\beta}_n$ est défini par $\hat{\beta}_n = \argmin_{\beta \in \R^d} \sum_{i = 1}^n (Y_i - \transp{X_i}\beta)^2$.
+			\item[\textbullet] Maximum de vraisemblance : soit la famille paramétrique $\mathcal{P} = \left\{ f_{\theta} \mid \theta \in \Theta \right\}$ selon lauelle est distribuée les données $(X_1,\ldots,X_n)$.
+				$$\hat{\theta}_n = \argmax_{\theta \in \Theta} \frac{1}{n} \log(f_{\theta}(X_i))$$
+			\item[\textbullet] Estimateur des moments et estimateur des moments généralisés : $\hat{\theta}_n \in \argmin_{\theta \in \Theta} \norme{ \frac{1}{n}\sum_{i = 1}^n g(X_i) - \int g \diff \proba_\theta }$.
+		\end{itemize}
+	\end{ex}
+
+	\begin{rem}
+		Un Z-estimateur est toujours un M-estimateur car $\forall \theta \in \Theta, 0 = \norme{\Psi_n(\hat{\theta}_n)} \leq \norme{\Psi_n(\theta)}$.
+		Un M-estimateur est un Z-estimateur si $M_n$ est continuement dérivableh sur $\Theta$ et $\hat{\theta}_n$ est un point intérieur à $\Theta$.
+		Alors $\nabla M_n(\hat{\theta}_n) = 0$.
+	\end{rem}
+
+	\begin{pop}[Consistance]
+		
+	\end{pop}
+
+	\begin{pop}[Consistance Z-estimateur]
+		Si $\hat{\theta}_n$ est un Z-estimateur et
+		\begin{itemize}
+			\item[\textbullet] $\sup_{\theta \in \Theta} \norme{ \Psi_n(\theta) - \Psi(\theta) } \overset{\proba\ \text{resp. p.s.}}{\longrightarrow} 0$,
+			\item[\textbullet] $\forall \varepsilon > 0, \inf_{\theta \in \Theta \setminus B(\theta_0,\varepsilon)} \norme{\Psi(\theta)} > \norme{\Psi(\theta_0)}$,
+		\end{itemize}
+		alors $\hat{\theta}_n \overset{\proba\ \text{resp. p.s.}}{\longrightarrow} \theta_0$.
+	\end{pop}
+
+	\begin{lem}
+		Supposons
+		\begin{enumerate}[(i)]
+			\item $\Theta$ compact,
+			\item $\forall \theta \in \Theta, \esp(\abs{\rho(X_1,\theta)}) < \infty$,
+			\item $\exists r \colon \mathcal{X} \to \R_+, \esp(r(X_1)) < \infty$ où ...
+		\end{enumerate}
+	\end{lem}
