@@ -1,0 +1,37 @@
+Les codes convolutifs ont été inventés par Elias en 1954 et sont différents des codes en blocs.
+
+\subsection{Principe}
+
+	Il y a un effet mémoire : la sortie d’un codeur convolutif dépend d’un symbole courant à coder ainsi que du symbole précédent et du résultat de codage du symbole précédent.
+
+	Un \textbf{codeur convolutif} est une machine à états finis.
+
+	Le code possède un \textbf{rendement} $R = \frac{k}{n}$ où $k$ est le nombre de symboles en entrée et $n$ le nombre de symoboles en sortie.
+	Il a également une \textbf{longueur de contrainte} qui correspond au nombre de temps horloge influençcant les sorties du codeur.
+	Pour un 1/2-taux codeur, $L = n + 1$.
+
+	\begin{ex}
+		Soit un codeur avec $R = \frac{1}{2}$ et $L = 3$.
+	\end{ex}
+
+\subsection{Représentation polynomiale}
+
+	Soit une séquence binaire $e_i(1),\ldots,e_i(n)$ sur l'entrée $i$.
+	On lui associe le polynôme $e_i(X) = \sum_{t = 1}^n e_i(t) X^t$.
+	Alors chaque sortie est possède une représentation polynomiale comme $s_i(X) = \sum_{j = 1}^k g_{ij}(X) e_j(X)$.
+	
+	Les $g_{ij}$ sont appelés les \textbf{polynômes générateurs} du codes.
+
+	\begin{ex}
+		Sur l'exemple précédent on a $s_1^{(i)} = e^{(i)} + e^{(i - 1)} + e^{(i - 2)}$ et $s_2^{(i)} = e^{(i)} + e^{(i - 2)}$.
+		Donc $s_1(X) = e(X) + X e(X) + X^2 e(X) = g_1(X) e(X)$ avec $g_1(X) = 1 + X + X^2$ et $s_2(X) = e(X) + X^2 e(X) = g_2(X) e(X)$ avec $g_2(X) = 1 + X^2$.
+	\end{ex}
+
+	\begin{defn}
+		\textbf{Code convolutif récursif} : une partie de la sortie est réintroduite dans les étages mémoire.
+		Les polynômes signatures sont remplacés par des quotients de polynômes.
+	\end{defn}
+	
+	\begin{defn}
+		\textbf{Code convolutif systématique} : une partie de ses sorties est exactement égale à ses entrées.
+	\end{defn}
