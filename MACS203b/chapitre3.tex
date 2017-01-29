@@ -1,71 +1,71 @@
-\begin{note}
-	\begin{itemize}
-		\item[\textbullet] $(\Omega,\mathcal{F},\proba)$ espace de proba,
-		\item[\textbullet] $(X_i)_{i \in \N}$ v.a. iid
-		\item[\textbullet] $\forall i \in \N, X_i = \transp{ (X_i^{(1)},\ldots,X_i^{(d)}) }$,
-		\item[\textbullet] $\norme{\cdot}$ norme euclidienne.
-	\end{itemize}
-\end{note}
+\paragraph{Quelques règles}
 
-\subsection{Introduction}
-
-	\begin{defn}
-		Estimateur $\hat{\theta}_n$ à valeurs dans $\Theta \subset \R^q$ : transformation mesurable de $(X_1,\ldots,X_n)$.
-		$\hat{\theta}_n$ est faiblement consistant si $\hat{\theta}_n \overset{\proba}{\longrightarrow} \theta_0$.
-		$\hat{\theta}_n$ est fortement consistant si $\hat{\theta}_n \overset{\text{p.s.}}{\longrightarrow} \theta_0$.
-		$\hat{\theta}_n$ est asymptotiquement normal si $\sqrt{n}(\hat{\theta}_n - \theta_0) \Longrightarrow \normale(0,\sigma_0^2)$.
-	\end{defn}
-
-	\begin{rem}
-		La consistance est différente du biais.
-		En effet, soit $\bar{X}^n = \frac{1}{n} \sum_{i = 1}^n X_i$, $\hat{\theta}_n = \bar{X}^n + \frac{1}{n}$ est fortement consistant (si $\esp(X_1) < \infty$) et biaisé car $\esp(\hat{\theta}_n) - \esp(X_1) = \frac{1}{n}$.
-		
-		À l'inverse $\hat{\theta}_n = X_1$ est sans biais mais non consistant.
-	\end{rem}
-	
-	\begin{defn}
-		$\hat{\theta}_n$ est un M-estimateur si $\hat{\theta}_n \in \argmin_{\theta \in \Theta} M(\theta)$.
-		$\hat{\theta}_n$ est un Z-estimateur si $\Psi_n(\hat{\theta}_n) = 0$.
-	\end{defn}
-	
-	\begin{ex}
-		\begin{itemize}
-			\item[\textbullet] Moindres carrés : $\hat{\beta}_n$ est défini par $\hat{\beta}_n = \argmin_{\beta \in \R^d} \sum_{i = 1}^n (Y_i - \transp{X_i}\beta)^2$.
-			\item[\textbullet] Maximum de vraisemblance : soit la famille paramétrique $\mathcal{P} = \left\{ f_{\theta} \mid \theta \in \Theta \right\}$ selon lauelle est distribuée les données $(X_1,\ldots,X_n)$.
-				$$\hat{\theta}_n = \argmax_{\theta \in \Theta} \frac{1}{n} \log(f_{\theta}(X_i))$$
-			\item[\textbullet] Estimateur des moments et estimateur des moments généralisés : $\hat{\theta}_n \in \argmin_{\theta \in \Theta} \norme{ \frac{1}{n}\sum_{i = 1}^n g(X_i) - \int g \diff \proba_\theta }$.
-		\end{itemize}
-	\end{ex}
-
-	\begin{rem}
-		Un Z-estimateur est toujours un M-estimateur car $\forall \theta \in \Theta, 0 = \norme{\Psi_n(\hat{\theta}_n)} \leq \norme{\Psi_n(\theta)}$.
-		Un M-estimateur est un Z-estimateur si $M_n$ est continuement dérivableh sur $\Theta$ et $\hat{\theta}_n$ est un point intérieur à $\Theta$.
-		Alors $\nabla M_n(\hat{\theta}_n) = 0$.
-	\end{rem}
-
-	\begin{pop}[Consistance]
-		
-	\end{pop}
-
-	\begin{pop}[Consistance Z-estimateur]
-		Si $\hat{\theta}_n$ est un Z-estimateur et
-		\begin{itemize}
-			\item[\textbullet] $\sup_{\theta \in \Theta} \norme{ \Psi_n(\theta) - \Psi(\theta) } \overset{\proba\ \text{resp. p.s.}}{\longrightarrow} 0$,
-			\item[\textbullet] $\forall \varepsilon > 0, \inf_{\theta \in \Theta \setminus B(\theta_0,\varepsilon)} \norme{\Psi(\theta)} > \norme{\Psi(\theta_0)}$,
-		\end{itemize}
-		alors $\hat{\theta}_n \overset{\proba\ \text{resp. p.s.}}{\longrightarrow} \theta_0$.
-	\end{pop}
-
-	\begin{lem}
-		Supposons
+	\begin{pop}
 		\begin{enumerate}[(i)]
-			\item $\Theta$ compact,
-			\item $\forall \theta \in \Theta, \esp(\abs{\rho(X_1,\theta)}) < \infty$,
-			\item $\exists r \colon \mathcal{X} \to \R_+, \esp(r(X_1)) < \infty$ où ...
+			\item $\forall a \in \R^d, X_n \overset{\mathcal{L}}{\longrightarrow} a \iff X_n \overset{\proba}{\longrightarrow} a$
+			\item $\left. \begin{array}{r}
+				X_n \overset{\mathcal{L}}{\longrightarrow} X \\
+				Y_n - X_n \overset{\mathcal{L}}{\longrightarrow} 0
+				\end{array} \right\}
+				\implies Y_n \overset{\mathcal{L}}{\longrightarrow} X$
+			\item $\forall a \in \mathcal{Y}, \left. \begin{array}{r}
+				X_n \overset{\mathcal{L}}{\longrightarrow} X \\
+				Y_n \overset{\mathcal{L}}{\longrightarrow} a
+				\end{array} \right\}
+				\implies (X_n,Y_n) \overset{\mathcal{L}}{\longrightarrow} (X,a)$
+			\item $\left. \begin{array}{r}
+				X_n \overset{\proba}{\longrightarrow} X \\
+				Y_n \overset{\proba}{\longrightarrow} c
+				\end{array} \right\}
+				\implies (X_n,Y_n) \overset{\proba}{\longrightarrow} (X,c)$
+		\end{enumerate}
+	\end{pop}
+
+
+\subsection{Notation $o_P$, $O_P$}
+
+	%Soit $(X_n)$ des v.a. $\Omega \to \R^d$ et $(Y_n)$ v.a.r.
+	
+	\begin{note}
+		\begin{itemize}
+			\item[\textbullet] On dit que $X_n = o_P(1)$ si $X_n \overset{\proba}{\longrightarrow} 0$.
+			\item[\textbullet] On dit que $X_n = o_P(Y_n)$ si $\exists (Z_n) \overset{\proba}{\longrightarrow} 0, X_n = Z_n Y_n$.
+			\item[\textbullet] On dit que $X_n = O_p(1)$ si $(X_n)$ est borné en probabilité, i.e. $(X_n)$ est tendue.
+			\item[\textbullet] On dit que $X_n = O_P(Y_n)$ si $\exists (Z_n) = O_p(1), X_n = Z_n Y_n$.
+		\end{itemize}
+	\end{note}
+
+	\begin{pop}
+		Si $X_n \overset{\mathcal{L}}{\longrightarrow} X$ alors $X_n = O_P(1)$.
+	\end{pop}
+
+	\begin{pop}
+		\begin{enumerate}[(i)]
+			\item $o_P(1) + O_P(1) = O_P(1)$,
+			\item $o_P(1) \cdot O_P(1) = o_P(1)$,
+			\item $o_P(1) + o_P(1) = o_P(1)$,
+			\item $\frac{1}{1 + o_P(1)} = O_P(1)$.
+		\end{enumerate}
+	\end{pop}
+
+	\begin{lem}[de \textbf{Slutsky}]
+		Soit $(X_n)_n$ et $(Y_n)_n$ tels que $X_n \overset{\mathcal{L}}{\longrightarrow} X$ et $Y_n \overset{\mathcal{L}}{\longrightarrow} a$ :
+		\begin{enumerate}[(i)]
+			\item Pour $a \in \mathcal{X}$ quelconque, $X_n + Y_n \overset{\mathcal{L}}{\longrightarrow} X + c$.
+			\item Dans le cas réel $a \in \R$, $X_n Y_n \longrightarrow cX$ et $\frac{X_n}{Y_n} \longrightarrow \frac{X}{c}$ si $a \neq 0$.
 		\end{enumerate}
 	\end{lem}
 
-	\begin{lem}[Vérification de la condition d'identifiabilité]
-		Soit $\Theta \subset \R^q$ compact et $M \in \cont^0(\Theta)$ telle que $\theta_0$ en est l'unique maximum.
-		Alors $\forall \varepsilon > 0, \inf_{\theta \in \Theta \setminus B(\theta_0,\varepsilon)} M(\theta) > M(\theta_0)$.
-	\end{lem}
+
+\subsection{Delta-méthode}
+
+	Soit $g \colon \R^d \to \R^m$ dérivable en un point $\nu \in \R^d$ de matrice jacobienne $\nabla g(\nu)$.
+
+	Rappel : $\lim_{h \to 0} \frac{\norme{g(\nu + g) - g(\nu) - \nabla g(\nu) \cdot h}}{\norme{h}} = 0$, $\nabla g(\nu) = \left( \frac{\partial g_i(\nu)}{\partial \nu_j} \right)_{i \in \intiff{1}{d}, j \in \intiff{1}{m}}$.
+
+	\begin{thm}
+		Soit $g \colon \R^d \to \R^m$ dérivable en $\nu$.
+		Soient $T_n, T$ des v.a. sur $\R^d$ et $(r_n)$ une suite réelle telle que $\lim_n r_n = +\infty$ et $r_n(T_n - \nu) \overset{\mathcal{L}}{\longrightarrow} T$.
+		Alors $r_n(g(T_n) - g(\nu)) \overset{\mathcal{L}}{\longrightarrow} \nabla g(\nu) \cdot T$.
+	\end{thm}
+

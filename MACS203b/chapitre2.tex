@@ -1,69 +1,184 @@
-\paragraph{Rappel de règles}
+\subsection{Définitions et propriétés}
 
+	\begin{defn}
+		Une mesure de proba $\mu$ sur $(\R^d, \mathcal{B}(\R^d)))$ est caractérisée par sa \textbf{fonction de répartition}
+		$$F_\mu \colon (x_1,\ldots,x_d) \mapsto \mu \left( \prod_i \intof{-\infty}{x_i} \right)\ .$$
+	\end{defn}
+	
 	\begin{pop}
-		\begin{enumerate}[(i)]
-			\item $X_n \overset{\mathcal{L}}{\longrightarrow} c \iff X_n \overset{\proba}{\longrightarrow} c$
-			\item $\left. \begin{array}{r}
-				X_n \overset{\mathcal{L}}{\longrightarrow} X \\
-				Y_n - X_n \overset{\mathcal{L}}{\longrightarrow} 0
-				\end{array} \right\}
-				\implies Y_n \overset{\mathcal{L}}{\longrightarrow} X$
-			\item $\left. \begin{array}{r}
-				X_n \overset{\mathcal{L}}{\longrightarrow} X \\
-				Y_n \overset{\mathcal{L}}{\longrightarrow} c
-				\end{array} \right\}
-				\implies (X_n,Y_n) \overset{\mathcal{L}}{\longrightarrow} (X,c)$
-			\item $\left. \begin{array}{r}
-				X_n \overset{\proba}{\longrightarrow} X \\
-				Y_n \overset{\proba}{\longrightarrow} c
-				\end{array} \right\}
-				\implies (X_n,Y_n) \overset{\proba}{\longrightarrow} (X,c)$
-		\end{enumerate}
+		\begin{itemize}
+			\item[\textbullet] $F_\mu$ croissante.
+			\item[\textbullet] $F_\mu(-\infty) = 0$, $F_\mu(+\infty) = 1$
+			\item[\textbullet] $F_\mu$ est continue à droite et $\mu({x_0}) = F_\mu(x_0) - F_\mu(x_0^-)$
+		\end{itemize}
 	\end{pop}
-
-
-\subsection{Notation $o_P$, $O_P$}
-
-	Soit $(X_n)$ des v.a. $\Omega \to \R^d$ et $(Y_n)$ v.a.r.
+	
+	\begin{thm}
+		Deux mesures distintes ne peuvent pas avoir la même fonction de répartition.
+	\end{thm}
+	
+	Soit $X \colon \Omega \to \R^d$ une v.a.
+	On note $P_X = \proba \circ X^{-1}$ la loi de $X$.
+	$P_X$ est une mesure de proba sur $\R^d$.
+	On note $F_X$ sa fonction de répartition.
+	Pour $d = 1$, $F_X(x) = \proba(X \leq x)$.
 	
 	\begin{defn}
-		La notation $X_n = o_P(1)$ signifie $X_n \overset{\proba}{\longrightarrow} 0$.
-		$X_n = o_P(Y_n)$ signifie $\exists (Z_n) \overset{\proba}{\longrightarrow} 0, X_n = Z_n Y_n$.
-		$X_n = O_p(1)$ signifie que $(X_n)$ est tendue.
-		On dit que $X_n$ est "bornée en probabilité" lorsqu'elle est tendue.
-		$X_n = O_P(Y_n)$ signifie $\exists (Z_n) = O_p(1), X_n = Z_n Y_n$.
+		Soit $(\mu_n)_n, \mu$ des mesures de proba sur $\R^d$.
+		On dit que $\mu_n$ \textbf{converge faiblement (ou étroitement)} vers $\mu$ si $\lim_n F_{\mu_n}(x) = F_\mu(x)$ en tout $x$ point de continuité de $F_\mu$.
+		On note $\mu_n \Rightarrow \mu$.
+	\end{defn}
+
+	\begin{defn}
+		$(X_n)_n, X$ v.a. sur $\R^d$.
+		On dit que $X_n$ \textbf{converge en loi} vers $X$ (noté $X_n \overset{\mathcal{L}}{\longrightarrow} X$) si $P_{X_n} \Rightarrow P_X$.
 	\end{defn}
 
 	\begin{pop}
-		Si $X_n \overset{\mathcal{L}}{\longrightarrow} X$ alors $X_n = O_P(1)$.
+		Si $X_n \overset{\proba}{\longrightarrow} X$ alors $X_n \overset{\mathcal{L}}{\longrightarrow} X$.
 	\end{pop}
 
+	\begin{thm}[de représentation de \textbf{Skorohod}]
+		Soit $(\mu_n)_n, \mu$ des mesures de proba sur $\R^d$ telles que $\mu_n \Rightarrow \mu$.
+		Il existe un espace de proba et des v.a. $(Y_n), Y$ sur cet espace à valeurs dans $(\R^d,\mathcal{B}(\R^d))$ telles que $Y \sim \mu$, $\forall n, Y_n \sim \mu_n$ et $Y$ est limite simple des $Y_n$, i.e. $\forall \omega, Y_n(\omega) \longrightarrow Y(\omega)$.
+	\end{thm}
+
+	\begin{thm}[de continuité]
+		Soit $h \colon \R^d \to \R^p$ mesurable et continue sur $C \in \mathcal{B}(\R^d)$ tel que $\proba(X \in C) = 1$.
+		Si $X_n \overset{\mathcal{L}}{\longrightarrow} X$ alors $h \circ X_n \overset{\mathcal{L}}{\longrightarrow} h \circ X$.
+	\end{thm}
+	
+	\begin{thm}
+		Les affirmations suivantes sont équivalentes :
+		\begin{enumerate}[(i)]
+			\item $\mu_n \Rightarrow \mu$,
+			\item pour toute fonction $f$ continue, $\mu_n(f) \longrightarrow \mu(f)$,
+			\item pour toute fonction $f$ lipschitzienne, $\mu_n(f) \longrightarrow \mu(f)$,
+			\item pour tout $A \in \mathcal{B}(\R^d)$ tel que $\mu(\delta A) = 0$ (frontière de $A$), $\mu_n(A) \longrightarrow \mu(A)$.
+		\end{enumerate}
+	\end{thm}
+	
+	\begin{thm}[de \textbf{Portmanteau}]
+		On a équivalence entre :
+		\begin{enumerate}[(i)]
+			\item $X_n \overset{\mathcal{L}}{\longrightarrow} X$,
+			\item $\forall f \colon \R^d \to \R$ continue bornée, $\esp(f(X_n)) \longrightarrow \esp(f(X))$,
+			\item $\forall A \subset \R^d$ tel que $\proba(X \in \delta A) = 0$, on a $\proba(X_n \in A) \longrightarrow \proba(X \in A)$ où $\delta A = \Bar{A} \setminus \mathring{A}$,
+			\item $\forall t \in \R^d, \lim_n \phi_{X_n}(t) = \phi_X(t)$.
+		\end{enumerate}
+	\end{thm}
+	
+	\begin{thm}
+		Soit $m \in \N^*$ et $h \colon \R^d \to \R^p$ mesurable et continue sur $C \in \mathcal{B}(\R^d)$ tel que $\proba(X \in C) = 1$.
+		Si $\mu_n \Rightarrow \mu$ alors $\mu_n h^{-1} \Rightarrow \mu h^{-1}$.
+	\end{thm}
+	
+	\begin{thm}[Procédé de Cramer-Wold]
+		Soit $X_n, X$ des v.a. sur $\R^d$.
+		On a $X_n \overset{\mathcal{L}}{\longrightarrow} X \iff \forall t, \scal{t}{X_n} \overset{\mathcal{L}}{\longrightarrow} \scal{t}{X}$.
+	\end{thm}
+
+
+\subsection{Mesures tendues}
+
+	\begin{lem}[d'Helly]
+		Soit $(F_n)_n$ une suite de fonctions de répartition.
+		Il existe une sous-suite $(\varphi(n))_n$ et $F \colon \R \to \intff{0}{1}$ croissante, continue à droite, telle que $\lim_n F_{\varphi(n)}(x) = F(x)$ en tout $x$ point de continuité de $F$.
+	\end{lem}
+	
+	On ajoute une condition pour que la limite vérifie $\lim_{x \to -\infty} F(x) = 0$ et $\lim_{x \to +\infty} F(x) = 1$.
+
+	\begin{defn}
+		$(\mu_n)_n$ est dite \textbf{tendue} si $\forall \varepsilon > 0, \exists \mathcal{K} \ \text{compact}, \forall n, \mu_n(\mathcal{K}) \geq 1 - \varepsilon$.
+	\end{defn}
+
+	Dans le cas $d = 1$ on peut prendre $\mathcal{K} = \intff{-K}{K}$.
+	
+	\begin{defn}
+		$(X_n)_n$ est \textbf{tendue} si $\forall \varepsilon > 0, \exists \mathcal{K} \ \text{compact}, \forall n, \proba(X_n \in \mathcal{K}) \geq 1 - \varepsilon$.
+	\end{defn}
+	
 	\begin{pop}
 		\begin{enumerate}[(i)]
-			\item $o_P(1) + O_P(1) = O_P(1)$,
-			\item $o_P(1) \cdot O_P(1) = o_P(1)$,
-			\item $o_P(1) + o_P(1) = o_P(1)$,
-			\item $\frac{1}{1 + o_P(1)} = O_P(1)$.
+			\item Toute famille finie de mesures de probabilité est tendue.
+			\item Une suite de mesures qui converge faiblement est tendue.
 		\end{enumerate}
 	\end{pop}
 
-
-\subsection{Lemme de Slutsky et applications}
-
-	\begin{lem}[de Slutsky]
-		Si $X_n \overset{\mathcal{L}}{\longrightarrow} X$ et $Y_n \overset{\mathcal{L}}{\longrightarrow} c$ alors $X_n + Y_n \overset{\mathcal{L}}{\longrightarrow} X + c$, $X_n Y_n \longrightarrow cX$ et $\frac{X_n}{Y_n} \longrightarrow \frac{X}{c}$ (si $c \neq 0$).
-	\end{lem}
-
-
-\subsection{Delta-méthode}
-
-	Soit $g \colon \R^d \to \R^m$ dérivable en un point $\nu \in \R^d$ de matrice jacobienne $\nabla g(\nu)$.
-	
-	Rappel : $\lim_{h \to 0} \frac{\norme{g(\nu + g) - g(\nu) - \nabla g(\nu) \cdot h}}{\norme{h}} = 0$, $\nabla g(\nu) = \left( \frac{\partial g_i(\nu)}{\partial \nu_j} \right)_{i \in \intiff{1}{d}, j \in \intiff{1}{m}}$.
-
-	\begin{thm}
-		Soit $g \colon \R^d \to \R^m$ dérivable en $\nu$.
-		Soient $T_n, T$ des v.a. sur $\R^d$ et $(r_n)$ une suite réelle telle que $r_n \longrightarrow +\infty$, $r_n(T_n - \nu) \overset{\mathcal{L}}{\longrightarrow} T$.
-		Alors $r_n(g(T_n) - g(\nu)) \overset{\mathcal{L}}{\longrightarrow} \nabla g(\nu) \cdot T$.
+	\begin{thm}[de Prokhorov]
+		Soit une famille $\mathcal{M}$ de mesures de probabilité.
+		Alors $\mathcal{M}$ est tendue si et seulement si elle est relativement séquentiellement compacte pour la topologie de la convergence faible, i.e. de toute suite $(\mu_n)_n$ de $\mathcal{M}$ on peut extraire une sous suite $(\mu_{\varphi(n)})_n$ telle que $\mu_{\varphi(n)} \Rightarrow \mu$ avec $\mu$ une mesure de probabilité.
 	\end{thm}
 
+	\begin{pop}
+		Soit $(\mu_n)_n$ tendue.
+		Si toute sous-suite faiblement convergente de $(\mu_n)_n$ converge vers $\mu$, alors $\mu_n \Rightarrow \mu$.
+	\end{pop}
+
+
+\subsection{Fonction caractéristique}
+
+	\begin{defn}
+		La \textbf{fonction caractéristique} d'une mesure de proba $\mu$ sur $\R^d$ est
+		$\phi_\mu \colon \begin{array}{rcl}
+		\R^d & \to & \C \\
+		t & \mapsto & \int e^{i \scal{t}{x}} \diff \mu(x)
+		\end{array}$.
+	\end{defn}
+	
+	\begin{thm}
+		$\varphi_\mu = \varphi_\nu \implies \mu = \nu$.
+	\end{thm}
+	
+	\begin{pop}
+		Soit $\mu$ une mesure sur $\R$ et $p \in \N$ tel que $\int \abs{x}^p \diff \mu(x) < \infty$.
+		Alors $\phi_\mu$ est $p$ fois continument dérivable et $\forall t \in \R$, sa $p$\up{e} dérivées satisfait $\forall t \in \R, \phi_\mu^{(p)} = \int i^p x^p e^{itx} \diff \mu(x)$.
+	\end{pop}
+
+	\begin{ex}
+		$\forall t \in \R, \phi_{\normale(0,1)}(t) = e^{-t^2/2}$.
+	\end{ex}
+
+	\begin{pop}
+		Pour $Y = AX + b$ on a $\forall t, \phi_Y(t) = e^{i \scal{t}{b}} \phi_X(A^* t)$.
+	\end{pop}
+
+	\begin{pop}
+		$\phi_\mu$ est continue en zéro.
+	\end{pop}
+
+	\begin{thm}[de Lévy]
+		Soit $(\mu_n)_n$, $\mu$ des mesures de probabilité sur $\R^d$.
+		$\mu_n \Rightarrow \mu$ ssi $\forall t \in \R^d, \phi_{\mu_n}(t) \longrightarrow \phi_\mu(t)$.
+	\end{thm}
+
+
+\subsection{Théorème centrale limite}
+
+	\begin{note}
+		$\normale(m,\sigma^2)$ désigne la loi de densite $\rho(x) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x - m)^2}{2 \sigma^2}}$, et si $\sigma^2 = 0$ c'est la loi $\delta_m$.
+	\end{note}
+
+	Pour $X$ gaussien, sa fonction caractéristique vérifie $\phi_X(t) = e^{i\scal{t}{m}} e^{-\frac{1}{2} \scal{t}{\Sigma t}}$ où $m = \esp(X)$ et $\Sigma = \Cov(X)$.
+	
+	\begin{thm}[central limite]
+		Soit $(X_n)_n$ iid tel que $\esp(\norme{X_1}^2) < \infty$.
+		Alors
+		$$\frac{1}{\sqrt{n}} \sum_{i = 1}^n (X_i - \esp(X_1)) \Rightarrow \normale(0,\Cov(X_1))\ .$$
+	\end{thm}
+
+	\begin{thm}[de Linderbergh]
+		Soit un tableau de v.a. $(X_{i,n})_{1 \leq i \leq n}$ tel que
+		\begin{itemize}
+			\item[\textbullet] $\forall n$, les v.a $X_{1,n},\ldots,X_{n,n}$ sont indépendantes,
+			\item[\textbullet] $\forall n, \forall i \leq n, \esp(X_{i,n}) = 0$,
+			\item[\textbullet] $\exists \Sigma, \lim_n \sum_{i = 1}^n \Cov(X_{i,n}) = \Sigma$
+			\item[\textbullet] $\forall \varepsilon > 0, \lim_n \sum_{i = 1}^n \esp(\norme{X_{i,1}}^2 \indic_{\norme{X_{i,n}}} > \varepsilon) = 0$ (condition de Lindebergh).
+		\end{itemize}
+		Alors $\sum_{i = 1}^n X_{i,n} \overset{\mathcal{L}}{\longrightarrow} \normale(0,\Sigma)$.
+	\end{thm}
+ 
+	\begin{lem}
+		Soit $\mathcal{U} := \{ z \in \C \mid \abs{z} \leq 1 \}$, $n \in \N^*$ et deux familles $(z_i)_{1 \leq i \leq n}$ et $(w_i)_{1 \leq i \leq n}$ de $\mathcal{U}$.
+		Alors $\abs{ \prod_{i = 1}^n z_i - \prod_{i = 1}^n w_i } \leq \sum_{i = 1}^n \abs{z_i - w_i}$.
+	\end{lem}

@@ -51,167 +51,20 @@
 	\end{pop}
 
 	\begin{thm}[de \textbf{continuité}]
-		$X_n, X$ v.a. sur $\R^d$.
-		Soit $h \colon \R^d \to \R^p$ mesurable et continue sur $C$ tel que $\proba(X \in C) = 1$, alors
+		% $X_n, X$ v.a. sur $\R^d$.
+		Soit $h \colon \R^d \to \R^p$ mesurable et continue sur $C \in \mathcal{B}(\R^d)$ tel que $\proba(X \in C) = 1$ :
 		\begin{enumerate}[(i)]
-			\item Si $X_n \overset{\text{p.s.}}{\longrightarrow} X$ alors $h(X_n) \overset{\text{p.s.}}{\longrightarrow} h(X)$
-			\item Si $X_n \overset{\proba}{\longrightarrow} X$ alors $h(X_n) \overset{\proba}{\longrightarrow} h(X)$.
+			\item Si $X_n \overset{\text{p.s.}}{\longrightarrow} X$ alors $h \circ X_n \overset{\text{p.s.}}{\longrightarrow} h \circ X$
+			\item Si $X_n \overset{\proba}{\longrightarrow} X$ alors $h \circ X_n \overset{\proba}{\longrightarrow} h \circ X$.
 		\end{enumerate}
 	\end{thm}
 
-	\begin{thm}[Loi forte des grands nombres]
+	\begin{thm}[\textbf{Loi forte des grands nombres}]
 		Soit $(X_n)$ i.i.d. telle que $\esp(\norme{X_1}) < \infty$.
 		Alors $\frac{1}{n} \sum_{i = 1}^n X_i \overset{\text{p.s.}}{\longrightarrow} \esp(X_1)$.
 	\end{thm}
 
-	\begin{thm}[Loi faible des grands nombres]
+	\begin{thm}[\textbf{Loi faible des grands nombres}]
 		Soit $(X_n)$ i.i.d. telle que $\esp(\norme{X_1}^2) < \infty$.
 		On a $\frac{1}{n} \sum_{i = 1}^n X_i \overset{\proba}{\longrightarrow} \esp(X_1)$.
-	\end{thm}
-
-
-\subsection{Convergence en loi}
-
-	Rappels : une mesure de proba $\mu$ sur $(\R^d, \mathcal{B}(\R^d)))$ est caractérisée par sa fonction de répartition $F_\mu$.
-	$F_\mu(x_1,\ldots,x_d) = \mu(\prod_i \intof{-\infty}{x_i})$.
-	
-	On a :
-	\begin{itemize}
-		\item[\textbullet] $F_\mu$ croissante.
-		\item[\textbullet] $F_\mu(-\infty) = 0$, $F_\mu(+\infty) = 1$
-		\item[\textbullet] $F_\mu$ est continue à droite et $\mu({x_0}) = F_\mu(x_0) - F_\mu(x_0^-)$
-	\end{itemize}
-
-	Soit $X \colon \Omega \to \R^d$ une v.a.
-	On note $P_X = \proba \circ X^{-1}$ la loi de $X$.
-	$P_X$ est une mesure de proba sur $\R^d$.
-	On note $F_X$ sa fonction de répartition.
-	Pour $d = 1$, $F_X(x) = \proba(X \leq x)$.
-	
-	\begin{defn}
-		Soit $(\mu_n)_n, \mu$ des mesures de proba sur $\R^d$.
-		On dit que $\mu_n$ converge faiblement (ou étroitement) vers $\mu$ si $F_{\mu_n}(x) \longrightarrow F_\mu(x)$ en tout $x$ point de continuité de $F_\mu$.
-		On note $\mu_n \Rightarrow \mu$.
-	\end{defn}
-
-	\begin{defn}
-		$(X_n)_n, X$ v.a. sur $\R^d$.
-		On dit que $X_n$ converge en loi vers $X$ (noté $X_n \overset{\mathcal{L}}{\longrightarrow} X$) si $P_{X_n} \implies P_X$.
-	\end{defn}
-
-	\begin{pop}
-		$\left. \begin{array}{r}
-			\text{cv ps} \\
-			\text{ou} \\
-			\text{cv}\ L^p \\
-		\end{array}\right\} \implies
-		\text{cv proba} \implies
-		\text{cv loi}$
-	\end{pop}
-
-	\begin{thm}[de représentation de Skorohod]
-		Soit $(\mu_n)_n, \mu$ des mesures de proba sur $\R^d$ telles que $\mu_n \implies \mu$.
-		Il existe un espace de proba et des v.a. $(Y_n), Y$ sur cet espace telles que :
-		\begin{itemize}
-			\item[\textbullet] $Y \sim \mu$, $\forall n, Y_n \sim \mu_n$
-			\item[\textbullet] $\forall \omega, Y_n(\omega) \longrightarrow Y(\omega)$
-		\end{itemize}
-	\end{thm}
-
-	\begin{thm}[de continuité]
-		Soit $X_n \overset{\mathcal{L}}{\longrightarrow} X$ définie sur $(\Omega,\mathcal{F},\proba)$.
-		$h \colon \R^d \to \R^p$ continue sur $C$ telle que $\proba(X \in C) = 1$.
-		Alors  $h(X_n) \overset{\mathcal{L}}{\longrightarrow} h(X)$.
-	\end{thm}
-	
-	\begin{thm}[de Portmanteau]
-		On a équivalence entre :
-		\begin{enumerate}[(i)]
-			\item $X_n \overset{\mathcal{L}}{\longrightarrow} X$,
-			\item $\forall f \colon \R^d \to \R$ continue bornée, $\esp(f(X_n)) \longrightarrow \esp(f(X))$,
-			\item $\forall A \subset \R^d$ tel que $\proba(X \in \delta A) = 0$, on a $\proba(X_n \in A) \longrightarrow P(X \in A)$ où $\delta A = \Bar{A} \setminus \mathring{A}$
-		\end{enumerate}
-	\end{thm}
-
-	\begin{lem}[d'Helly]
-		Soit $(F_n)_n$ une suite de fonctions de répartition.
-		Il existe une sous-suite $\varphi_n$ et $F \colon \R \to \intff{0}{1}$ croissante, continue à droite, telle que $F_{\varphi_n}(x) \longrightarrow_n F(x)$ en tout $x$ point de continuité de $F$.
-	\end{lem}
-	
-	On ajoute une condition pour que la limite vérifie $\lim_{x \to -\infty} F(x) = 0$ et $\lim_{x \to +\infty} F(x) = 1$.
-
-	\begin{defn}
-		$(\mu_n)_n$ est dite \textbf{tendue} si $\forall \varepsilon > 0, \exists \mathcal{K} \ \text{compact}, \forall n, \mu_n(\mathcal{K}) \geq 1 - \varepsilon$.
-	\end{defn}
-
-	Dans le cas $d = 1$ on peut prendre $\mathcal{K} = \intff{-K}{K}$.
-	
-	\begin{defn}
-		$(X_n)_n$ est tendue si $\forall \varepsilon > 0, \exists \mathcal{K} \ \text{compact}, \forall n, \proba(X_n \in \mathcal{K}) \geq 1 - \varepsilon$.
-	\end{defn}
-
-	\begin{thm}[de Prokhorov]
-		Soit $(\mu_n)_n$ tendue.
-		Il existe une mesure de probabilité $\mu$ sur $\R^d$ et une suite $(\varphi_n)_n$ telle que $\mu_{\varphi_n} \implies \mu$.
-	\end{thm}
-
-	\begin{pop}
-		Si toute sous-suite faiblement convergente de $(\mu_n)_n$ tendue converge vers $\mu^*$, alors $\mu_n \implies \mu^*$.
-	\end{pop}
-
-
-\subsection{Fonction caractéristique, TCL}
-
-	La fonction caractéristique d'une mesure de proba $\mu$ sur $\R^d$ est
-	$$\varphi_\mu \colon \begin{array}{rcl}
-		\R^d & \to & \C \\
-		t & \mapsto & \int e^{i \scal{t}{x}} \diff \mu(x)
-	\end{array}$$
-
-	...
-	
-	Rappel : $\varphi_\mu = \varphi_\nu \implies \mu = \nu$.
-
-	\begin{ex}
-		$\varphi_{\normale(0,1)}(t) = e^{-t^2/2}$.
-	\end{ex}
-
-	Pour $Y = AX + b$ on a $\varphi_Y(t) = e^{i \scal{t}{b}} \varphi_X(\transp{A}t)$.
-
-	\begin{pop}
-		$\varphi_\mu$ est continue en zéro.
-	\end{pop}
-
-	\begin{thm}[de Lévy]
-		Soit $(\mu_n)_n$, $\mu$ des mesures de probabilité sur $\R^d$.
-		$\mu_n \implies \mu$ ssi $\forall t \in \R^d, \varphi_{\mu_n}(t) \longrightarrow \varphi_\mu(t)$.
-	\end{thm}
-
-	\begin{thm}[Procédé de Cramer-Wold]
-		Soit $X_n, X$ des v.a. sur $\R^d$.
-		On a $X_n \overset{\mathcal{L}}{\longrightarrow} X \iff \forall t, \scal{t}{X_n} \overset{\mathcal{L}}{\longrightarrow} \scal{t}{X}$.
-	\end{thm}
-	
-
-\subsection{Théorème centrale limite}
-
-	\begin{note}
-		$\normale(m,\sigma^2)$ désigne la loi de densite $\rho(x) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{(x - m)^2}{2 \sigma^2}}$, et si $\sigma^2 = 0$ c'est la loi $\delta_m$.
-	\end{note}
-
-	Pour $X$ un vecteur gaussien, sa fonction caractéristique vérifie $\phi_X(t) = e^{i\scal{t}{m}} e^{-\frac{\transp t \Sigma t}{2}}$ où ...
-	
-	\begin{thm}[central limite]
-		...
-	\end{thm}
-
-	\begin{thm}[de Linderbergh]
-		Soit un tableau de v.a. $(X_{i,n})_{1 \leq i \leq n}$ tel que
-		\begin{itemize}
-			\item[\textbullet] $\forall n$, les v.a $X_{1,n},\ldots,X_{n,n}$ sont indépendantes,
-			\item[\textbullet] $\forall n, \forall i \leq n, \esp(X_{i,n}) = 0$,
-			\item[\textbullet] $\lim_n \sum_{i = 1}^n \Cov(X_{i,n}) = \Sigma$
-			\item[\textbullet] $\forall \varepsilon > 0, \lim_n \sum_{i = 1}^n \esp(\norme{X_{i,1}}^2 \indic_{\norme{X_{i,n}}} > \varepsilon) = 0$.
-		\end{itemize}
-		Alors $\sum_{i = 1}^n X_{i,n} \overset{\mathcal{L}}{\longrightarrow} \normale(0,\Sigma)$.
 	\end{thm}
