@@ -1,0 +1,76 @@
+\subsection{Cache de travail et principe général du Bootstrap}
+
+	Les estimateurs statistiques les plus utilisés sont de la forme $\hat{\theta}_n = \theta(\proba_n)$ où $\proba_n(x) = \frac{1}{n} \sum_{i = 1}^n \delta_{X_i}(x)$.
+
+	On a $\theta_0 = \theta(\proba_0)$ et $\hat{\theta}_n = \theta(\proba_n)$.
+	On sait qu'en général $\sqrt{n}(\hat{\theta}_n - \theta_0) \overset{\mathcal{L}}{\longrightarrow} \normale(O,\sigma)$, avec $\proba_n = \frac{1}{n} \sum_{i = 1}^n \delta_{X_i}$, $X_i \sim \proba_0$.
+
+	\begin{defn}
+		Le \textbf{bootstrap} a pour but premier de reproduire le comportement de $\sqrt{n}(\hat{\theta}_n - \theta_0)$ pour décrire la précision de $\hat{\theta}_n$, avec $\sqrt{n} \left( \theta(\proba_n^*) - \theta(P_n) \right)$ où $\proba_n^* = \frac{1}{n} \sum_{i = 1}^n \delta_{X_{i,n}^*}$ et $X_{i,n}^* \sim \proba_n$.
+	\end{defn}
+
+	\paragraph{Le plug-in principle :} même procédure que la procédure d'estimation classique mais en remplaçant $\proba_0$ par $\proba_n$.
+	Comme $\proba_n$ est connue, on peut reproduire cette procédure autant de fois que l'on souhaite et calculer ainsi $\theta_1^* = \theta(\proba_{n,1}^*), \theta_2^* = \theta(\proba_{n,2}^*), \ldots, \theta_B^* = \theta(\proba_{n,B}^*)$.
+
+	Deux étape :
+	\begin{itemize}
+		\item[\textbullet] définition : $\theta(\proba_n^*)$,
+		\item[\textbullet] simulation : $\theta_1^*, \ldots, \theta_B^*$.
+	\end{itemize}
+
+	\paragraph{Algorithme :} on a $X_1,\ldots,X_n$ et $\theta$.
+		\begin{enumerate}[1)]
+			\item calcul de $\proba_n$,
+			\item calcul de $\theta(\proba_n) = \hat{\theta}_n$,
+			\item bootstrap :
+				\begin{itemize}
+					\item[\textbullet] tirage de $X_{1,n}^*,X_{2,n}^*,\ldots,X_{n,n}^*$ iid selon $\proba_n$,
+					\item[\textbullet] $\proba_n^* = \frac{1}{n} \sum_{i = 1}^n \delta_{X_{i,n}^*}$
+					\item[\textbullet] $\theta_n^* = \theta(\proba_n^*)$,
+				\end{itemize}
+			\item simulation : calcul de $\theta_{n,1}^*,\ldots,\theta_{n,B}^*$ (itération du point 3).
+				Heuristique :
+				$$\sqrt{n}(\hat{\theta}_n - \theta_0) = \sqrt{n}(\theta(\proba_n) - \theta(\proba_0)) \simeq \sqrt{n}(\theta(\proba_n^*) - \theta(\proba_n)) = \sqrt{n}(\theta_n^* - \hat{\theta}_n)$$
+			\item On possède $B$ versions de $\sqrt{n}(\theta_n^* - \hat{\theta}_n)$ utilisées pour approcher $\sqrt{n}(\hat{\theta}_n - \theta_0)$.
+		\end{enumerate}
+
+	\begin{ex}[Moyenne empirique]
+		$\theta_0 = \int x \diff \proba_0(x), \quad
+			\hat{\theta}_n = \int x \diff \proba_n(x) = \frac{1}{n} \sum_{i = 1}^n X_i, \quad
+			\theta_n^* = \int x \diff \proba_n^*(x) = \frac{1}{n} \sum_{i = 1}^n X_{i,n}^*$.
+	\end{ex}
+
+	\begin{rem}
+		Tirer selon $\proba_n$ revient à tirer uniformément dans $(X_1,\ldots,X_n)$.
+		Donc $\theta_n^* = \sum_{i = 1}^n N_{i,n} X_i$ avec $N_{i,n}$ une v.a. à valeurs dans $\left\{ 0, \frac{1}{n}, \frac{2}{n}, \ldots, \frac{n}{n} \right\}$.
+	\end{rem}
+
+	Utilisation des $\theta_{n,1}^*,\ldots,\theta_{n,B}^*$ : comme $\sqrt{n} (\theta_{n,b}^* - \hat{\theta}_n) = R_{n,b}^*$ ont une loi similaire à $\sqrt{n}(\hat{\theta}_n - \theta_0)$ on les utilise pour calculer les quantiles.
+
+	On définit $F_B(t) = \frac{1}{B} \sum_{b = 1}^B \indic_{ \{ R_{n,b}^* \leq t \} }$.
+	
+	\paragraph{Intervalle de confiance :}
+		$IC_{\text{bootstrap}} = \intff{ \hat{\theta}_n - \frac{1}{\sqrt{n}} F_B^{-1} \left( 1 - \frac{\alpha}{2} \right) }{ \hat{\theta}_n - \frac{1}{\sqrt{n}} F_B^{-1} \left( \frac{\alpha}{2} \right)}$
+		comme l'IC asymptotique sauf que le quantile n'est pas calculé de la même façon.
+		En asymptotique c'est $\sqrt{\frac{n}{\sigma}} (\hat{\theta} - \theta_0) \overset{\mathcal{L}}{\longrightarrow} \normale(0,1)$.
+		Avec bootstrap $\sqrt{n}(\hat{\theta} - \theta_0) \overset{\mathcal{L}}{\longrightarrow} \sqrt{n}(\theta_b^* - \hat{\theta}_n)$.
+
+		On peut prendre $B$ suffisamment grand tel que $F_B$ est la fonction de répartition de $R_{n,1}^*$ (les $R_{n,1}^*,\ldots,R_{n,B}^*$ sont iid dans l'espace de proba conditionnel aux $X_1,\ldots,X_n$).
+		On néglige l'erreur de simulation car on peut prendre $B$ très grand.
+		
+		La question qui reste est : les quantiles de $R_{n,1}^*$ sont-ils des quantiles asymptotiquement consistants ?
+		C'est-à-dire, en définissant $\xi_n(\alpha)$ comme étant ce quantile de niveau $\alpha$, a-t-on $\lim_n \proba \left( \xi_n \left( \frac{\alpha}{2} \right) \leq \sqrt{n} (\hat{\theta}_n - \theta_0) \leq \xi_n \left( 1 - \frac{\alpha}{2} \right) \right) = 1 - \alpha$ ?
+
+	\begin{lem}
+		Soit $F_n$ la fonction de répartition de $R_{n,1}^*$.
+		Supposons
+		\begin{itemize}
+			\item[\textbullet] $\forall x \in \R, F_n(x) \overset{\text{p.s.}}{\longrightarrow} \Phi_\sigma(x)$ où $\Phi_\sigma(x) = \frac{\Phi(x/\sigma)}{\sigma}$ avec $\Phi$ la loi normale standard, donc $\Phi_\sigma$ est la loi normale centrée de variance $\sigma^2$,
+			\item[\textbullet] $\sqrt{n}(\hat{\theta}_n - \theta_0) \overset{\mathcal{L}}{\longrightarrow} \normale(0,\sigma^2)$
+		\end{itemize}
+		alors $\lim_n \proba \left( \xi_n \left( \frac{\alpha}{2} \right) \leq \sqrt{n} (\hat{\theta}_n - \theta_0) \leq \xi_n \left( 1 - \frac{\alpha}{2} \right) \right) = 1 - \alpha$ est vérifiée.
+	\end{lem}
+
+	\begin{thm}[TCL bootstrap]
+		Soit $(X_n)_n$ iid réelles tel que $\esp(X_1^2) < \infty$ alors $\sqrt{n}(\hat{\theta}_n - \theta_0)$ a la même loi asymptotique que $\sqrt{n}(\theta_n^* - \hat{\theta}_n)$ avec $\theta_0 = \esp(X_1)$, $\hat{\theta}_n = \frac{1}{n} \sum_{i = 1}^n X_i$ et $\theta_n^* = \frac{1}{n} \sum_{i = 1}^n X_{i,n}^*$.
+	\end{thm}
