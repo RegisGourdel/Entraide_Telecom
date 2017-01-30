@@ -10,10 +10,12 @@
 \subsection{Introduction}
 
 	\begin{defn}
-		Estimateur $\hat{\theta}_n$ à valeurs dans $\Theta \subset \R^q$ : transformation mesurable de $(X_1,\ldots,X_n)$.
-		$\hat{\theta}_n$ est faiblement consistant si $\hat{\theta}_n \overset{\proba}{\longrightarrow} \theta_0$.
-		$\hat{\theta}_n$ est fortement consistant si $\hat{\theta}_n \overset{\text{p.s.}}{\longrightarrow} \theta_0$.
-		$\hat{\theta}_n$ est asymptotiquement normal si $\sqrt{n}(\hat{\theta}_n - \theta_0) \Longrightarrow \normale(0,\sigma_0^2)$.
+		Un \textbf{estimateur} $\hat{\theta}_n$ à valeurs dans $\Theta \subset \R^q$ est une transformation mesurable de $(X_1,\ldots,X_n)$.
+		\begin{itemize}
+			\item[\textbullet] $\hat{\theta}_n$ est \textbf{faiblement consistant} si $\hat{\theta}_n \overset{\proba}{\longrightarrow} \theta_0$.
+			\item[\textbullet] $\hat{\theta}_n$ est \textbf{fortement consistant} si $\hat{\theta}_n \overset{\text{p.s.}}{\longrightarrow} \theta_0$.
+			\item[\textbullet] $\hat{\theta}_n$ est \textbf{asymptotiquement normal} si $\sqrt{n}(\hat{\theta}_n - \theta_0) \Longrightarrow \normale(0,\sigma_0^2)$ avec $\sigma_0^2 > 0$.
+		\end{itemize}
 	\end{defn}
 
 	\begin{rem}
@@ -24,30 +26,41 @@
 	\end{rem}
 	
 	\begin{defn}
-		$\hat{\theta}_n$ est un M-estimateur si $\hat{\theta}_n \in \argmin_{\theta \in \Theta} M(\theta)$.
-		$\hat{\theta}_n$ est un Z-estimateur si $\Psi_n(\hat{\theta}_n) = 0$.
+		Soit $\Theta \subset \R^q$.
+		\begin{itemize}
+			\item[\textbullet] $\hat{\theta}_n$ est un \textbf{M-estimateur} si $\hat{\theta}_n \in \argmin_{\theta \in \Theta} M(\theta)$.
+			\item[\textbullet] $\hat{\theta}_n$ est un \textbf{Z-estimateur} si $\Psi_n(\hat{\theta}_n) = 0$.
+		\end{itemize}
 	\end{defn}
 	
 	\begin{ex}
 		\begin{itemize}
 			\item[\textbullet] Moindres carrés : $\hat{\beta}_n$ est défini par $\hat{\beta}_n = \argmin_{\beta \in \R^d} \sum_{i = 1}^n (Y_i - \transp{X_i}\beta)^2$.
-			\item[\textbullet] Maximum de vraisemblance : soit la famille paramétrique $\mathcal{P} = \left\{ f_{\theta} \mid \theta \in \Theta \right\}$ selon lauelle est distribuée les données $(X_1,\ldots,X_n)$.
-				$$\hat{\theta}_n = \argmax_{\theta \in \Theta} \frac{1}{n} \log(f_{\theta}(X_i))$$
-			\item[\textbullet] Estimateur des moments et estimateur des moments généralisés : $\hat{\theta}_n \in \argmin_{\theta \in \Theta} \norme{ \frac{1}{n}\sum_{i = 1}^n g(X_i) - \int g \diff \proba_\theta }$.
+			\item[\textbullet] Maximum de vraisemblance : soit la famille paramétrique $\mathcal{P} = \left\{ f_{\theta} \mid \theta \in \Theta \right\}$ selon laquelle sont distribuées les données $(X_1,\ldots,X_n)$.
+				$$\hat{\theta}_n = \argmax_{\theta \in \Theta} \frac{1}{n} \sum_{i = 1}^n \log(f_{\theta}(X_i))$$
+			\item[\textbullet] Estimateur des moments par rapport à $\mathcal{P} = \left\{ \proba_{\theta} \mid \theta \in \Theta \right\}$ et $g \colon \mathcal{X} \to \R^p$ : $\hat{\theta}_n$ est pris tel que
+			$$\frac{1}{n} \sum_{i = 1}^n g(X_i) = \int g \diff \proba_{\hat{\theta}_n} = \esp_{\hat{\theta}_n}(g(X_1))\ .$$
+			\item[\textbullet] Estimateur des moments généralisés GMM (si pas de solution avec le précédent) :
+			$$\hat{\theta}_n \in \argmin_{\theta \in \Theta} \norme{ \frac{1}{n}\sum_{i = 1}^n g(X_i) - \int g \diff \proba_\theta }\ .$$
 		\end{itemize}
 	\end{ex}
 
 	\begin{rem}
 		Un Z-estimateur est toujours un M-estimateur car $\forall \theta \in \Theta, 0 = \norme{\Psi_n(\hat{\theta}_n)} \leq \norme{\Psi_n(\theta)}$.
-		Un M-estimateur est un Z-estimateur si $M_n$ est continuement dérivableh sur $\Theta$ et $\hat{\theta}_n$ est un point intérieur à $\Theta$.
+		Un M-estimateur est un Z-estimateur si $M_n$ est continuement dérivable sur $\Theta$ et $\hat{\theta}_n$ est un point intérieur à $\Theta$.
 		Alors $\nabla M_n(\hat{\theta}_n) = 0$.
 	\end{rem}
 
-	\begin{pop}[Consistance]
-		
+	\begin{pop}[\textbf{Consistance M-estimateur}]
+		Si $\hat{\theta}_n$ est un M-estimateur et que
+		\begin{itemize}
+			\item[\textbullet] $\sup_{\theta \in \Theta} \abs{M_n(\theta) - M(\theta)} \overset{\proba\ \text{resp. p.s.}}{\longrightarrow} 0$ (convergence uniforme)
+			\item[\textbullet] $\forall \varepsilon > 0, \inf_{\theta \in \Theta \setminus B(\theta_0,\varepsilon)} M(\theta) > M(\theta_0)$
+		\end{itemize}
+		alors $\hat{\theta}_n \overset{\proba\ \text{resp. p.s.}}{\longrightarrow} \theta_0$.
 	\end{pop}
 
-	\begin{pop}[Consistance Z-estimateur]
+	\begin{pop}[\textbf{Consistance Z-estimateur}]
 		Si $\hat{\theta}_n$ est un Z-estimateur et
 		\begin{itemize}
 			\item[\textbullet] $\sup_{\theta \in \Theta} \norme{ \Psi_n(\theta) - \Psi(\theta) } \overset{\proba\ \text{resp. p.s.}}{\longrightarrow} 0$,
@@ -55,24 +68,30 @@
 		\end{itemize}
 		alors $\hat{\theta}_n \overset{\proba\ \text{resp. p.s.}}{\longrightarrow} \theta_0$.
 	\end{pop}
+	
+	En pratique on doit vérifier les 2 hypothèses des résultats précédents.
+	Souvent $M_n(\theta) = \frac{1}{n} \sum_{i = 1}^n \rho(X_i,\theta)$ et $\Psi_n(\theta) = \frac{1}{n} \sum_{i = 1}^n \Psi(X_i,\theta)$.
 
 	\begin{lem}
+		Soit $\Theta$ compact.
 		Supposons
 		\begin{enumerate}[(i)]
-			\item $\Theta$ compact,
 			\item $\forall \theta \in \Theta, \esp(\abs{\rho(X_1,\theta)}) < \infty$,
-			\item $\exists r \colon \mathcal{X} \to \R_+, \esp(r(X_1)) < \infty$ où ...
+			\item $\exists r \colon \mathcal{X} \to \R_+$ tel que $\esp(r(X_1)) < \infty$ et $\forall (\theta,\theta') \in \Theta^2, \forall x \in \mathcal{X}, \abs{\rho(x,\theta) - \rho(x,\theta')} \leq r(x) \norme{\theta - \theta'}$,
 		\end{enumerate}
+		alors $\sup_{\theta \in \Theta} \abs{\frac{1}{n} \sum_{i = 1}^n \rho(X_i,\theta) - \esp[\rho(X_1,\theta)]} \overset{\text{p.s.}}{\longrightarrow} 0$.
 	\end{lem}
 
-	\begin{lem}[Vérification de la condition d'identifiabilité]
+	\begin{lem}[\textbf{Vérification de la condition d'identifiabilité}]
 		Soit $\Theta \subset \R^q$ compact et $M \in \cont^0(\Theta)$ telle que $\theta_0$ en est l'unique maximum.
 		Alors $\forall \varepsilon > 0, \inf_{\theta \in \Theta \setminus B(\theta_0,\varepsilon)} M(\theta) > M(\theta_0)$.
 	\end{lem}
+	
+	On peut ainsi facilement vérifier les conditions de la propriété de consistance.
 
 	\begin{pop}
 		Soit $\Theta$ compact.
-		Supposons $\esp_{\theta_0} \norme{g} < +\infty$ et $\hat{\theta}_n \in \argmin_{\theta \in \Theta} \norme{\frac{1}{n} \sum_i g(X_i) - \esp_{\theta} g}$.
+		Supposons $\esp_{\theta_0} (\norme{g}) < +\infty$ et $\hat{\theta}_n \in \argmin_{\theta \in \Theta} \norme{\frac{1}{n} \sum_i g(X_i) - \esp_{\theta} g}$.
 		Si, de plus, $\theta \mapsto \esp_{\theta} g$ est injective et continue alors $\hat{\theta}_n \overset{\text{p.s.}}{\longrightarrow} \theta_0$.
 	\end{pop}
 
