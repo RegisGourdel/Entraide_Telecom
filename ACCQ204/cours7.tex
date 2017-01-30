@@ -1,0 +1,56 @@
+\subsection{Pour les codes en blocs}
+
+	On prend $C(n,k,d_{\min})$, $R = \frac{k}{n}$ et $d_{\min}$ qui détermine le pouvoir correcteur $t \leq \left\lfloor \frac{d_{\min} - 1}{2} \right\rfloor = \left\lceil \frac{d_{\min}}{2} \right\rceil - 1$.
+
+	Rappel : canal de transmission BSC.\\
+	\begin{tikzpicture}
+	\matrix(m)[matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+	{
+		0 & 0 \\
+		1 & 1\\};
+	\path[-stealth]
+		(m-1-1) edge node [above] {$1 - p$} (m-1-2)
+				edge node [above] {$p$} (m-2-2)
+		(m-2-1) edge node [below] {$p$} (m-1-2)
+				edge node [below] {$1 - p$} (m-2-2);
+	\end{tikzpicture}
+
+	AWGN : $y = x + b$ avec $x \in 2-\text{PAM}$ est équivalent à un BSC avec $p = Q \left( \sqrt{\frac{E_b}{N_0}} \right) \simeq  \exp \left( - \frac{E_n}{N_0} \right)$ où $\sigma^2 = \frac{N_0}{2}$.
+	
+	$$[ \quad k\ \text{bits} \quad ] \longrightarrow \underset{n\ text{bits de code}}{[ \quad c \quad ]} \overset{\text{BSC}}{\longrightarrow} \underset{n\ \text{bits reçus}}{[ \quad r \quad ]}$$
+	
+	Probabilité d'erreur : $P_{e,\text{mot}} \leq \sum_{i = t + 1}^{n} \binom{n}{i} p^i (1 - p)^{n - i}$.
+	On travaille avec $p \ll 1$ donc $1 - p \simeq 1$ (i.e. on travaille avec un fort rapport signal sur bruit).
+	
+	Donc
+	\begin{align*}
+	P_{e,\text{mot}}
+	& \leq \binom{n}{t + 1} p^{t + 1}\\
+	& \leq C^{te} \cdot p^{t + 1}\\
+	& \leq C^{te} \cdot \exp \left( - \frac{E_s}{N_0} \right)^{\lceil d_{\min}/2 \rceil}\\
+	& \leq C^{te} \cdot \exp \left( - \frac{E_s}{N_0} \cdot \left\lceil \frac{d_{\min}}{2} \right\rceil \right)
+	\end{align*}
+
+	\paragraph{Attention}
+		$k$ bits d'info $\longrightarrow$ $E_b$ énergie bit,\\
+		$n$ bits d'info $\longrightarrow$ $E_s$ énergie symbole,\\
+		et on a $k \cdot E_b = n \cdot E_s$.
+
+	$$P_{e,\text{mot}} \leq C^{te} \cdot \exp \left( - \frac{E_s}{N_0} \cdot R \cdot \left\lceil \frac{d_{\min}}{2} \right\rceil \right)$$
+
+	Le gain de codage pour une même $P_e$ est :
+	\begin{align*}
+	CG
+	& = 10 \log_{10} \left( \frac{RSB_{\text{codé}}}{RSB_{\text{non codé}}} \right) \\
+	& = 10 \log_{10} \left( \frac{\frac{E_s}{N_0} R \left\lceil \frac{d_{\min}}{2} \right\rceil}{\frac{E_b}{N_0}} \right) \\
+	& = 10 \log_{10} \left( R \left\lceil \frac{d_{\min}}{2} \right\rceil \right)
+	\end{align*}
+
+	Pour un code à répétition de rendement $\frac{1}{3}$, $d_{\min} = 3$, on a $CG = -1{,}7\ \text{dB}$.\\
+	Pour un code de Hamming $(7,4,3)$ : $CG = 0{,}57\ \text{dB}$.\\
+	Pour un code de Hamming $(15,11,3)$ : $CG = 1{,}66\ \text{dB}$.
+
+
+\subsection{Pour les codes convolutifs}
+
+	$CG = 10 \log_{10}(R \cdot d_{\text{lib}}) - 2\ \text{dB}$.

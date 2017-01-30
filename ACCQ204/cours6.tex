@@ -7,24 +7,41 @@ Les codes convolutifs ont été inventés par Elias en 1954 et sont différents 
 	Un \textbf{codeur convolutif} est une machine à états finis.
 
 	Le code possède un \textbf{rendement} $R = \frac{k}{n}$ où $k$ est le nombre de symboles en entrée et $n$ le nombre de symoboles en sortie.
-	Il a également une \textbf{longueur de contrainte} qui correspond au nombre de temps horloge influençcant les sorties du codeur.
+	Il a également une \textbf{longueur de contrainte} qui correspond au nombre de temps horloge influençant les sorties du codeur.
 	Pour un 1/2-taux codeur, $L = n + 1$.
 
 	\begin{ex}
 		Soit un codeur avec $R = \frac{1}{2}$ et $L = 3$.
+		
+		% TODO
 	\end{ex}
 
 \subsection{Représentation polynomiale}
 
 	Soit une séquence binaire $e_i(1),\ldots,e_i(n)$ sur l'entrée $i$.
 	On lui associe le polynôme $e_i(X) = \sum_{t = 1}^n e_i(t) X^t$.
-	Alors chaque sortie est possède une représentation polynomiale comme $s_i(X) = \sum_{j = 1}^k g_{ij}(X) e_j(X)$.
+	Alors chaque sortie possède une représentation polynomiale comme $s_i(X) = \sum_{j = 1}^k g_{ij}(X) e_j(X)$.
 	
 	Les $g_{ij}$ sont appelés les \textbf{polynômes générateurs} du codes.
 
 	\begin{ex}
 		Sur l'exemple précédent on a $s_1^{(i)} = e^{(i)} + e^{(i - 1)} + e^{(i - 2)}$ et $s_2^{(i)} = e^{(i)} + e^{(i - 2)}$.
 		Donc $s_1(X) = e(X) + X e(X) + X^2 e(X) = g_1(X) e(X)$ avec $g_1(X) = 1 + X + X^2$ et $s_2(X) = e(X) + X^2 e(X) = g_2(X) e(X)$ avec $g_2(X) = 1 + X^2$.
+	\end{ex}
+	
+	\begin{ex}
+		Prenons le code avec $R = \frac{2}{3}$ et $L = 2$ donné par le circuit suivant :
+		% TODO
+		
+		On a alors :
+		$$s_1(X) = \underset{g_{11}(X)}{\underbrace{(1 + X)}} \cdot e_1(X) + \underset{g_{12}(X)}{\underbrace{X}} \cdot e_2(X)$$
+		$$s_2(X) = \underset{g_{21}(X)}{\underbrace{1}} \cdot e_1(X) + \underset{g_{22}(X)}{\underbrace{(1 + X)}} \cdot e_2(X)$$
+		$$s_3(X) = \underset{g_{31}(X)}{\underbrace{(1 + X)}} \cdot e_1(X) + \underset{g_{32}(X)}{\underbrace{0}} \cdot e_2(X)$$
+		Donc $G = \begin{pmatrix}
+			1 + X & 1 & 1 + X \\
+			X & 1 + X & 0
+			\end{pmatrix} \in \M_{k,n}$
+		est la matrice génératrice du code.
 	\end{ex}
 
 	\begin{defn}
@@ -35,3 +52,79 @@ Les codes convolutifs ont été inventés par Elias en 1954 et sont différents 
 	\begin{defn}
 		\textbf{Code convolutif systématique} : une partie de ses sorties est exactement égale à ses entrées.
 	\end{defn}
+
+	\begin{ex}
+		Sur l'exemple 1 : on crée un codeur systématique.
+		On passe de $e(X) \to \left\{ \begin{array}{l}
+			s_1(X) = (1 + X + X^2) e(X) \\
+			s_2(X) = (1 + X^2) e(X)
+			\end{array} \right.$
+		à $e(X) \to \left\{ \begin{array}{l}
+			f_1(X) = e(X) \\
+			f_2(X) = \frac{1 + X^2}{1 + X + X^2} e(X)
+			\end{array} \right.$.
+		Donc $f_2(X) \cdot (1 + X + X^2) = (1 + X^2) e(X)$, d'où
+		$$f_2(X) = e(X) + X^2 e(X) + X f_2(X) + X^2 f_2(X) = e(X) + X f_2(X) + X^2 (e(X) + f(X))\ .$$
+		
+		% TODO
+	\end{ex}
+	
+	\begin{ex}
+		Sur l'exemple 2 avec $R = \frac{2}{3}$.
+		On prend les deux premières colonnes de $G$ pour former $G_1 = \begin{pmatrix} 1 + X & 0 \\ 1 & 1 + X \end{pmatrix}$.
+		La nouvelle matrice est alors
+		$$G' = G_1^{-1} \cdot G
+			= \begin{pmatrix} 1 & 0 & p_1(X)/p_2(X) \\ 0 & 1 & p_3(X)/p_1(X) \end{pmatrix}
+			= \begin{pmatrix} 1 & 0 & \frac{1}{1 + X} \\ 0 & 1 & \frac{1 + X + X^2}{1 + X^2} \end{pmatrix}$$
+		
+		% TODO
+		
+		$$f_3(X) = \frac{1}{1 + X} e_1(X) + \frac{1 + X + X^2}{1 + X} e_2(X)$$
+		$$(1 + X^2) f_3(X) = \frac{1 + X^2}{1 + X} e_1(X) + (1 + X + X^2) e_2(X)$$
+		\begin{align*}
+		f_3(X)
+			& = X^2 f_3(X) + e_1(X) + X e_1(X) + e_2(X) + X e_2(X) + X^2 e_2(X) \\
+			& = e_1(X) + e_2(X) + X(e_1(X) + e_2(X)) + X^2 (f_3(X) + e_2(X))
+		\end{align*}
+	\end{ex}
+
+
+\subsection{Codes catastroophiques}
+
+	\begin{ex}
+		Exemple avec $R = \frac{1}{2}$, $L = 3$ :
+		
+		% TODO
+		
+		$1111 \ldots 1 \longrightarrow 11010000 \ldots 0$.
+	\end{ex}
+	
+	\begin{defn}
+		Un code est dit \textbf{catastrophique} s'il existe une séquence en entrée de poids infini qui donne une séquence en sortie de poids fini.
+	\end{defn}
+
+	\begin{pop}
+		Pour un code de rendement $R = \frac{1}{n}$, le code est catastrophique ssi $\pgcd(g_i(X)) \neq 1$.
+		Pour un code de rendement $R = \frac{k}{n}$, le code est catastrophique ssi le pgcd des mineurs d'ordre $k$ de la matrice $G$ est différent de $1$.
+	\end{pop}
+
+
+\subsection{Représentations graphiques}
+
+	% TODO
+	
+
+\subsection{Algorithme de décodage}
+
+	Décodage optimal ML : on suppose les séquences d'entrées équiprobables.
+	Pour un BSC on aurait $ML = \min_{c \in C} d_H(r,c)$ avec $r$ le message reçu.
+	
+	% TODO
+
+\subsection{Distance libre et fonction de transfert}
+
+	% TODO
+
+\subsection{Poinçonnage des codes convolutifs}
+
+	% TODO
