@@ -10,7 +10,7 @@
 
 \begin{voc}
 	\begin{itemize}
-		\item[\textbullet] Bits d'information : $\mathbf{D} = (D_1,\ldots,D_k)$, représentent les données à transmettre, supposés aléatoires et donc i.i.d. $\mathcal{B} \left( \frac{1}{2} \right) $.
+		\item[\textbullet] Bits d'information : $\mathbf{D} = (D_1,\ldots,D_k)$, représentent les données à transmettre, supposés iid $\mathcal{B} \left( \frac{1}{2} \right) $.
 		\item[\textbullet] Transmission en bloc : les $k$ bits d'information sont envoyés sur un bloc de $n$ utilisations du canal.
 		\item[\textbullet] Émetteur : associe $\mathbf{X} = (X_1,\ldots,X_kn)$ à $\mathbf{D} = (D_1,\ldots,D_k)$, supposé déterministe et avec $f$ injective.
 		\item[\textbullet] Récepteur : associe $\mathbf{\hat{D}} = \left( \hat{D}_1,\ldots,\hat{D}_k \right)$ à $\mathbf{Y} = (Y_1,\ldots,Y_kn)$, supposé déterministe.
@@ -31,15 +31,43 @@
 	\end{defn}
 
 	\begin{defn}[Canal binaire symétrique (\textbf{BSC})]
-		On a $\mathcal{X} = \mathcal{Y} = \{ 0,1 \}$ et $\forall t \in \intiff{1}{n}$, $Y_t = x_t$ avec une probabilité $p \in \inff{0}{1}$ et $Y_t \neq x_t$ avec une probabilité $1 - p$.
+		On a $\mathcal{X} = \mathcal{Y} = \{ 0,1 \}$ et $\forall t \in \intiff{1}{n}$, $\proba(Y_t = x_t) = p \in \inff{0}{1}$ et $\proba(Y_t \neq x_t) = 1 - p$.
 		On peut toujours supposer $p < \frac{1}{2}$.
 	\end{defn}
+	
+	\begin{center}
+	\begin{tikzpicture}
+	\matrix(m)[matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+	{
+		0 & 0 \\
+		1 & 1\\};
+	\path[-stealth]
+		(m-1-1) edge node [above] {$1 - p$} (m-1-2)
+				edge node [above] {$p$} (m-2-2)
+		(m-2-1) edge node [below] {$p$} (m-1-2)
+				edge node [below] {$1 - p$} (m-2-2);
+	\end{tikzpicture}
+	\end{center}
 
 	\begin{defn}[Canal binaire à effacement (\textbf{BEC})]
 		On a $\mathcal{X} = \{ 0,1 \}$ et $\mathcal{Y} = \{ 0,1,\Delta \}$ où $\Delta$ représente un effacement.
-		Pour tout $t \in \intiff{1}{n}$, $Y_t = x_t$ avec une probabilité $\epsilon \in \inff{0}{1}$ et $Y_t = \Delta$ avec une probabilité $1 - \epsilon$.
+		Pour tout $t \in \intiff{1}{n}$, $\proba(Y_t = x_t) = \epsilon \in \inff{0}{1}$ et $\proba(Y_t = \Delta) = 1 - \epsilon$.
 	\end{defn}
 
+	\begin{center}
+	\begin{tikzpicture}
+	\matrix(m)[matrix of math nodes,row sep=3em,column sep=4em,minimum width=2em]
+	{
+		0 & 0 \\
+		  & \Delta\\
+		1 & 1\\};
+	\path[-stealth]
+		(m-1-1) edge node [above] {$\epsilon$} (m-1-2)
+				edge node [left] {$1 - \epsilon$} (m-2-2)
+		(m-3-1) edge node [left] {$1 - \epsilon$} (m-2-2)
+				edge node [below] {$\epsilon$} (m-3-2);
+	\end{tikzpicture}
+	\end{center}
 
 \subsection{Codage par des codes en bloc}
 
@@ -47,6 +75,8 @@
 		Un \textbf{code en bloc} $\mathcal{C}$ de longueur $n$ sur un alphabet $\mathcal{X}$ est un sous-ensemble de $\mathcal{X}^n$, c'est l'ensemble d'arrivée de $f$.
 		Les éléments de $\mathcal{C}$ sont appelés les mots de code de $\mathcal{C}$.
 	\end{defn}
+	
+	Principe : $\underset{k\ \text{bits}}{[\quad m\quad ]} \longrightarrow \underset{n\ \text{bits}}{[\ c \in \mathcal{C}\ ]}$ avec $n > k$.
 
 	\begin{defn}
 		Le \textbf{rendement} (binaire) d'un code en bloc $\mathcal{C}$ de longueur $n$, aussi appelé taux de codage, est $R = \frac{\log_2(\abs{\mathcal{C}})}{n}$ où $\abs{\mathcal{C}}$ est le nombre de mots du code $\abs{\mathcal{C}}$.
@@ -77,29 +107,22 @@
 
 \subsection{Décodage}
 
-	On décompose la fonction de décodage en deux étapes : $g = g_2 \circ g_1$, $g_1$ trouve pour toute observation $\mathbf{Y}$ le mot de code $\mathbf{\hat{c}} \in \mathcal{C}$ qui paraît le plus probable et $g_2 = f^{-1}$ produit la suite des bits détectés $\hat{D}_1,\ldots,\hat{D}_k$ qui est associée à $\mathbf{\hat{c}}$.
+	On décompose la fonction de décodage en deux étapes : $g = g_2 \circ g_1$, $g_1$ trouve pour toute observation $Y$ le mot de code $\mathbf{\hat{c}} \in \mathcal{C}$ qui paraît le plus probable et $g_2 = f^{-1}$ produit la suite des bits détectés $\hat{D}_1,\ldots,\hat{D}_k$ qui est associée à $\hat{c}$.
 
 	\begin{defn}
-		Soit $g_1$ fixée. La région de décision associée à $\mathbf{c} \in \mathcal{C}$ est $\Omega_{\mathbf{c}} := \left\{ \mathbf{y} \in \mathcal{Y}^n \mid g_1(\mathbf{y}) = \mathbf{c} \right\}$.
+		Soit $g_1$ fixée. La région de décision associée à $c \in \mathcal{C}$ est $\Omega_{\mathbf{c}} := g_1^{-1}(c)$.
 		Ces régions forment une partition de $\mathcal{Y}^n$.
 	\end{defn}
 
 	On a $P_e := \proba(\mathbf{\hat{C}} \neq \mathbf{C})$ la probabilité d'erreur et $P_c := \proba(\mathbf{\hat{C}} = \mathbf{C})$ la probabilité de succès.
 
-	\begin{pop}[Optimalité de la règle de maximum vraisemblance]
-		Si les mots de code sont tous émis avec la même probabilité, minimiser $P_e$ revient à choisir le mot de code qui maximise la vraisemblance, c'est-à-dire, à choisir les $\Omega_{\mathbf{c}}$ tel que
-		$\left( \mathbf{y} \in \Omega_{\mathbf{c}} \right)
-			\iff
-		\left(
-			\proba(\mathbf{Y} = \mathbf{y} \mid \mathbf{C} = \mathbf{c})
-			= \max_{\mathbf{\tilde{c}} \in \mathcal{C}} \proba(\mathbf{Y} = \mathbf{y} \mid \mathbf{C} = \mathbf{\tilde{c}})
-		\right)$.
+	\begin{pop}[Optimalité de la règle de maximum vraisemblance, \textbf{maximum likelihood}]
+		Si les mots de code sont équiprobables en entrée, minimiser $P_e$ revient à choisir $\hat{c} \in \argmax_{x \in \mathcal{C}} p(Y \mid x)$.
 	\end{pop}
 
-	\begin{pop}[Règle du voisin le plus proche]
+	\begin{pop}[\textbf{Règle du voisin le plus proche}]
 		Dans le cas d'un BSC on a
-		$\proba(\mathbf{Y} = \mathbf{y} \mid \mathbf{C} = \mathbf{c}) = (1 - p)^n \left( \frac{p}{1 - p} \right)^{d_H(\mathbf{y},\mathbf{c})},
-			\forall p \in \intff{0}{\frac{1}{2}}$
+		$\forall p \in \intff{0}{\frac{1}{2}}, \proba(\mathbf{Y} = \mathbf{y} \mid \mathbf{C} = \mathbf{c}) = (1 - p)^n \left( \frac{p}{1 - p} \right)^{d_H(\mathbf{y},\mathbf{c})}$
 		donc minimiser $P_e$ revient à trouver le mot de code $\mathbf{c} \in \mathcal{C}$ qui minimise $d_H(\mathbf{y},\mathbf{c})$.
 	\end{pop}
 
@@ -107,7 +130,7 @@
 		On dit qu'un code en bloc $\mathcal{C}$ corrige $t$ erreurs si il existe un décodeur qui permet de corriger toutes les configurations d'erreurs dont le nombre est inférieur ou égal à $t$.
 	\end{voc}
 
-	\begin{pop}[Capacité de correction d'un code]
+	\begin{pop}[\textbf{Capacité de correction} d'un code]
 		Le décodeur décide toujours du bon mot $\mathbf{\hat{c}} = \mathbf{c}$ lorsque $2 d_H(\mathbf{c},\mathbf{y}) < d_{\min}$.
 		Donc le code peut corriger $t = \left\lfloor \frac{d_{\min} - 1}{2} \right\rfloor$ erreurs.
 	\end{pop}
@@ -120,7 +143,7 @@
 		Dans le cas d'un BEC, on dit qu'un code en bloc $\mathcal{C}$ détecte $t$ erreurs si il existe un décodeur qui permet de corriger toutes les configurations d'erreurs dont le nombre est inférieur ou égal à $t$.
 	\end{voc}
 
-	\begin{pop}[Capacité de détection d'un code]
+	\begin{pop}[\textbf{Capacité de détection} d'un code]
 		Un code en bloc est capable de détecter $t' = d_{\min} - 1$ erreurs.
 	\end{pop}
 	Il suffit pour cette détection de déclarer $\Delta$ dès que $\mathbf{y} \not\in \mathcal{C}$.
@@ -142,7 +165,7 @@
 	d_{\min}(\mathcal{C}) = \min_{\mathbf{c} \in \mathcal{C}, \mathbf{c} \neq 0} w_H(\mathbf{c})\ .$$
 
 	\begin{note}
-		Un code linéaire $\mathcal{C}$ de longueur $n$, de dimension $k$ et de distance minimale $d_{\min}$ sera noté $(n,k,d_{\min})$.
+		Un code linéaire $\mathcal{C}$ de longueur $n$, de dimension $k$ et de distance minimale $d_{\min}$ sera noté $C(n,k,d_{\min})$.
 	\end{note}
 
 	\begin{defn}
@@ -150,7 +173,7 @@
 	\end{defn}
 
 	\begin{defn}
-		On appelle \textbf{matrice génératrice} du code $\mathcal{C}$ toute matrice $G$ à $k$ lignes et $n$ colonnes de la forme
+		On appelle \textbf{matrice génératrice} du code $\mathcal{C}$ toute matrice $G \in \M_{k,n}$ de la forme
 		$G = \begin{bmatrix}
 			\mathbf{e}_1 \\ \vdots \\ \mathbf{e}_k
 			\end{bmatrix}$.
@@ -170,7 +193,7 @@
 	\end{defn}
 
 	On a alors $\mathbf{c} = \mathbf{d} \cdot G_s = [\mathbf{d} \quad \mathbf{d} \cdot P]$.
-	Ainsi les $k$ premiers bits sont les bits d'information alors que les $(n - k)$ bits restants dépendent de $\mathbf{d}$ et du code et sont appeles bits de parité.
+	Ainsi les $k$ premiers bits sont les bits d'information alors que les $(n - k)$ bits restants dépendent de $\mathbf{d}$ et du code et sont appeles \textbf{bits de parité}.
 
 	\begin{ex}
 		On appelle code de parité binaire de longueur $n$ un code binaire de longueur $n$ dont les mots sont tous les $n$-uplets binaires de poids de Hamming pair.
@@ -207,7 +230,7 @@
 	On en déduit la matrice de contrôle de parité systématique $H_s = [-\transp{P} \ \Vert \ I_{n - k}]$.
 
 	\begin{thm}
-		Pour tout code linéaire en bloc, $d_{\min}$ est égale au plus petit nombre de colonnes dépendantes de $H$.
+		Pour tout code linéaire en bloc, $d_{\min}$ est égal au plus petit nombre de colonnes dépendantes de $H$.
 	\end{thm}
 
 	\begin{thm}[\textbf{Borne de Singleton}]
@@ -216,12 +239,9 @@
 
 	\begin{defn}
 		Soit $\mathbf{y} \in \mathcal{Y}^n$.
-		On appelle \textbf{syndrome} la quantité $\mathbf{s} = \mathbf{y} \cdot \transp{H} \in \M_{1,n - k}$.
+		On appelle \textbf{vecteur syndrôme} la quantité $\mathbf{s} = \mathbf{y} \cdot \transp{H} \in \M_{1,n - k}$.
+		Alors $\mathbf{y} \in \mathcal{C} \iff \mathbf{s} = 0$.
 	\end{defn}
-
-	\begin{pop}
-		On a $\mathbf{y} \in \mathcal{C}$ si et seulement si $\mathbf{s} = 0$.
-	\end{pop}
 
 	\paragraph{Algorithme de décodage par syndrome}
 		\begin{enumerate}

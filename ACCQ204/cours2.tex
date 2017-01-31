@@ -1,14 +1,10 @@
 \begin{defn}
-	\textbf{Code cyclique} : code linéaire en bloc $\mathcal{C}$ défini sur $\GF(q)$ tel que $\forall c = (c_0,\ldots,c_{n - 1}) \in \mathcal{C}, (c_{n - 1},c_0,\ldots,c_{n - 2}) \in \mathcal{C}$.
+	\textbf{Code cyclique} : code linéaire en bloc $\mathcal{C}$ sur $\F_q$ tel que $\forall c = (c_0,\ldots,c_{n - 1}) \in \mathcal{C}, (c_{n - 1},c_0,\ldots,c_{n - 2}) \in \mathcal{C}$.
 \end{defn}
 
 \subsection{Représentation polynomiale}
 
-	\begin{defn}
-		$c(X) = c_0 + c_1 X + \ldots + c_{n - 1} X_{n - 1}$
-	\end{defn}
-
-	Décalage cyclique : $X c(X) \pmod{X^n - 1}$.
+	$c(X) = c_0 + c_1 X + \ldots + c_{n - 1} X_{n - 1}$ et on a le décalage cyclique : $X c(X) \pmod{X^n - 1} \in \mathcal{C}$.
 	
 	\begin{defn}
 		\textbf{Polynôme générateur} : $g(X)$ l'unique mot de code unitaire de degré minimal.
@@ -18,11 +14,11 @@
 	Pour écrire $c(X) = g(X) m(X)$ de manière unique, avec $m$ un mot d'info de degré $<  k$, il faut $\deg(g(X)) = n - k$.
 
 	\begin{thm}
-		$\mathcal{C}$ est un sous-ensemble cyclique de $\GF(q)[X] / X^n - 1$ ssi $\mathcal{C}$ est un idéal de $\GF(q)[X] / X^n - 1$.
+		$\mathcal{C}$ est un sous-ensemble cyclique de $\F_q[X] / X^n - 1$ ssi $\mathcal{C}$ est un idéal de $\F_q[X] / X^n - 1$.
 	\end{thm}
 
-	On a le morphisme $\phi \colon p(X) \in \GF(q)[X] \to p(X) \pmod{X^n - 1}$.
-	$\phi^{-1}(\mathcal{C})$ est un idéal de $\GF(q)[X]$, qui est un corps, donc tous ces idéaux sont principaux et il y a existence et unicité de $g(X)$.
+	On a le morphisme $\phi \colon p(X) \in \F_q[X] \to p(X) \pmod{X^n - 1}$.
+	$\phi^{-1}(\mathcal{C})$ est un idéal de $\F_q[X]$, qui est un corps, donc tous ces idéaux sont principaux et il y a existence et unicité de $g(X)$.
 
 
 \subsection{Polynôme de parité}

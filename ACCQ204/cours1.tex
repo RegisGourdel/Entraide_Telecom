@@ -1,47 +1,47 @@
-\subsection{Définition des codes en blocs}
+%\subsection{Définition des codes en blocs}
 
-	Principe : $\underset{m}{k\ \text{bits}} \longrightarrow \underset{c \in \mathcal{C}}{n\ \text{bits}}$ avec $n > k$.
-	On a $\dim(\mathcal{C}) = k$.
+	%Principe : $\underset{k\ \text{bits}}{[\quad m\quad ]} \longrightarrow \underset{n\ \text{bits}}{[\ c \in \mathcal{C}\ ]}$ avec $n > k$.
+	%On a $\dim(\mathcal{C}) = k$.
 	
-	\begin{defn}
-		Rendement : $R = \frac{k}{n}$.
-	\end{defn}
+	%\begin{defn}
+		%\textbf{Rendement} : $R = \frac{k}{n}$.
+	%\end{defn}
 	
-	\begin{note}
-		$C(k,n,d_{\min})$.
-	\end{note}
+	%\begin{note}
+		%$C(k,n,d_{\min})$.
+	%\end{note}
 	
-	\begin{defn}
-		Capacité de détection : $t \leq d_{\min} - 1$. Capacité de correction : $t \leq \lfloor \frac{d_{\min} - 1}{2} \rfloor$.
-	\end{defn}
+	%\begin{defn}
+		%\textbf{Capacité de détection} : $t \leq d_{\min} - 1$. \textbf{Capacité de correction} : $t \leq \lfloor \frac{d_{\min} - 1}{2} \rfloor$.
+	%\end{defn}
 	
-\subsection{Les codes linéaires en blocs}
+%\subsection{Les codes linéaires en blocs}
 
-	$\mathcal{C}$ est un sev de $\GF(2)^n$.
-	Alors $d_{\min} = \min_{c \neq 0} w_H(c)$ (poids de Hamming).
+	%$\mathcal{C}$ est un sev de $\GF(2)^n$.
+	%Alors $d_{\min} = \min_{c \neq 0} w_H(c)$ (poids de Hamming).
 
-	\begin{defn}
-		Matrice génératrice : $G = [ I_{k \times k} \mid P_{k \times (n - k)} ] \in \M_{k \times n}$ sous forme systématique telle que $c = m \cdot G = [ m \mid n - k\ \text{bits de parité}]$.
-	\end{defn}
+	%\begin{defn}
+		%\textbf{Matrice génératrice} : $G$ telle que $c = m \cdot G$. Sous forme systématique $G = [ I_{k} \mid P ] \in \M_{k,n}$, $P \in \M_{k,n-k}$ et $c = m \cdot G = [ m \mid n - k\ \text{bits de parité}]$.
+	%\end{defn}
 
-	\begin{defn}
-		Matrice de parité : $H \in \M_{(n - k) \times n}$ la matrice génératrice de $\mathcal{C}^\perp$, donc $\forall c \in \mathcal{C}, c \cdot \transp{H} = 0$.
-		Sous forme systématique : $H = [ -\transp{P} \mid I_{n - k}]$.
-	\end{defn}
+	%\begin{defn}
+		%\textbf{Matrice de parité} : $H \in \M_{(n - k),n}$ la matrice génératrice de $\mathcal{C}^\perp$. Donc $\forall c \in \mathcal{C}, c \cdot \transp{H} = 0$.
+		%Sous forme systématique : $H = [ -\transp{P} \mid I_{n - k}]$.
+	%\end{defn}
 
-	\begin{defn}
-		Vecteur syndrôme : $s = r \transp{H}$ avec $r$ le mot reçu.
-		Alors $s = 0$ ssi $R$ est un mot de code.
-	\end{defn}
+	%\begin{defn}
+		%\textbf{Vecteur syndrôme} : $s = r \transp{H}$ avec $r$ le mot reçu.
+		%Alors $s = 0$ si et seulement si $r$ est un mot de code.
+	%\end{defn}
 
-	\begin{thm}[Borne de singleton]
-		$d_{\min} \leq n - k + 1$, d'où la correction d'erreur $2t \leq d_{\min} - 1 \leq n - k$.
-	\end{thm}
+	%\begin{thm}[\textbf{Borne de singleton}]
+		%$d_{\min} \leq n - k + 1$, d'où la correction d'erreur $2t \leq d_{\min} - 1 \leq n - k$.
+	%\end{thm}
 
-	On effectue alors un décodage par maximum likelyhood : si les éléments de l'alphabet de départ sont équiprobables, on cherche $\max p(y \mid x)$.
+	%On effectue alors un décodage par maximum likelyhood : si les éléments de l'alphabet de départ sont équiprobables, on cherche $\max p(y \mid x)$.
 
 
-\subsection{Transformations}
+%\subsection{Transformations}
 
 	\begin{itemize}
 		\item[\textbullet] Extension : rajouter des bits de parité.

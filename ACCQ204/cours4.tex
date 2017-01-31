@@ -3,8 +3,8 @@
 	Code cyclique primitif : de longueur $n = p^m - 1$ avec $p$ premier.
 	
 	\begin{thm}
-		Soit $\beta_1,\ldots,\beta_r$ les racines dans $\GF(p^m)$ de $g(X)$, polynômes générateur d'un code cyclique primitif.
-		Alors $c(X) \in \GF(p)[X]$ est un mot de code ssi $\forall i, c(\beta_i) = 0$.
+		Soit $\beta_1,\ldots,\beta_r$ les racines dans $\F_{p^m}$ de $g(X)$, polynôme générateur d'un code cyclique primitif.
+		Alors $c(X) \in \F_p[X]$ est un mot de code si et seulement si $\forall i, c(\beta_i) = 0$.
 		De plus $g(X) = \ppcm(f_{\beta_1}(X),\ldots,f_{\beta_r}(X))$ où les $f_i$ sont les polynômes minimaux.
 	\end{thm}
 
@@ -22,7 +22,7 @@
 	
 	Construction d'un code BCH, avec $n = p^m - 1$, $p$ premier :
 	\begin{enumerate}[1)]
-		\item choisir $p(X)$ premier, de degré $m$ sur $\GF(p)[X] \longrightarrow \GF(p^m)$,
+		\item choisir $p(X)$ premier, de degré $m$ sur $\F_p[X] \longrightarrow \F_{p^m}$,
 		\item calculer les polynômes minimaux des $\alpha^i$ pour $1 \leq i \leq 2t$,
 		\item calculer $g(X) = \ppcm((f_{\alpha^i})_{i = 1,\ldots,2t})$.
 	\end{enumerate}
