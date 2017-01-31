@@ -1,0 +1,120 @@
+	\begin{defn}
+		Un \textbf{code en bloc linéaire} binaire de longueur $n$ est un sous-espace vectoriel de $\mathbb{F}_2^n$.
+	\end{defn}
+
+	\begin{defn}
+		La dimension $k$ d'un code en bloc linéaire est sa dimension en tant que ss-ev de $\mathbb{F}_2^n$.
+	\end{defn}
+
+	On peut alors simplifier l'expression du rendement et de la distance minimale :
+	$$R = \frac{\log_2(\abs{\mathcal{C}})}{n} = \frac{k}{n}
+	\qquad \text{et} \qquad
+	d_{\min}(\mathcal{C}) = \min_{\mathbf{c} \in \mathcal{C}, \mathbf{c} \neq 0} w_H(\mathbf{c})\ .$$
+
+	\begin{note}
+		Un code linéaire $\mathcal{C}$ de longueur $n$, de dimension $k$ et de distance minimale $d_{\min}$ sera noté $C(n,k,d_{\min})$.
+	\end{note}
+
+	\begin{defn}
+		Un codeur linéaire associe au bits $d_1,\ldots,d_k$ la valeur $\sum_{i = 1}^n d_i \mathbf{e}_i$ où $\mathcal{B} = (\mathbf{e}_1,\ldots,\mathbf{e}_k)$ est une base du code.
+	\end{defn}
+
+	\begin{defn}
+		On appelle \textbf{matrice génératrice} du code $\mathcal{C}$ toute matrice $G \in \M_{k,n}$ de la forme
+		$G = \begin{bmatrix}
+			\mathbf{e}_1 \\ \vdots \\ \mathbf{e}_k
+			\end{bmatrix}$.
+		Tout mot de code $\mathbf{c} \in \mathcal{C}$ peut s'écrire alors $\mathbf{c} = \mathbf{d} \cdot G$ où $\mathbf{d}$ est le mot d'information.
+	\end{defn}
+
+	Deux codes $\mathcal{C}$ et $\mathcal{\tilde{C}}$ sont dits équivalents si et seulement si
+	$\exists \sigma \in \mathfrak{S}_n,
+		\forall \mathbf{c} \in \mathcal{C},
+		\exists \mathcal{\tilde{c}} \in \mathcal{\tilde{C}},
+		(\tilde{c}_1,\ldots,\tilde{c}_n) = (c_{\sigma(1)},\ldots,c_{\sigma(n)})$.
+	Deux opérations sont permises sur $G$ pour trouver une autre matrice génératrice pour le même code (ou un code équivalent) : combinaisons linéaires de lignes et permutations de colonnes.
+
+	\begin{defn}
+		On appelle \textbf{matrice génératrice systématique} du code $\mathcal{C}$ toute matrice obtenue à la sortie du pivot de Gauss appliqué à une matrice génératrice $G$ quelconque de $\mathcal{C}$.
+		Elle est sous la forme $G_s = [ I_k \ \Vert \ P]$ où $P$ dépend du code $\mathcal{C}$.
+	\end{defn}
+
+	On a alors $\mathbf{c} = \mathbf{d} \cdot G_s = [\mathbf{d} \quad \mathbf{d} \cdot P]$.
+	Ainsi les $k$ premiers bits sont les bits d'information alors que les $(n - k)$ bits restants dépendent de $\mathbf{d}$ et du code et sont appeles \textbf{bits de parité}.
+
+	\begin{ex}
+		On appelle code de parité binaire de longueur $n$ un code binaire de longueur $n$ dont les mots sont tous les $n$-uplets binaires de poids de Hamming pair.
+		Sa dimension est $n - 1$ et $d_{\min} = 2$.
+		Sa matrice génératrice systématique est $G_s = \left( \begin{smallmatrix}
+			1	   & 0 & \ldots & 0	  & 1 \\
+			0	   & 1 &		    & 0	  & 1 \\
+			\vdots &   & \ddots & \vdots & \vdots \\
+			0	   & 0 & \ldots & 1	  & 1
+			\end{smallmatrix} \right)$.
+	\end{ex}
+
+	\begin{defn}
+		Deux mots $\mathbf{x}$ et $\mathbf{\tilde{x}}$ sont dits orthogonaux si
+		$\mathbf{x} \cdot \transp{\mathbf{\tilde{x}}} = \sum_{i = 1}^n x_i \tilde{x}_i = 0$.
+		À la différence de l'espace euclidien, tout mot de poids de Hamming pair est orthogonal à lui-même.
+	\end{defn}
+
+	\begin{defn}
+		Le \textbf{code dual} de $\mathcal{C}$ sur $\mathcal{X}$ est
+		$\mathcal{C}^\perp := \left\{ \mathbf{x} \in \mathcal{X}^n \mid \forall \mathbf{c} \in \mathcal{C}, \mathbf{x} \cdot \transp{\mathbf{c}} = 0 \right\}$.
+	\end{defn}
+
+	\begin{defn}
+		Une \textbf{matrice de contrôle de parité} de $\mathcal{C}$ est toute matrice $H$ qui est matrice génératrice de $\mathcal{C}^\perp$.
+		Ainsi $H$ est une matrice à $n - k$ lignes et $n$ colonnes de rang $n - k$.
+	\end{defn}
+
+	\begin{thm}
+		Soit $G$ une matrice génératrice de $\mathcal{C}$.
+		Toute matrice $H \in \M_{n - k, n}$ de rang $n - k$ qui vérifie $G \cdot \transp{H} = 0$ est une matrice de contrôle de parité de $\mathcal{C}$.
+	\end{thm}
+
+	On en déduit la matrice de contrôle de parité systématique $H_s = [-\transp{P} \ \Vert \ I_{n - k}]$.
+
+	\begin{thm}
+		Pour tout code linéaire en bloc, $d_{\min}$ est égal au plus petit nombre de colonnes dépendantes de $H$.
+	\end{thm}
+
+	\begin{thm}[\textbf{Borne de Singleton}]
+		Pour tout code linéaire en bloc $(n,k,d_{\min})$, on a $d_{\min} \leq n - k + 1$.
+	\end{thm}
+
+	\begin{defn}
+		Soit $\mathbf{y} \in \mathcal{Y}^n$.
+		On appelle \textbf{vecteur syndrôme} la quantité $\mathbf{s} = \mathbf{y} \cdot \transp{H} \in \M_{1,n - k}$.
+		Alors $\mathbf{y} \in \mathcal{C} \iff \mathbf{s} = 0$.
+	\end{defn}
+
+	\begin{defn}
+		Soit $m \geq 3$ entier.
+		Un \textbf{code de Hamming binaire} est un code de longueur $2^m - 1$ et de dimension $2^m - m - 1$.
+		Sa matrice de contrôle de parité contient, en tant que colonnes, tous les $m$-uplets binaires non nuls (il y en a bien $2^m - 1$).
+	\end{defn}
+
+
+\subsection{Algorithme de décodage par syndrome}
+
+	\begin{enumerate}
+		\item Calculer le syndrome $\mathbf{s} = \mathbf{y} \cdot \transp{H}$.
+		\item Si $\mathbf{s} = 0$ alors on déclare $\mathbf{\hat{c}} = \mathbf{y}$ et l'algorithme se termine.
+		\item Vérifier si $\transp{\mathbf{y}}$ est égal à une colonne de $H$.
+			Si $\transp{\mathbf{y}} = \mathbf{h}_i$, déclarer $\mathbf{c} = (y_1,\ldots,y_{i - 1},1 - y_i,y_{i + 1},\ldots,y_n)$ et l'algorithme se termine.
+			S'il existe plusieurs $i$, en choisir un au hasard.
+		\item Vérifier si $\transp{\mathbf{y}}$ est égal à la somme de deux colonnes de $H$.
+			Si $\transp{\mathbf{y}} = \mathbf{h}_i + \mathbf{h}_j$, déclarer $\mathbf{c}$ en inversant $y_i$ et $y_j$ et l'algorithme se termine.
+				S'il existe plusieurs paires, en choisir un au hasard.
+		\item Continuer ainsi de suite.
+	\end{enumerate}
+
+	Cet algorithme utilisé sur un canal BSC peut corriger $\left\lfloor \frac{d_{\min} - 1}{2} \right\rfloor$ erreurs.
+
+
+\subsection{Performances}
+
+	Probabilité d'erreur par mot : $P_{e,\text{mot}} \leq \sum_{i = t + 1}^n \binom{n}{i} p^i (1 - p)^{n - i}$ en considérant que au moins toutes les configurations dont le nombre d'erreurs est inférieur ou égal à $t$ sont corrigées.
+	On peut donc approcher la probabilité d'erreur par bit décodé (en supposant que bits d'information et bits de parits auront la même probabilité d'erreur) par $P_b \simeq \frac{d_{\min}}{n} \binom{t + 1}{n} p^{t + 1} (1 - p)^{n - (t - 1)} \overset{p \ll 1}{\simeq} \frac{d_{\min}}{n} \binom{t + 1}{n} p^{t + 1}$.

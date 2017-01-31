@@ -5,7 +5,7 @@ Cas particulier des codes BCH.
 \end{defn}
 
 \begin{ex}
-	Avec $\{ 1, 2, 3, 4 \}$, $g(X) = (X - \alpha)(X - \alpha^2)(X - \alpha^3)(X - \alpha^4) \in \GF(2^m)[X]$.
+	Avec $\{ 1, 2, 3, 4 \}$, $g(X) = (X - \alpha)(X - \alpha^2)(X - \alpha^3)(X - \alpha^4) \in \F_{2^m}[X]$.
 \end{ex}
 
 Pour les RS, le corps des symboles et le corps localisateur d'erreurs sont les mêmes.
@@ -14,8 +14,7 @@ Se sont des codes non binaires.
 On a $\deg(g(X)) = 2t$, $g(X) = (X - \alpha) \cdots (X - \alpha^{2t})$ et $n - k = 2t$, d'où $d_{\min} = 2t + 1$ (code à distance maximale).
 
 \begin{ex}
-	On prend $RS(15,11,5)$, sur $\GF(16) \simeq \GF(2)[X] / 1 + X + X^4$, avec $n = 2^4 - 1$.
-	
+	On prend $RS(15,11,5)$, sur $\F_{16} \simeq \F_2[X] / 1 + X + X^4$, avec $n = 2^4 - 1$.
 	Il corrige 2 erreurs : $g(X) = X^4 + \alpha^{13} X^3 + \alpha^6 X^2 + \alpha^3 X + \alpha^{10} \in \GF(16)[X]$.
 	On a $n - k = 4$, donc $k = 11$ et $d_{\min} = 5$.
 \end{ex}
@@ -23,7 +22,7 @@ On a $\deg(g(X)) = 2t$, $g(X) = (X - \alpha) \cdots (X - \alpha^{2t})$ et $n - k
 \begin{ex}
 	DVB : $RS(204,188)$ (c'est un RS raccourci, $204 \neq 2^m - 1$).
 	La chaîne de transmission (le code source) impose d'utiliser 188 octets, donc sur $\GF(2^8) = \GF(256) \simeq \GF(2)[X] / X^8 + X^6 + X^3 + X^2 + 1$.
-	
+
 	Il corrige 8 erreurs : $2t = 16$ et l'on a $g(X) = (X + 1)(X + \alpha) \cdots (X + \alpha^{15})$.
 	Alors $\deg(g(X)) = 16 \implies k = 239$ mais on veut $k = 188$.
 	Donc on raccourcit le code : on rajoute des zéros pour le codage, on les enlève pour la transmission et on les rajoute pour le décodage.
@@ -35,7 +34,7 @@ On a $\deg(g(X)) = 2t$, $g(X) = (X - \alpha) \cdots (X - \alpha^{2t})$ et $n - k
 	Les zéros du code sont $\{ 0,\ldots,2t - 1 \}$.
 	On a $\forall i \in \intiff{0}{n - 1}, \Lambda(\alpha^{-i}) E(\alpha^{-i}) = \lambda_i e_i = 0$.
 	Donc $\Lambda(X) E(X) = 0 \mod{X^n - 1}$, d'où $\Lambda(X)E(X) = \Omega(X) (X^n - 1)$.
-	
+
 	Il vient $[\Lambda(X)E(X) = \Omega(X) (X^n - 1)] \mod{X^{2t}}$, puis $\Lambda(X) [E(X) \mod{X^{2t}}] = \Omega(X) \mod{X^{2t}}$ et $\Lambda(X) S(X) = \Omega(X) \mod{X^{2t}}$.
 	Donc $\Lambda(X)S(X) + q(X)X^{2t} = \Omega(X)$, $\Omega(X)$ est un diviseur commun de $S(X)$ et $X^{2t}$.
 
@@ -47,7 +46,7 @@ On a $\deg(g(X)) = 2t$, $g(X) = (X - \alpha) \cdots (X - \alpha^{2t})$ et $n - k
 		r_i(x) & = r_{i + 1}(X) q_{i + 2}(X) + r_{i + 2}(X)
 	\end{align*}
 	et on s'arrête dès que le degré d'un reste est nul.
-	
+
 	Dans la version généralisée on a
 	$$f_i(X)a(X) + g_i(X)b(X) = r_i(X)$$
 	avec

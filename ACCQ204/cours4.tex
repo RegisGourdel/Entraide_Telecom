@@ -1,7 +1,7 @@
 \subsection{Construction d'un code cyclique}
 
 	Code cyclique primitif : de longueur $n = p^m - 1$ avec $p$ premier.
-	
+
 	\begin{thm}
 		Soit $\beta_1,\ldots,\beta_r$ les racines dans $\F_{p^m}$ de $g(X)$, polynôme générateur d'un code cyclique primitif.
 		Alors $c(X) \in \F_p[X]$ est un mot de code si et seulement si $\forall i, c(\beta_i) = 0$.
@@ -10,7 +10,7 @@
 
 	On obtient $g(X)$ en choisissant les racines.
 	On a alors $k$ via $\deg(g(X)) = n - k$.
-	
+
 	Les zéros du code sont les $i$ tels que $\alpha^i$ est racine de $g(X)$, avec $\alpha$ un élément primitif.
 
 
@@ -19,7 +19,7 @@
 	\begin{defn}
 		\textbf{Code BCH} : code cyclique ayant $2t$ zéros consécutifs (qui corrige $t$ erreurs, $d_{\min} \geq 2t + 1$).
 	\end{defn}
-	
+
 	Construction d'un code BCH, avec $n = p^m - 1$, $p$ premier :
 	\begin{enumerate}[1)]
 		\item choisir $p(X)$ premier, de degré $m$ sur $\F_p[X] \longrightarrow \F_{p^m}$,
@@ -30,19 +30,19 @@
 
 \subsection{Décodage par calcul du syndrôme}
 
-	On a $R(X) = c(X) + e(X)$.
-	Le polynôme syndrôme $s(X)$ est le reste de $R(X)/g(x)$.
-	
+	On a $\underset{\text{message reçu}}{R(X)} = \underset{\text{mot de code envoyé}}{c(X)} + \underset{\text{erreur}}{e(X)} \in \F_2[X]$.
+	Le polynôme syndrôme $s(X)$ est le reste de $R(X)/g(X)$.
+
 	\begin{defn}
-		\textbf{vecteur syndrôme} : $S = (s_1,\ldots,s_{2t})$ où $s_i = R(\alpha^i)$.
+		\textbf{vecteur syndrôme} : $S = (s_1,\ldots,s_{2t})$ où $s_i = R(\alpha^i)$ et $i = 1, 2, \ldots, 2t$ sont les zéros du code.
 	\end{defn}
 
-	Si $S = O$, $R(x)$ est un mot de code.
+	Si $S = 0$, $R(x)$ est un mot de code.
 	On a $s_{2i} = R(\alpha^{2i}) = R(\alpha^i)^2 = s_i^2$, donc il y a de la redondance.
 
 	\begin{ex}[Code de Hamming]
 		$BCH(2^m - 1, 2^m - 1 - m, 3)$.
-		On a $\GF(2^m) = \GF(2)[X]/P(X)$, $g(X) = p(X)$.
+		On a $\F_{2^m} = \F_{2}[X]/P(X)$, $g(X) = p(X)$.
 		Le code corrige une erreur.
 		Algorithme de décodage : calculer $s_1$, si $s_1 = 0$, $e(x) = 0$, sinon $s_1 = \alpha^i \neq 0$ et $e(X) = X^i$.
 	\end{ex}
@@ -58,7 +58,7 @@
 	\end{ex}
 
 	\begin{defn}
-		\textbf{Polynôme localisateur d'erreurs} : $\Lambda(X)$ dont les racines sont les inverses des positions des erreurs dans $\GF(p^m)[X]$ (corps localisateur d'erreurs).
+		\textbf{Polynôme localisateur d'erreurs} : $\Lambda(X)$ dont les racines sont les inverses des positions des erreurs dans $\F_{p^m}[X]$ (corps localisateur d'erreurs).
 	\end{defn}
 
 	Dans l'exemple : $\Lambda(X) = (1 + \alpha^i X)(1 + \alpha^j X) \in \GF(2^m)[X]$ avec 2 erreurs.
@@ -69,13 +69,13 @@
 
 	\begin{itemize}
 		\item[\textbullet] TDF dans $\C^n$ : $(h_0,\ldots,h_{n - 1}) \mapsto (H_0,\ldots,H_{n - 1})$ avec $H_k = \sum_{l = 0}^{n - 1} h_l \exp \left( - \frac{2i\pi k}{n} l \right)$.
-		\item[\textbullet] TDF dans $\GF(p^m)$ : soit $\alpha \in \GF(p^m)$ tel que $\alpha^n = 1$, on a
+		\item[\textbullet] TDF dans $\F_{p^m}$ : soit $\alpha \in \GF(p^m)$ tel que $\alpha^n = 1$, on a
 			$$(v_0,\ldots,v_{n - 1}) \in \GF(p) \longleftrightarrow (V_0,\ldots,V_{n - 1}) \in \GF(p^m)$$
 			$$v_i = \frac{1}{n \mod{p}} \sum_{j = 0}^{n - 1} V_j \alpha^{-ij} \qquad V_j = \sum_{i = 0}^{n - 1} v_i \alpha^{ij}$$
 	\end{itemize}
 
 	Dans le cas $p = 2$ et $n = 2^m - 1$, on a donc $v_i = \sum_{j = 0}^{n - 1} V_j \alpha^{-ij}$ et $V_j = \sum_{i = 0}^{n - 1} v_i \alpha^{ij}$.
-	
+
 	On définit $v(X) = \sum_{i = 0}^{n - 1} v_i X^i$ et $V(X) = \sum_{j = 0}^{n - 1} V_j X^j$.
 	On a $v_i = V(\alpha^{-i})$ et $V_j = v(\alpha^j)$.
 
@@ -96,7 +96,7 @@
 
 	On a le polynôme localisateur d'erreurs $\Lambda(X) = \prod_{k = 1}^{\nu} (1 + \alpha^{i_k} X) = \sum_{i = 0}^{n - 1} \Lambda_i X^i$.
 	On passe à $\lambda(X) = \sum_{i = 0}^{n - 1} \lambda_i X^i$, $\lambda_i = \Lambda(\alpha^i) = \sum_{j = 0}^{n - 1} \Lambda_j \alpha^{-ij} \in \GF(p)$.
-	
+
 	\begin{pop}
 		On a $\forall i, e_i \lambda_i = 0$.
 	\end{pop}

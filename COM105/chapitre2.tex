@@ -47,7 +47,7 @@ On montrera ici que la probabilité d'erreur peut être rendue artificiellement 
 		En outre $H(X \mid Y) = 0 \iff X = f(Y)$ avec $f$ une fonction quelconque, et $H(X,Y) = H(X) \iff X \indep Y$.
 	\end{pop}
 
-	\begin{pop}[Règle de chaînage (\textit{chain rule})]
+	\begin{pop}[Règle de chaînage (\textbf{chain rule})]
 		$H(X,Y) = H(Y) + H(X \mid Y) = H(X) + H(Y \mid X)$ pour n'importe quel $X$ et $Y$.
 	\end{pop}
 
@@ -73,7 +73,7 @@ On montrera ici que la probabilité d'erreur peut être rendue artificiellement 
 	On considère les probabilités d'erreur en bloc $P_e^{(n)} := \proba \left( (D_1,\ldots,D_k) \neq (\hat{D}_1,\ldots,\hat{D}_k) \right)$.
 
 	\begin{defn}
-		Un taux $R > 0$ est dit atteignable sur un DMC $(\mathcal{X},\mathcal{Y},\proba_{Y \mid X})$ s'il existe une suite $\left( n,k = \lfloor nR \rfloor, f^{(n)}, g^{(n)} \right)_{n \in \N^*}$ de codes, telle que $P_e^{(n)} \underset{n \to \infty}{\longrightarrow} 0$.
+		Un taux $R > 0$ est dit \textbf{atteignable} sur un DMC $(\mathcal{X},\mathcal{Y},\proba_{Y \mid X})$ s'il existe une suite $\left( n,k = \lfloor nR \rfloor, f^{(n)}, g^{(n)} \right)_{n \in \N^*}$ de codes, telle que $P_e^{(n)} \underset{n \to \infty}{\longrightarrow} 0$.
 	\end{defn}
 
 	\begin{defn}
@@ -81,8 +81,8 @@ On montrera ici que la probabilité d'erreur peut être rendue artificiellement 
 		où la maximisation se fait sur toutes les lois de probabilité de $X$ et où $Y \sim \proba_{X \mid Y}(\cdot \mid X)$.
 		Donc, dans cette expression, la paire $(X,Y)$ suit la loi de probabilité $\proba_{XY}(x,y) = \proba_X(x) \proba_{Y \mid X}(x \mid Y)$.
 	\end{defn}
-	
-	\begin{thm}[Théorème de Shannon de la capacité]
+
+	\begin{thm}[\textbf{Théorème de Shannon de la capacité}]
 		Pour un DMC $(\mathcal{X},\mathcal{Y},\proba_{Y \mid X})$ : tous les débits $0 < R < C$ sont atteignables et aucun débit $R > C$ ne l'est.
 	\end{thm}
 
