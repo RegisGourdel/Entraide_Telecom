@@ -2,7 +2,7 @@
 
 	\begin{defn}
 		Soit $\T$ un ensemble et $\{ X_\tau, \tau \in \T \}$ une famille quelconque de v.a.
-		La $\sigma$-algèbre $\mathcal{X}$ engendrée par cettefamille est la plus petite $\sigma$-algèbre sur $\Omega$ telle que $X_\tau$ est $\mathcal{X}$-mesurable pour tout $\tau \in \T$, i.e.
+		La $\sigma$-algèbre $\mathcal{X}$ engendrée par cette famille est la plus petite $\sigma$-algèbre sur $\Omega$ telle que $X_\tau$ est $\mathcal{X}$-mesurable pour tout $\tau \in \T$, i.e.
 		$$\mathcal{X} = \sigma(X_\tau, \tau \in \T) = \sigma(\{ X_\tau^{-1}(A) \mid \tau \in \T, A \in \mathcal{B}(\R) \})\ .$$
 	\end{defn}
 
@@ -11,10 +11,15 @@
 		Alors $X$ est $\sigma(Y)$-mesurable ssi $\exists f \colon \R^n \to \R, X = f(Y)$.
 	\end{lem}
 
+	% ...
 
 \subsection{Espérance de variables aléatoires}
 
-	\begin{thm}
+	%\begin{defn}
+		%On dit que $X$ a une densité de probabilité $f_X$ si $\proba^X$ est absolument continue par rapport à la mesure de Lebesgue sur $\R$ et $\forall B \in \mathcal{B}_{\R}, \proba(X \in B) = \int_B f_X(x) \diff x$.
+	%\end{defn}
+
+	\begin{thm}[\textbf{Inégalité de Jensen}]
 		Soit $X \in \mathcal{L}^1(\mathcal{A},\proba)$ et $g \colon \R^d \to \Bar{\R}$ une fonction convexe telle que $\esp(\abs{g(X)}) < \infty$.
 		Alors $\esp(g(X)) \geq g(\esp(X))$.
 	\end{thm}
@@ -56,10 +61,10 @@
 
 	% ...
 	
-	\begin{defn}
-		Soit $(X_n)_n$ et $X$ dans $\mathcal{L}^0$.
-		On dit que $(X_n)_n$ \textbf{converge en probabilité} vers $X$ si $\forall \varepsilon > 0, \lim_{n \to \infty} \proba[\abs{X_n - X} \geq 0] = 0$.
-	\end{defn}
+	%\begin{defn}
+		%Soit $(X_n)_n$ et $X$ dans $\mathcal{L}^0$.
+		%On dit que $(X_n)_n$ \textbf{converge en probabilité} vers $X$ si $\forall \varepsilon > 0, \lim_{n \to \infty} \proba[\abs{X_n - X} \geq 0] = 0$.
+	%\end{defn}
 
 	\begin{lem}
 		La convergence p.s. ou la  convergence en norme dans $L^p$ impliquent la convergence en probabilité.
@@ -73,18 +78,18 @@
 		$(L^0,D)$ est un espace métrique complet.
 	\end{thm}
 
-	\begin{thm}
-		Soit $(X_n)_n$ et $X$ des v.a. dans $\mathcal{L}^0$.
-		\begin{enumerate}[(i)]
-			\item $X_n \longrightarrow X$ p.s. ssi $\sup_{m \geq n} \abs{X_m - X} \longrightarrow 0$ en probabilité.
-			\item $X_n \longrightarrow X$ en probabilité ssi de toute suite croissantes $(n_k)_k \subset \N$, on peut extraire une sous-suite $(n_{k_j})_j$ telle que $X_{n_{k_j}} \longrightarrow X$ p.s.
-		\end{enumerate}
-	\end{thm}
+	%\begin{thm}
+		%Soit $(X_n)_n$ et $X$ des v.a. dans $\mathcal{L}^0$.
+		%\begin{enumerate}[(i)]
+			%\item $X_n \longrightarrow X$ p.s. ssi $\sup_{m \geq n} \abs{X_m - X} \longrightarrow 0$ en probabilité.
+			%\item $X_n \overset{\proba}{\longrightarrow} X$ ssi de toute suite croissantes $(n_k)_k \subset \N$, on peut extraire une sous-suite $(n_{k_j})_j$ telle que $X_{n_{k_j}} \overset{\text{p.s.}}{\longrightarrow} X$.
+		%\end{enumerate}
+	%\end{thm}
 
-	\begin{cor}[Slutsky]
-		Soit $\phi$ continue.
-		Si $X_n \longrightarrow X$ en probabilités, alors $\phi(X_n) \longrightarrow \phi(X)$ en probabilité.
-	\end{cor}
+	%\begin{cor}[Slutsky]
+		%Soit $\phi$ continue.
+		%Si $X_n \longrightarrow X$ en probabilités, alors $\phi(X_n) \longrightarrow \phi(X)$ en probabilité.
+	%\end{cor}
 
 	\begin{defn}
 		Une famille $C$ de v.a. est dite \textbf{uniformément intégrable} (U.I.) si $\lim_{c \to \infty} \sup_{X \in C} \esp \left[ \abs{X} \indic_{\abs{X} \geq c} \right] = 0$.

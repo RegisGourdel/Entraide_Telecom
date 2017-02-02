@@ -65,18 +65,18 @@ de Jensen,
 		\end{enumerate}
 	\end{pop}
 
-	\begin{lem}[de Fatou pour les ensembles]
+	\begin{lem}[de \textbf{Fatou pour les ensembles}]
 		Soit $(A_n)_n$ une suite dans $\mathcal{A}$.
 		Alors, $\mu(\liminf A_n) \leq \liminf \mu(A_n)$.
 	\end{lem}
 
-	\begin{lem}[inverse Fatou pour les ensembles]
+	\begin{lem}[\textbf{inverse Fatou pour les ensembles}]
 		Supposons $(\Omega,\mathcal{A},\mu)$ fini.
 		Soit $(A_n)_n$ une suite dans $\mathcal{A}$.
 		Alors, $\mu(\limsup A_n) \geq \limsup \mu(A_n)$.
 	\end{lem}
 
-	\begin{lem}[de Borel-Cantelli]
+	\begin{lem}[de \textbf{Borel-Cantelli}]
 		$\sum_n \mu(A_n) < \infty \implies \mu(\limsup A_n) = 0$.
 	\end{lem}
 
@@ -136,7 +136,14 @@ de Jensen,
 		On note $\mathcal{L}^1(\mathcal{A},\mu)$ leur ensemble.
 	\end{defn}
 	
-	% ...
+	\begin{pop}
+		Pour tout $f \in \mathcal{L}^1(\mathcal{A},\mu)$ et $A \in \mathcal{A}$, on a $\mu(f \indic_A) = \mu_A(f_{|A})$.
+	\end{pop}
+	
+	\begin{lem}
+		Soit $f \in \mathcal{L}^1(\mathcal{A},\mu)$ et $\varepsilon > 0$.
+		Alors il existe $\delta > 0$ tel que pour tout $A \in \mathcal{A}$ vérifiant $\mu(A) < \delta$, on a $\mu(\abs{f} \indic_A) < \varepsilon$.
+	\end{lem}
 	
 	\begin{thm}[\textbf{convergence dominée}]
 		Soit $(f_n)_n \subset \mathcal{L}_0(\mathcal{A})$ une suite telle que $f_n \overset{\mu \text{-p.p.}}{\longrightarrow} f \in \mathcal{L}_0(\mathcal{A})$.
@@ -157,7 +164,7 @@ de Jensen,
 		Alors $\mu_2 = \mu_1 \circ f^{-1}$, notée $\mu_1 f^{-1}$, définit une mesure appelée \textbf{mesure image}.
 	\end{defn}
 
-	\begin{thm}[transfert]
+	\begin{thm}[\textbf{transfert}]
 		Soit $\mu_2 = \mu_1 f^{-1}$ et $h \in \mathcal{L}^0(\mathcal{A}_2)$.
 		Alors $h \in \mathcal{L}^1(\mathcal{A}_2, \mu_2) \iff h \circ f \in \mathcal{L}^1(\mathcal{A}_2, \mu_2)$.
 		Dans ces conditions on a $\int_{\Omega_2} h \diff(\mu_1 f^{-1}) = \int_{\Omega_1} h \circ f \diff \mu_1$.
@@ -206,12 +213,15 @@ de Jensen,
 
 	Soit $g \colon \Omega_1 \to \Omega_2$ avec $\Omega_1$ et $\Omega_2$ des ouverts de $\R^n$.
 	Si $g$ est différentiable en $x$, on note $Dg(x) := \left( \frac{\partial g_i}{\partial x_j} \right)_{1 \leq i,j \leq n}$ sa matrice jacobienne en $x$.
-
 	$g$ est un $\cont^1$-difféomorphisme si $g$ est une bijection telle que $g$ et $g^{-1}$ sont de classe $\cont^1$.
 	Dans ce cas $\det[Dg^{-1}(y)] = \frac{1}{\det[Dg \circ g^{-1}(y)]}$.
 
 	\begin{thm}
 		Soit $\mu_1$ une mesure sur $(\Omega_1, \mathcal{B}(\Omega_1))$ de densité par rapport à la mesure de Lebesgue $f_1 \in \mathcal{L}_0^+(\mathcal{B}(\Omega_1))$, i.e. $\mu_1(\diff x) = \indic_{\Omega_1} f_1(x) \cdot \diff  x$.
 		Soit $g$ un $\cont^1$-difféomorphisme.
-		La mesure image $\mu_2 = \mu_1 g^{-1}$ est absolument continue par rapport à la mesure de Lebesgue, de densité $f_2 \colon y \mapsto \indic_{\Omega_2}(y) f_1 (g^{-1}) \abs{\det[D g^{-1}(y)]}$ et pour toute fonction $h \colon \Omega_2 \to \R$ positive ou $\mu_2$-intégrable, $\int_{\Omega_1} h \circ g(x) f_1(x) \diff x = \int_{\Omega_2} h(y) f_2(y) \diff y$.
+		La mesure image $\mu_2 = \mu_1 g^{-1}$ est absolument continue par rapport à la mesure de Lebesgue, de densité
+		$$f_2 \colon y \mapsto \indic_{\Omega_2}(y) f_1 (g^{-1}) \abs{\det[D g^{-1}(y)]}
+		\qquad \text{et} \qquad
+		\int_{\Omega_1} h \circ g(x) f_1(x) \diff x = \int_{\Omega_2} h(y) f_2(y) \diff y$$
+		pour toute fonction $h \colon \Omega_2 \to \R$ positive ou $\mu_2$-intégrable.
 	\end{thm}

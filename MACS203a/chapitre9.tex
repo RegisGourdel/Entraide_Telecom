@@ -12,7 +12,7 @@
 	Alors $\frac{1}{n} M_n \longrightarrow 0$ p.s. et dans $L^2$.
 \end{thm}
 
-\begin{thm}[Loi forte des grands nombres]
+\begin{thm}[\textbf{Loi forte des grands nombres}]
 	Soit $(X_n)_{n \geq 0}$ une suite iid de v.a. intégrables.
 	Alors $\frac{1}{n} \sum_{i = 1}^n X_i \overset{\text{p.s.}}{\longrightarrow} \esp[X_1]$.
 \end{thm}
@@ -25,4 +25,26 @@
 \begin{thm}
 	Soit $(X_n)_n$ une sous-martingale.
 	Si $\sup_{n \geq 0} \esp[X_n^+] < \infty$, alors $\exists X \in L^1, X_n \overset{\text{p.s.}}{\longrightarrow}X$.
+\end{thm}
+
+\begin{thm}
+	Soit $(X_n)_n$ une sous-martingale.
+	Si $\sup_{n \geq 0} \esp[X_n^+] < \infty$ alors il existe une v.a. $X \in L^1$ telle que $X_n \overset{\text{p.s.}}{\longrightarrow} X$.
+\end{thm}
+
+\begin{rem}
+	Une sous-martingale est bornée dans $L^1$ si et seulement si $\sup_{n \geq 0} \esp[X_n^+] < \infty$.
+\end{rem}
+
+\begin{thm}
+	Pour une martingale $M = (M_n)_n$, les deux assertions suivantes sont équivalentes :
+	\begin{enumerate}[(i)]
+		\item $M$ est fermée et, en prenant $Y \in L^1$ tel que $\forall n \in \N, M_n = \esp[Y \mid \mathcal{F}_n]$, on a $M_n \overset{L^1}{\longrightarrow} Y$ et $M_n \overset{\text{p.s.}}{\longrightarrow} Y$,
+		\item $M$ est uniformément intégrable.
+	\end{enumerate}
+\end{thm}
+
+\begin{thm}[\textbf{central limite martingale}]
+	Soit $(M_n)_n$ une martingale telle que $\esp[(\Delta M_n)^2 \mid \mathcal{F}_n] = 1$ et $K := \sup_{n \geq 1} \esp(\abs{\Delta M_n}^3) < \infty$.
+	Alors $\frac{1}{\sqrt{n}} M_n \overset{\mathcal{L}}{\longrightarrow} \normale(0,1)$.
 \end{thm}
