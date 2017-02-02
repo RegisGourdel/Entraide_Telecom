@@ -1,11 +1,11 @@
-\begin{note}
-	\begin{itemize}
-		\item[\textbullet] $(\Omega,\mathcal{F},\proba)$ espace de proba,
-		\item[\textbullet] $(X_i)_{i \in \N}$ v.a. iid
-		\item[\textbullet] $\forall i \in \N, X_i = \transp{ (X_i^{(1)},\ldots,X_i^{(d)}) }$,
-		\item[\textbullet] $\norme{\cdot}$ norme euclidienne.
-	\end{itemize}
-\end{note}
+%\begin{note}
+	%\begin{itemize}
+		%\item[\textbullet] $(\Omega,\mathcal{F},\proba)$ espace de proba,
+		%\item[\textbullet] $(X_i)_{i \in \N}$ v.a. iid
+		%\item[\textbullet] $\forall i \in \N, X_i = \transp{ (X_i^{(1)},\ldots,X_i^{(d)}) }$,
+		%\item[\textbullet] $\norme{\cdot}$ norme euclidienne.
+	%\end{itemize}
+%\end{note}
 
 \subsection{Introduction}
 
@@ -21,9 +21,13 @@
 	\begin{rem}
 		La consistance est différente du biais.
 		En effet, soit $\bar{X}^n = \frac{1}{n} \sum_{i = 1}^n X_i$, $\hat{\theta}_n = \bar{X}^n + \frac{1}{n}$ est fortement consistant (si $\esp(X_1) < \infty$) et biaisé car $\esp(\hat{\theta}_n) - \esp(X_1) = \frac{1}{n}$.
-		
 		À l'inverse $\hat{\theta}_n = X_1$ est sans biais mais non consistant.
 	\end{rem}
+	
+	\begin{pop}
+		Soit $\hat{\theta}_n$ un estimateur faiblement (resp. fortement) consistant, et $h \colon \Theta \to \R^q$ continue en $\theta_0$.
+		Alors $h(\hat{\theta}_n)$ est un estimateur faiblement (resp. fortement) consistant de $h(\theta_0)$.
+	\end{pop}
 	
 	\begin{defn}
 		Soit $\Theta \subset \R^q$.
@@ -37,7 +41,9 @@
 		\begin{itemize}
 			\item[\textbullet] Moindres carrés : $\hat{\beta}_n$ est défini par $\hat{\beta}_n = \argmin_{\beta \in \R^d} \sum_{i = 1}^n (Y_i - \transp{X_i}\beta)^2$.
 			\item[\textbullet] Maximum de vraisemblance : soit la famille paramétrique $\mathcal{P} = \left\{ f_{\theta} \mid \theta \in \Theta \right\}$ selon laquelle sont distribuées les données $(X_1,\ldots,X_n)$.
+				\vspace{-0.4em}
 				$$\hat{\theta}_n = \argmax_{\theta \in \Theta} \frac{1}{n} \sum_{i = 1}^n \log(f_{\theta}(X_i))$$
+				\vspace{-0.4em}
 			\item[\textbullet] Estimateur des moments par rapport à $\mathcal{P} = \left\{ \proba_{\theta} \mid \theta \in \Theta \right\}$ et $g \colon \mathcal{X} \to \R^p$ : $\hat{\theta}_n$ est pris tel que
 			$$\frac{1}{n} \sum_{i = 1}^n g(X_i) = \int g \diff \proba_{\hat{\theta}_n} = \esp_{\hat{\theta}_n}(g(X_1))\ .$$
 			\item[\textbullet] Estimateur des moments généralisés GMM (si pas de solution avec le précédent) :
@@ -72,14 +78,19 @@
 	En pratique on doit vérifier les 2 hypothèses des résultats précédents.
 	Souvent $M_n(\theta) = \frac{1}{n} \sum_{i = 1}^n \rho(X_i,\theta)$ et $\Psi_n(\theta) = \frac{1}{n} \sum_{i = 1}^n \Psi(X_i,\theta)$.
 
-	\begin{lem}
+	\begin{lem}[Loi forte uniforme des grands nombres]
 		Soit $\Theta$ compact.
 		Supposons
 		\begin{enumerate}[(i)]
 			\item $\forall \theta \in \Theta, \esp(\abs{\rho(X_1,\theta)}) < \infty$,
 			\item $\exists r \colon \mathcal{X} \to \R_+$ tel que $\esp(r(X_1)) < \infty$ et $\forall (\theta,\theta') \in \Theta^2, \forall x \in \mathcal{X}, \abs{\rho(x,\theta) - \rho(x,\theta')} \leq r(x) \norme{\theta - \theta'}$,
 		\end{enumerate}
-		alors $\sup_{\theta \in \Theta} \abs{\frac{1}{n} \sum_{i = 1}^n \rho(X_i,\theta) - \esp[\rho(X_1,\theta)]} \overset{\text{p.s.}}{\longrightarrow} 0$.
+		alors
+		$$\sup_{\theta \in \Theta} \abs{\frac{1}{n} \sum_{i = 1}^n \rho(X_i,\theta) - \esp[\rho(X_1,\theta)]} \overset{\text{p.s.}}{\longrightarrow} 0\ .$$
+	\end{lem}
+	
+	\begin{lem}
+		Dans le lemme précédent la convergence se fait en probabilité si on remplace la condition \textit{(ii)} par $\exists C > 0, \forall (\theta,\theta') \in \Theta^2, \esp(\abs{\rho(x,\theta) - \rho(x,\theta')}) \leq C \abs{\theta - \theta'}$.
 	\end{lem}
 
 	\begin{lem}[\textbf{Vérification de la condition d'identifiabilité}]
@@ -104,7 +115,7 @@
 		Supposons que :
 		\begin{enumerate}[(i)]
 			\item $\hat{\theta}_n \overset{\proba}{\longrightarrow} \theta$,
-			\item il existe un voisinage $v(\theta_0)$ tel que $\forall x \in \mathcal{X}, \theta \mapsto \psi(x,\theta)$ est $\cont^2$ sur $v(\theta_0)$ et $\forall k \in \intiff{1}{q}, \esp \left[ \sum_{\theta \in v(\theta_0)} \norme{\psi_k(X_1,\theta)} \right] < +\infty$,
+			\item il existe un voisinage $v(\theta_0)$ de $\theta_0$ tel que $\forall x \in \mathcal{X}, \theta \mapsto \psi(x,\theta)$ est $\cont^2$ sur $v(\theta_0)$ et $\forall k \in \intiff{1}{q}, \esp \left[ \sum_{\theta \in v(\theta_0)} \norme{\psi_k(X_1,\theta)} \right] < +\infty$,
 			\item soit $\Phi \colon (x,\theta) \mapsto \begin{pmatrix} \nabla_\theta \psi_1(x,\theta) \\ \vdots \\ \nabla_\theta \psi_q(x,\theta) \end{pmatrix} \in \R^{q \times q}$ tel que $\esp \left[ \norme{\Phi(X_1,\theta_0)} \right] < +\infty$ et $\esp[ \Phi(X_1,\theta_0) ] = Q(\theta_0)$ est inversible,
 			\item $\esp[ \norme{\psi(X_1,\theta_0)}^2 ] < +\infty$.
 		\end{enumerate}
@@ -112,3 +123,8 @@
 		En particulier
 		$$\sqrt{n}(\hat{\theta}_n - \theta_0) \overset{\mathcal{L}}{\longrightarrow} \normale \left( 0, Q(\theta_0)^{-1} \Var(\psi(X_1,\theta_0)) \transp{(Q(\theta_0)^{-1})} \right)\ .$$
 	\end{thm}
+
+	\begin{lem}
+		Supposons $(1 + o_P(1)) \cdot \abs{X_n} \leq O_P(1)$.
+		Alors $X_n = O_{\proba}(1)$.
+	\end{lem}

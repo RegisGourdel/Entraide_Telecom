@@ -2,8 +2,11 @@
 
 	\begin{defn}
 		Une mesure de proba $\mu$ sur $(\R^d, \mathcal{B}(\R^d)))$ est caractérisée par sa \textbf{fonction de répartition}
+		\vspace{-0.4em}
 		$$F_\mu \colon (x_1,\ldots,x_d) \mapsto \mu \left( \prod_i \intof{-\infty}{x_i} \right)\ .$$
 	\end{defn}
+	
+	\vspace{-0.4em}
 	
 	\begin{pop}
 		\begin{itemize}
@@ -73,7 +76,7 @@
 		Si $\mu_n \Rightarrow \mu$ alors $\mu_n h^{-1} \Rightarrow \mu h^{-1}$.
 	\end{thm}
 	
-	\begin{thm}[Procédé de Cramer-Wold]
+	\begin{thm}[Procédé de \textbf{Cramer-Wold}]
 		Soit $X_n, X$ des v.a. sur $\R^d$.
 		On a $X_n \overset{\mathcal{L}}{\longrightarrow} X \iff \forall t, \scal{t}{X_n} \overset{\mathcal{L}}{\longrightarrow} \scal{t}{X}$.
 	\end{thm}
@@ -81,7 +84,7 @@
 
 \subsection{Mesures tendues}
 
-	\begin{lem}[d'Helly]
+	\begin{lem}[d'\textbf{Helly}]
 		Soit $(F_n)_n$ une suite de fonctions de répartition.
 		Il existe une sous-suite $(\varphi(n))_n$ et $F \colon \R \to \intff{0}{1}$ croissante, continue à droite, telle que $\lim_n F_{\varphi(n)}(x) = F(x)$ en tout $x$ point de continuité de $F$.
 	\end{lem}
@@ -105,7 +108,7 @@
 		\end{enumerate}
 	\end{pop}
 
-	\begin{thm}[de Prokhorov]
+	\begin{thm}[de \textbf{Prokhorov}]
 		Soit une famille $\mathcal{M}$ de mesures de probabilité.
 		Alors $\mathcal{M}$ est tendue si et seulement si elle est relativement séquentiellement compacte pour la topologie de la convergence faible, i.e. de toute suite $(\mu_n)_n$ de $\mathcal{M}$ on peut extraire une sous suite $(\mu_{\varphi(n)})_n$ telle que $\mu_{\varphi(n)} \Rightarrow \mu$ avec $\mu$ une mesure de probabilité.
 	\end{thm}
@@ -127,7 +130,7 @@
 	\end{defn}
 	
 	\begin{thm}
-		$\varphi_\mu = \varphi_\nu \implies \mu = \nu$.
+		$\phi_\mu = \phi_\nu \implies \mu = \nu$.
 	\end{thm}
 	
 	\begin{pop}
@@ -163,11 +166,13 @@
 	
 	\begin{thm}[central limite]
 		Soit $(X_n)_n$ iid tel que $\esp(\norme{X_1}^2) < \infty$.
-		Alors
+		Alors\\[-0.5em]
 		$$\frac{1}{\sqrt{n}} \sum_{i = 1}^n (X_i - \esp(X_1)) \overset{\mathcal{L}}{\longrightarrow} \normale(0,\Cov(X_1))\ .$$
 	\end{thm}
+	
+	\vspace{-0.4em}
 
-	\begin{thm}[de Linderbergh]
+	\begin{thm}[de \textbf{Linderbergh}]
 		Soit un tableau de v.a. $(X_{i,n})_{1 \leq i \leq n}$ tel que
 		\begin{itemize}
 			\item[\textbullet] $\forall n$, les v.a $X_{1,n},\ldots,X_{n,n}$ sont indépendantes,
