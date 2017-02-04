@@ -1,0 +1,70 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{textcomp}
+\usepackage{wasysym}
+\usepackage[top=2.2cm, bottom=2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[svgnames,table]{xcolor}
+\usepackage{tikzsymbols}
+\usepackage{longtable}
+\usepackage{listings}
+\usepackage{eurosym}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage{wrapfig}
+\usepackage[francais]{babel}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{\textcolor{Teal}{Remarque}}
+
+\renewcommand*\rmdefault{ppl}
+
+\usepackage[colorlinks=true,linkcolor=purple]{hyperref}
+
+
+\begin{document}
+
+\renewcommand{\contentsname}{Sommaire}
+\setcounter{tocdepth}{1}
+
+%%%%%%%%%%%%%%%%%
+% Page de titre %
+%%%%%%%%%%%%%%%%%
+
+
+\begin{titlepage}
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+	\center
+
+	\textsc{\LARGE Télécom ParisTech}\\[1.2cm]
+
+	\HRule \\[0.8cm]
+	{ \huge \bfseries Cours de droit du travail}\\[0.4cm]
+	\HRule \\[1.4cm]
+	
+	\tableofcontents
+
+
+\end{titlepage}
+
+\section{Introduction}
+	\input{c1}
+
+\section{Administration du travail}
+	\input{c2}
+
+\section{La juridiction du travail}
+	\input{c3}
+
+\section{Formalisme d'un contrat}
+
+
+
+\end{document}
