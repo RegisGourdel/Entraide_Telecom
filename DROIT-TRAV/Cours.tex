@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{article}
+\documentclass[a4paper,10pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -6,9 +6,9 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{textcomp}
+%\usepackage{textcomp}
 \usepackage{wasysym}
-\usepackage[top=2.2cm, bottom=2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage[top=2.2cm, bottom=2cm, left=2.3cm, right=2.3cm]{geometry}
 \usepackage{graphicx}
 \usepackage[svgnames,table]{xcolor}
 \usepackage{tikzsymbols}
@@ -18,12 +18,14 @@
 \usepackage{float}
 \usepackage{enumerate}
 \usepackage{wrapfig}
+\usepackage{smartdiagram}
 \usepackage[francais]{babel}
 
 \theoremstyle{remark}
 \newtheorem*{rem}{\textcolor{Teal}{Remarque}}
 
-\renewcommand*\rmdefault{ppl}
+%\renewcommand*\rmdefault{ppl}
+\usepackage{kpfonts}
 
 \usepackage[colorlinks=true,linkcolor=purple]{hyperref}
 
@@ -49,6 +51,11 @@
 	{ \huge \bfseries Cours de droit du travail}\\[0.4cm]
 	\HRule \\[1.4cm]
 	
+	{\fontfamily{pcr}\selectfont
+	Régis Gourdel\\
+	d'après Sandra Renda, Antony Lopez et Alexandra Huard
+	}\\[0.8cm]
+	
 	\tableofcontents
 
 
@@ -57,14 +64,31 @@
 \section{Introduction}
 	\input{c1}
 
-\section{Administration du travail}
+\section{L'administration du travail}
 	\input{c2}
 
 \section{La juridiction du travail}
 	\input{c3}
 
-\section{Formalisme d'un contrat}
+\section{Contrat de travail}
+	\input{c4}
 
+\section{Le Contrat de travail à Durée Déterminée}
+	\input{c5}
 
+\section{Les licenciements}
+	\input{c6}
+
+\section{La formation}
+	\input{c7}
+
+\section{Rupture à l’initiative de l’employé : démission d'un CDI}
+	\input{c8}
+
+\section{Le temps de travail}
+	\input{c9}
+
+\section{Étude de cas}
+	\input{c10}
 
 \end{document}
