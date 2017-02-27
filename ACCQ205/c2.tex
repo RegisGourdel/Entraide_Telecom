@@ -1,0 +1,95 @@
+\subsection{Anneaux nothérien}
+
+	\begin{defn}
+		Un idéal $I$ d'un anneau $A$ est de \textbf{type fini} s'il est engendré par un nombre fini d'éléments (équivalent à être de type fini en tant que sous-module de $A$).
+	\end{defn}
+
+	\begin{defn}
+		Un anneau $A$ est dit \textbf{noethérien} lorsque tout idéal $I$ de $A$ est de type fini.
+	\end{defn}
+
+	\begin{rem}
+		Un quotient d’un anneau noethérien est noethérien.
+	\end{rem}
+
+	\begin{thm}[de la base de Hilbert]
+		Si $A$ est un anneau noethérien, alors l’anneau $A[t]$ des polynômes à une indéterminée sur $A$ est noethérien.
+	\end{thm}
+
+	\begin{cor}
+		Soit $k$ un corps ou un anneau noethérien.
+		Alors l’anneau $k[t_1,\ldots,t_n]$ des polynômes en $n$ indéterminées sur $k$ est un anneau noethérien, et plus généralement toute $k$-algèbre de type fini (comme $k$-algèbre) $k[x_1,\ldots,x_n]$ est un anneau noethérien.
+	\end{cor}
+
+\subsection{Idéaux maximaux d’anneaux de polynômes}
+
+	\begin{lem}
+		Soit $k$ un corps algébriquement clos et $K$ une extension.
+		On suppose que $h_1,\ldots,h_m \in k[t_1,\ldots,t_n]$ ont un zéro commun dans $K$ (i.e $\exists z_1,\ldots,z_n \in K, \forall i, h_i(z_1,\ldots,z_n = 0$).
+		Alors ils en ont un dans $k$.
+	\end{lem}
+
+	\begin{note}
+		Soit $k$ un corps et $(x_1,\ldots,x_n) \in k^n$. On note
+		$$\mathfrak{m}_{(x_1,\ldots,x_n)} := \{ f \in k[t_1,\ldots,t_n] \mid f(x_1,\ldots,x_n) = 0 \} = (t_1 - x_1,\ldots,t_n - x_n)\ .$$
+	\end{note}
+
+	\begin{pop}
+		Soit $k$ un corps algébriquement clos.
+		Les idéaux maximaux de $k[t_1,\ldots,t_n]$ sont exactement les idéaux $\mathfrak{m}_{(x_1,\ldots,x_n)}$.
+	\end{pop}
+	
+	\begin{pop}[lemme de Zariski]
+		Soit $k$ un corps et $K$ une extension de type fini comme $k$-algèbre.
+		Alors $k$ est en fait une extension finie.
+	\end{pop}
+
+
+\subsection{Le Nullstellensatz}
+
+	\begin{pop}[Nullstellensatz faible]
+		Soient $h_1,\ldots,h_m \in k[t_1,\ldots,t_n]$ avec $k$ algébriquement clos.
+		Si $h_1,\ldots,h_m$ n'engendrent pas l'idéal unité, alors ils ont un zéro commun dans $k$: $\exists x_1,\ldots,x_n \in k, \forall i, h_i(x_1,\ldots,x_n) = 0$.
+	\end{pop}
+
+	\begin{pop}[Nullstellensatz fort]
+		Soient $g, h_1,\ldots,h_m \in k[t_1,\ldots,t_n]$ avec $k$ algébriquement clos.
+		Si $g$ s'annule sur tous les zéros commun de $h_1,\ldots,h_m$ alors $\exists l \in \N, g^l \in (h_1,\ldots,h_m)$ (idéal engendré).
+	\end{pop}
+
+
+\subsection{Fermés de Zariski}
+
+	\begin{defn}
+		Un idéal $\mathfrak{r}$ d'un anneau $A$ est dit \textbf{radical} lorsque $A / \mathfrak{r}$ est réduit, i.e $\forall x \in A, \forall n \in \N, x^n \in \mathfrak{r} \implies x \in \mathfrak{r}$.
+	\end{defn}
+
+	Un idéal premier, et a fortiori un idéal maximal, est en particulier un idéal radical.
+
+	Dans ce qui suit on note $k$ un corps et $k^{\alg}$ une clôture algébrique.
+
+	\begin{note}
+		Soit $\mathscr{F} \subset k[t_1,\ldots,t_n]$.
+		On pose $Z(\mathscr{F}) := \{ (x_1,\ldots,x_d) \in (k^{\alg})^d \mid \forall f \in \mathscr{F}, f(x_1,\ldots,x_d) = 0 \}$.
+	\end{note}
+	
+	\begin{defn}
+		On appelle \textbf{fermé de Zariski} tout ensemble de la forme $Z(\mathscr{F})$ et l'on peut supposer que $\mathscr{F}$ est un idéal radical.
+	\end{defn}
+
+	\begin{defn}
+		Un fermé de Zariski de la forme $Z(f) = Z(\{ f \})$ est appelé une \textbf{hypersurface}.
+	\end{defn}
+
+	\begin{rem}
+		Le vide, $(k^{\alg})^d$ et les singletons sont des fermés de Zariski.
+	\end{rem}
+
+	\begin{note}
+		Soit $E \subset (k^{\alg})^d$.
+		On pose $\mathfrak{J}(E) := \{ f \in k[t_1,\ldots,t_n] \mid \forall (x_1,\ldots,x_d) \in E, f(x_1,\ldots,x_d) = 0 \}$.
+	\end{note}
+
+	\begin{rem}
+		$\mathfrak{J}(E)$ est un idéal radical, $\mathfrak{J}$ est décroissant pour l'inclusion et $\mathfrak{J}(E) = \bigcap_{x \in E} \mathfrak{M}_x$ où $\mathfrak{M}_x = \mathfrak{J}(\{ x \})$.
+	\end{rem}
