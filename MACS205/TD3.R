@@ -7,8 +7,12 @@
 #' **Exercice 1**
 #' 
 #' *1/*
-
-trapezeInt =function(FUN,a,b,M){
+#' On a :
+#' $$\hat{I}_{a,b,M} = h \left[ \frac{f(a) + f(b)}{2} + \sum_{m = 1}^{M - 1} f(a + mh) \right]\ .$$
+#' Donc, on a en particulier $w_0 = w_M = \frac{1}{2}$ et $\forall m \in [\![ 1, M - 1 ]\!], w_m = 1$.
+#'
+#' *2/*
+trapezeInt = function(FUN,a,b,M){
     ##' TRAPEZOIDAL INTEGRATION RULE (COMPOSITE)
     ##' @param FUN : the function to be integrated
     ##' @param a, b : interval end points 
@@ -16,79 +20,131 @@ trapezeInt =function(FUN,a,b,M){
     ##' @return: the value of the composite trapezoidal quadrature. 
     x = seq(a,b, length.out= M+1)
     y = sapply(x, FUN)
-    h = (b-a)/M 
-    ## q = ## Complete the code here. Use vector operations, not a loop !
+    h = (b-a)/M
+    q = h * (y[1]/2 + sum(y[2:M]) + y[M + 1]/2)
     return(q)
 }
+
+#' Test :
+trapezeInt(cos,0,pi/2,10)
+trapezeInt(cos,0,pi/2,100)
+
+#' *3/*
+#' Montrons que la méthode est d'ordre 1. Par linéarité de la formule il suffit de le montrer pour $1$ et $X$ sur tout intervalle.
+#' Soient $a$ et $b$ réels, $a < b$.
+#' On a
+#' \begin{align*}
+#' & \hat{I}_{a,b,1}(1) = h = b - a = \int_a^b 1 \\
+#' & \hat{I}_{a,b,1}(X) = h \cdot \frac{a + b}{2} = \frac{(b - a)(b + a)}{2} = \frac{b^2}{2} - \frac{a^2}{2} = \int_a^b X
+#' \end{align*}
+#' 
+#' Mais on a $\hat{I}_{0,1,1}(X^2) = 1 \cdot \frac{0 + 1}{2} = \frac{1}{2} \neq \frac{1}{3} = \int_a^b X^2$, ce qui prouve que la méthode est d'ordre $1$.
+#' 
 
 #' **Exercice 2**
 #' 
 refineTrapeze=function(FUN,a,b,M,q){
-    ##' refinement of the subdivision step: incremental method
-    ##' @param FUN : the function to be integrated
-    ##' @param a, b : interval end points 
-    ##' @param M : initial number of intervals (each of size (b-a)/M)
-    ##'  having been used to compute q
-    ##' @param  q : the value of the trapezoidal  quadrature method
-    ##'  of stepsize (b-a)/M
-    ##' @return : the value of the quadrature for a stepsize h' = h/2
-    h = (b-a)/M
-    ## x =  ## complete here : 
-        ##  x : a vector of size M :
-        ##     the additional abscissas where 'fun' must be evaluated.
-        y = sapply(x, FUN)
-    ## Q = ##  complete here : a function of y, h and q. 
-    return(Q)
+  ##' refinement of the subdivision step: incremental method
+  ##' @param FUN : the function to be integrated
+  ##' @param a, b : interval end points 
+  ##' @param M : initial number of intervals (each of size (b-a)/M)
+  ##'  having been used to compute q
+  ##' @param  q : the value of the trapezoidal  quadrature method
+  ##'  of stepsize (b-a)/M
+  ##' @return : the value of the quadrature for a stepsize h' = h/2
+  h = (b-a)/M
+  x = seq(a,b, length.out = M+1)[1:M] + h/2
+  ##  x : a vector of size M :
+  ##     the additional abscissas where 'fun' must be evaluated.
+  y = sapply(x, FUN)
+  Q = q/2 + sum(y)*(h/2)
+  return(Q)
 }
 
 #' Test
-# p4 = function(x){x^4}
-# M = 5
-# myfun = p4 
-# Qh = trapezeInt(myfun, 0, 1, M)
-# refineQh = refineTrapeze(myfun,0,1,M, Qh)
-# Qh2 = trapezeInt(myfun, 0, 1, 2*M)
-# err = Qh2 - refineQh
-# err
+p4 = function(x){x^4}
+M = 5
+myfun = p4
+Qh = trapezeInt(myfun, 0, 1, M)
+refineQh = refineTrapeze(myfun,0,1,M, Qh)
+Qh2 = trapezeInt(myfun, 0, 1, 2*M)
+err = Qh2 - refineQh
+err
 
 
+#' **Exercice 3**
+#' 
+#' *1/*
+#' On a, par changement de variable affine $x = \frac{a + b}{2} + \frac{b - a}{2}t$ :
+#' $$\lambda_i = \frac{1}{b - a} \int_a^b l_i(x)\ \mathrm{d}x = \frac{1}{2} \int_{-1}^1 l_i \left( \frac{a + b}{2} + \frac{b - a}{2}t \right) \mathrm{d}t$$
+#' Notons $(t_i)_{0 \leq i \leq n}$ les $n + 1$ nœuds équidistants sur $[-1,1]$, de sorte que $x_i = \frac{a + b}{2} + \frac{b - a}{2}t$ et $x_i - x_j = \frac{b - a}{2}(t_i - t_j)$.
+#' Alors on a
+#' $$l_i \left( \frac{a + b}{2} + \frac{b - a}{2}t \right) = \prod_{j \neq i} \frac{b - a}{2} \cdot \frac{t - t_j}{x_i - x_j} = \prod_{j \neq i} \frac{t - t_j}{t_i - t_j}$$
+#' d'où $\lambda_i = \frac{1}{2} \int_{-1}^1 \tilde{l}_i(u)\ \mathrm{d}u$.
+#' 
+#' *2/*
+#' Dans le cas $n = 3$ on a $t_0 =-1, t_1 = 0, t_2 = 1$.
+#' Alors $\lambda_0 = \frac{1}{2} \int_{-1}^1 \frac{x(x - 1)}{2} = \frac{1}{4} \left[ \frac{x^3}{3} - \frac{x^2}{2} \right]_{-1}^1 = \frac{1}{6}$.
+#' Par symétrie il vient $\lambda_2 = \frac{1}{6}$ et on a
+#' $$\sum \lambda_i = \frac{1}{2} \int_{-1}^1 \sum_i \tilde{l}_i(u)\ \mathrm{d}u = \frac{1}{2} \int_{-1}^1 L_3 \mathbf{1} = 1$$
+#' donc $\lambda_1 = \frac{4}{6}$.
+#' 
+#' 
 #' **Exercice 4**
+#' 
+#' *1/*
+#' On pose $\forall i \in [\![ 0,M ]\!], x_i = a + ih$.
+#' On a :
+#' \begin{align*}
+#' \hat{I}_{S,h} & = \sum_{i = 0}^{M - 1} \left[ \frac{1}{6} f(x_i) + \frac{2}{3} f \left( \frac{x_i + x_{i + 1}}{2} \right) + \frac{1}{6} f(x_{i + 1}) \right] \cdot h \\
+#'               & = h \cdot \left( \frac{f(x_0) + f(x_M)}{6}  + \frac{1}{3} \sum_{i = 1}^{M - 1} f(x_i) + \frac{2}{3} \sum_{i = 0}^{M - 1} f \left( \frac{x_i + x_{i + 1}}{2} \right) \right) \\
+#'               & = h \left( \frac{1}{6} f(a) + \frac{2}{3} f(a + h/2) + \sum_{i = 1}^{M - 1} \left[ \frac{1}{3} f(x_i) + \frac{2}{3} f(x_i + h/2) \right] + \frac{1}{6} f(b) \right)
+#' \end{align*}
+#' 
+#' Or on a également :
+#' $$\hat{I}_{T,h} = h \left( \frac{1}{2} f(a) + \sum_{i = 1}^{M - 1} f(x_i) + \frac{1}{2} f(b) \right)$$
+#' et
+#' $$\hat{I}_{T,h/2} = h \left( \frac{1}{4} f(a) + \frac{1}{2} f(a + h/2) + \sum_{i = 1}^{M - 1} \left[ \frac{1}{2} f(x_i) + \frac{1}{2} f(x_i + h/2) \right] + \frac{1}{4} f(b) \right)$$
+#' d'où
+#' $$\hat{I}_{S,h} = \frac{4}{3} \hat{I}_{T,h/2} - \frac{1}{3} \hat{I}_{T,h}\ .$$
+#' 
 simpsonInt = function(FUN,a,b,M){
-    ##' Simpson integration via trapeze rule
-    ##' uses the fact that 
-    ##' simpson(h) = 4/3(trapeze(h/2) - 1/4 trapeze(h))
-    h = (b-a)/M;
-    ## qtrapeze = ## Complete  
-    ## qrefined = ## Complete 
-    ## q =  ## Complete 
-    return(q)
+  ##' Simpson integration via trapeze rule
+  ##' uses the fact that 
+  ##' simpson(h) = 4/3(trapeze(h/2) - 1/4 trapeze(h))
+  h = (b-a)/M;
+  qtrapeze = trapezeInt(FUN,a,b,M)
+  qrefined = refineTrapeze(FUN,a,b,M,qtrapeze)
+  q = 4/3*qrefined - 1/4*qtrapeze
+  return(q)
 }
 
+#' *2/*
 #' Test
-# d = 4
-# a = 1; b=5;
-# 
-# MyPolynome = function(x){x^d}
-# trueInt = (b^(d+1) - a^(d+1))/(d+1);
-# 
-# MM = 5:20
-# Resultats = rep(0,length(MM));
-# for (i in  1:length(MM)){
-#     Resultats[i]  = simpsonInt(MyPolynome,a,b,MM[i]);
-#     ##pi/2,2*pi+pi/2,MM(i));
-# }
-# 
-# plot(MM,trueInt-Resultats);
-# title("error as a function of M")
-# 
-# if(max(abs(trueInt-Resultats)) > trueInt * .Machine$double.eps*10 ){
-#     logerr = log(abs(trueInt-Resultats));
-#     plot(log(MM),logerr);
-#     title("log error as  a function of log(M)")
-#     neval = length(logerr)
-#     pente = (logerr[neval] - logerr[1])/(log(MM[neval]) - log(MM[1]))
-#     pente
-# }
+d = 4
+a = 1; b=5;
+
+MyPolynome = function(x){x^d}
+trueInt = (b^(d+1) - a^(d+1))/(d+1);
+
+MM = 5:20
+Resultats = rep(0,length(MM));
+for (i in  1:length(MM)){
+    Resultats[i]  = simpsonInt(MyPolynome,a,b,MM[i]);
+    ## pi/2, 2*pi+pi/2, MM(i));
+}
+
+plot(MM,trueInt-Resultats);
+title("error as a function of M")
+
+if(max(abs(trueInt-Resultats)) > trueInt * .Machine$double.eps*10 ){
+    logerr = log(abs(trueInt-Resultats));
+    plot(log(MM),logerr);
+    title("log error as  a function of log(M)")
+    neval = length(logerr)
+    pente = (logerr[neval] - logerr[1])/(log(MM[neval]) - log(MM[1]))
+    pente
+}
 
 
 #' **Exercice 5**

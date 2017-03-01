@@ -92,11 +92,12 @@ hornerNewton = function(a,x,z){
   ##            evaluated. 
   ## @return  : a vector of same size as z: the value of the
   ##            polynomial at points z.
-  ## 
-  n = length(x);
-  f  = a[n] * (z-x[n-1]) + a[n-1]
-  for(i in 2:n-1){
-    f = f * (z - x[n - i]) + a[n - i]
+  n = length(x)
+  f = a[n] * rep(1,length(z))
+  if (n >= 2){
+    for(i in 1:n-1){
+      f = f * (z - x[n - i]) + a[n - i]
+    }
   }
   return(f)
 }
