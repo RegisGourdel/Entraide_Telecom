@@ -135,6 +135,7 @@ funRunge = function(x){ 1/(1 + (5*x)^2) }
 n = 8
 m = 100
 x = seq(-1,1,length.out = n)
+x
 z = seq(-1,1,length.out = m)
 val = interpolDividif(x, funRunge(x), z)
 
@@ -150,3 +151,58 @@ val = interpolDividif(xtche, funRunge(xtche), z)
 plot(z, Y, type = 'l', col="red")
 lines(z, val, type = 'l', col="blue", lty = 2)
 lines(xtche, funRunge(xtche), type = 'p', col="blue")
+
+#' **Exercice 7**
+#' 
+#' *1/*
+interpolLagrange = function(n, a, b, neval, nodes = 'equi', FUN, Plot){
+    ## Generic Lagrange interpolation, with equidistant or Chebyshev nodes. 
+    ## @param n : the degree of the interpolating polynomial on each
+    ## subinterval
+    ## @param a : left end-point of the interval
+    ## @param b : right end-point of the interval
+    ## @param neval :number of evaluation points (a regular grid will be
+    ## used on [a,b]
+    ## @param nodes :string, either "equi" (default) for equidistant
+    ## Lagrange interpolation (on each subinterval) or "cheby" for
+    ## using Chebyshev nodes.
+    ## @param FUN: the function to be interpolated 
+    ## @param Plot : logical. Setting 'Plot' to TRUE produces a plot
+    ## showing the graph of
+    ## the true functions and its interpolation.  
+    ## @return : vector of size 'neval': the values of the Lagrange
+    ## polynomial on an equi-distant grid.
+    
+    if (nodes == "equi"){
+        x = seq(a,b,length.out = n)
+    }
+    else if (nodes == "cheby"){
+        x = ( sapply( pi/n*seq(0,(n-1)) + pi/(2*n), cos ) + (a + b)/2 ) * (b - a)
+    }
+    else{stop("the nodes must be either 'equi' or 'cheby'") }
+    
+    z = seq(a,b,length.out = neval)
+    f = interpolDividif(x, FUN(x), z)
+    
+    if( Plot ){
+        if (nodes == "equi"){ methodName = " equidistant "}
+        else { methodName = " Chebyshev "}
+        
+        y = sapply(z,FUN)
+        plot(z, y, type="l", ylim=range(c(y,f)) )
+        title(main = paste("Lagrange interpolation with ",
+                           toString(n+1), methodName,
+                           " nodes", sep=""))
+        lines(z,f, col = 'blue') 
+        legend('topright',
+               legend=c('function','interpolation'),
+               col = c('black','red'),
+               lwd=1)
+    }
+    return(f)
+}
+
+#' *2/*
+#' Test :
+interpolLagrange(6,-1,1,100,'cheby',myfun,TRUE)
+interpolLagrange(8,-1,1,100,'equi',funRunge,TRUE)
