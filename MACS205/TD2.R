@@ -51,14 +51,13 @@
 #' 
 #' *4/*
 dividif = function(x,y){
-  ##  Newton's Divided differences
+  ## Newton's Divided differences
   ## @param x: a vector containing the interpolation nodes 
   ## @param y: a vector of same size as x:
   ##           values of the interpolated function at the nodes
   ## @return : a vector of same size as x:
   ##          the divided differences
-  ##          \eqn{f_[x_0, ... x_k]} of order 'length(x) -1'. 
-  
+  ##          \eqn{f_[x_0, ... x_k]} of order 'length(x) -1'.
   n = length(x) - 1 ## degree of the Lagrange polynomial
   d  = y
   for (j in 2:(n+1)) {
@@ -103,7 +102,7 @@ hornerNewton = function(a,x,z){
 }
 
 #' **Exercice 5**
-interpolDividif=function(x,y,z){
+interpolDividif = function(x,y,z){
   ## Efficient Lagrange interpolation using Horner's method with  
   ## Newton basis for evaluation
   ## @param x : vector containing the interpolation nodes 
@@ -113,7 +112,6 @@ interpolDividif=function(x,y,z){
   ##            needs to be evaluated. 
   ## @return  : vector of same size as z: the value of the
   ##            interpolating polynomial at points z.
-  
   d = dividif(x,y)
   return(hornerNewton(d,x,z))
 }
@@ -173,7 +171,6 @@ interpolLagrange = function(n, a, b, neval, nodes = 'equi', FUN, Plot){
     ## the true functions and its interpolation.  
     ## @return : vector of size 'neval': the values of the Lagrange
     ## polynomial on an equi-distant grid.
-    
     if (nodes == "equi"){
         x = seq(a,b,length.out = n)
     }

@@ -121,7 +121,7 @@ simpsonInt = function(FUN,a,b,M){
 
 #' *2/*
 #' Test
-d = 4
+d = 3
 a = 1; b=5;
 
 MyPolynome = function(x){x^d}
@@ -146,6 +146,16 @@ if(max(abs(trueInt-Resultats)) > trueInt * .Machine$double.eps*10 ){
     pente
 }
 
+#' Plaçons nous sur un intervalle $[a,b]$ de taille $h = \frac{1}{M}$.
+#' Notons $\epsilon$ l'epsilon machine.
+#' On cherche
+#' $$\min \left\{ d \in \mathbf{N} \mid \left\vert \frac{I(X^d) - \hat{I}(X^d)}{I(X^d)} \right\vert \geq 10 \cdot \epsilon \right\}$$
+#' 
+#' On emploie une méthode de Newton-Cotes de rang 2 donc d'ordre $N = 3$.
+#' Donc l'erreur d'intégration est nulle pour tout $d \in [\![ 0,3 ]\!]$.
+#' Donc la condition a une chance d'être vérifié à partir de $d = 4$ où l'erreur ainsi que l'erreur relative seront forcément non nulle sur certains intervalles.
+#' 
+#' 
 
 #' **Exercice 5**
 evalErrSimpson = function(FUN,a,b,M){
