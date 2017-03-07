@@ -158,50 +158,65 @@ if(max(abs(trueInt-Resultats)) > trueInt * .Machine$double.eps*10 ){
 #' 
 
 #' **Exercice 5**
+#' 
+#' *1/*
+#' Avec l'hypothèse $f^{(4)}(\xi_M) \simeq f^{(4)}(\xi) = C^{te}$ on a :
+#' $$E_{2M}/E_M \simeq \frac{K f^{(4)}(\xi) (h/2)^4}{K f^{(4)}(\xi) h^4} = \frac{1}{16}\ .$$
+#' 
+#' *2/*
+#' On a
+#' $$I_{2M} - I_M = E_{2M} - E_M \simeq \frac{1}{16} E_M - E_M = -\frac{15}{16} E_M = - 15 \cdot E_{2M}$$
+#' d'où
+#' $$E_{2M} \simeq \frac{I_M - I_{2M}}{15}\ .$$
+
 evalErrSimpson = function(FUN,a,b,M){
-    ## Computes an approximation E of the error 
-    ## for the composite Simpson rule of step h=(b-a)/(2M). 
-    ##This requires computing I_M and I_{2M}. 
-    ##The value  q = I_{2M} is also returned. 
-    qth = trapezeInt(FUN,a,b,M)   ## M +1 evaluations
-    qth2 = refineTrapeze ( FUN,a,b,M,qth )  ## M evaluations
-    qth4 = refineTrapeze ( FUN,a,b,2*M,qth2 )   ## 2M evaluations
-    simps_h =   4/3*(qth2 - 1/4* qth ) 
-    ## simps_h2 =  ## Completer 
-        q = simps_h2  
-    ## E = ## Completer 
-        return(c(E,q))
+  ## Computes an approximation E of the error 
+  ## for the composite Simpson rule of step h=(b-a)/(2M). 
+  ##This requires computing I_M and I_{2M}. 
+  ##The value  q = I_{2M} is also returned. 
+  qth = trapezeInt(FUN,a,b,M)   ## M +1 evaluations
+  qth2 = refineTrapeze ( FUN,a,b,M,qth )  ## M evaluations
+  qth4 = refineTrapeze ( FUN,a,b,2*M,qth2 )   ## 2M evaluations
+  simps_h  = 4/3*(qth2 - 1/4* qth)
+  simps_h2 = 4/3*(qth4 - 1/4* qth2)
+  q = simps_h2
+  E = (simps_h - simps_h2)/15
+  return(c(E,q))
 }
 
-#' Test
-# d = 13.4 ; M=9
-# a = 0.5; b=3;
-# pol = function(x){x^d}
-# trueInt = (b^(d+1) - a^(d+1))/(d+1)
-# vv= evalErrSimpson(pol,a,b, M)
-# q = vv[2] ; E = vv[1]
-# estErr = E
-# trueErr = q - trueInt 
-# relativeErrorOnError = (trueErr - estErr)/trueErr
-# relativeErrorOnError
+#' *3/*
+#'Test de l'évaluation de l'erreur :
+d = 13.4 ; M=9
+a = 0.5; b=3;
+pol = function(x){x^d}
+trueInt = (b^(d+1) - a^(d+1))/(d+1)
+vv= evalErrSimpson(pol,a,b, M)
+q = vv[2] ; E = vv[1]
+estErr = E
+trueErr = q - trueInt
+relativeErrorOnError = (trueErr - estErr)/trueErr
+relativeErrorOnError
+
 
 #' **Exercice 6**
+#'
+#' *1/*
 #' 
 richardson = function(FUN,n,t,delta){
-    ## Calcule le tableau des differences  divisees en 0 du 
-    ## polynome d'interpolation en t,delta t, ... delta^n t
-    ## renvoie un vecteur de taille n+1:
-    ## le vecteur des A_{k,k}, k= 0 .. n 
-    ## (pas la matrice).   
-    ## La meilleure approximation est le dernier element A[n+1].
-    ##
-    lx = log(t)  +  log(delta) *(0:n)
-    x = exp(lx) 
-    A = sapply(x,FUN) 
-    for( j in 2:(n+1)){
-        ## A[j : (n+1) ] =  ## Completer le code 
-    }
-    return(A)
+  ## Calcule le tableau des differences  divisees en 0 du 
+  ## polynome d'interpolation en t,delta t, ... delta^n t
+  ## renvoie un vecteur de taille n+1:
+  ## le vecteur des A_{k,k}, k= 0 .. n 
+  ## (pas la matrice).   
+  ## La meilleure approximation est le dernier element A[n+1].
+  ##
+  lx = log(t)  +  log(delta) *(0:n)
+  x = exp(lx) 
+  A = sapply(x,FUN) 
+  for( j in 2:(n+1)){
+    ## A[j : (n+1) ] =  ## Completer le code 
+  }
+  return(A)
 }
 
 #' test
@@ -230,22 +245,22 @@ richardson = function(FUN,n,t,delta){
 #' **Exercice 7**
 
 romberg = function(FUN,n,a,b,M){## methode de Romberg avec n etapes
-    ## appliquee sur la fonction FUN sur l'intervalle (a,b), avec un
-    ## pas initial h = (b-a)/M
-    h= (b-a)/M 
-    A = rep(0, n+1)
-    A[1] = trapezeInt(FUN,a,b,M);
-    Mc = M
-    ## initialisation des differences divisees
-    for( i in 2:(n+1)){
-        A[i] = refineTrapeze( FUN,a,b, Mc, q= A[i-1])
-        Mc = 2*Mc 
-    }
-    delta = 1/4;
-    for (j in 2:(n+1)){
-        ## A[j : (n+1) ] = ## completer sur le modele de richardson
-    }
-    return(A)
+  ## appliquee sur la fonction FUN sur l'intervalle (a,b), avec un
+  ## pas initial h = (b-a)/M
+  h= (b-a)/M 
+  A = rep(0, n+1)
+  A[1] = trapezeInt(FUN,a,b,M);
+  Mc = M
+  ## initialisation des differences divisees
+  for( i in 2:(n+1)){
+    A[i] = refineTrapeze( FUN,a,b, Mc, q= A[i-1])
+    Mc = 2*Mc 
+  }
+  delta = 1/4;
+  for (j in 2:(n+1)){
+    ## A[j : (n+1) ] = ## completer sur le modele de richardson
+  }
+  return(A)
 }
 
 
