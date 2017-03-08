@@ -8,17 +8,16 @@
 rm(list = ls())
 load('absc-Val.Rdata')
 source('fonctions-miniprojet.R')
-
-library(RColorBrewer)
+source('mesfonctions.R')
 
 #' **1.1**
 #' 
 #' On réalise une fonction pour tracer les polynômes d'interpolation quatre par quatre, les lignes de plus haut degré étant les plus foncées :
-n = 1000
+neval = 1000
 a = 2^(-16); b = 1.5
-z = seq(a,b,length.out = n)
+z = seq(a,b,length.out = neval)
 y = evalBoiteNoire(z)
-cols = brewer.pal(n=4,name="Set1")
+cols = c("red","orange","green","blue")
 
 intpol = function(deg) {
     plot(z, y, type = 'l', col = 'black')
@@ -58,10 +57,41 @@ intpoltche = function(deg) {
 #' Pour des degrés inférieurs à 18 l'approximation s'améliore mais n'est pas encore très fine :
 intpoltche(c(4,8,12,18))
 
-#' On arrive alors sur une plage de degrés, de 20 à 42, que l'on pourra qualifier de raisonnables, et qui fournisse une bonne approximation de la fonction :
+#' On arrive alors sur une plage de degrés, de 20 à 42, que l'on pourra qualifier de raisonnables, et qui fournissent une bonne approximation de la fonction :
 intpoltche(c(20,26,34,42))
 
 #' Puis à partir du degré 43 on observe un phénomène de Runge dont l'effet s'accentue pour les degrés encore supérieurs :
 intpoltche(c(43,47))
 
 #' **1.3.a**
+#' 
+#' On emploie une version simplifié de la fonction piecewiseInterpolation réalisée dans le TD2.
+
+piecewiseItp = function(n, M){
+  intEndPoints = seq(a, b, length.out = M + 1)
+  f = c(); z = c()
+  x = seq(-1,1,length.out = n)
+  nevalp = (neval / M) + 1
+  for (m in 1:M){
+    A = intEndPoints[m]; B = intEndPoints[m + 1]
+    xm = x * (B - A)/2 + (A + B)/2
+    zm = seq(A, B, length.out = nevalp)
+    fm = interpolDividif(xm, evalBoiteNoire(xm), zm)
+    if(m >= 2){
+      ## remove first element of zm, fm to avoid duplicate values of the  interpolating vector
+      zm = zm[2:nevalp]
+      fm = fm[2:nevalp]
+    }
+    z = c(z,zm)
+    f = c(f,fm)
+  }
+  return(rbind(f,z))
+}
+
+M = 10
+plot(z, y, type = 'l', col = 'black')
+for (i in 1:3) {
+  temp = piecewiseItp(i, M)
+  yy = temp[1]; zz = temp[2]
+  lines(zz, yy, col = cols[i], lty = 2)
+}
