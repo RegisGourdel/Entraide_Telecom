@@ -175,7 +175,8 @@ interpolLagrange = function(n, a, b, neval, nodes = 'equi', FUN, Plot){
         x = seq(a,b,length.out = n)
     }
     else if (nodes == "cheby"){
-        x = ( sapply( pi/n*seq(0,(n-1)) + pi/(2*n), cos ) + (a + b)/2 ) * (b - a)
+        rtche = function(t) { cos((2*t - 1)*pi/2/n) }
+        x = rtche(seq(1:n)) * (b - a)/2 + (a + b)/2
     }
     else{stop("the nodes must be either 'equi' or 'cheby'") }
     
@@ -202,5 +203,70 @@ interpolLagrange = function(n, a, b, neval, nodes = 'equi', FUN, Plot){
 
 #' *2/*
 #' Test :
-interpolLagrange(6,-1,1,100,'cheby',myfun,TRUE)
-interpolLagrange(8,-1,1,100,'equi',funRunge,TRUE)
+a = interpolLagrange(6,-1,1,100,'cheby',myfun,TRUE)
+a = interpolLagrange(8,-1,1,100,'equi',funRunge,TRUE)
+
+
+#' **Exercice 8**
+#' 
+#' *1/*
+#' TODO
+#' 
+#' *2/*
+piecewiseInterpol = function(n,nInt,a,b,neval, nodes = "equi", FUN, Plot){
+    ## @param n : the degree of the interpolating polynomial on each
+    ## subinterval
+    ## @param nInt :  the number of sub-intervals
+    ## @param a, b : endpoints of the interval
+    ## @param neval : the number of points on the interpolating grid (on
+    ## each subinterval)
+    ## @param nodes : string, either "equi" (default) for equidistant
+    ## Lagrange interpolation (on each subinterval) or "cheby" for
+    ## chebyshev nodes.
+    ## @param FUN the function to be interpolated
+    ## @param Plot : logical. Should the result be plotted ?
+    ## @return : a matrix with 2 rows and neval * nInt -neval + 1:
+    ## values of the interpolated funtion on a regular grid (first row)
+    ## and the corresponding abscissas (second row).
+    
+    intEndPoints = seq(a,b,length.out = nInt+1)
+    f = c()
+    z = c()
+    if (nodes == "equi"){
+        x = seq(-1,1,length.out = n)
+    }
+    else if (nodes == "cheby"){
+        rtche = function(t) { cos((2*t - 1)*pi/2/n) }
+        x = rtche(seq(1:m))
+    }
+    for (m in 1:nInt){
+        A = intEndPoints[m]; B = intEndPoints[m+1]
+        xm = x * (B - A)/2 + (A + B)/2
+        zm = seq(A, B, length.out = neval)
+        fm = interpolDividif(xm, FUN(xm), zm)
+        if( m >= 2){
+            ## remove first element of zm, fm to avoid
+            ## duplicate values of the  interpolating vector
+            zm = zm[2:neval]
+            fm = fm[2:neval]
+        }
+        z = c(z,zm)
+        f = c(f,fm)
+    }
+    if (Plot == 1){
+        if (nodes == "equi") {methodName = " equidistant "}
+        else  {methodName = " Chebyshev "}
+        plot(z, sapply(z,FUN),type="l", lwd = 2)
+        title(main = paste("Piecewise  Lagrange  interpolation with ",
+                           toString(n+1), methodName, " nodes  on ",
+                           toString(nInt), " Intervals", sep=""))
+        lines(z,f, col='red', lwd=2, lty = 2)
+        legend('topright', legend = c('function','interpolation'),
+               lwd=c(1,2), col=c('black','red'))
+    }
+    return(rbind(f,z))
+}
+
+#' Test
+a = piecewiseInterpol(4,15,-1,1,100,'cheby',myfun,TRUE)
+a = piecewiseInterpol(4,15,-1,1,100,'equi',funRunge,TRUE)

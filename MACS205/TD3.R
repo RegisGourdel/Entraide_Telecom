@@ -202,6 +202,23 @@ relativeErrorOnError
 #'
 #' *1/*
 #' 
+#' On a $p_{m,k}(x) = L_{k - m}^{x_=mM,\ldots,x_k} A(x)$.
+#' Or on remarque par des calculs immédiat que $\frac{(x - x_m) p_{m + 1,k}(x) - (x - x_k) p_{m,k - 1}(x)}{x_k - x_m}$ coïncide avec $p_{m,k}(x)$ sur tous les $x_m,\ldots,x_k$, soit en $k + 1$ points disctincts.
+#' Puisqu'ils sont de degré $k$ on en déduit l'égalité voulue.
+#' 
+#' *2/*
+#' D'après le résultat précédent il vient :
+#' \begin{align*}
+#' q_{m,k} & = \frac{-x_m q_{m + 1,k} + x_k q_{m,k - 1}}{x_k - x_m} \\
+#'         & = \frac{q_{m + 1,k} - \frac{x_k}{x_m} q_{m,k - 1}}{1 - \frac{x_k}{x_m}} \\
+#'         & = \frac{q_{m + 1,k} - \delta^{k - m} q_{m,k - 1}}{1 - \delta^{k - m}}
+#' \end{align*}
+#' 
+#' *3/*
+#' En posant $i = k$ et $j = i - m$ on déduit directement du résultat précédent :
+#' $$A_{i,j} = q_{i - j,i} = \frac{q_{i - j + 1,i} - \delta^{j} q_{i - j,i - 1}}{1 - \delta^j} = \frac{A_{i,j - 1} - \delta^{j} A_{i - 1,j - 1}}{1 - \delta^j}\ .$$
+#' 
+#' 
 richardson = function(FUN,n,t,delta){
   ## Calcule le tableau des differences  divisees en 0 du 
   ## polynome d'interpolation en t,delta t, ... delta^n t
@@ -214,32 +231,33 @@ richardson = function(FUN,n,t,delta){
   x = exp(lx) 
   A = sapply(x,FUN) 
   for( j in 2:(n+1)){
-    ## A[j : (n+1) ] =  ## Completer le code 
+    A[j : (n+1)] = (A[j : (n+1)] - delta^j * A[(j-1) : n]) / (1 - delta^j)
   }
   return(A)
 }
 
-#' test
-# myfun = function(x){sin(x)+ (cos(x)-1)*sin(2*x)}
-# n =10 ; t =pi/4 ;  delta = 1/4
-# A = richardson(myfun,n,t,delta)
-# lx = log(t) +  log(delta)*(0:n)
-# x = exp(lx);
-# y = sapply(x,myfun);
-# 
-# plot(0:n, y,col='blue', type = "l")
-# lines( 0:n,A,col='red');
-# legend('topright', legend=c('erreur naive', 'erreur Richardson'),
-#        col=c('blue', 'red'), lwd=2)
-# 
-# dev.new()
-# LerrRich = log(abs(A - myfun(0))) ;  
-# LerrNaive = log(abs(y - myfun(0)));
-# plot(-lx, LerrNaive,col='blue',type='l')
-# lines(-lx, LerrRich,col='red')
-# grid()
-# legend('topright', legend=c('log-erreur naive','log-erreur Richardson'),
-#        col=c('blue', 'red'), lwd=2)
+#' Test :
+myfun = function(x){sin(x)+ (cos(x)-1)*sin(2*x)}
+n =10 ; t =pi/4 ;  delta = 1/4
+A = richardson(myfun,n,t,delta)
+lx = log(t) +  log(delta)*(0:n)
+x = exp(lx);
+y = sapply(x,myfun);
+
+plot(0:n, y,col='blue', type = "l")
+lines( 0:n,A,col='red');
+legend('topright', legend=c('erreur naive', 'erreur Richardson'),
+       col=c('blue', 'red'), lwd=2)
+
+#'
+dev.new()
+LerrRich = log(abs(A - myfun(0))) ;
+LerrNaive = log(abs(y - myfun(0)));
+plot(-lx, LerrNaive,col='blue',type='l')
+lines(-lx, LerrRich,col='red')
+grid()
+legend('topright', legend=c('log-erreur naive','log-erreur Richardson'),
+       col=c('blue', 'red'), lwd=2)
 
 
 #' **Exercice 7**
