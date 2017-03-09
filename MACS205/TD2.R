@@ -203,8 +203,8 @@ interpolLagrange = function(n, a, b, neval, nodes = 'equi', FUN, Plot){
 
 #' *2/*
 #' Test :
-a = interpolLagrange(6,-1,1,100,'cheby',myfun,TRUE)
-a = interpolLagrange(8,-1,1,100,'equi',funRunge,TRUE)
+temp = interpolLagrange(6,-1,1,100,'cheby',myfun,TRUE)
+temp = interpolLagrange(8,-1,1,100,'equi',funRunge,TRUE)
 
 
 #' **Exercice 8**
@@ -213,7 +213,7 @@ a = interpolLagrange(8,-1,1,100,'equi',funRunge,TRUE)
 #' TODO
 #' 
 #' *2/*
-piecewiseInterpol = function(n,nInt,a,b,neval, nodes = "equi", FUN, Plot){
+piecewiseInterpol = function(n, nInt, a, b, neval, nodes = "equi", FUN, Plot){
     ## @param n : the degree of the interpolating polynomial on each
     ## subinterval
     ## @param nInt :  the number of sub-intervals
@@ -237,7 +237,7 @@ piecewiseInterpol = function(n,nInt,a,b,neval, nodes = "equi", FUN, Plot){
     }
     else if (nodes == "cheby"){
         rtche = function(t) { cos((2*t - 1)*pi/2/n) }
-        x = rtche(seq(1:m))
+        x = rtche(seq(1:n))
     }
     for (m in 1:nInt){
         A = intEndPoints[m]; B = intEndPoints[m+1]
@@ -268,5 +268,6 @@ piecewiseInterpol = function(n,nInt,a,b,neval, nodes = "equi", FUN, Plot){
 }
 
 #' Test
-a = piecewiseInterpol(4,15,-1,1,100,'cheby',myfun,TRUE)
-a = piecewiseInterpol(4,15,-1,1,100,'equi',funRunge,TRUE)
+temp = piecewiseInterpol(4,15,-1,1,100,'cheby',myfun,TRUE)
+temp = piecewiseInterpol(4,15,-1,1,100,'equi',myfun,TRUE)
+temp = piecewiseInterpol(4,15,-1,1,100,'equi',funRunge,TRUE)

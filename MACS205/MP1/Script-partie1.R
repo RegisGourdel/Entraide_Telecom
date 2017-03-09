@@ -1,5 +1,5 @@
 #' ---
-#' title: "Mini-projet"
+#' title: "Mini-projet - Partie 1"
 #' output: html_document
 #' author: Régis Gourdel
 #' ---
@@ -65,33 +65,40 @@ intpoltche(c(43,47))
 
 #' **1.3.a**
 #' 
-#' On emploie une version simplifié de la fonction piecewiseInterpolation réalisée dans le TD2.
-
-piecewiseItp = function(n, M){
-  intEndPoints = seq(a, b, length.out = M + 1)
-  f = c(); z = c()
-  x = seq(-1,1,length.out = n)
-  nevalp = (neval / M) + 1
-  for (m in 1:M){
-    A = intEndPoints[m]; B = intEndPoints[m + 1]
-    xm = x * (B - A)/2 + (A + B)/2
-    zm = seq(A, B, length.out = nevalp)
-    fm = interpolDividif(xm, evalBoiteNoire(xm), zm)
-    if(m >= 2){
-      ## remove first element of zm, fm to avoid duplicate values of the  interpolating vector
-      zm = zm[2:nevalp]
-      fm = fm[2:nevalp]
-    }
-    z = c(z,zm)
-    f = c(f,fm)
-  }
-  return(rbind(f,z))
-}
+#' On emploie la fonction piecewiseInterpolation réalisée dans le TD2 :
 
 M = 10
-plot(z, y, type = 'l', col = 'black')
-for (i in 1:3) {
-  temp = piecewiseItp(i, M)
-  yy = temp[1]; zz = temp[2]
-  lines(zz, yy, col = cols[i], lty = 2)
+for (n in c(1,2,3,30)) {
+    piecewiseInterpol(n, M, a, b, neval/10, nodes = "equi", evalBoiteNoire, TRUE)
 }
+
+#' On constate qu'il est plus intéressant de travailler avec des petits degrés, comme $n = 4$.
+#' 
+#' 
+#' **1.3.b**
+#' 
+myfun = function(x) { 1 + (sin(3.4 * x) + sin(6 * x)) * (cos(6 * x) + 1) }
+n = 3; neval = 1000
+maxErr = c()
+zerr = seq(2,102,5)
+for (M in zerr) {
+    temp = piecewiseInterpol(n, M, a, b, ceiling(neval/M), "equi", myfun, FALSE)
+    yy = temp[1]; xx = temp[2]
+    estimErr = max( abs(yy - myfun(xx)) )
+    maxErr = c(maxErr, estimErr)
+}
+plot(zerr, maxErr, type = 'l')
+
+#' **1.3.c**
+#' 
+myfun = function(x) { 1 + (sin(3.4 * x) + sin(6 * x)) * (cos(6 * x) + 1) }
+n = 3; neval = 1000
+maxErr = c()
+zerr = seq(2,102,5)
+for (M in zerr) {
+    temp = piecewiseInterpol(n, M, a, b, ceiling(neval/M), "equi", evalBoiteNoire, FALSE)
+    yy = temp[1]; xx = temp[2]
+    estimErr = max( abs(yy - evalBoiteNoire(xx)) )
+    maxErr = c(maxErr, estimErr)
+}
+plot(zerr, maxErr, type = 'l')

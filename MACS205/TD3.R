@@ -43,7 +43,7 @@ trapezeInt(cos,0,pi/2,100)
 
 #' **Exercice 2**
 #' 
-refineTrapeze=function(FUN,a,b,M,q){
+refineTrapeze = function(FUN,a,b,M,q){
   ##' refinement of the subdivision step: incremental method
   ##' @param FUN : the function to be integrated
   ##' @param a, b : interval end points 
