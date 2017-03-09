@@ -1,5 +1,5 @@
 #' ---
-#' title: "Mini-projet"
+#' title: "Mini-projet - Partie 2"
 #' output: html_document
 #' author: Régis Gourdel
 #' ---
@@ -31,3 +31,5 @@ plot(M, simp, type = 'l')
 #' 
 #' 
 #' **2.2.a**
+#' 
+#' 

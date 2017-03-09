@@ -77,28 +77,24 @@ for (n in c(1,2,3,30)) {
 #' 
 #' **1.3.b**
 #' 
+#' On code les données et la fonction utiles pour les deux questions qui suivent :
 myfun = function(x) { 1 + (sin(3.4 * x) + sin(6 * x)) * (cos(6 * x) + 1) }
 n = 3; neval = 1000
-maxErr = c()
-zerr = seq(2,102,5)
-for (M in zerr) {
-    temp = piecewiseInterpol(n, M, a, b, ceiling(neval/M), "equi", myfun, FALSE)
+M = seq(2,102,5)
+
+myst = function(FUN, M) {
+  maxErr = rep(0,length(M))
+  for (i in 1:length(M)) {
+    temp = piecewiseInterpol(n, M[i], a, b, ceiling(neval/M[i]), "equi", FUN, FALSE)
     yy = temp[1]; xx = temp[2]
-    estimErr = max( abs(yy - myfun(xx)) )
-    maxErr = c(maxErr, estimErr)
+    estimErr = max( abs(yy - FUN(xx)) )
+    maxErr[i] = estimErr
+  }
+  plot(M, maxErr, type = 'l')
 }
-plot(zerr, maxErr, type = 'l')
+
+myst(myfun, M)
 
 #' **1.3.c**
 #' 
-myfun = function(x) { 1 + (sin(3.4 * x) + sin(6 * x)) * (cos(6 * x) + 1) }
-n = 3; neval = 1000
-maxErr = c()
-zerr = seq(2,102,5)
-for (M in zerr) {
-    temp = piecewiseInterpol(n, M, a, b, ceiling(neval/M), "equi", evalBoiteNoire, FALSE)
-    yy = temp[1]; xx = temp[2]
-    estimErr = max( abs(yy - evalBoiteNoire(xx)) )
-    maxErr = c(maxErr, estimErr)
-}
-plot(zerr, maxErr, type = 'l')
+myst(evalBoiteNoire, M)
