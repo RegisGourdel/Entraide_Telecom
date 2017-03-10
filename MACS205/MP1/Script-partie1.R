@@ -86,11 +86,11 @@ myst = function(FUN, M) {
   maxErr = rep(0,length(M))
   for (i in 1:length(M)) {
     temp = piecewiseInterpol(n, M[i], a, b, ceiling(neval/M[i]), "equi", FUN, FALSE)
-    yy = temp[1]; xx = temp[2]
+    yy = temp[1,]; xx = temp[2,]
     estimErr = max( abs(yy - FUN(xx)) )
     maxErr[i] = estimErr
   }
-  plot(M, maxErr, type = 'l')
+  plot(log(M), log(maxErr), type = 'p')
 }
 
 myst(myfun, M)
