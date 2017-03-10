@@ -250,6 +250,7 @@ legend('topright', legend=c('erreur naive', 'erreur Richardson'),
        col=c('blue', 'red'), lwd=2)
 
 #'
+#'
 dev.new()
 LerrRich = log(abs(A - myfun(0))) ;
 LerrNaive = log(abs(y - myfun(0)));
@@ -262,46 +263,55 @@ legend('topright', legend=c('log-erreur naive','log-erreur Richardson'),
 
 #' **Exercice 7**
 
-romberg = function(FUN,n,a,b,M){## methode de Romberg avec n etapes
-  ## appliquee sur la fonction FUN sur l'intervalle (a,b), avec un
-  ## pas initial h = (b-a)/M
-  h= (b-a)/M 
-  A = rep(0, n+1)
-  A[1] = trapezeInt(FUN,a,b,M);
-  Mc = M
-  ## initialisation des differences divisees
-  for( i in 2:(n+1)){
-    A[i] = refineTrapeze( FUN,a,b, Mc, q= A[i-1])
-    Mc = 2*Mc 
-  }
-  delta = 1/4;
-  for (j in 2:(n+1)){
-    ## A[j : (n+1) ] = ## completer sur le modele de richardson
-  }
-  return(A)
+romberg = function(FUN,n,a,b,M){
+    ## methode de Romberg avec n etapes
+    ## appliquee sur la fonction FUN sur l'intervalle (a,b), avec un
+    ## pas initial h = (b-a)/M
+    h= (b-a)/M 
+    A = rep(0, n+1)
+    A[1] = trapezeInt(FUN,a,b,M);
+    Mc = M
+    ## initialisation des differences divisees
+    for( i in 2:(n+1) ){
+        A[i] = refineTrapeze(FUN, a, b, Mc, q = A[i-1])
+        Mc = 2*Mc 
+    }
+    delta = 1/4;
+    for (j in 2:(n+1)){
+        A[j : (n+1)] = (A[j : (n+1)] - delta^j * A[(j-1) : n]) / (1 - delta^j)
+    }
+    return(A)
 }
 
+#' *2/*
+myfun = function(x) { cos(x) }
+n = 1; M = 3; a = 0; b = pi/2
+I1 = romberg(myfun, n, a, b, M)
+I2 = simpsonInt(myfun, a, b, M)
+diff = I1[n + 1] - I2
+diff
 
-#' test
-# d=6
-# myfun = function(x){x^d}
-# n =10; M = 5; a= 0 ; b = 1.5
-# A = romberg(myfun, n, a, b , M)
-# B = rep(0,n+1)
-# B[1] = trapezeInt(myfun,a,b,M) 
-# Mc = M
-# for( i in  2:(n+1)){
-#     B[i] = refineTrapeze( myfun,a,b, Mc, B[i-1])
-#     Mc = 2* Mc 
-# }
-# 
-# plot(0:n, B,col='blue', type='l')
-# lines( 0:n, A,col = 'red');
-# 
-# LerrRich = log(abs(A - (b^(d+1) - a^(d+1))/(d+1))) ;  
-# LerrNaive = log(abs(B - (b^(d+1) - a^(d+1))/(d+1)));
-# plot((0:n), LerrNaive/log(4),col='blue',type='l')
-# lines( (0:n), LerrRich/log(4), col='red')
-# grid()
-# legend('topright', legend=c('log-erreur naive', 'log-erreur Romberg'),
-#        col=c('blue', 'red'), lwd=2)
+#' *3/*
+#' Test :
+d=6
+myfun = function(x){x^d}
+n =10; M = 5; a= 0 ; b = 1.5
+A = romberg(myfun, n, a, b , M)
+B = rep(0,n+1)
+B[1] = trapezeInt(myfun,a,b,M)
+Mc = M
+for( i in  2:(n+1)){
+    B[i] = refineTrapeze( myfun,a,b, Mc, B[i-1])
+    Mc = 2* Mc
+}
+
+plot(0:n, B,col='blue', type='l')
+lines( 0:n, A,col = 'red');
+
+LerrRich = log(abs(A - (b^(d+1) - a^(d+1))/(d+1))) ;
+LerrNaive = log(abs(B - (b^(d+1) - a^(d+1))/(d+1)));
+plot((0:n), LerrNaive/log(4),col='blue',type='l')
+lines( (0:n), LerrRich/log(4), col='red')
+grid()
+legend('topright', legend=c('log-erreur naive', 'log-erreur Romberg'),
+       col=c('blue', 'red'), lwd=2)
