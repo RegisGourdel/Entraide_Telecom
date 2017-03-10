@@ -21,6 +21,10 @@ estMyst0
 
 #' **3.2.a**
 #' 
-
+#' On utilise la fonction romberg écrite dans le TP4 :
+M = 2
+n = 15
+estRomberg = romberg (evalBoiteNoire, n, a, b, M)
+estRomberg
 
 #' **3.2.b**
