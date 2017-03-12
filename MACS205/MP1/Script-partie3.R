@@ -19,12 +19,25 @@ n = 10
 estMyst0 = richardson (evalBoiteNoire,n,t,delta)
 estMyst0
 
+#' La meilleur estimation de `BoiteNoire` en 0 est donc de $3{,}141684$.
+#'
 #' **3.2.a**
 #' 
-#' On utilise la fonction romberg écrite dans le TP4 :
+#' On utilise la fonction `romberg`, légèrement modifiée par rapport à celle écrite dans le TP4 pour qu'elle renvoie aussi la liste des  :
 M = 2
 n = 15
-estRomberg = romberg (evalBoiteNoire, n, a, b, M)
+temp = romberg (evalBoiteNoire, n, a, b, M)
+estRomberg = temp[1,]; Inaif = temp[2,]
 estRomberg
+Inaif
 
 #' **3.2.b**
+#' 
+#' On trace les deux erreurs logarithmiques :
+Iauto = 4.55676
+plot(0:n, log(abs(estRomberg - Iauto)), type = 'l', col = 'red', ylab = 'erreur logarithmique')
+lines(0:n, log(abs(Inaif - Iauto)), type = 'l', col = 'blue')
+
+#' On constate que les deux erreurs sont assez similaires et même identiques pour les abscisses 10 à 14, ce qui forme un palier.
+#' Ceci peut s'expliquer par le fait que l'on arrive à des valeurs de $M$ telles que chaque point disponible ou presque est utilisé.
+#' Le gain dû à la méthode de Romberg n'est alors plus significatif.

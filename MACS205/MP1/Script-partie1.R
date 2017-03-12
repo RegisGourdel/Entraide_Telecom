@@ -9,12 +9,12 @@ rm(list = ls())
 load('absc-Val.Rdata')
 source('fonctions-miniprojet.R')
 source('mesfonctions.R')
+a = 2^(-16); b = 1.5
 
 #' **1.1**
 #' 
 #' On réalise une fonction pour tracer les polynômes d'interpolation quatre par quatre, les lignes de plus haut degré étant les plus foncées :
 neval = 1000
-a = 2^(-16); b = 1.5
 z = seq(a,b,length.out = neval)
 y = evalBoiteNoire(z)
 cols = c("red","orange","green","blue")
@@ -91,10 +91,18 @@ myst = function(FUN, M) {
     maxErr[i] = estimErr
   }
   plot(log(M), log(maxErr), type = 'p')
+  return( log(maxErr) )
 }
 
-myst(myfun, M)
+#' On applique notre fonction avec \texttt{myfun} :
+logErr = myst(myfun, M)
 
+#' et on obtient la pente sur le première partie linéaire avec :
+lm( logErr[1:12] ~ log(M[1:12]) )
+#' La pente est donc ici de $-3{,}762$.
+#'
 #' **1.3.c**
 #' 
-myst(evalBoiteNoire, M)
+logErr = myst(evalBoiteNoire, M)
+lm( logErr[2:6] ~ log(M[2:6]) )
+##' On retrouve une pente proche de $-3{,}745$.

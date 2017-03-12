@@ -58,10 +58,10 @@ plot(logM, logErr, type = 'p', main = 'log erreur a posteriori en fonction de lo
 #' On effectue une régression linéaire avec la fonction suivante :
 lm( logErr[1:10] ~ logM[1:10] )
 
-#' On trouve donc une pente proche de 4, ce qui est donc cohérent avec le résultat prévu.
+#' On trouve donc une pente de $4{,}15$, ce qui est cohérent avec le résultat de 4 prévu.
 #' 
-#' Le phénomène observé pour $M$ grand peut s'expliquer par le fait que...
-#' TODO
+#' Le phénomène observé pour $M$ grand peut s'expliquer par le fait que les hypothèses faites dans le TD4 et sur lesquelles reposent l'évaluation de l'erreur a posteriori ne sont plus vérifiées ici.
+#' En effet avec un $M$ grand on peut supposer que les valeurs prises par $\xi_M$ connaissent des variations assez importantes.
 #' 
 #' **2.3.a**
 #' 
@@ -91,6 +91,8 @@ Mauto = Mvecteur[3]
 Mvecteur = seq(1,40)
 Qvecteur = rep(0,length(Mvecteur))
 for (i in Mvecteur) {
-  Qvecteur = simpsonInt(evalBoiteNoire, a, b, i)
+  Qvecteur[i] = simpsonInt(evalBoiteNoire, a, b, i)
 }
-plot(log(Mvecteur), log(abs(Qvecteur - Iauto)))
+plot( log(Mvecteur), log(abs(Qvecteur - Iauto)) )
+
+#' On s'attendait plutôt ici à trouver une erreur qui continue à décroître, alors qu'ici elle se stabilise.
