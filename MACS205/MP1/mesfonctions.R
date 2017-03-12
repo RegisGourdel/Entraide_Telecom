@@ -181,18 +181,18 @@ romberg = function(FUN,n,a,b,M){
     ## methode de Romberg avec n etapes
     ## appliquee sur la fonction FUN sur l'intervalle (a,b), avec un
     ## pas initial h = (b-a)/M
-    h= (b-a)/M 
     A = rep(0, n+1)
-    A[1] = trapezeInt(FUN,a,b,M);
+    A[1] = trapezeInt(FUN, a, b, M);
     Mc = M
-    ## initialisation des differences divisees
+    ## initialisation des différences divisees
     for( i in 2:(n+1) ){
         A[i] = refineTrapeze(FUN, a, b, Mc, q = A[i-1])
         Mc = 2*Mc 
     }
+    B = A
     delta = 1/4;
     for (j in 2:(n+1)){
         A[j : (n+1)] = (A[j : (n+1)] - delta^j * A[(j-1) : n]) / (1 - delta^j)
     }
-    return(A)
+    return(rbind(A, B))
 }

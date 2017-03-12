@@ -23,13 +23,12 @@ estMyst0
 #'
 #' **3.2.a**
 #' 
-#' On utilise la fonction `romberg`, légèrement modifiée par rapport à celle écrite dans le TP4 pour qu'elle renvoie aussi la liste des  :
+#' On utilise la fonction `romberg`, légèrement modifiée par rapport à celle écrite dans le TP4 pour qu'elle renvoie aussi la liste des valeurs "naïves"  de l'intégrale (i.e. sans méthode de Romberg) :
 M = 2
 n = 15
 temp = romberg (evalBoiteNoire, n, a, b, M)
 estRomberg = temp[1,]; Inaif = temp[2,]
 estRomberg
-Inaif
 
 #' **3.2.b**
 #' 

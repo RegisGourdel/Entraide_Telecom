@@ -4,6 +4,10 @@
 #' author: Régis Gourdel
 #' ---
 #'
+#' Mon rapport est généré directement à partir de mon code, et vous le trouverez donc dans les trois fichiers d'extension html.
+#' Les fonctions réalisées lors des TD sont regroupées dans le fichier `mesfonctions.R` et le reste du code et des sorties est intégré directement dans le rapport.
+#' 
+#'
 #' *Initialisation de l'environnement :*
 rm(list = ls())
 load('absc-Val.Rdata')
@@ -13,7 +17,8 @@ a = 2^(-16); b = 1.5
 
 #' **1.1**
 #' 
-#' On réalise une fonction pour tracer les polynômes d'interpolation quatre par quatre, les lignes de plus haut degré étant les plus foncées :
+#' On réalise une fonction pour tracer les polynômes d'interpolation quatre par quatre.
+#' Les couleurs sont, par ordre croissant de degré : rouge, orange, vert, bleu.
 neval = 1000
 z = seq(a,b,length.out = neval)
 y = evalBoiteNoire(z)
@@ -65,14 +70,14 @@ intpoltche(c(43,47))
 
 #' **1.3.a**
 #' 
-#' On emploie la fonction piecewiseInterpolation réalisée dans le TD2 :
+#' On emploie la fonction `piecewiseInterpolation` réalisée dans le TD2, avec les degrés 1,2,3 et 30 :
 
 M = 10
 for (n in c(1,2,3,30)) {
     piecewiseInterpol(n, M, a, b, neval/10, nodes = "equi", evalBoiteNoire, TRUE)
 }
 
-#' On constate qu'il est plus intéressant de travailler avec des petits degrés, comme $n = 4$.
+#' Au vu des graphiques on constate qu'il est plus intéressant de travailler avec un petit degré, comme $n = 3$, qui permet une approximation assez fine tout en étant moins lourd.
 #' 
 #' 
 #' **1.3.b**
@@ -82,7 +87,7 @@ myfun = function(x) { 1 + (sin(3.4 * x) + sin(6 * x)) * (cos(6 * x) + 1) }
 n = 3; neval = 1000
 M = seq(2,102,5)
 
-myst = function(FUN, M) {
+aux = function(FUN, M) {
   maxErr = rep(0,length(M))
   for (i in 1:length(M)) {
     temp = piecewiseInterpol(n, M[i], a, b, ceiling(neval/M[i]), "equi", FUN, FALSE)
@@ -95,14 +100,21 @@ myst = function(FUN, M) {
 }
 
 #' On applique notre fonction avec \texttt{myfun} :
-logErr = myst(myfun, M)
+logErr = aux(myfun, M)
 
-#' et on obtient la pente sur le première partie linéaire avec :
+#' et on obtient la pente sur la première partie linéaire avec :
 lm( logErr[1:12] ~ log(M[1:12]) )
 #' La pente est donc ici de $-3{,}762$.
 #'
 #' **1.3.c**
 #' 
-logErr = myst(evalBoiteNoire, M)
+#' On fait de même avec la fonction `evalBoiteNoire` :
+#' 
+logErr = aux(evalBoiteNoire, M)
 lm( logErr[2:6] ~ log(M[2:6]) )
-##' On retrouve une pente proche de $-3{,}745$.
+#' On retrouve une pente proche de $-3{,}745$ dans la partie linéaire mais on constate que la fonction erreur maximale semble ensuite atteindre une sorte de palier autour duquel elle oscille.
+#' 
+#' D'après le résultat de la question 1 de l'exercice 8 du TD1-2 on s'attendait à une pente de 4, nos résultats en sont donc proches.
+#' 
+#' On peut supposer que cela est du au caractère approximatif de la fonction `evalBoiteNoire` : l'estimation de l'écart de la fonction interpolatrice est limitée par l'écart initial, la fonction `evalBoiteNoire` étant elle-même assimilable à une interpolatrice de degré 1 à $2^{16}$ morceaux de la vraie fonction.
+#' On peut postuler que la vraie fonction est continue au vu de son graphe et l'interpolation réalisée permet alors sans doute d'en avoir une description plus fidèle que celle des points donnés initialement.

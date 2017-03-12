@@ -118,7 +118,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Mini-projet - Partie 3</h1>
 <h4 class="author"><em>Régis Gourdel</em></h4>
-<h4 class="date"><em>Sun Mar 12 22:38:39 2017</em></h4>
+<h4 class="date"><em>Sun Mar 12 23:51:36 2017</em></h4>
 
 </div>
 
@@ -137,8 +137,9 @@ estMyst0 = richardson (evalBoiteNoire,n,t,delta)
 estMyst0</code></pre>
 <pre><code>##  [1] 3.114704 3.197682 3.172421 3.154170 3.147639 3.144569 3.143069
 ##  [8] 3.142328 3.141960 3.141776 3.141684</code></pre>
-<p>La meilleur estimation de <code>BoiteNoire</code> en 0 est donc de <span class="math inline">\(3{,}141684\)</span>. <strong>3.2.a</strong></p>
-<p>On utilise la fonction <code>romberg</code>, légèrement modifiée par rapport à celle écrite dans le TP4 pour qu’elle renvoie aussi la liste des :</p>
+<p>La meilleur estimation de <code>BoiteNoire</code> en 0 est donc de <span class="math inline">\(3{,}141684\)</span>.</p>
+<p><strong>3.2.a</strong></p>
+<p>On utilise la fonction <code>romberg</code>, légèrement modifiée par rapport à celle écrite dans le TP4 pour qu’elle renvoie aussi la liste des valeurs “naïves” de l’intégrale (i.e. sans méthode de Romberg) :</p>
 <pre class="r"><code>M = 2
 n = 15
 temp = romberg (evalBoiteNoire, n, a, b, M)
@@ -147,10 +148,6 @@ estRomberg</code></pre>
 <pre><code>##  [1] 5.449392 5.250833 4.602187 4.573233 4.560818 4.557791 4.557036
 ##  [8] 4.556848 4.556801 4.556790 4.556787 4.556786 4.556786 4.556786
 ## [15] 4.556786 4.556772</code></pre>
-<pre class="r"><code>Inaif</code></pre>
-<pre><code>##  [1] 5.449392 5.263243 4.653004 4.578896 4.562197 4.558129 4.557120
-##  [8] 4.556869 4.556806 4.556791 4.556787 4.556786 4.556786 4.556786
-## [15] 4.556786 4.556773</code></pre>
 <p><strong>3.2.b</strong></p>
 <p>On trace les deux erreurs logarithmiques :</p>
 <pre class="r"><code>Iauto = 4.55676

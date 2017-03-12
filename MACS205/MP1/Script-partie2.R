@@ -13,17 +13,18 @@ a = 2^(-16); b = 1.5
 
 #' **2.1.a**
 #' 
+#' On affiche les estimations de l'intégrale de la fonction en zoomant sur la plage intéressante pour faire ensuite une estimation précise :
 M = seq(2,50,1)
 simp = sapply(M, function(m) { simpsonInt(evalBoiteNoire, a, b, m) } )
-plot(M, simp, type = 'l')
+plot(M, simp, type = 'p')
 
 M = seq(10,50,1)
 simp = sapply(M, function(m) { simpsonInt(evalBoiteNoire, a, b, m) } )
-plot(M, simp, type = 'l')
+plot(M, simp, type = 'p')
 
 M = seq(40,80,1)
 simp = sapply(M, function(m) { simpsonInt(evalBoiteNoire, a, b, m) } )
-plot(M, simp, type = 'l')
+plot(M, simp, type = 'p')
 
 #' **2.1.b**
 #'
@@ -46,6 +47,8 @@ M = seq(1,80)
 plot(log(M), 6 - 4*log(M), type = 'l', main = "log erreur en fonction de log(M)", ylab = "log(Errr)")
 
 #' **2.2.c**
+#' 
+#' On affiche l'erreur logarithmique avec ce qui suit :
 M = seq(7,40)
 vectErrorSimpson = rep(0, length(M))
 for (i in 1:length(M)) {
@@ -58,13 +61,14 @@ plot(logM, logErr, type = 'p', main = 'log erreur a posteriori en fonction de lo
 #' On effectue une régression linéaire avec la fonction suivante :
 lm( logErr[1:10] ~ logM[1:10] )
 
-#' On trouve donc une pente de $4{,}15$, ce qui est cohérent avec le résultat de 4 prévu.
+#' On trouve donc une pente de $4{,}15$, ce qui est assez cohérent avec le résultat de $4$ prévu.
 #' 
 #' Le phénomène observé pour $M$ grand peut s'expliquer par le fait que les hypothèses faites dans le TD4 et sur lesquelles reposent l'évaluation de l'erreur a posteriori ne sont plus vérifiées ici.
 #' En effet avec un $M$ grand on peut supposer que les valeurs prises par $\xi_M$ connaissent des variations assez importantes.
 #' 
 #' **2.3.a**
 #' 
+#' On obtient les valeurs souhaitées par le code suivant :
 M = 10 ; erreur = 1 ; Mvecteur = 0 ; Qvecteur = 0 ; Evecteur = 0
 tolerance = 10^(-5)
 while (2*erreur > tolerance) {
@@ -76,17 +80,20 @@ while (2*erreur > tolerance) {
   M = 2*M
 }
 
-Evecteur
+#' On affiche alors les résultats qui nous intéressent :
+
 Qvecteur
 Mvecteur
 
 #' On déduit donc de ces résultats que $I = I_{auto} = 4{,}55676$ à $10^{-5}$ près.
-#' Le nombre d'intervalles correspondannt est $M_{auto} = 20$.
+#' Le nombre d'intervalles correspondannt est $M_{auto} = 40$.
 
 Iauto = Qvecteur[3]
 Mauto = Mvecteur[3]
 #' 
 #' **4.a**
+#' 
+#' On trace le graphe log-log de l'écart en valeur absolue par la méthode de simpson à la valeur $I_{auto}$.
 #' 
 Mvecteur = seq(1,40)
 Qvecteur = rep(0,length(Mvecteur))
