@@ -145,6 +145,21 @@ simpsonInt = function(FUN,a,b,M){
     return(q)
 }
 
+evalErrSimpson = function(FUN,a,b,M){
+  ## Computes an approximation E of the error 
+  ## for the composite Simpson rule of step h=(b-a)/(2M). 
+  ## This requires computing I_M and I_{2M}. 
+  ## The value  q = I_{2M} is also returned. 
+  qth = trapezeInt(FUN,a,b,M)   ## M +1 evaluations
+  qth2 = refineTrapeze ( FUN,a,b,M,qth )  ## M evaluations
+  qth4 = refineTrapeze ( FUN,a,b,2*M,qth2 )   ## 2M evaluations
+  simps_h  = 4/3*(qth2 - 1/4* qth)
+  simps_h2 = 4/3*(qth4 - 1/4* qth2)
+  q = simps_h2
+  E = (simps_h - simps_h2)/15
+  return(c(E,q))
+}
+
 richardson = function(FUN,n,t,delta){
     ## Calcule le tableau des differences  divisees en 0 du 
     ## polynome d'interpolation en t,delta t, ... delta^n t
