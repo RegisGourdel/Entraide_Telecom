@@ -1,0 +1,220 @@
+\subsection{Définitions}
+
+	\begin{defn}
+		Soit $k$ un corps.
+		Un \textbf{corps de fonctions} $K$ de dimension $n$ sur $k$ est une extension de corps de $k$ de type fini et de degré de transcendance $n$ sur $k$.
+		Pour $n = 1$ on parle de \textbf{corps de fonctions de courbe} sur $k$.
+	\end{defn}
+
+	Par abus de langage on dit que $K$ est une courbe (algébrique) sur $k$.
+	
+	\begin{defn}
+		\textbf{Droite projective} sur $k$, notée $\proba_k^1$ ou $\proba^1$ : courbe simple donnée par $k(t)$ le corps des fractions rationnelles.
+	\end{defn}
+	
+	...
+
+\subsection{Anneaux de valuation}
+
+	\begin{defn}
+		Soit $K$ un corps.
+		Un \textbf{anneau de valuation} de $K$ est un sous-anneau $R$ de $K$ vérifiant $\forall x \in K, x \in R\ \text{ou}\ x^{-1} \in R$.
+		Il est dit non-trivial si $R \neq K$.
+		Lorsque $k \subset R$ est un sous-corps de $K$, on dit que $R$ est un anneau de valuation au-dessus de $k$.
+	\end{defn}
+
+	\begin{rem}
+		$R$ est intègre et $K = \Frac(R)$ \textrightarrow\ on parle d'anneau de valuation dans l'absolu pour un anneau de valuation de son corps des fractions.
+	\end{rem}
+
+	\begin{defn}
+		Soit $x, y \in K$. On dit que :
+		\begin{itemize}
+			\item[\textbullet] $x$ est \textit{plus valué} que $y$ si $\exists z \in R, x = yz$,
+			\item[\textbullet] $x$ et $y$ ont la  \textit{même valuation} si $\exists z \in R^\times, x = yz$.
+		\end{itemize}
+		Ceci définit une relation d'équivalence dont les classes sont appelées \textbf{valuations} et notées $v_R(x)$ ou $v(x)$.
+		On note $v(0) = \infty$ mais cette classe est mise à part et on ne considère généralement pas qu'il s'agisse d'une valuation.
+	\end{defn}
+
+	\begin{rem}
+		On a défini une relation d'ordre total sur les valuations (plus $\infty$ qui est le plus grand élément).
+	\end{rem}
+
+	\begin{note}
+		On définit $v(x) + v(y) = v(xy)$ et $\forall c \in R^\times, v(c) = v(1) = 0$.
+	\end{note}
+
+	\begin{defn}
+		Soit $\Gamma := K^\times / R^\times$ l'ensemble des valuations.
+		Le groupe abélien $(\Gamma, +)$ est appelé \textbf{groupe des valuations} (ou des \textbf{valeurs}) de $R$.
+	\end{defn}
+
+	\begin{defn}
+		Si $\Gamma = \Z$, i.e. est engendré par un unique élément, on dira que $R$ est un anneau de valuation \textbf{discrète}.
+	\end{defn}
+
+	\begin{pop}
+		Soit $R$ un anneau de valuation de $K$. On a :
+		\begin{enumerate}[(i)]
+			\item $v(x) = \infty \iff x = 0$
+			\item $v(xy) = v(x) + v(y)$
+			\item $v(x + y) \geq \min \{ v(x), v(y) \}$
+			\item $v(x + y) = \min \{ v(x), v(y) \}$ si $v(x) = v(y)$
+		\end{enumerate}
+		De plus $v(K^\times) = \Gamma$ et $R = \{ x \in K \mid v(x) \geq 0 \}$.
+	\end{pop}
+
+	\begin{ex}
+		Soit $K = k(t)$ et $h$ un polynôme unitaire irréductible sur $k$.
+		On pose, pour $f \in k[t]$, $v_h(f)$ est l'exposant de la plus grande puissance de $h$ qui divise $f$.
+		Si $g \in k[t] \setminus \{ 0 \}$, $v_h \left( \frac{f}{g} \right) = v_h(f) - v_h(g)$.
+		Alors $v_h$ vérifie les conditions ci-dessus et atteint $1$ en $h$.
+		De plus $R$ est l'ensemble des fractions rationnelles sans $h$ facteur du dénominateur.
+	\end{ex}
+
+	\begin{ex}
+		Soit $p$ premier et $K = \Q$.
+		Pour $m \in \Z$, on pose $v_p(m)$ la valuation $p$-adique de $m$, i.e. l'exposant de la plus grande puissance de $q$ qui divise $m$.
+		Si $\frac{n}{m} \in \Q$, $v_p \left( \frac{n}{m} \right) = v_p(n) - v_p(m)$.
+		Alors $v_p$ vérifie les conditions ci-dessus et atteint $1$ en $p$.
+		De plus $R$ est l'ensemble des rationnels dont le dénominateur réduit n'est pas multiple de $p$.
+	\end{ex}
+
+	\begin{rem}
+		Si $A$ est un anneau intègre et $v \colon A \to \Z \cup \{ \infty \}$ vérifie \textit{(i)}, \textit{(ii)} et \textit{(iii)} alors il existe une unique fonction $v \colon \Frac(A) \to \Z \cup \{ \infty \}$ qui prolonge le $v$ donné sous les mêmes conditions, à savoir $v \colon \frac{x}{y} \mapsto v(x) - v(y)$ où $y \neq 0$.
+		Si, de plus, $v$ est positive sur $A$ alors $A \subset R$ ou $R$ est l'anneau de la valuation.
+	\end{rem}
+
+	\begin{defn}
+		Un anneau $R$ est dit \textbf{local} s'il vérifie l'une des propriétés équivalentes suivantes :
+		\begin{enumerate}[(i)]
+			\item $R$ a un unique idéal maximal,
+			\item le complémentaire de $R^\times$ dans $R$ est un idéal (forcément maximal),
+			\item pour tout $x \in R$, soit $x$ est inversible, soit $1 - cx$ est inversible pour tout $c \in R$.
+		\end{enumerate}
+	\end{defn}
+	
+	\begin{pop}
+		Un anneau de valuation est un anneau local.
+		Son idéal maximal est $\mathfrak{m}_v = \{ x \in R \mid v(x) > 0 \}$.
+	\end{pop}
+	
+	\begin{defn}
+		On note parfois $\mathcal{O}_v$ l'anneau de valuation associé à la valuation $v$.
+		Le corps $\varkappa_v = \mathcal{O}_v / \mathfrak{m}_v$ s'appelle \textbf{corps résiduel} de la valuation $v$.
+	\end{defn}
+
+	\begin{pop}
+		Si $v$ est une valuation au-dessus de $k$ (corps de base) alors $\varkappa_v$ est une extension de $k$.
+		Son degré (s'il est fini) s'appellera degré sur $k$ de la valuation $v$.
+	\end{pop}
+
+	\begin{defn}
+		Soit $K$ un corps de fonction de courbe sur $k$.
+		Une valuation non triviale au-dessus de $k$ sur un corps $K$ de fonctions de $k$ s'appelle une \textbf{place} de $K$ (ou de la courbe $C$ telle que $K = k(C)$).
+		On note $\mathscr{V}_{K/k}$ ou $\mathscr{V}_C$ l'ensemble de ces places.
+	\end{defn}
+
+	\begin{pop}
+		Soit $K$ un corps, $A \subset K$ un sous-anneau et $\mathfrak{p}$ un idéal premier de $A$.
+		Alors il existe un anneau de valuation $R$ de $K$ tel que $A \subset R \subset K$ et $\mathfrak{m} \cap A = \mathfrak{p}$ où $\mathfrak{m}$ est l'idéal maximal de $R$.
+	\end{pop}
+
+	Cette proposition sert à construire des valuations “centrées” sur un idéal premier $\mathfrak{p}$ qu'on s'est donné.
+	
+	\begin{pop}
+		Soit $K$ un corps et $A \subset K$ un sous-anneau.
+		Alors $B := \bigcap_{A \subset R \subset K} R$ (avec $R$ anneau de valuation de $K$) est exactement l'ensemble des $x \in K$ entiers (algébriques) sur $A$ au sens où il existe $f \in A[t]$ unitaire, non constant, à coefficients dans $A$ tels que $f(x) = 0$.
+		$B$ est donc un sous-anneau de $K$ et s'appelle \textbf{fermeture intégrale} de $A$ dans $K$, ou \textbf{clôture intégrale} lorsque $K = \Frac(A)$.
+		En particulier, si $k$ est un sous-corps de $K$ alors $B$ est la fermeture algébrique de $k$ dans $K$.
+	\end{pop}
+
+	\begin{pop}
+		Soit $\mathcal{O}_v$ un anneau de valuation discrète de valuation $v$.
+		Un élément $t \in \mathcal{O}_v$ engendre $\mathfrak{m}$ en tant qu'idéal si et seulement si $v(t) = 1$.
+		Il est appelé \textbf{uniformisante} de $\mathcal{O}_v$ et pour un tel $t$ fixé (il en existe) :
+		\begin{itemize}
+			\item[\textbullet] tout $x \neq 0$ de $K$ a une représentation unique sous la forme $x = u t^r$ avec $u \in \mathcal{O}_v^\times$ et $r \in \Z$, avec $r = v(x)$,
+			\item[\textbullet] tout idéal $I \neq \{ 0 \}$ de $\mathcal{O}_v$ est l'idéal $\mathfrak{m}^r = \{ x \in \mathcal{O}_v \mid v(x) \geq r \}$ engendré par $t^r$ pour un certain $r \in \N$.
+		\end{itemize}
+	\end{pop}
+
+
+\subsection{Places des courbes}
+
+	\begin{lem}
+		Soit $K$ un corps de fonctions de courbes sur $k$ et $v$ une valuation de $K$ au-dessus de $k$.
+		Alors :
+		\begin{enumerate}[(i)]
+			\item Si $x$ vérifie $v(x) \neq 0$ et $v(x) < \infty$ alors $x$ est transcendant sur $k$ et le corps $K$ est fini sur $k(x)$.
+			\item Si $x_1,\ldots,x_n$ vérifient $0 < v(x_1) < v(x_2) < \cdots < v(x_n) < \infty$, alors $x_1,\ldots,x_n$ sont linéairement indépendants sur $k(x_n)$, et en particulier le degré $[K : k(x_n)]$ (fini) est supérieur ou égal à $n$.
+			\item Si $x$ vérifie $0 < v(x) < \infty$ alors $[\varkappa_v : k] \leq [K : k(x)]$.
+		\end{enumerate}
+	\end{lem}
+
+	\begin{pop}
+		Soit $K$ un corps de fonctions de courbe sur $k$.
+		Alors toutes les places de $K$ sont discrètes.
+	\end{pop}
+
+	Dans ce cas $\varkappa_v$ est une extension finie, donc algébrique, de $k$.
+	Le degré $[\varkappa_v : k]$ s'appelle aussi degré de la place $v$.
+	S'il vaut $1$, i.e. $\varkappa_v = k$, $v$ est dite rationnelle.
+	C'est notamment le cas si $v$ est algébriquemet clos.
+	
+	\begin{defn}
+		Soit $K$ un corps de fonctions de courbe sur $k$.
+		Si $f \in K$ et $v \in \mathscr{V}_K$ on peut définir l'\textbf{évaluation} de $f$ en $v$
+		$$f(v) \in \varkappa_v, \quad f(v) = \left\{ \begin{array}{l}
+			\text{la classe de $f \in \mathcal{O}_v$ modulo $\mathfrak{m}_v$ lorsque $v(f) \geq 0$} \\
+			\text{le symbole spécial $\infty$ (pas celui de $v(0)$) lorsque $v(f) = 0$}
+			\end{array} \right.$$
+		Dans le cas $f(v) = \infty$ on dit que $f$ a un \textbf{pôle} en $v$.
+	\end{defn}
+	
+
+
+\subsection{Les places de la droit projective}
+
+	
+
+
+\subsection{L'indépendance des valuations}
+
+	
+
+
+\subsection{L'identité du degré}
+
+	
+
+
+\subsection{Diviseurs sur les courbes}
+
+	
+
+
+\subsection{Espaces de Riemann-Roch}
+
+	
+
+
+\subsection{Différentielles de Kähler}
+
+	
+
+
+\subsection{Théorème de Riemann-Roch}
+
+	
+
+
+\subsection{Points et places}
+
+	
+
+
+\subsection{Revêtements de courbes}
+
+	
