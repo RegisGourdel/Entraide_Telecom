@@ -1,0 +1,109 @@
+\subsection{Anneaux, algèbres, corps, idéaux premiers et maximaux et corps des fractions}
+
+	On considère les anneaux commutatifs sauf précision contraire.
+
+	\begin{defn}
+		Soit $k$ un anneau.
+		Une $k$-\textbf{algèbre} (commutative) est un anneau $A$ muni d'un morphisme d'anneaux $\varphi_A \colon k \to A$, appelé \textbf{morphisme structural} de l'algèbre, dont l'image est contenue dans le centre de $A$.
+	\end{defn}
+	
+	Formellement une $k$-algèbre est le couple $(A,\varphi_A)$ mais on le réduit souvent à la donnée de $\varphi_A$.
+	De façon équivalente une $k$-algèbre est un $k$-module qui est muni d'une multiplication $k$-bilinéaire qui en fait un anneau.
+	
+	\begin{defn}
+		Un \textbf{morphisme de $k$-algèbres} est un morphisme d'anneaux $\psi \colon A \to B$ tel que $\varphi_B = \psi \circ \varphi_A$.
+		Ce sont aussi les applications $k$ linéaires qui préservent la multiplication.
+	\end{defn}
+
+	\begin{rem}
+		Une $\Z$-algèbre est exactement la même chose qu'un anneau.
+	\end{rem}
+
+	En pratique $k$ est généralement un corps et $A$ est donc un $k$-ev muni d'une multiplication $k$-bilinéaire qui en fait un anneau.
+	
+	\begin{defn}
+		Un élément $a$ d'un anneau $A$ est dit \textbf{régulier} si $x \mapsto ax$ est injectif, i.e. $ax = 0 \implies x = 0$ (il est inversible si bijectivité de l'application).
+		$A$ est dit \textbf{intègre} si tous les éléments sauf $0$ sont réguliers, i.e. $0 \neq 1$ et $\forall a,b \in A \setminus \{ 0 \}, ab = 0 \implies a = 0 \text{ ou } b = 0$.
+		Par convention l'anneau nul n'est pas intègre.
+	\end{defn}
+
+	\begin{defn}
+		Un idéal $\mathfrak{p}$ d'un anneau $A$ est dit \textbf{premier} lorsque l'anneau quotient $A / \mathfrak{p}$ est intègre, i.e. $\mathfrak{p} \neq A$ et $\forall a,b \in A, ab \in \mathfrak{p} \implies a \in \mathfrak{p} \text{ ou } b \in \mathfrak{p}$.
+	\end{defn}
+
+	\begin{pop}
+		Dans un anneau $A$, l'ensemble $A^\times$ des inversibles est un groupe, aussi appelé groupe des \textbf{unités de $A$}.
+	\end{pop}
+	
+	\begin{defn}
+		Un \textbf{corps} est un anneau $k$ dans lequel $k^\times = k \setminus \{ 0 \}$.
+		C'est équivalent à dire que $k$ a deux idéaux qui sont $\{ 0 \}$ et lui-même.
+		C'est en particulier un anneau intègre.
+		Par convention l'anneau nul n'est pas un corps.
+	\end{defn}
+
+	\begin{defn}
+		Un idéal $\mathfrak{m}$ d'un anneau $A$ est dit \textbf{maximal} si $A / \mathfrak{m}$ est un corps.
+		De façon équivalente $\mathfrak{m} \neq A$ et $\mathfrak{m}$ est maximal pour l'inclusion parmi les idéaux différents de $A$.
+	\end{defn}
+
+	\begin{pop}
+		Un idéal maximal est premier.
+	\end{pop}
+
+	\begin{ex}
+		Dans un anneau factoriel $A$, un idéal de la forme $(f)$ avec $f \in A$ est premier ssi $f$ est nul ou irréductible.
+	\end{ex}
+
+	\begin{lem}[Principe maximal de Hausdorff]
+		Soit $\mathcal{F} \subset \mathcal{P}(A)$ non vide et tel que, pour tout partie $\mathcal{I} \subset \mathcal{F}$ non vide totalement ordonnée par l'inclusion, $\exists F \in \mathcal{F}, \bigcup_{i \in \mathcal{I}} I \subset F$.
+		Alors il existe $M \in \mathcal{F}$ maximal pour l'inclusion.
+	\end{lem}
+
+	\begin{pop}
+		Dans un anneau $A$, tout idéal strict (autre que $A$) est inclus dans un idéal maximal.
+	\end{pop}
+	
+	\begin{defn}
+		Un élément $x$ d'un anneau $A$ est dit \textbf{nilpotent} lorsque $\exists n \in \N, x^n = 0$.
+		Si $0$ est le seul élément nilpotent, $A$ est dit réduit.
+	\end{defn}
+	
+	\begin{pop}
+		Dans un anneau, l'ensemble des éléments nilpotents est un idéal appelé \textbf{nilradical} de l'anneau.
+		C'est aussi l'intersection des idéaux premiers de l'anneaux.
+		Le quotient de l'anneau par son nilradical est réduit.
+	\end{pop}
+	
+	\begin{defn}
+		Soit $A$ un anneau intègre.
+		On définit le \textbf{corps des fractions} de $A$, $\Frac(A) = \left\{ \frac{a}{q} \mid a \in A, q \in A \setminus \{ 0 \} \right\}$ en convenant d'identifier $\frac{a}{q}$ avec $\frac{a'}{q'}$ lorsque $aq' = a'q$.
+	\end{defn}
+
+	\begin{pop}
+		Soit $A$ un anneau intègre, $K$ un corps et $\varphi \colon A \to K$ un morphisme d'anneau injectif.
+		Alors il existe un unique morphisme de corps $\hat{\varphi} \colon \Frac(A) \to K$ qui prolonge $\varphi$ et il est donné par $\hat{\varphi} \left( \frac{a}{q} \right) = \frac{\varphi(a)}{\varphi(q)}$.
+	\end{pop}
+
+	\begin{defn}
+		Le corps des fractions de l'anneau des polynômes $k[t_1,\ldots,t_n]$ est appelé corps des \textbf{fractions rationnelles} et noté $k(t_1,\ldots,t_n)$.
+	\end{defn}
+
+	\begin{pop}
+		Soit $k$ un corps et $K$ une $k$-algèbre de dimension finie intègre.
+		Alors $K$ est un corps.
+	\end{pop}
+
+	\begin{lem}[de Gauß]
+		Soit $A$ un anneau factoriel et $K$ son corps des fractions.
+		Alors :
+		\begin{enumerate}[(i)]
+			\item $A[t]$ est factoriel,
+			\item $f \in A[t]$ est irréductible ssi $f$ est constant et irréductible dans $A$, ou bien $f$ est primitif, i.e. irréductible dans $K[t]$ et le pgcd dans $A$ de ses coefficients vaut 1.
+		\end{enumerate}
+	\end{lem}
+
+
+\subsection{Algèbres engendrée, extensions de corps}
+
+	
