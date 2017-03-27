@@ -171,14 +171,50 @@
 			\text{le symbole spécial $\infty$ (pas celui de $v(0)$) lorsque $v(f) = 0$}
 			\end{array} \right.$$
 		Dans le cas $f(v) = \infty$ on dit que $f$ a un \textbf{pôle} en $v$.
+		On a trois possibilités exclusives:
+		\begin{align*}
+			v(f) > 0 & \iff f(v) = 0 \iff f \in \mathfrak{m}_v \qquad \text{$f$ a un \textbf{zéro} en $v$} \\
+			v(f) < 0 & \iff f(v) = \infty \iff f \not\in \mathcal{O}_v \qquad \text{$f$ a un \textbf{pôle} en $v$} \\
+			v(f) = 0 & \iff f(v) \in \varkappa_v^\times \iff f \in \mathcal{O}_v^\times
+		\end{align*}
+		$v(f)$ est appelé multiplicité du zéro de $f$ en $v$, et $-v(f)$ multiplicité du pôle.
+		Si $v(f) = 1$, $f$ est appélé \textbf{paramètre local} pour $K$ en $v$ (comme uniformisante).
 	\end{defn}
+
+	\begin{pop}
+		La fermeture algébrique $\tilde{k}$ de $k$ dans $K$ peut s'appeler \textbf{corps des constantes} et coïncide avec $\{ f \in K \mid \forall v \in \mathscr{V}_K, v(f) = 0 \}$, ces fonctions $f$ étant dites \textbf{constantes}.
+		On a alors l'équivalence suivante :
+		\begin{align*}
+		\text{$f$ n'est pas constante} & \iff \quad \text{$f$ est transcendante} \quad \iff \quad \text{$\exists v \in \mathscr{V}_K$ où $f$ ait un pôle} \\
+		                               & \iff \quad \text{$f$ n'est pas nulle et $\exists v \in \mathscr{V}_K$ où $f$ ait un zéro}
+		\end{align*}
+	\end{pop}
 	
+	\begin{rem}
+		Tous les corps résiduels $\varkappa_v$ sont des extensions de $\tilde{k}$.
+		Notamment $[\tilde{k} : k]$ divise tous les $\deg(v) = [\varkappa_v : k]$ et, en particulier, s'il existe une place \textbf{rationnelle}, i.e. telle que $\deg(v) = 1$, ou simplement deux places de degrés premiers entre eux, on a $\tilde{k} = k$.
+	\end{rem}
 
+\subsection{Les places de la droite projective}
 
-\subsection{Les places de la droit projective}
+	Soit $h \in k[t]$ unitaire et irréductible, $v_h(f)$ pour $f \in k[t]$ l'exposant de $h$ dans la décomposition de $f$ en polynômes irréductibles et $\forall f,g \in k[t], v_h \left( \frac{f}{g} \right) = v_h(f) - v_h(g)$.
 
+	\begin{pop}
+		Le corps résiduel $\varkappa_h$ de la place $v_h$ est le corps de rupture $k[t] / (h)$ de $h$ sur $k$.
+	\end{pop}
+
+	\begin{rem}
+		La valeur de $f$ en la place $v_\xi$, définie comme $v_h$ où $h = t - \xi, \xi \in k^{\alg{}}$, peut s'identifier à la valeur $f(\xi)$ dans le corps $k(\xi) = k[t] / (h)$.
+	\end{rem}
 	
-
+	\begin{rem}
+		Une autre valuation non-triviale de $k(t)$ au-dessus de $k$ est $v_\infty \colon \frac{f}{g} \mapsto \deg(g) - \deg(f)$.
+	\end{rem}
+	
+	\begin{pop}
+		Soit $k$ un corps.
+		Alors les places du corps $k(t)$ sont exactement $v_\infty$ et les places $v_h$.
+	\end{pop}
 
 \subsection{L'indépendance des valuations}
 
