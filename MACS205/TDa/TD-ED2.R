@@ -99,13 +99,19 @@ plotChimio = function(pas) {
     c_range = range(0, NsChimio, NcChimio)
     plot(times, NsChimio, type = 'l', col = "blue", ylim = c_range)
     lines(times, NcChimio, type = 'l', col = "orange")
+    return(outChimio)
 }
 
 #' On teste alors la modélisation de la chimio en affinant le pas:
 #' 
-plotChimio(1)
-plotChimio(0.5)
-plotChimio(0.1)
-plotChimio(0.01)
+outE1 = plotChimio(1)
+outE2 = plotChimio(0.5)
+outE3 = plotChimio(0.1)
+outE4 = plotChimio(0.01)
 #plotChimio(0.001)
 
+outR2 = ode(Nini, times = seq(0, 130, by = 0.5), gompertz_competition, pars)
+plot(outR2)
+
+outR3 = ode(Nini, times = seq(0, 130, by = 0.1), gompertz_competition, pars)
+plot(outR3)

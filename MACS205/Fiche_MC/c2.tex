@@ -1,0 +1,30 @@
+$$I(\varphi) = \int \varphi \diff N = \esp_\mu(\varphi)$$
+
+D'après la LFGN, si $X_1,\ldots,X_n$ sont i.i.d. de loi $\mu$ tel que $\esp_\mu \abs{vf} < \infty$ alors $\frac{1}{n} \sum_i \varphi(X_i) \overset{\text{p.s.}}{\longrightarrow} \esp_\mu (\varphi(X_1))$.
+
+\begin{algorithm}[h]
+\caption{\textcolor{RoyalBlue}{Monte-Carlo}}
+	Générer $X_1,\ldots,X_n$ de façon indépendante sous $\mu$ \;
+	Calculer $\varphi(X_1),\ldots,\varphi(X_n)$ \;
+	\Sortie{$\Hat{I}_n(\varphi) = \frac{1}{n} \sum_i \varphi(X_i)$}
+\end{algorithm}
+
+\begin{pop}
+	Si $\int \abs{\varphi} \diff \mu < \infty$, $\hat{I}_n(\varphi)$ est non-biaisée et consistante.
+	Si $\int \abs{\varphi}^2 \diff \mu < \infty$, $\Var(\hat{I}_n(\varphi)) = \frac{1}{n} \Var(\varphi(X_1)) = \frac{1}{n} \sigma^2$ et $\sqrt{n} \left( \hat{I}_n(\varphi) - I(\varphi) \right) \overset{\mathcal{L}}{\longrightarrow} \normale(0,1)$.
+\end{pop}
+
+On estime $\sigma^2$ par $\hat{\sigma}^2 = \frac{1}{n - 1} \sum_{i = 1}^n \left( \varphi(X_i) - \hat{I}_n(\varphi) \right)^2$.
+
+\begin{pop}
+	Si $\int \abs{\varphi}^2 \diff \mu < \infty$ alors $\hat \sigma^2$ est sans biais et fortement consistant (par la LFGN).
+\end{pop}
+
+...
+
+\begin{thm}[Inégalité de Hoeffding]
+	Soit $(X_1,\ldots,X_n)$ des v.a i.i.d telles que $\forall i \in \iniff{1}{n}, a \leq X_1 \leq b$ p.s.
+	Alors
+	$$\proba \left( \abs{\sum_{i = 1}^n (X_i - \esp(X_i)) } > \varepsilon \right) \leq 2 e^{- \frac{3 \varepsilon^2}{n(b - a)^2}}\ .$$
+\end{thm}
+
