@@ -1,0 +1,56 @@
+\documentclass[a4paper,9pt]{article}
+
+\input{../../ficheStyleSheet.tex}
+
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\tiny Che Bedara - BDE Télécom ParisTech}
+\fancyfoot[RO]{\thepage}
+\fancyfoot[LE]{\thepage}
+
+\input{../../mathsMacro.tex}
+
+% Titre de la fiche
+\title{\vspace{-1.2cm} \textbf{TD1 : Génération de variables aléatoires}}
+
+
+\begin{document}
+
+\maketitle
+
+\vspace{-1.5cm}
+
+\section*{Exercice 1}
+
+	\subsection{1/}
+	
+		Notons $A_u = \{ t \in \R \mid F(t) \geq u \}$.
+		On veut montrer :
+		$$\inf A_u \leq x
+		\iff F(x) \geq u$$
+		
+		Montrons le sens indirect :
+		$$F(x) \geq u \implies x \in A_u \implies x \geq \inf A_u \implies x \leq F^-(u)$$
+		
+		Montrons le sens direct :
+		Soit $x$ tel que $F^-(u) = \inf A_u \leq x$.
+		Par la propriété de la borne inférieure sur $\R$ il vient
+		$$\forall \varepsilon > 0, \exists t \in A_u, t \leq \inf A_u + \varepsilon$$
+		De plus pour un tel $t$, comme $t \in A_u$,
+		$$u \leq F(t) \leq F( F^-(u) + \varepsilon) = F(x + \varepsilon)$$
+		mais $\varepsilon$ est arbitrairement petit et $F$ est continue à droite, donc $u \leq F(x)$.
+		
+	\subsection{2/}
+	
+		Soit $X \sim \exp(\lambda)$, $f_X(x) = \lambda e^{-\lambda x} \indic_{x \geq 0}$.
+		Donc $F_X(x) = 1 - e^{-\lambda x}$, $F_X(x) = u \iff x = - \frac{\ln(1 - u)}{\lambda}$.
+		
+		Donc $F^{-1}(u) = - \frac{\ln(1 - u)}{\lambda}$.
+		
+		Si $u \sim \mathcal{U}(\inff{0}{1})$, $- \frac{\ln(1 - u)}{\lambda} \sim \exp(\lambda)$.
+
+	\subsection{3/}
+	
+		
+
+\end{document}

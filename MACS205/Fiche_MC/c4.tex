@@ -1,0 +1,13 @@
+On se place dans le cadre de l'approximation de $\int_{\inff{0}{1}^d} \varphi(x) \diff x$ où $\varphi \colon \inff{0}{1}^d \longrightarrow \R$.
+
+\subsection{Méthode déterministe des sommes de Riemann}
+
+	On se donne $n^d$ points équidistants $\left( \frac{i_1}{n},\ldots,\frac{i_d}{n} \right)$ où $(i_1,\ldots,i_d) \in \intiff{1}{n}^d$.
+	La méthode des sommes de Riemann est
+	$$I_n(\varphi) = \frac{1}{n^d} \sum_{(i_1,\ldots,i_d) \in \intiff{1}{n}^d} \varphi \left( \frac{i_1}{n},\ldots,\frac{i_d}{n} \right)\ .$$
+
+	\begin{pop}
+		Si $\varphi \colon \inff{0}{1}^d \longrightarrow \R$ est $L$-lipschitzienne alors $\abs{I_n(\varphi) - I(\varphi)} \leq L \frac{\sqrt{d}}{n}$.
+	\end{pop}
+
+	
