@@ -215,6 +215,10 @@
 		Soit $k$ un corps.
 		Alors les places du corps $k(t)$ sont exactement $v_\infty$ et les places $v_h$.
 	\end{pop}
+	
+	\begin{rem}
+		Lorsque $k$ est algébriquement clos, les places de $\proba_k^1$ s'identifient donc aux éléments de $k$ ($x \in k$ est identifié à $f \in k(t) \mapsto v_x(f)$) plus l'élément $\infty$ (correspondant à la valuation $v_\infty$).
+	\end{rem}
 
 \subsection{L'indépendance des valuations}
 
@@ -238,8 +242,48 @@
 
 \subsection{Différentielles de Kähler}
 
+	\begin{defn}
+		Soit $k$ un anneau et $A$ une $k$-algèbre.
+		On appelle espace des \textbf{différentielles de Kähler} de $A$ sur $k$, noté $\Omega^1_{A/k}$, le $A$-module engendré par les symboles $\diff x$ pour $x \in A$, soumis aux relations suivantes :
+		\begin{enumerate}[(i)]
+			\item $\diff \colon A \to \Omega^1_{A/k}$ est linéaire, i.e. $\forall x, x' \in A, \diff(x + x') = \diff x + \diff x'$ et $\forall c \in k, \forall x \in A, \diff(cx) = c \diff x$,
+			\item $\forall x, y \in A, \diff(xy) = x \diff y + y \diff x$.
+		\end{enumerate}
+		Donc $\Omega^1_{A/k}$ est le quotient du $A$-module libre de base $\{ \diff x, x \in A \}$ par le sous-module engendré par les relations ci-dessus.
+	\end{defn}
 	
+	\begin{pop}
+		Soit $K$ une extension de corps de $k$ de type fini.
+		Les propriétés suivantes sont équivalentes :
+		\begin{itemize}
+			\item[\textbullet] si la caractéristique est $p > 0$ alors, dans $K$, les corps $K^p$ et $k$ sont linéairement disjoints sur $k^p$,
+			\item[\textbullet] il existe une base de transcendance $(t_1,\ldots,t_n)$ pour laquelle $K$ est (algébrique) séparable sur $k(t_1,\ldots,t_n)$.
+		\end{itemize}
+		Lorsque ces conditions sont vérifiées on dit que $K$ est \textbf{séparable}.
+		On dit aussi que $(t_1,\ldots,t_n)$ est une base de transcendance \textbf{séparante}.
+	\end{pop}
+	
+	\begin{rem}
+		Toute extension de corps en caractéristique $0$ est séparable.
+	\end{rem}
+	
+	\begin{pop}
+		Si $K = k(C)$ est le corps des fractions d'une courbe sur un corps $k$ et qu'au moins une des hypothèses suivantes est satisfaite :
+		\begin{itemize}
+			\item[\textbullet] le corps de base $k$ est parfait,
+			\item[\textbullet] la courbe $C$ est irréductible.
+		\end{itemize}
+		alors l'extension $K$ est séparable.
+	\end{pop}
 
+	\begin{pop}
+		Soit $K$ une extension de corps de $k$ de type fini et séparable.
+		Soit $(t_1,\ldots,t_n)$ une base de transcendance séparante.
+		Alors $\Omega_{K/k}^1$ est un $K$-espace vectoriel de base $\diff t_1,\ldots,\diff t_n$.
+		Réciproquement, si $t_1,\ldots,t_n \in K$ sont tels que $\diff t_1,\ldots,\diff t_n$ sont linéairement indépendants sur $K$, alors ils sont une base de transcendance séparante.
+	\end{pop}
+	
+	...
 
 \subsection{Théorème de Riemann-Roch}
 
