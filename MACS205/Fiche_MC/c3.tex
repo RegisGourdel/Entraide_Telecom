@@ -1,0 +1,95 @@
+\subsection{Présentation}
+
+	Le contexte est maintenant comme Monte-Carlo avec une variable observée en plus :
+	\begin{itemize}
+		\item[\textbullet] on observe $((X_1,\varphi(X_1),Y_1), \ldots, (X_n,\varphi(X_n),Y_n))$ i.i.d,
+		\item[\textbullet] on cherche $\esp [\varphi(X_1)]$,
+		\item[\textbullet] on connaît $\esp [Y_1]$.
+	\end{itemize}
+	
+	On peut calculer $\frac{1}{n} \sum_{i = 1}^n \left[ \varphi(X_i) - (Y_i - \esp[Y_i]) \right]$.
+	C'est un estimateur sans biais de variance
+	$$\frac{1}{n} \Var \left( \varphi(X_1) - (Y_1 - \esp Y_1) \right) = \frac{1}{n} \esp \left[ (\varphi(X_1) - (Y_1 - \esp Y_1))^2 \right] - \frac{1}{n} \esp[\varphi(X_1)]^2\ .$$
+	
+	Pour un tel estimateur, le but est de réduire  ce risque $L^2$ au maximum en choisissant bien $Y_1$.
+	Pour un tel estimateur, on obtient facilement les mêmes résultats que pour Monte-Carlo : forte consistance, normalité asymptotique et estimation consistante de la variance.
+	
+	Pour faciliter la notation on supposera maintenant $\esp Y_1 = 0$.
+	
+	\begin{rem}
+		\begin{itemize}
+			\item[\textbullet] $Y = 0$ \textrightarrow\ Monte-Carlo,
+			\item[\textbullet] $Y = \frac{- \varphi \circ L(X) - \varphi(X)}{2}$ \textrightarrow\ variables antithétiques.
+		\end{itemize}
+	\end{rem}
+	
+	\begin{rem}
+		La méthode des variables de contrôle (VC) est plus performante que MC si $\Var(\varphi(X_1) - Y_1) \leq \Var(\varphi(X_1))$ ($\frac{1}{n} \sum \varphi(X_i) + \frac{\varphi \circ L(X_i) - \varphi(X_i)}{2} = \frac{1}{2n} \sum \frac{\varphi(X_i) + \varphi \circ L(X_i)}{2}$).
+	\end{rem}
+	
+	Afin de prévenir d'une mauvaise variable de contrôle, on définit l'esimateur $\forall \beta \in \R, \hat{\mu}_n(\beta) = \frac{1}{n} \sum_{i = 1}^n (\varphi(X_i) - \beta Y_i)$, à utiliser si $\Var(\varphi(X_1) - \beta Y_1) \leq \Var(\varphi(X_1))$.
+	
+	\textrightarrow\ $\beta^* = \argmin_\beta \Var \left( \varphi(X_1) - \beta Y_1 \right)$, $\min_\beta \Var(\varphi - \beta Y) \leq \Var(\varphi)$.
+	
+	Soit $f_1,\ldots,f_m$ une collection de fonctions dont on connaît les intégrales.
+	Supposons $\forall L \in \iniff{1}{m}, \int f_L \diff \lambda = 0$.
+	Alors VC donne $\frac{1}{n} \sum_{i = 1}^n \left[ \varphi(u_i) - \sum_{j = 1}^m \beta_j f_j(u_i) \right]$.
+	
+	\begin{ex}
+		$(f_L)$ polynômes, $(f_L)$ base de Fourier ou $(f_L)$ indicatrices.
+	\end{ex}
+
+
+\subsection{Propriétés asymptotiques}
+
+	Soient $((X_i,Y_i))_i$ une suite de v.a i.i.d à valeurs dans $S \times \R^m$.
+	On définit l'estimateur de $\esp[\varphi(X_1)]$ par $\forall \beta \in \R^m, \hat{\mu}_n(\beta) = \frac{1}{n} \sum_{i = 1}^n \left( \varphi(X_i) - \transp{\beta}Y_i \right)$.
+
+	Comme dans l'intro, on suppose $\esp Y_1 = \begin{pmatrix}
+		\esp[Y_{1,1}] \\ \vdots \\ \esp[Y_{1,m}]
+		\end{pmatrix} = 0$.
+		
+	$\{ \mu_n(\beta), \beta \in \R^m \}$ est une collection d'estimateurs sans biais.
+	Trouvons l'élément de variance minimale :
+	\begin{align*}
+		\beta^* & = \argmin_\beta \frac{1}{n} \Var \left( \varphi - \transp{\beta} T \right) \\
+		        & = \argmin_\beta \Var \left( \varphi - \transp{\beta} T \right) \\
+		        & = \argmin_\beta \esp \left[ (\varphi - \transp{\beta} Y)^2 \right] - \esp[\varphi]^2 \\
+		        & = \argmin_\beta \esp \left[ (\varphi - \transp{\beta} Y)^2 \right]
+	\end{align*}
+	Si $\esp[Y_1 \transp{Y_1}]$ est inversible, les équations normales / du premier ordre admettent une unique solution :
+	$$\beta^* = \esp[Y_1 \transp{Y_1}]^{-1} \esp[Y_1 \varphi(X_1)]$$
+	
+	Il faut utiliser $\hat{\mu}_n(\beta^*)$, mais $\beta^*$ est inconnue.
+	
+	Idée : estimer $\beta^*$ sur les données \textrightarrow\ $\hat{\beta}$, et utiliser $\hat{\mu}_n(\hat{\beta})$, qui a la même variance asymptotique que $\hat{\mu}_n(\beta^*)$.
+	
+	Si $\frac{1}{n} \sum_{i = 1}^n Y_i \transp{Y_i}$ est inversible :
+	$$\hat{\beta} = \argmin_{\beta \in \R^m}
+	\underset{\text{estimateur classique de la covariance}}{\underbrace{\frac{1}{n} \sum_{i = 1}^n \left( [\varphi(X_i) - \transp{\beta} Y_i] - \hat{\mu}_n(\beta) \right)^2}}$$
+	
+	Ce choix ne va pas entrainer de changement à l'asymptotique mais pratique il procure de meilleurs performance.
+	Donc $\hat{\beta} = \argmin_\beta \frac{1}{n} \sum_{i = 1}^n \left( (\varphi(X_i) - \bar{\varphi}) - \transp{\beta} (Y_i - \bar{Y}) \right)^2$.
+	
+	Notons
+	$$Z_{n,m} = \begin{pmatrix}
+		Y_{11} - \bar{Y}_1 & \cdots & Y_{1m} - \bar{Y}_m \\
+		\vdots             &        & \vdots \\
+		Y_{n1} - \bar{Y}_1 & \cdots & Y_{nm} - \bar{Y}_m
+		\end{pmatrix} \in \R^{n \times m}, \qquad
+		Y_i = \begin{pmatrix} Y_{i1} \\ \vdots \\ Y_{im} \end{pmatrix} \in \R^m$$
+	($Y_i$ est la covariable du problème de régression).
+	On a $\bar{Y}_k = \frac{1}{n} \sum_{i = 1}^n Y_{ik}$.
+	
+	Notons également $\Psi_n = \begin{pmatrix} \varphi(X_1) - \bar{\varphi} \\ \vdots \\ \varphi(X_n) - \bar{\varphi} \end{pmatrix}$.
+	Alors $\hat{\beta} = \argmin_{\beta} \norme{\Psi_n - Z_{n,m}\beta}^2$.
+	
+	Le théorème de projection nous donne une unique solution qui, si $\transp{Z_{n,m}} Z_{n,m}$ est inversible, vérifie :
+	$$(\transp{Z_{n,m}} Z_{n,m}) \beta = \transp{Z_{n,m}} \Psi_n$$
+	$$\hat{\beta} = (\transp{Z_{n,m}} Z_{n,m})^{-1} \transp{Z_{n,m}} \Psi_n$$
+	
+	\begin{pop}[asymptotique de $\hat{\mu}_n(\beta)$]
+		Supposons que $\esp \abs{\varphi(X_1)} < \infty$, $\forall k \in \iniff{1}{m}, \esp \abs{\varphi(X_1) Y_{1k}} < \infty$ et $\esp[Y_1 \transp{Y_1}]$ existe et est inversible.
+		Alors $\hat{\mu}_n(\hat{\beta}) \overset{\text{p.s.}}{\longrightarrow} \esp[\varphi(X_1)]$.
+		Si de plus $\esp \abs{\varphi(X_1)}^2 < \infty$, alors $\sqrt{n} \left( \hat{\mu}_n(\hat{\beta} - \esp[\varphi(X_1)] \right) \longrightarrow \normale(0,\sigma_m^2)$ avec $\sigma_m^2 = \Var \left( \varphi(X_1) - \transp{{\beta^*}} Y_1 \right)$.
+	\end{pop}
