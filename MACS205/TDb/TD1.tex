@@ -51,6 +51,21 @@
 
 	\subsection{3/}
 	
+	\subsection{5.a/}
+	
+		On veut tirer sous $f$ mais on ne sait que tirer sous $g$.
 		
+		
+		Méthode de rejet :
+		\begin{itemize}
+			\item[\textbullet] Tirer $Y$ sous $g$.
+			\item[\textbullet] Tirer $U \sim \mathcal{U}(\intff{0}{1})$.
+			\item[\textbullet] Si $U \leq \frac{f(Y)}{cg(Y)}$ alors prendre $\tilde{Y} = Y$, sinon recommencer.
+		\end{itemize}
 
+		On obtient donc une observation que si $U \leq \frac{f(Y)}{cg(Y)}$, donc avec probabilité
+		$$\esp \left[ \indic_{U \leq \frac{f(Y)}{cg(Y)}} \right]
+			= \esp \left[ \int \indic_{U \leq \frac{f(Y)}{cg(Y)}} \diff U \right]
+			= \esp \left[ \frac{f(Y)}{cg(Y)} \right]
+			= \int \frac{f(y)}{cg(y)} g(y) = \frac{1}{c}$$
 \end{document}

@@ -93,3 +93,66 @@
 		Alors $\hat{\mu}_n(\hat{\beta}) \overset{\text{p.s.}}{\longrightarrow} \esp[\varphi(X_1)]$.
 		Si de plus $\esp \abs{\varphi(X_1)}^2 < \infty$, alors $\sqrt{n} \left( \hat{\mu}_n(\hat{\beta} - \esp[\varphi(X_1)] \right) \longrightarrow \normale(0,\sigma_m^2)$ avec $\sigma_m^2 = \Var \left( \varphi(X_1) - \transp{{\beta^*}} Y_1 \right)$.
 	\end{pop}
+	
+	\begin{rem}
+		$\hat{\beta}$ n'a pas d'effet en l'asymptotique (c'est comme si on connnaissait $\beta^*$).
+	\end{rem}
+	
+	\begin{rem}
+		D'autres estimateurs de $\beta^*$ peuvent être légitimes sous condition d'inversibilité :
+		$$\hat{\beta} = \left\{ \begin{array}{l}
+			\left( \frac{1}{n} \sum Y_i \transp{Y_i} \right)^{-1} \frac{1}{n} \sum Y_i \varphi(X_i) \\
+			\left( \frac{1}{n} \sum (Y_i - \bar{Y}) \transp{(Y_i - \bar{Y})} \right)^{-1} \frac{1}{n} \sum Y_i \varphi(X_i)
+			\end{array} \right.$$
+		Lorsque $\esp[Y_1 \transp{Y_1}]$ est connu, $\hat{\beta} = \esp[Y_1 \transp{Y_1}]^{-1} \frac{1}{n} \sum_{i = 1}^n \left( Y_i (\varphi(X_i) - \bar{\varphi}) \right)$.
+	\end{rem}
+	
+	...
+
+
+\subsection{Temps de calcul}
+
+	Soit $F$ une c.d.f sur $\R$ et $\varphi \colon \R \to \R$.
+	On veut calculer $\esp_F[\varphi]$.
+	
+	Le nombre d'échantillons n'est pas fixé par le problème initial.
+	Il est donc à déterminer par rapport à la précision souhaitée et le temps de calcul dont on dispose.
+	
+	Données massives \textrightarrow\ la problématique du temps de calcul est redevenue essentielle aujourd'hui.
+	
+	Mesure du temps \textrightarrow\ par simulation, en terme d'opérations élémentaires.
+	
+	Règles du temps de calcul (peuvent changer selon le problème) :
+	\begin{itemize}
+		\item[\textbullet] générer $X_1$ \textrightarrow\ 1 opération élémentaire,
+		\item[\textbullet] générer $Y_{1,k}$ pour chaque $k$ \textrightarrow\ 1 opération élémentaire,
+		\item[\textbullet] évaluer $\varphi(X_1)$ \textrightarrow\ 1 opération élémentaire.\\
+	\end{itemize}
+	
+	\begin{tabular}{c|c}
+	MC & nombre d'opérations élémentaires \\
+	\hline
+	$X_1,\ldots,X_n$ & $n$ \\
+	$\varphi(X_1),\ldots,\varphi(X_n)$ & $n$ \\
+	$\frac{1}{n} \sum_{i = 1}^n \varphi(X_i)$ & $\sim  n$\\
+	 & $O(n)$\\
+	\end{tabular}
+	
+	\begin{tabular}{cc}
+	VC & nombre d'opérations élémentaires \\
+	\hline
+	$X_1,\ldots,X_n$ & $n$ \\
+	$\varphi(X_1),\ldots,\varphi(X_n)$ & $n$ \\
+	$Y_1,\ldots,Y_n$ & $mn$ \\
+	$\frac{1}{n} \sum_{i = 1}^n (\varphi(X_i) - \transp{\beta} Y_i)$ & $mn$ \\
+	 & $O(mn)$\\
+	\end{tabular}
+	
+	\begin{tabular}{cc}
+	$\hat{\beta}$ & nombre d'opérations élémentaires \\
+	\hline
+	... & ... \\
+	... & ... \\
+	... & .... \\
+	& $O(m^3 + m^2n)$\\
+	\end{tabular}
