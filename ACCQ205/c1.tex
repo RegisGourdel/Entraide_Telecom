@@ -55,7 +55,7 @@
 		Dans un anneau factoriel $A$, un idéal de la forme $(f)$ avec $f \in A$ est premier ssi $f$ est nul ou irréductible.
 	\end{ex}
 
-	\begin{lem}[Principe maximal de Hausdorff]
+	\begin{lem}[Principe maximal de \textbf{Hausdorff}]
 		Soit $\mathcal{F} \subset \mathcal{P}(A)$ non vide et tel que, pour tout partie $\mathcal{I} \subset \mathcal{F}$ non vide totalement ordonnée par l'inclusion, $\exists F \in \mathcal{F}, \bigcup_{i \in \mathcal{I}} I \subset F$.
 		Alors il existe $M \in \mathcal{F}$ maximal pour l'inclusion.
 	\end{lem}
@@ -94,7 +94,7 @@
 		Alors $K$ est un corps.
 	\end{pop}
 
-	\begin{lem}[de Gauß]
+	\begin{lem}[de \textbf{Gauß}]
 		Soit $A$ un anneau factoriel et $K$ son corps des fractions.
 		Alors :
 		\begin{enumerate}[(i)]
@@ -105,5 +105,193 @@
 
 
 \subsection{Algèbres engendrée, extensions de corps}
+
+	\begin{defn}
+		Soit $A$ une $k$-algèbre et $(x_i)_{i \in I}$ famille de $A$.
+		La \textbf{$k$-algèbre engendrée} $k[x_i]_{i \in I}$ dans $A$ par les $x_i$ est l'intersection de toutes les sous-$k$-algèbres de $A$ contenant les $x_i$.
+		C'est la plus petite sous-$k$-algèbre contenant les $x_i$.
+		Elle est dite \textbf{de type fini} si $I$ est fini.
+	\end{defn}
+
+	On peut aussi décrire $k[x_i]_{i \in I}$ comme l'ensemble de tous les éléments de $A$ qui peuvent être obtenus à partir de $1$ et des $x_i$ par les opérations $\times$, $\cdot$ et $+$.
+	
+	\begin{defn}
+		Une \textbf{extension de corps} est un morphisme d'anneaux $k \to K$ entre corps ($K$ est une $k$-algèbre qui est un corps).
+		On note $k \subseteq K$ ou $K/k$ et l'on dit que $k$ est un \textbf{sous-corps} de $K$.
+	\end{defn}
+	
+	\begin{defn}
+		Soit $k \subseteq K$ une extension de corps et $(x_i)_{i \in I}$ une famille de $K$.
+		La \textbf{sous-extension engendrée} (dans $K$) par les $x_i$, notée $k(x_i)_{i \in I}$, est l'intersection de tous les sous-corps de $K$ contenant $k$ et les $x_i$.
+		C'est le plus petit corps intermédiaire contenant les $x_i$.
+		Elle est dite \textbf{de type fini} si $I$ est fini.
+	\end{defn}
+	
+	Ce sont les valeurs des fractions rationnelles à coefficients dans $k$ évaluées en des $x_i$.
+	
+	\begin{pop}
+		Une sous-extension d'une extension de corps de type fini est de type fini.
+		Mais une sous-algèbre d'une algèbre de type fini n'est pas, en général, de type fini !
+	\end{pop}
+
+
+\subsection{Extension algébrique et degré}
+
+	\begin{defn}
+		Soit $k \subseteq K$ est une extension et $x \in K$.
+		L'extension $k \subseteq k(x)$ est dite \textbf{monogène}.
+	\end{defn}
+	
+	Avec ce $x$, on définit $\varphi \colon \begin{array}{rcl} k[t] & \to & K \\ P & \mapsto & P(x) \end{array}$ le morphisme d'évaluation, le seul à envoyer l'indéterminée $t$ sur $x$.
+	Alors $\Ker(\varphi)$ est un idéal de $k[t]$ et l'on est dans l'un des deux cas suivants :
+	\begin{itemize}
+		\item[\textbullet] $\varphi$ est injectif, $x$ est \textbf{transcendant} sur $k$, $\varphi$ se prolonge de manière unique en une extension de corps $k(t) \to K$, et l'image de $k(t)$ (corps des fractions rationnelles) est $k(x)$ (extension).
+		\item[\textbullet] ou $\Ker(\varphi)$ est engendré par $\mu_x \in k[t]$ unitaire, appelé \textbf{polynôme minimal} de $x$ et $x$ est dit \textbf{algébrique}. Alors $\varphi(k[t])$ s'identifie à la $k$-algèbre $k[t]/(\mu_x)$ de dimension $\deg(\mu_x)$, appelé \textbf{degré} de $x$.
+	\end{itemize}
+	
+	\begin{rem}
+		Les algébriques de degré 1 sur $k$ sont exactement les éléments de $k$.
+	\end{rem}
+	
+	\begin{rem}
+		Si $k \subseteq k' \subseteq K$, le polynôme minimal d'un $x \in K$ sur $k'$ divise celui sur $k$.
+	\end{rem}
+	
+	\begin{defn}
+		Soit $\mu \in k[t]$ unitaire irréductible.
+		Le \textbf{corps de rupture} de $\mu$ sur $k$ est $k[t]/(\mu)$.
+		%Il coïncide avec $k$ ssi $\deg(\mu) = 1$.
+	\end{defn}
+	
+	\begin{defn}
+		Une extension de corps $k \subseteq K$ est dite \textbf{algébrique} (« au-dessus » de $k$, ou « sur » $k$) lorsque chaque élément de $K$ est algébrique sur $k$.
+	\end{defn}
+	
+	\begin{defn}
+		Un corps $k$ est \textbf{algébriquement clos} si sa seule extension algébrique est lui-même.
+		Cela revient à dire que les seuls polynômes unitaires irréductibles dans  $k[t]$ sont les $t - a$.
+	\end{defn}
+	
+	\begin{defn}
+		Soit $k \subseteq K$ une extension de corps.
+		Considérant $K$ comme un $k$-ev, sa dimension (finie ou infinie) est notée $[K:k]$ et appelée \textbf{degré} de l'extension.
+		Une extension de degré fini est dite \textbf{finie}.
+	\end{defn}
+	
+	\begin{pop}
+		L'extension monogène $k \subseteq k(x)$ est finie si et seulement si $x$ est algébrique sur $k$, et dans ce cas $k(x) \simeq k[t]/(\mu_x)$ et $[k(x):k] = \deg(\mu_x) = \deg(x)$.
+	\end{pop}
+	
+	\begin{pop}
+		Soit $k \subseteq K \subseteq L$ deux extensions imbriquées.
+		Alors $[L:k] = [K:k] [L:K]$.
+	\end{pop}
+	
+	\begin{cor}
+		\begin{itemize}
+			\item[\textbullet] Une extension $k \subseteq k(x_1,\ldots,x_n), n \in \N$ avec $x_1,\ldots,x_n$ algébriques est finie et a une base comme $k$-ev formée de monômes en les $x_1,\ldots,x_n$ (i.e. de la forme $x_1^{r_1} \cdots x_n^{r_n}$).
+			\item[\textbullet] Une extension est finie si et seulement si elle est à la fois algébrique et de type fini.
+			\item[\textbullet] Une extension de corps engendrée par une famille quelconque d'éléments algébriques est algébrique.
+				Donc les sommes, différences, produits et inverses de quantités algébriques sur $k$ le sont aussi.
+			\item[\textbullet] Si $k \subseteq K$ et $K \subseteq L$ sont algébriques alors $k \subseteq L$ l'est.
+		\end{itemize}
+	\end{cor}
+	
+	\begin{defn}
+		Soit $k \subseteq K$ une extension de corps.
+		Le corps des éléments de $K$ algébriques sur $k$ est appelé \textbf{fermeture algébrique} de $k$ dans $K$.
+		Si c'est précisément $k$, on dit que $k$ est \textbf{algébriquement fermé} dans $K$.
+	\end{defn}
+	
+	\begin{pop}
+		Un corps algébriquement clos est algébriquement fermé dans toute extension (mais pas l'inverse en général).
+	\end{pop}
+	
+	\begin{rem}
+		Soit $K$ algébrique au-dessus de $k$ et $t_1,\ldots,t_n$ des indéterminées.
+		Alors $K(t_1,\ldots,t_n)$ est algébrique sur $k(t_1,\ldots,t_n)$.
+	\end{rem}
+
+
+\subsection{Extensions linéairement disjointes}
+
+	\begin{defn}
+		Soit $k \subseteq K$ et $k \subseteq L$ deux extensions contenues dans une même troisième $M$.
+		On dit qu'elles sont \textbf{linéairement disjointes} lorsque toute famille d'éléments de $K$ linéairement indépendante sur $K$ est encore linéairement indépendantes sur $L$ en tant que famille d'éléments de $M$.
+	\end{defn}
+	
+	\begin{rem}
+		Cette condition est symétrique et l'on a $K \cap L = k$.
+		On appelle \textbf{composé} de $K$ et $L$ le sous-corps de $M$ engendré par $K$ et $L$ : $K.L = k(K \cup L) = K(L) = L(K)$.
+	\end{rem}
+	
+	\begin{pop}
+		Soit $k \subseteq K$ et $k \subseteq L$ deux extensions contenues dans une troisième $M$ et $(v_j)$ une base de $K$ comme $k$-ev.
+		Alors $K$ et $L$ sont linéairement disjoints si et seulement si $(v_i)$ est encore linéairement indépendante sur $L$ quand on la voit comme une famille d'éléments de $M$.
+	\end{pop}
+	
+	\begin{pop}
+		Soit $k \subseteq K$ $k \subseteq L$ deux extensions, l'une algébrique, contenues dans $M$.
+		Alors $K.L$ est le sous-$k$-ev $\Vect(\{ xy, x \in K, y \in L \} )$ de $M$ et toute base de $K$ sur $k$ est encore une base de $K.L$ sur $L$.
+	\end{pop}
+	
+	\begin{cor}
+		On a $[K.L : L] = [K : k]$ et $[K.L : k] = [K : k] \cdot [L : k]$.
+	\end{cor}
+	
+	\begin{pop}
+		Soit $k \subseteq K$ une extension de corps et $t_1,\ldots,t_n$ des indéterminées.
+		Alors les extensions $k \subseteq K$ et $k \subseteq k(t_1,\ldots,t_n)$ sont linéairement disjointes dans $K(t_1,\ldots,t_n)$.
+		Si de plus $K$ est algébrique sur $k$, alors toute base de $K$ comme $k$-ev est une base de $K(t_1,\ldots,t_n)$ comme $k(t_1,\ldots,t_n)$-ev.
+	\end{pop}
+
+
+\subsection{Bases et degré de transcendance}
+
+	\begin{defn}
+		Soit $k \subseteq K$ une extension de corps.
+		Une famille finie $x_1,\ldots,x_n \in K$ est dite \textbf{algébriquement indépendante} sur $k$ lorsque le seul polynôme $P \in k[t_1,\ldots,t_n]$ tel que $P(x_1,\ldots,x_n) = 0$ est le polynôme nul.
+		En particulier, chacun des $x_i$ est transcendant sur $k$, et un unique $x \in K$ est algébriquement indépendant sur $k$ si et seulement s'il est transcendant sur $k$.
+		Une famille infinie est algébriquement indépendante si toute sous-famille finie l'est.
+	\end{defn}
+	
+	\begin{defn}
+		\textbf{Base de transcendance} : famille $(x_i)_{i \in I}$ de $K$ algébriquement indépendante sur $k$ telle que $K$ est algébrique au-dessus de l'extension $k(x_i)_{i \in I}$.
+	\end{defn}
+	
+	\begin{rem}
+		Des indéterminées $t_1,\ldots,t_n$ sont algébriquement indépendantes et si $x_1,\ldots,x_n$ sont algébriquement indépendants alors $k(x_1,\ldots,x_n)$ s'identifie à $k(t_1,\ldots,t_n)$ et l'extension $k \subseteq k(x_1,\ldots,x_n)$ est dite \textbf{transcendante pure}.
+	\end{rem}
+	
+	\begin{pop}
+		Soit $k \subseteq K$ une extension de corps. On a :
+		\begin{itemize}
+			\item[\textbullet] Toute famille de $K$ algébriquement indépendante sur $k$ se complète en une base de transcendance de $K$ sur $k$.
+			\item[\textbullet] De toute famille qui engendre $K$ en tant qu'extension de corps de $k$, ou même qui engendre un corps intermédiaire $E$ au-dessus duquel $K$ est algébrique, on peut extraire une base de transcendance.
+			\item[\textbullet] (lemme d'échange) Soit $z_1,\ldots,z_n$ une base de transcendance finie de $K$ sur $k$ et $t \in K$ tel que $z_1,\ldots,z_l,t$ soit algébriquement indépendants sur $k$ pour un certain $l \geq 0$.
+				Alors $\exists j \in \iniff{l + 1}{n}$ tel qu'en remplaçant $z_j$ par $t$ dans $z_1,\ldots,z_n$ on obtienne encore une base de transcendance.
+			\item[\textbullet] Deux bases de transcendance de $K$ sur $k$ ont toujours le même cardinal.
+		\end{itemize}
+	\end{pop}
+	
+	\begin{defn}
+		Soit $k \subseteq K$ une extension.
+		Le cardinal d'une base de transcendance de $K$ sur $k$ est le \textbf{degré de transcendance} de $K$ sur $k$, noté $\degtr_k(K)$ (nul ssi l'extension est algébrique).
+	\end{defn}
+	
+	\begin{pop}
+		Soit $k \subseteq  K \subseteq L$ une tour d'extensions.
+		Alors $\degtr_k(L) = \degtr_k(K) + \degtr_K(L)$.
+	\end{pop}
+	
+	\begin{pop}
+		Soit $k \subseteq  k' \subseteq K$ une tour d'extensions avec $k'$ algébrique sur $k$.
+		Alors si $(x_i)_{i \in I}$ est une famille de $K$ algébriquement indépendants sur $k$, ils le sont encore sur $k'$.
+		De plus, toute base de $k'$ comme $k$-ev est encore une base de $k'(x_i)_{i \in I}$ sur $k(x_i)_{i \in I}$, et $[k'(x_i)_{i \in I} : k(x_i)_{i \in I}] = [k' : k]$.
+	\end{pop}
+
+
+
+\subsection{Corps de rupture, corps de décomposition et clôture algébrique}
 
 	

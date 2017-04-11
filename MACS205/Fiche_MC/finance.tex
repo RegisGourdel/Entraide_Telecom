@@ -1,0 +1,75 @@
+\subsection{Optimisation européenne}
+
+	Cette optimisation, associée à l'action $(S_t)_{t \geq 0}$ permet à la date $T$ de vendre ou nom l'action.
+	Le profit possible associé au prix d'exercice $K$ est $(S_T - K)_T$.
+	
+	On arrive à une espérance de gain de $e^{-rT} \esp[(S_T - K)_T]$.
+	
+	\begin{defn}
+		\textbf{Option} : produit financier donnant le droit de vendre  ou d'acheter une action donnée à un prix $K$ à une date $T$.
+	\end{defn}
+
+
+\subsection{Option asiatique}
+
+	Le gain associé à ce produit est donné par $(\bar{S} - K)_T$, avec $\bar{S} = \frac{1}{d} \sum_{k = 1}^d S_{t_k}$, avec $t_k = \frac{kT}{d}$.
+	Il faut là aussi évaluer le prix de l'option : $e^{-rT} \esp[(\bar{S} - K)_T]$.
+	
+	
+	Il reste à définir un modèle pour l'actif $(S_t)_{t \geq 0}$.
+	
+	\begin{defn}
+		\textbf{Mouvement brownien} : processus stochastique $(w_t)_{t \geq 0}$ tel que :
+		\begin{itemize}
+			\item[\textbullet] $w_0 = 0$,
+			\item[\textbullet] $t \mapsto w_t$ est $\cont^0$,
+			\item[\textbullet] $\forall h \geq 0, (w_{t + h} - w_t) \sim \mathcal{N}(0,h)$, d'où $w_t \sim \mathcal{N}(0,t)$.
+		\end{itemize}
+	\end{defn}
+	
+	On prend alors
+	$$S_t = S_0 e^{(r - \sigma^2/2)t + \sigma w_t}, \qquad P_e = e^{-rT} \esp[(S_T - K)_T], \qquad P_u = e^{-rT} \esp[(\bar{S} - K)_T]$$
+	\textrightarrow\ méthode de simulation pour calculer $P_u$ et $P_e$.
+
+
+\subsection{Avec la méthode de Monte-Carlo}
+
+	Pour $P_e$ :
+	\begin{itemize}
+		\item[\textbullet] Générer $w^{(1)}, w^{(2)}, \ldots, w^{(n)}$ i.i.d de loi commune $\mathcal{N}(0,T)$.
+		\item[\textbullet] Calculer $S^{(i)} = S_0 e^{(r - \sigma^2/2)T + \sigma w^{(i)}}$.
+		\item[\textbullet] Calculer $\hat{P}_e = \frac{1}{n} \sum_{i = 1}^n \left( S^{(i)} - K \right)_+ e^{-rT}$.\\
+	\end{itemize}
+	
+	Pour $P_a$ : $P_a$ dépend de la loi de toute la trajectoire d'un Brownien.
+	Génération le long de la trajectoire.
+	Soit $X_1,\ldots,X_d$ i.i.d de loi commune $\mathcal{N}(0,h)$ avec $h = \frac{T}{d}$.
+	$$w_{t_k} = \sum_{j = 1}^k X_j$$
+	On vérifie que chaque incrément est indépendant et gaussien et que $\Var(w_{t_k}) = k \cdot h = \frac{kT}{d} = t_k$.
+	
+	On peut ainsi calculer $\bar{S} = \frac{1}{d} \sum_{k = 1}^d S_0 e^{(r - \sigma^2/2)t_k + \sigma w_{t_k}}$.
+	Il reste juste à appliquer MC :
+	\begin{itemize}
+		\item[\textbullet] tirer $(X_k^{(1)})_{k = 1,\ldots,d}, \ldots, (X_k^{(n)})_{k = 1,\ldots,d}$,
+		\item[\textbullet] calculer $\bar{S}^{(i)}, i = 1,\ldots,n$,
+		\item[\textbullet] calculer $\hat{P}_a = \frac{1}{n} \sum_{i = 1}^n \left( \bar{S}^{(i)} - K \right)_+ e^{-rT}$.
+	\end{itemize}
+
+
+\subsection{Formule explicite pour $P_a$ (formule Black-Scholtz)}
+
+	On note $m = (r - r^2/2)T, s = \sigma \sqrt{T}, w \sim \mathcal{N}(0,1), a = \frac{\ln(K/S_0) - m}{s}$.
+
+	\begin{align*}
+	P_e & = e^{-rT} \esp[(S_T - K)_T] \\
+	    & = e^{-rT} \esp[(S_0 e^{m + sw} - K)_+] \\
+	    & = e^{-rT} \esp[(S_0 e^{sw} - K)_+] \\
+	    & = \frac{e^{-rT}}{\sqrt{2\pi}} \int (S_0 e^{m + sw} - K)_+ e^{-w^2/2} \diff w \\
+	    & = \frac{e^{-rT}}{\sqrt{2\pi}} \int_{S_0 e^{m + sw} - K > 0} (S_0 e^{m + sw} - K) e^{-w^2/2} \diff w \\
+	    & = \frac{e^{-rT + m}}{\sqrt{2\pi}} S_0 \int_{S_0 e^{sw + m} > K} e^{sw - w^2/2} \diff w - K \frac{e^{-rT}}{\sqrt{2\pi}} \int_{S_0 e^{sw + m} > K} e^{-w^2/2} \diff w - K e^{-rT} ( 1 - \Phi a )
+	    & ....
+	\end{align*}
+	
+\subsection{4}
+
+	
