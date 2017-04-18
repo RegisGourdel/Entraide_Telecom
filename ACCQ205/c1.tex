@@ -294,4 +294,64 @@
 
 \subsection{Corps de rupture, corps de décomposition et clôture algébrique}
 
-	
+	\begin{defn}
+		Soit $K$ un corps et $\mu \in K[t]$ irréductible.
+		On appelle \textbf{corps de rupture} de $\mu$ sur $K$ une extension $K \subseteq L$ telle que $\mu$ admette une racine $x \in K$ pour laquelle $L = K(x)$.
+	\end{defn}
+
+	\begin{pop}
+		Soit $K$ un corps et $\mu \in K[t]$ irréductible. Alors :
+		\begin{enumerate}[(i)]
+			\item Il existe un corps de rupture de $\mu$ sur $K$, à savoir $K[t]/(\mu)$.
+			\item Soit $K \subseteq L$ un corps de rupture de $\mu$ sur $K$ avec $L = K(x)$ et $K \subseteq L'$ une extension dans laquelle $\mu$ a une racine $x'$.
+				Alors il existe un unique morphisme de corps $\varphi \colon L \to L'$ tel que $\varphi_{|K} = \Id_K$ et $\varphi(x) = x'$.
+			\item Si, en plus de \textit{(ii)}, $K \subseteq L'$ est aussi un corps de rupture de $\mu$ sur $K$, $\varphi$ est un isomorphisme.
+		\end{enumerate}
+	\end{pop}
+
+	\begin{defn}
+		Soit $K$ un corps et $f \in K[t]$.
+		On appelle \textbf{corps de décomposition} de $f$ sur $K$ une extension $K \subseteq L$ telle que $f$ soit scindé sur $L$.
+		Pour une famille $(f_i)$ de polynômes, il s'agit d'une extension de $K$ dans laquelle tous les $f_i$ sont scindés, et qui est engendrée en tant que corps par l'ensemble de toutes les racines de tous les $f_i$.
+	\end{defn}
+
+	%\begin{pop}
+		%Soit $K$ un corps et $f \in K[t]$. Alors :
+		%\begin{enumerate}[(i)]
+			%\item Il existe un corps de décomposition de $f$ sur $K$.
+			%\item Soit $K \subseteq L$ un corps de décomposition de $f$ sur $K$ et $K \subseteq L'$ une extension dans laquelle $f$ est scindé.
+				%Alors il existe un unique morphisme de corps $\psi \colon L \to L'$ tel que $\psi_{|K} = \Id_K$.
+			%\item Si $f$ est irréductible et $x,x'$ racines de $f$ dans $L$ et $L'$ respectivement, on peut choisir $\psi$ tel que $\psi(x) = x'$.
+			%\item Si $K \subseteq L'$ est aussi un corps de décomposition de $f$ sur $K$, tout $\psi$ comme en \textit{(ii)} est un isomorphisme.
+		%\end{enumerate}
+	%\end{pop}
+
+	\begin{pop}
+		Soit $K$ un corps et $(f_i)$ une famille quelconque de $K[t]$. Alors :
+		\begin{enumerate}[(i)]
+			\item Il existe un corps de décomposition des $f_i$ sur $K$.
+			\item Soit $K \subseteq L$ un corps de décomposition des $f_i$ sur $K$ et $K \subseteq L'$ une extension dans laquelle tous les $f_i$ sont scindés.
+				Alors il existe un unique morphisme de corps $\psi \colon L \to L'$ tel que $\psi_{|K} = \Id_K$.
+			\item Si $f_j$ dans la famille est irréductible et $x,x'$ sont racines de $f_j$ dans $L$ et $L'$ respectivement, on peut choisir $\psi$ tel que $\psi(x) = x'$.
+			\item Si $K \subseteq L'$ est aussi un corps de décomposition des $f_i$ sur $K$, tout $\psi$ comme en \textit{(ii)} est un isomorphisme.
+		\end{enumerate}
+	\end{pop}
+
+	\begin{defn}
+		Soit $K$ un corps.
+		On appelle \textbf{clôture algébrique} de $K$, notée $K^{\alg}$, une extension $K \subseteq L$ algébrique telle que tout polynôme de $K[t]$ soit scindé sur $L$.
+	\end{defn}
+
+	\begin{rem}
+		Un corps est algébriquement clos si et seulement si il est égal à sa propre clôture algébrique.
+	\end{rem}
+
+	\begin{rem}
+		Une clôture algébrique de $K$ est égal au corps de décomposition de tous les polynômes de $K[t]$.
+	\end{rem}
+
+	\begin{thm}[de \textbf{Steinitz}]
+		Soit $K$ un corps quelconque.
+		Alors il existe une clôture algébrique de $K$ et, si $L$ et $L'$ sont deux clôtures algébrique de $K$, il existe un isomorphisme entre elles qui soit l'identité sur $K$.
+		Enfin, une clôture algébrique est algébriquement close.
+	\end{thm}
