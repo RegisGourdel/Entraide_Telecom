@@ -355,3 +355,189 @@
 		Alors il existe une clôture algébrique de $K$ et, si $L$ et $L'$ sont deux clôtures algébrique de $K$, il existe un isomorphisme entre elles qui soit l'identité sur $K$.
 		Enfin, une clôture algébrique est algébriquement close.
 	\end{thm}
+
+
+\subsection{Éléments et extensions algébriques séparables}
+
+	\begin{defn}
+		\textbf{Caractéristique} d'un corps $k$ : plus petit entier $p$ égal à $0$ dans $k$, ou $0$ s'il n'en existe pas.
+	\end{defn}
+
+	\begin{defn}
+		Si $k$ est de caractéristique $p > 0$ on définit le \textbf{Frobenius} d'exposant $p$ : application
+		$\Frob_p \colon \begin{array}{rcl} k & \to & k \\ x & \mapsto & x^p \end{array}$.
+		C'est un morphisme de corps, i.e. $(x + y)^p = x^p + y^p$ et $(xy)^p = x^p y^p$.
+		On note $k^p$ son image (sous-corps de $k$).
+	\end{defn}
+
+	\begin{defn}
+		Soit $k$ un corps et $f \in k[t]$.
+		On dit que $f$ est \textbf{séparable} s'il est premier avec sa dérivée $f'$.
+		C'est équivalent à avoir des racines simples dans une extension où $f$ est scindé.
+		Si $f$ est irréductible celà revient à $f' \neq 0$.
+	\end{defn}
+	
+	\begin{pop}
+		Si $k$ est de caractéristique $p = 0$, tout polynôme irréductible est séparable.
+		Si $p > 0$ tout $f \in k[t]$ s'écrit de façon unique sous la forme $f(t) = f_0(t^{p^e})$ avec $e \in \N$ et $f_0' \neq 0$.
+		Dans ce cas, si $f$ est séparable $e = 0$, et si $f$ est irréductible alors $f_0$ l'est aussi.
+	\end{pop}
+	
+	\begin{lem}
+		Soit $k$ de caractéristique $p > 0$ et $h \in k[t]$ tel que $\exists i \in \iniff{1}{p}, h^i \in k^p[t]$.
+		Alors $h \in k^p[t]$.
+	\end{lem}
+	
+	\begin{pop}
+		Soit $k$ de caractéristique $p > 0$, $f_0 \in k[t]$ unitaire irréductible et $f(t) := f_0(t^{p^e})$ où $e > 0$.
+		Alors $f$ est réductible (i.e. non irréductible) si et seulement si $f_0 \in k^p[t]$.
+		Dans ce cas, on a aussi $f \in k^p[t]$.
+	\end{pop}
+	
+	\begin{defn}
+		Soit $k \subseteq K$ une extension de corps.
+		Un élément $x \in K$ algébrique sur $k$ est dit \textbf{séparable} (sur $k$) si son polynôme minimal l'est.
+	\end{defn}
+	
+	\begin{rem}
+		En caractéristique $0$, tout algébrique est séparable.
+		En caractéristique $p$, $\forall x$ algébrique, $\exists ! e$ tel que $x^{p^e}$ soit séparable, de degré $\deg(x)/p^e$.
+		En particulier, si $p \nmid \deg(x)$, $x$ est séparable.
+	\end{rem}
+	
+	\begin{pop}
+		Soit $k \subseteq K$ une extension de caractéristique $p > 0$ et $x \in K$ algébrique sur $k$.
+		Exactement l'un des deux cas suivants se produit :
+		\begin{itemize}
+			\item[\textbullet] $x$ est séparable, le polynôme minimal de $x^p$ sur $k$ est dans $k^p[t]$, $\deg(x^p) = \deg(x)$ et $k(x) = k(x^p)$,
+			\item[\textbullet] $x$ n'est pas séparable, le polynôme minimal de $x^p$ sur $k$ n'est pas dans $k^p[t]$ et $\deg(k^p) = \deg(x)/p$.
+		\end{itemize}
+	\end{pop}
+	
+	\begin{defn}
+		Une extension $k \subseteq K$ algébrique est dite \textbf{séparable} lorsque tout élément de $K$ est séparable sur $k$.
+	\end{defn}
+	
+	\begin{pop}
+		Soit $k \subseteq K$ une extension de corps finie de caractéristique $p$ telle que $K^p$ engendre $K$ comme $k$-ev.
+		Alors $K$ est séparable sur $k$.
+	\end{pop}
+	
+	\begin{pop}
+		Soit $k \subseteq K$ une extension et $x_1,\ldots,x_n \in K$ tel que $\forall i \in \iniff{1}{n}$, $x_i$ est algébriques séparable sur $k(x_1,\ldots,x_{i - 1})$.
+		Alors $k(x_1,\ldots,x_n)$ est séparable sur $k$.
+	\end{pop}
+	
+	\begin{cor}
+		Soit $K = k(x_i)_{i \in I}$ avec les $x_i$ algébriques séparables sur $k$.
+		Alors tout $K$ est algébrique séparable sur $k$.
+	\end{cor}
+	
+	\begin{cor}
+		Soit $k \subseteq K \subseteq L$ une tour d'extensions algébriques.
+		Si $K$ est séparable sur $k$ et $L$ est séparable sur $K$, alors $L$ est séparable sur $k$.
+	\end{cor}
+	
+	\begin{rem}
+		Soit $k	\subseteq K$ une extension.
+		L'extension de $k$ engendrée par les éléments de $K$ algébriques séparables sur $k$ est exactement l'ensemble de ces mêmes éléments, appelé \textbf{fermeture séparable} de $k$ dans $K$.
+		La fermeture séparable de $k$ dans une clôture algébrique de $k$ s'appelle \textbf{clôture séparable} de $k$.
+		Si $k$ est égal à sa clôture séparable on qu'il est \textbf{séparablement clos}.
+	\end{rem}
+	
+	\begin{rem}
+		Une extension $k \subseteq K$ telle que $k$ soit égal à sa propre fermeture séparable dans $K$ est dite \textbf{purement inséparable}.
+		C'est la cas si et seulement si, en notant $p > 0$ la caractéristique, le polynôme minimal sur $k$ d'un élément quelconque de $K$ est de la forme $t^{p^e} - c$ où $c \in k$.
+	\end{rem}
+	
+	%~ \begin{defn}
+		%~ \textbf{Degré séparable}
+	%~ \end{defn}
+
+
+\subsection{Corps parfaits, théorème de l'élément primitif}
+
+	\begin{defn}
+		Un corps $k$ de caractéristique $p$ est dit \textbf{parfait} lorsque, soit $p = 0$, soit $p > 0$ et $k^p = k$.
+	\end{defn}
+	
+	\begin{pop}
+		Un corps $k$ est parfait si et seulement si toute extension algébrique de $k$ est séparable.
+	\end{pop}
+	
+	\begin{pop}
+		Soit $k \subseteq K$ une extension algébrique avec $k$ parfait.
+		Alors $K$ est aussi parfait.
+	\end{pop}
+	
+	\begin{thm}[de l'élément primitif]
+		Soit $K = k(x_1,\ldots,x_n)$ avec $x_1,\ldots,x_n$ algébriques sur $k$ et $x_2,\ldots,x_n$ séparables sur $k$.
+		Alors l'extension $k \subseteq K$ est monogène, i.e. $\exists y \in K, K = k(y)$.
+	\end{thm}
+	
+	\begin{cor}
+		Toute extension finie séparable est monogène, en particulier toute extension finie d'un corps parfait.
+	\end{cor}
+	
+	\begin{pop}
+		Soit $k$ un corps parfait et $k \subseteq K$ une extension de type fini.
+		Alors $\exists x_1,\ldots,x_{d + 1} \in K, K = k(x_1,\ldots,x_{d + 1})$ avec $x_1,\ldots,x_d$ algébriquement indépendants sur $k$ et $x_{d + 1}$ algébrique séparable sur $k(x_1,\ldots,x_d)$.
+	\end{pop}
+
+
+
+\subsection{Théorie de Galois}
+
+	\begin{defn}
+		Soit $K \subseteq L$ une extension algébrique.
+		Deux éléments $x,x' \in L$ sont dits \textbf{conjugués} s'ils ont le même polynôme minimal sur $K$.
+		C'est une relation d'équivalence qui définit des \textbf{classes de conjugaisons}.
+	\end{defn}
+	
+	\begin{pop}
+		Deux éléments $x,x' \in L$ sont conjugués lorsque tout polynôme de $K[t]$ qui s'annule sur l'un s'annule sur l'autre.
+	\end{pop}
+	
+	\begin{rem}
+		Si $x$ est séparable, son polynôme minimal sur $K$ est à racines simples dans $K^{\alg}$, donc il admet $\deg(x)$ conjugués.
+	\end{rem}
+	
+	\begin{defn}
+		Une extension $K \subseteq L$ est dite \textbf{normale} si elle vérifie une des propriétés équivalentes suivantes :
+		\begin{enumerate}[(i)]
+			\item tout conjugué sur $K$ dans $L^{\alg}$ d'un élément de $L$ est encore dans $L$,
+			\item tout polynôme irréductible sur $K$ qui a une racine dans $L$ est scindé sur $L$,
+			\item $L$ est corps de décomposition d'une famille de polynômes sur $K$,
+			\item l'image de tout morphisme de corps $L \to L^{\alg}$ qui soit l'identité sur $K$ est égale à $L$.
+		\end{enumerate}
+	\end{defn}
+	
+	\begin{defn}
+		Une extension algébrique est \textbf{galoisienne} si elle est à la fois normale et séparable.
+	\end{defn}
+	
+	\begin{defn}
+		Soit $K \subseteq L$ une extension galoisienne.
+		On appelle \textbf{groupe de Galois} de l'extension, noté $\Gal(K \subseteq L)$, l'ensemble des automorphismes de $L$ au-dessus de $K$, i.e. les automorphismes de $L$ qui soient l'identité sur $K$.
+		Lorsque $L = K^{\sep}$ (clôture séparable), on dit que $\Gal(K \subseteq L) = \Gal(K) = \Gamma_K$ est le groupe de Galois \textbf{absolu} de $K$.
+	\end{defn}
+	
+	\begin{ex}
+		$\Gal(\R \subseteq \C) = \{ \Id_\C ; x \mapsto \bar{x} \}$ et $\Gal(\F_p \subseteq \F_{p^d}) = \{ \Frob_p^i, 0 \leq i \leq d - 1 \}$.
+	\end{ex}
+	
+	\begin{thm}
+		Soit $K \subseteq L$ une extension galoisienne et $G := \Gal(K \subseteq L)$.
+		Alors :
+		\begin{itemize}
+			\item[\textbullet] si $K \subseteq L$ est finie, alors $G$ est fini et $\card(G) = [L : K]$,
+			\item[\textbullet] si $x \in L$ est fixé par tous les éléments de $G$ alors $x \in K$.
+		\end{itemize}
+		De plus, si on appelle $\Phi \colon E \mapsto \Gal(E \subseteq L)$ qui a un corps intermédiaire $K \subseteq E \subseteq L$ associe le groupe de Galois de l'extension $E \subseteq L$ (galoisienne) vu comme sous-groupe de $G$, on a :
+		\begin{itemize}
+			\item[\textbullet] $\Phi$ est une injection (décroissante pour l'inclusion), si $K \subseteq L$ est finie c'est une bijection,
+			\item[\textbullet] un inverse à gauche est $H \mapsto \Fix(H) = \{ x \in L \mid \forall \sigma \in H, \sigma(x) = x \}$,
+			\item[\textbullet] $\Phi(E)$ est distingué dans $G$ ssi $K \subseteq E$ est galoisienne, auquel cas $\Gal(K \subseteq E) = G/\Phi(E)$,
+			\item[\textbullet] $\Phi(E_1 . E_2) = \Phi(E_1) \cap \Phi(E_2)$, et si $K \subseteq L$ est finie, $\Phi(E_1 \cap E_2)$ est le ss-gr de $G$ engendré par $\Phi(E_1)$ et $\Phi(E_2)$.
+		\end{itemize}
+	\end{thm}
