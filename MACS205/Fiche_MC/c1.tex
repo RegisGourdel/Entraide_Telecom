@@ -1,19 +1,18 @@
-But du cours : étudier des méthodes aléatoires d'approximation d'intégrales.
+%~ But du cours : étudier des méthodes aléatoires d'approximation d'intégrales.
 
 Soit $(S,\mathcal{S},\mu)$ un espace mesuré où $\mu$ est une mesure positive.
 Soit $\varphi \colon S \to \R$ une fonction intégrable.
-On cherche à approcher $I(\varphi) = \int \varphi \diff \mu$.
-
-Plusieurs cas de figure en pratique :
+On cherche à approcher $I(\varphi) = \int \varphi \diff \mu = \esp_\mu(\varphi)$.
+Deux cas de figure :
 \begin{itemize}
 	\item[\textbullet] $\varphi$ est une fonction continue avec une expression analytique et on arrive à calculer son intégrale,
 	\item[\textbullet] l'intégrale de $\varphi$ est incalculable.
-		Exemples : Gaussienne ou indicatrice d'ensemble $S$ où l'on ne connaît pas de forme analytique.
+		%~ Exemples : Gaussienne ou indicatrice d'ensemble $S$ où l'on ne connaît pas de forme analytique.
 \end{itemize}
 
-Les méthodes considérées sont de la forme suivante :
+Les méthodes de type Monte-Carlo considérées sont de la forme suivante :
 \begin{enumerate}
-	\item choisir/tirer des points $X_1,\ldots,X_n$ sur $S$,
-	\item évaluer $\varphi(X_1),\ldots,\varphi(X_n)$,
+	\item tirer aléatoirement des points $X_1,\ldots,X_n$ sur $S$,
+	\item calculer $\varphi(X_1),\ldots,\varphi(X_n)$,
 	\item trouver une transformation de $(X_1, \varphi(X_1)),\ldots,(X_n, \varphi(X_n))$ qui approche $I(\varphi)$.
 \end{enumerate}

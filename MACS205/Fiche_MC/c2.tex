@@ -1,6 +1,6 @@
-$$I(\varphi) = \int \varphi \diff N = \esp_\mu(\varphi)$$
+%~ $$I(\varphi) = \int \varphi \diff N = \esp_\mu(\varphi)$$
 
-D'après la LFGN, si $X_1,\ldots,X_n$ sont i.i.d. de loi $\mu$ tel que $\esp_\mu \abs{vf} < \infty$ alors $\frac{1}{n} \sum_i \varphi(X_i) \overset{\text{p.s.}}{\longrightarrow} \esp_\mu (\varphi(X_1))$.
+%~ D'après la LFGN, si $X_1,\ldots,X_n$ sont i.i.d. de loi $\mu$ tel que $\esp_\mu \abs{\varphi} < \infty$ alors $\frac{1}{n} \sum_i \varphi(X_i) \overset{\text{p.s.}}{\longrightarrow} \esp_\mu (\varphi(X_1))$.
 
 \begin{algorithm}[h]
 \caption{\textcolor{RoyalBlue}{Monte-Carlo}}
@@ -10,46 +10,63 @@ D'après la LFGN, si $X_1,\ldots,X_n$ sont i.i.d. de loi $\mu$ tel que $\esp_\mu
 \end{algorithm}
 
 \begin{pop}
-	Si $\int \abs{\varphi} \diff \mu < \infty$, $\hat{I}_n(\varphi)$ est non-biaisée et consistante.
-	Si $\int \abs{\varphi}^2 \diff \mu < \infty$, $\Var(\hat{I}_n(\varphi)) = \frac{1}{n} \Var(\varphi(X_1)) = \frac{1}{n} \sigma^2$ et $\sqrt{n} \left( \hat{I}_n(\varphi) - I(\varphi) \right) \overset{\mathcal{L}}{\longrightarrow} \normale(0,1)$.
+	Si $\int \abs{\varphi} \diff \mu < \infty$, $\hat{I}_n(\varphi)$ est non-biaisée et fortement consistante.
+	Si de plus $\int \abs{\varphi}^2 \diff \mu < \infty$ alors $\Var(\hat{I}_n(\varphi)) = \frac{1}{n} \Var(\varphi(X_1)) = \frac{1}{n} \sigma^2$ et $\sqrt{n} \left( \hat{I}_n(\varphi) - I(\varphi) \right) \overset{\mathcal{L}}{\longrightarrow} \normale(0,\sigma^2)$.
 \end{pop}
 
-On estime $\sigma^2$ par $\hat{\sigma}^2 = \frac{1}{n - 1} \sum_{i = 1}^n \left( \varphi(X_i) - \hat{I}_n(\varphi) \right)^2$.
 
-\begin{pop}
-	Si $\int \abs{\varphi}^2 \diff \mu < \infty$ alors $\hat \sigma^2$ est sans biais et fortement consistant (par la LFGN).
-\end{pop}
+\subsection{Estimation de l'erreur}
 
-...
-
-\begin{thm}[Inégalité de Hoeffding]
-	Soit $(X_1,\ldots,X_n)$ des v.a i.i.d telles que $\forall i \in \iniff{1}{n}, a \leq X_1 \leq b$ p.s.
-	Alors
-	$$\proba \left( \abs{\sum_{i = 1}^n (X_i - \esp(X_i)) } > \varepsilon \right) \leq 2 e^{- \frac{3 \varepsilon^2}{n(b - a)^2}}\ .$$
-\end{thm}
-
-...
-
-
-\subsection{Concentration}
-
-	...
-
-
-\subsection{Déterministe vs aléatoire}
-
-	On se place dans le cadre de l'approximation de $\int_{\inff{0}{1}^d} \varphi(x) \diff x$ où $\varphi \colon \inff{0}{1}^d \longrightarrow \R$.
-
-	\paragraph{Méthode déterministe des sommes de Riemann}
-
-	On se donne $n^d$ points équidistants $\left( \frac{i_1}{n},\ldots,\frac{i_d}{n} \right)$ où $(i_1,\ldots,i_d) \in \intiff{1}{n}^d$.
-	La méthode des sommes de Riemann est
-	$$I_n(\varphi) = \frac{1}{n^d} \sum_{(i_1,\ldots,i_d) \in \intiff{1}{n}^d} \varphi \left( \frac{i_1}{n},\ldots,\frac{i_d}{n} \right)\ .$$
+	On estime $\sigma^2$ par $\hat{\sigma}^2 = \frac{1}{n - 1} \sum_{i = 1}^n \left( \varphi(X_i) - \hat{I}_n(\varphi) \right)^2$.
 
 	\begin{pop}
-		Si $\varphi \colon \inff{0}{1}^d \longrightarrow \R$ est $L$-lipschitzienne alors $\abs{I_n(\varphi) - I(\varphi)} \leq L \frac{\sqrt{d}}{n}$.
+		Si $\int \abs{\varphi}^2 \diff \mu < \infty$ alors $\hat \sigma^2$ est sans biais et fortement consistant et $\frac{\sqrt{n}}{\hat{\sigma}} \left( \hat{I}_n(\varphi) - I(\varphi) \right) \overset{\mathcal{L}}{\longrightarrow} \mathcal{N}(0,1)$.
 	\end{pop}
 
-	...
+	\noindent Intervalle de confiance : $\proba(I(\varphi) \in \hat{C}(\alpha)) \overset{n \to \infty}{\longrightarrow} 1 - \alpha$ avec
+	$\forall \alpha \in \inoo{0}{1}, \hat{C}(\alpha) = \left[ \hat{I}_n(\varphi) - \frac{\hat{\sigma}^2}{\sqrt{n}} \Phi^-\left( 1 - \frac{\alpha}{2} \right), \hat{I}_n(\varphi) - \frac{\hat{\sigma}^2}{\sqrt{n}} \Phi^-\left( \frac{\alpha}{2} \right) \right]$.
 
+
+\subsection{Inégalités de concentrations}
+
+	\begin{thm}[Inégalité de Hoeffding]
+		Soit $X_1,\ldots,X_n$ i.i.d telles que $\forall i \in \iniff{1}{n}, a \leq X_i \leq b$ p.s.
+		Alors
+		$$\proba \left( \abs{\sum_{i = 1}^n (X_i - \esp(X_i)) } > \varepsilon \right) \leq 2 \cdot \exp \left( - \frac{2 \varepsilon^2}{n(b - a)^2} \right)\ .$$
+	\end{thm}
+
+
+\subsection{Déterministe vs aléatoire en "grande" dimension}
+
+	%~ On se place dans le cadre de l'approximation de $\int_{\inff{0}{1}^d} \varphi(x) \diff x$ où $\varphi \colon \inff{0}{1}^d \longrightarrow \R$.
+	\noindent Méthode déterministe des sommes de Riemann : soit $\varphi \colon \inff{0}{1}^d \longrightarrow \R$, on se donne $n^d$ points équidistants $x_\alpha = \left( \frac{i_1}{n},\ldots,\frac{i_d}{n} \right)$ où $(i_1,\ldots,i_d) \in \intiff{1}{n}^d$.
+	On calcule $I_n^{(rs)}(\varphi) = \frac{1}{n^d} \sum \varphi (x_\alpha)$.
+
+	\begin{pop}
+		Si $\varphi \colon \inff{0}{1}^d \longrightarrow \R$ est $L$-lipschitzienne alors $\abs{I_n^{(rs)}(\varphi) - I(\varphi)} \leq L \frac{\sqrt{d}}{n}$.
+	\end{pop}
+
+	\noindent Avec Monte-Carlo la méthode de même ordre se fait avec évaluation en $n^d$ v.a tirées selon $\mathcal{U}(\inff{0}{1}^d)$ et l'on a $\Var \left( \hat{I}_{n^d}(\varphi) \right) = \frac{1}{n^d} \sigma^2$ et $\esp \left[ \abs{\hat{I}_{n^d}(\varphi) - I(\varphi)} \right] \leq \frac{\sigma}{n^{d/2}}$.
+
+
+\subsection{Méthode des variables antithétiques}
+
+	\noindent Soit $Z \sim \mu$ v.a telle que $\esp[\varphi(Z)^2] < \infty$ et $\{ Z_k, k \geq 0 \}$ i.i.d selon $\mu$.
+	On a $\hat{I}_n^{(av)}(\varphi) = \frac{1}{2n} \sum_{i = 1}^n (\varphi(Z_i) + \varphi(L(Z_i)))$.
 	
+	\begin{ex}
+		$U_1,\ldots,U_n \sim \mathcal{U}(\inff{a}{b})$ et $L(u) := a + b - u$, ou si $Z \sim \mathcal{N}(\mu,1)$ alors $2 \mu - Z \sim \mathcal{N}(\mu,1)$.
+	\end{ex}
+	
+	\begin{pop}
+		Si $\esp \abs{\varphi(Z)}^2 < \infty$ alors :
+		\begin{itemize}
+			\item[\textbullet] $\Var \left( \hat{I}_{2n}(\varphi) \right) \geq \Var \left( \hat{I}^{(av)}_n \right) \iff \Cov(\varphi(Z), \varphi(L(Z))) \leq 0$,
+			\item[\textbullet] si $\varphi$ est réelle croissante et $\varphi \circ L$ décroissante (ou inversement) alors $\Cov(\varphi(Z), \varphi(L(Z))) \leq 0$.
+		\end{itemize}
+	\end{pop}
+	
+	\begin{lem}
+		Soit $Z$ une v.a réelle, $g \colon \R \to \R$ croissante avec $\esp[g(Z)^2] < \infty$ et $\tilde{g} \colon \R \to \R$ décroissante avec $\esp[\tilde{g}(Z)^2] < \infty$.
+		Alors $\Cov(g(Z),\tilde{g}(Z)) \leq 0$.
+	\end{lem}
