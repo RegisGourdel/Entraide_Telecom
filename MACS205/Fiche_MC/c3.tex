@@ -1,48 +1,42 @@
-\subsection{Présentation}
+\noindent Le contexte est comme Monte-Carlo avec une variable observée en plus : $((X_1,Z_1), \ldots, (X_n,Z_n))$ i.i.d dans $S \times \R$, $X_1 \sim \mu$ et $\esp[Z_1]$ est connu.
+Soit $\varphi \colon S \to \R$ tel que $\esp \abs{\varphi(X_1)} < \infty$, on cherche $I_\mu = \esp[\varphi(X_1)]$.
 
-	Le contexte est maintenant comme Monte-Carlo avec une variable observée en plus :
+On peut se ramener à $\esp Z_1 = 0$, et on pose $\hat{I}_n^{(cv)} = \frac{1}{n} \sum_{i = 1}^n \left( \varphi(X_i) - Z_i \right)$.
+
+\begin{pop}
+	Si $\esp \abs{\varphi(X_1)} < \infty$ et $\esp \abs{Z_1} < \infty$, $\hat{I}_n^{(cv)}$ est sans biais et fortement consistant.
+	Si de plus $\esp \left[ \abs{\varphi(X_1)}^2 \right] < \infty$ et $\esp \left[ \abs{Z_1}^2 \right] < \infty$ alors :
 	\begin{itemize}
-		\item[\textbullet] on observe $((X_1,\varphi(X_1),Y_1), \ldots, (X_n,\varphi(X_n),Y_n))$ i.i.d,
-		\item[\textbullet] on cherche $\esp [\varphi(X_1)]$,
-		\item[\textbullet] on connaît $\esp [Y_1]$.
+		\item[\textbullet] $\Var \left( \hat{I}_n^{(cv)} \right) = \frac{1}{n} \Var(\varphi(X_1) - Z_1)$ et $\hat{I}_n^{(cv)}$ est asymptotiquement normal avec variance $\sigma^2 = \Var(\varphi(X_1) - Z_1)$, i.e $\sqrt{n} \left( \hat{I}_n^{(cv)} - I \right) \overset{\mathcal{L}}{\longrightarrow} \mathcal{N}(0,\sigma^2)$,
+		\item[\textbullet] un estimateur consistant de $\sigma^2$ est $\hat{\sigma}^2 = \frac{1}{n - 1} \sum_{i = 1}^n \left( (\varphi(X_i) - Z_i) - \hat{I}_n^{(cv)} \right)^2$.
 	\end{itemize}
-	
-	On peut calculer $\frac{1}{n} \sum_{i = 1}^n \left[ \varphi(X_i) - (Y_i - \esp[Y_i]) \right]$.
-	C'est un estimateur sans biais de variance
-	$$\frac{1}{n} \Var \left( \varphi(X_1) - (Y_1 - \esp Y_1) \right) = \frac{1}{n} \esp \left[ (\varphi(X_1) - (Y_1 - \esp Y_1))^2 \right] - \frac{1}{n} \esp[\varphi(X_1)]^2\ .$$
-	
-	Pour un tel estimateur, le but est de réduire  ce risque $L^2$ au maximum en choisissant bien $Y_1$.
-	Pour un tel estimateur, on obtient facilement les mêmes résultats que pour Monte-Carlo : forte consistance, normalité asymptotique et estimation consistante de la variance.
-	
-	Pour faciliter la notation on supposera maintenant $\esp Y_1 = 0$.
-	
-	\begin{rem}
-		\begin{itemize}
-			\item[\textbullet] $Y = 0$ \textrightarrow\ Monte-Carlo,
-			\item[\textbullet] $Y = \frac{- \varphi \circ L(X) - \varphi(X)}{2}$ \textrightarrow\ variables antithétiques.
-		\end{itemize}
-	\end{rem}
-	
-	\begin{rem}
-		La méthode des variables de contrôle (VC) est plus performante que MC si $\Var(\varphi(X_1) - Y_1) \leq \Var(\varphi(X_1))$ ($\frac{1}{n} \sum \varphi(X_i) + \frac{\varphi \circ L(X_i) - \varphi(X_i)}{2} = \frac{1}{2n} \sum \frac{\varphi(X_i) + \varphi \circ L(X_i)}{2}$).
-	\end{rem}
-	
-	Afin de prévenir d'une mauvaise variable de contrôle, on définit l'esimateur $\forall \beta \in \R, \hat{\mu}_n(\beta) = \frac{1}{n} \sum_{i = 1}^n (\varphi(X_i) - \beta Y_i)$, à utiliser si $\Var(\varphi(X_1) - \beta Y_1) \leq \Var(\varphi(X_1))$.
-	
-	\textrightarrow\ $\beta^* = \argmin_\beta \Var \left( \varphi(X_1) - \beta Y_1 \right)$, $\min_\beta \Var(\varphi - \beta Y) \leq \Var(\varphi)$.
-	
-	Soit $f_1,\ldots,f_m$ une collection de fonctions dont on connaît les intégrales.
-	Supposons $\forall L \in \iniff{1}{m}, \int f_L \diff \lambda = 0$.
-	Alors VC donne $\frac{1}{n} \sum_{i = 1}^n \left[ \varphi(u_i) - \sum_{j = 1}^m \beta_j f_j(u_i) \right]$.
-	
-	\begin{ex}
-		$(f_L)$ polynômes, $(f_L)$ base de Fourier ou $(f_L)$ indicatrices.
-	\end{ex}
+\end{pop}
+
+%~ Pour un tel estimateur, le but est de réduire  ce risque $L^2$ au maximum en choisissant bien $Z_1$.
+%~ Pour un tel estimateur, on obtient facilement les mêmes résultats que pour Monte-Carlo : forte consistance, normalité asymptotique et estimation consistante de la variance.
+
+\begin{rem}
+	Cela comprend Monte-Carlo : $Z_1 = 0$, et les variables antithétiques : $Z_1 = \frac{1}{2}(\varphi(X_1) - (\varphi \circ L)(X_1))$.
+\end{rem}
+
+\begin{rem}
+	VC est plus performante que MC si $\Var(\varphi(X_1) - Z_1) \leq \Var(\varphi(X_1))$.
+\end{rem}
+
+Pour prévenir d'une mauvaise variable de contrôle, on définit l'estimateur $\frac{1}{n} \sum_{i = 1}^n (\varphi(X_i) - \beta Z_i)$, à utiliser si $\Var(\varphi(X_1) - \beta Z_1) \leq \Var(\varphi(X_1))$.
+C'est vérifié avec $\beta^* = \argmin_\beta \Var \left( \varphi(X_1) - \beta Y_1 \right) = \esp[\varphi(X_1)Z_1]/\esp[Z_1^2]$.
+
+%~ Soit $f_1,\ldots,f_m$ une collection de fonctions dont on connaît les intégrales.
+%~ Supposons $\forall L \in \iniff{1}{m}, \int f_L \diff \lambda = 0$.
+%~ Alors VC donne $\frac{1}{n} \sum_{i = 1}^n \left[ \varphi(u_i) - \sum_{j = 1}^m \beta_j f_j(u_i) \right]$.
+
+%~ \begin{ex}
+	%~ $(f_L)$ polynômes, $(f_L)$ base de Fourier ou $(f_L)$ indicatrices.
+%~ \end{ex}
 
 
-\subsection{Propriétés asymptotiques}
+\subsection{Propriétés asymptotiques, cas $Z_1 \in \R^m$}
 
-	Soient $((X_i,Y_i))_i$ une suite de v.a i.i.d à valeurs dans $S \times \R^m$.
 	On définit l'estimateur de $\esp[\varphi(X_1)]$ par $\forall \beta \in \R^m, \hat{\mu}_n(\beta) = \frac{1}{n} \sum_{i = 1}^n \left( \varphi(X_i) - \transp{\beta}Y_i \right)$.
 
 	Comme dans l'intro, on suppose $\esp Y_1 = \begin{pmatrix}
