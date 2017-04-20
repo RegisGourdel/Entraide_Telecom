@@ -130,3 +130,62 @@
 		Le corps $\varkappa_{\mathfrak{m}} = k[t_1,\ldots,t_d] / \mathfrak{m}$ s'appelle \textbf{corps résiduel} de $Z(\mathfrak{m})$.
 		La classe modulo $\mathfrak{m}$ d'un polynôme s'appelle \textbf{évaluation} du polynôme en $Z(\mathfrak{m})$ et $[\varkappa_{\mathfrak{m}} : k]$ est appelé \textbf{degré} de $Z(\mathfrak{m})$.
 	\end{defn}
+	
+	\begin{defn}
+		Soit $I$ un idéal radical de $k[t_1,\ldots,t_d]$.
+		On appelle $k[t_1,\ldots,t_d] / I$ l'\textbf{anneau des fonctions régulières} de $Z(I)$.
+		Une fonction régulière s'identifie à la restriction à $Z(I)$ d'un polynôme.
+	\end{defn}
+	
+	\begin{defn}
+		Un fermé de Zariski $Z(I)$ est \textbf{irréductible} si $\forall I_1,I_2, \left( Z(I) = Z(I_1) \cup Z(I_2) \right) \implies (Z(I_1) = Z(I)\ \text{ou}\ Z(I_2) = Z(I))$.
+	\end{defn}
+	
+	\begin{pop}
+		Soit $I$ un idéal radical.
+		Alors $Z(I)$ est irréductible si et seulement si $I$ est premier.
+		En particulier une hypersurface $Z(f)$ est irréductible si et seulement si $f$ est nul ou irréductible.
+	\end{pop}
+	
+	\begin{defn}
+		Si $f \in k[t_1,\ldots,t_d]$ est irréductible dans $k^{\alg}[t_1,\ldots,t_d]$ il est dit \textbf{géométriquement irréductible} ou \textbf{absolument irréductible}.
+		Les seuls polynômes en une variable géométriquement irréductibles sont ceux de degré 1.
+	\end{defn}
+	
+	\begin{defn}
+		Soit $I$ idéal radical de $k[t_1,\ldots,t_d]$, $Z(I)$ est dit géométriquement (ou absolument) irréductible si l'idéal $I.k^{\alg}$ engendré par $I$ dans $k^{\alg}[t_1,\ldots,t_d]$ est premier.
+		Si $I = (f)$ est principal, c'est équivalent à avoir $f$ nul ou géométriquement irréductible.
+	\end{defn}
+
+
+\subsection{Extension des scalaires des algèbres sur un corps}
+
+	\begin{defn}
+		Soit $k \subseteq k'$ une extension de corps, $V$ un $k$-ev et $(e_i)$ une base de $V$.
+		Le $k'$-ev de base $(e_i)$ est appelé \textbf{extension des scalaires} de $V$ de $k$ à $k'$, noté $V \otimes_k k'$ et $\dim(V \otimes_k k') = \dim(V)$.
+	\end{defn}
+	
+	\begin{note}
+		Soit $\imath$ l'application qui à $\sum \lambda_i e_i \in V$ associe $\sum \lambda_i e_i$ où les $\lambda_i$ sont vus dans $k'$, et dont l'image engendre $V'$ comme $k'$-ev.
+		On note $\forall x \in V, \forall c \in k', x \otimes c := c \cdot \imath(x)$.
+	\end{note}
+	
+	On peut considérer $V \otimes_k k'$ comme un $k$-ev dont une base est donnée par les $(e_i \otimes b_j)_{(i,j)}$, avec $(b_j)_j$ une base de $k'$ comme $k$-ev.
+	
+	\lightning\ Les éléments de $V \otimes _k k'$ ne sont pas tous de la forme $x \otimes c$ mais ceux ci engendrent $V \otimes _k k'$.
+	
+	\begin{defn}
+		Le \textbf{produit tensoriel} $V \otimes_k W$ de deux ev $V$ et $W$ sur un corps $k$ est l'espace vectoriel dont une base est le produit d'une base de $V$ et d'une base de $W$.
+	\end{defn}
+	
+	\begin{pop}
+		Soit $k \subseteq k'$ une extension de corps, $V$ un $k$-ev, $U$ un sous-$k$-ev de $V$ et $W := V/U$.
+		Notons $U',V',W'$ les extensions des scalaires de $U,V,W$ de $k$ à $k'$, et $U' \to V', V' \to W'$ les applications $k$-linéaires obtenues par extension des scalaires à partir de l'injection d'incluseion (i.e. l'identité) $U \to V$ et la surjection canonique $V \to W$.
+		Alors $V' \to W'$ est surjective, $\Ker(V' \to W') = \im(U' \to V')$ et $U' \to V'$ est injective.
+	\end{pop}
+	
+	\begin{pop}
+		Soit $k$ un corps, $A$ une $k$-algèbre et $k'$ une extension algébrique de $k$.
+		Supposons $A \otimes_k k'$ intègre, alors $\Frac(A \otimes_k k') \simeq \Frac(A) \otimes_k k'$.
+		De plus $\Frac(A)$ et $k'$ sont linéairement disjointes comme extensions de $k$ contenues dans $\Frac(A \otimes_k k')$ et $\Frac(A \otimes_k k') = \Frac(A).k'$.
+	\end{pop}
