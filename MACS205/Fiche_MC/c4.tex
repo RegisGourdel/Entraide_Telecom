@@ -1,103 +1,101 @@
-\subsection{Présentation}
+Contexte : estimation de $I_\lambda = \int \varphi \diff \lambda$ où $\varphi \colon S \to \R$ est intégrable et $S \subseteq \R^d$.
 
-	On se place dans le cadre de l'approximation de $I(\varphi) = \int \varphi(x) \diff x$, où $\varphi$ est intégrable.
-	
-	\begin{defn}
-		Si $g \colon \R^d \to \R$, on définit son support comme l'ensemble fermé
-		$$S_g = \overline{\{ x \in \R^d \mid g(x) \neq 0 \} }$$
-	\end{defn}
-	
-	L'échantillonage d'importance se base sur la formule suivante : pour toute densité $f$ telle que $S_f \supset S_{\varphi}$,
-	$$\int \varphi(x) \diff x = \int_{S_{\varphi}} \varphi(x) \diff x = \int_{S_f} \varphi(x) \diff x = \int_{S_f} \frac{\varphi(x)}{f(x)} f(x) \diff x = \esp_{X \sim f} \left[  \frac{\varphi(X)}{f(X)} \right]$$
-	
-	L'échantillonage d'importance "naïf" consiste à :
+\begin{defn}
+	Si $g \colon \R^d \to \R$, on définit son support comme l'ensemble fermé $S_g = \overline{\{ x \in \R^d \mid g(x) \neq 0 \} }$.
+\end{defn}
+
+L'échantillonage d'importance se base sur la formule suivante : pour toute densité $f$ telle que $S_f \supset S_{\varphi}$,
+$$I_\lambda = \int_{S_{\varphi}} \varphi(x) \diff x = \int_{S_f} \varphi(x) \diff x = \int_{S_f} \frac{\varphi(x)}{f(x)} f(x) \diff x = \esp_{X \sim f} \left[  \frac{\varphi(X)}{f(X)} \right]$$
+
+L'échantillonage d'importance “naïf” consiste à générer $X_1,\ldots,X_n \sim f$ i.i.d puis appliquer Monte-Carlo :
+$$\hat{I}_n^{(is)} = \frac{1}{n} \sum_{i = 1}^n \frac{\varphi(X_i)}{f(X_i)}\ .$$
+
+La distribution associée à $f$ est appelée \textbf{distribution d'échantillonage}, ou bien l'\textbf{échantilloneur}.
+
+\begin{pop}
+	Si $\int \abs{\varphi} < \infty$ et $S_\varphi \subseteq S_f$, $\hat{I}_n^{(is)} \overset{\text{p.s.}}{\longrightarrow} I_\lambda$.
+	Si de plus $\int \frac{\varphi^2(x)}{f(x)} \diff x < \infty$ alors :
 	\begin{itemize}
-		\item[\textbullet] générer $X_1,\ldots,X_n \sim f$ i.i.d
-		\item[\textbullet] faire du MC : $\hat{\mu}_n = \frac{1}{n} \sum_{i = 1}^n \frac{\varphi(X_i)}{f(X_i)}$
+		\item[\textbullet] $\sqrt{n} \left( \hat{I}_n^{(is)} - I_\lambda \right) \overset{\mathcal{L}}{\longrightarrow} \mathcal{N} \left(0,r_f^2(\varphi) \right)$ avec $r_f^2(\varphi) = \Var \left( \frac{\varphi}{f} \right) = \int \left( \frac{\varphi(x)}{f(x)} - I_\lambda \right)^2 f(x) \diff x$
+		\item[\textbullet] $\frac{\sqrt{n}}{\hat{r}_n} \left( \hat{I}_n^{(is)} - I_\lambda \right) \overset{\mathcal{L}}{\longrightarrow} \mathcal{N}(0,1)$ avec $\hat{r}_n^2 = \frac{1}{n} \sum \left( \frac{\varphi(X_i)}{f(X_i)} - \hat{I}_n^{(is)} \right)^2$ l'estimateur de la variance.
 	\end{itemize}
-	
-	\begin{pop}
-		Si $\int \abs{\varphi} < \infty$, $\hat{\mu}_n$ est sans biais, $\hat{\mu}_n \overset{\text{p.s.}}{\longrightarrow} \int \varphi$.
-		Si $\int \frac{\varphi^2}{f} < \infty$, $\sqrt{n} \left( \hat{\mu}_n - \int \varphi \right) \longrightarrow \mathcal{N}(0,\sigma^2)$, $\sigma^2 = \Var \left( \frac{\varphi}{f} \right)$.
-		On a également $\frac{\sqrt{n}}{\hat{\sigma}_n} \left( \hat{\mu}_n - \int \varphi \right) \longrightarrow \mathcal{N}(0,1)$, avec $\hat{\sigma}_n = \frac{1}{n} \sum \left( \frac{\varphi(X_i)}{f(X_i)} - \hat{\mu}_n \right)^2$.
-	\end{pop}
-	
-	Cette méthode est naïve car $f$ n'est pas choisie par rapport à $\varphi$.
-	
-	\begin{ex}
-		Soit $\varphi$ la densité d'une gaussienne centrée réduite et $f \sim \mathcal{N}(\theta,1)$.
-		Ici $I(\varphi) = 1$,
-		$$\sigma^2 + 1
-		= \int \frac{\varphi^2}{f^2} f \diff \lambda
-		= \int \frac{\varphi^2}{f} \diff \lambda
-		= \frac{1}{\sqrt{2\pi}} \int e^{-x^2 + (x - \theta)^2/2} \diff x
-		= e^{\theta^2} \underset{= 1}{\underbrace{ \frac{1}{\sqrt{2\pi}} \int e^{-(x + \theta)^2} \diff x }}$$
-		Deux cas de figure sont possibles :
-		\begin{itemize}
-			\item[\textbullet] $\theta = 0$, d'où $\sigma^2 = 0$.
-				Plus généralement, si $\varphi$ n'est pas nécessairement une densité, alors le choix $f \propto \varphi$ (mais positif, e.g $f = \frac{\varphi}{\int \varphi}$) est optimal.
-				Ce choix dépend de la solution à notre problème de départ, donc il est impossible à réaliser.
-			\item[\textbullet] $\theta \gg 1$, d'où $\sigma^2 \gg 1$.
-		\end{itemize}
-	\end{ex}
-	
-	La question est : commment choisir $f$ en pratique ?
-	
-	\begin{rem}
-		$f$ est appelée la distribution d'échantillonage, ou bien l'échantilloneur.
-	\end{rem}
-	
-	\begin{rem}
-		Si le but est d'estimer une espérance par rapport à $g$, alors prendre $\varphi \cdot g$ à la place de $\varphi$.
-	\end{rem}
-	
-	Par ailleurs il existe deux méthodes de réduction de la variance :
-	\begin{itemize}
-		\item[\textbullet] variable de contrôle : approcher $\varphi$ dans une certaine base \textrightarrow\ pas de choix d'échantilloneur.
-		\item[\textbullet] changer la mesure d'échantillonage.
-	\end{itemize}
-	Dans les deux cas on s'adapte à $\varphi$.
+\end{pop}
+
+Cette méthode est naïve car $f$ n'est pas choisie par rapport à $\varphi$.
+
+%~ \begin{ex}
+	%~ Soit $\varphi$ la densité d'une gaussienne centrée réduite et $f \sim \mathcal{N}(\theta,1)$.
+	%~ Ici $I(\varphi) = 1$,
+	%~ $$\sigma^2 + 1
+	%~ = \int \frac{\varphi^2}{f^2} f \diff \lambda
+	%~ = \int \frac{\varphi^2}{f} \diff \lambda
+	%~ = \frac{1}{\sqrt{2\pi}} \int e^{-x^2 + (x - \theta)^2/2} \diff x
+	%~ = e^{\theta^2} \underset{= 1}{\underbrace{ \frac{1}{\sqrt{2\pi}} \int e^{-(x + \theta)^2} \diff x }}$$
+	%~ Les deux cas de figure extrêmes sont :
+	%~ \begin{itemize}
+		%~ \item[\textbullet] $\theta = 0$, d'où $\sigma^2 = 0$.
+			%~ Plus généralement, si $\varphi$ n'est pas nécessairement une densité, alors le choix $f \propto \varphi$ (mais positif, e.g $f = \frac{\varphi}{\int \varphi}$) est optimal.
+			%~ Ce choix dépend de la solution à notre problème de départ, donc il est impossible à réaliser.
+		%~ \item[\textbullet] $\theta \gg 1$, d'où $\sigma^2 \gg 1$.
+	%~ \end{itemize}
+%~ \end{ex}
+
+\begin{rem}
+	Si on cherche $\esp[\varphi(Z)]$ où $Z \sim g$, alors prendre $g \cdot \varphi$ à la place de $\varphi$.
+\end{rem}
+
+Par ailleurs il existe deux méthodes de réduction de la variance où l'on s'adapte à $\varphi$ :
+\begin{itemize}
+	\item[\textbullet] variable de contrôle : approcher $\varphi$ dans une certaine base \textrightarrow\ pas de choix d'échantilloneur,
+	\item[\textbullet] changer la mesure d'échantillonage.
+\end{itemize}
 
 
 \subsection{Réduction de la variance}
 
-	On caractérise ici l'échantilloneur optimal.
-	
-	On fait la remarque suivante : 
-	$$\Var(\hat{\mu}_n) = 0
-	\iff \int \left( \frac{\varphi}{f} - I(\varphi) \right)^2 f \diff \lambda = 0
-	\iff \frac{\varphi}{f} = I(\varphi)\ \text{p.p}$$
-	
-	Si $\varphi$ change de signe sur des ensembles de mesures non-nulles, alors prendre $\frac{\varphi}{f} = I(\varphi)$ p.p est impossible car est une densité, donc positive.
-	Obtenir $\sigma^2 = 0$ est alors impossible.
-	
-	Si $\varphi$ est de signe constant alors $f = \frac{\abs{\varphi}}{\int \abs{\varphi}}$ donne une variance nulle.
-	En fait, ce $f = \frac{\abs{\varphi}}{\int \abs{\varphi}}$ est optimal dans tous les cas.
+	On remarque que
+	$r_f^2(\varphi) = 0
+	%~ \iff \int \left( \frac{\varphi}{f} - I(\varphi) \right)^2 f \diff \lambda = 0
+	\iff \varphi / f \overset{\text{p.p}}{=} I_\lambda$.
 
 	\begin{thm}
-		Parmi les densités $f$ tq $\int \frac{\varphi^2}{f} \diff \lambda < \infty$, le minimiseur de $\Var \left( \frac{\varphi}{f} \right) = \int \left( \frac{\varphi}{f} - I(\varphi) \right)^2 f \diff \lambda$ est $f^* = \frac{\abs{\varphi}}{\int \abs{\varphi}}$ et
-		$${\sigma^*}^2 = \Var_{X \sim f^*} \left( \frac{\varphi(X)}{f^*(X)} \right)
-		= \int \left( \frac{\varphi}{f^*} - I(\varphi) \right)^2 d \diff \lambda$$
+		Si $\int \abs{\varphi} < \infty$, alors parmi les densités $f$ telle que $\int \frac{\varphi^2}{f} \diff \lambda < \infty$, i.e. $S_\varphi \subseteq S_f$, le minimiseur de $r_f^2(\varphi)$ est unique et donné par $f^* = \frac{\abs{\varphi}}{\int \abs{\varphi} \diff \lambda}$. La variance associée est $r_{f^*}^2(\varphi) = \left( \int \abs{\varphi} \diff \lambda \right)^2 - \left( \int \varphi \diff \lambda \right)^2$.
 	\end{thm}
 
 
-\subsection{Échantillonage d'importance paramétrique}
+\subsection{Échantillonage préférentiel paramétrique}
 
-	En pratique et en dimension 1 ou 2, on peut représenter $\abs{\varphi}$ et en déduire un $f$ "proche" (visuellement) de $\abs{\varphi}$.
-	On se donne une famille de lois par rapport auxquelles on sait générer des v.a :
-	$$\mathcal{P} = \{ f_\theta, \theta \in \Theta \}$$
-	où $\Theta \subset \R^q, q \geq 1$, ce qui fait de $\mathcal{P}$ une famille paramétrique.
+	%~ En pratique et en dimension 1 ou 2, on peut représenter $\abs{\varphi}$ et en déduire un $f$ "proche" (visuellement) de $\abs{\varphi}$.
+	On se donne une famille paramétrique $\mathcal{F} = \{ f_\theta, \theta \in \Theta \}$ de densités par rapport à la mesure de Lebesgue pour lesquelles on sait générer des v.a, avec $\Theta \subset \R^q, q \geq 1$.
+	On suppose $\forall \theta \in \Theta, S_\varphi \subseteq S_{f_\theta}$.
 	
-	On aimerait calculer $\theta^* \in \argmin_{\theta \in \Theta} \Var_{X \sim f_\theta} \left( \frac{\varphi(X)}{f_\theta(X)} \right)$ mais $\theta \mapsto \Var_{X \sim f_\theta} \left( \frac{\varphi}{f_\theta} \right)$ est inconnue.
-	
-	Donc on cherche à estimer par simulation cette variance.
-	
-	Soit $f_0$ l'échantillon initial.
-	\begin{enumerate}[a)]
-		\item Générer $Z_1,\ldots,Z_{n_1} \sim f_0$ i.i.d
-			$$\hat{\mu}_{f_0} = \frac{1}{n} \sum_{i = 1}^n \frac{\varphi(Z_i)}{f_0(Z_i)},
-			\qquad \hat{\sigma}_\theta = \frac{1}{n} \sum_{i = 1}^n \frac{\varphi(Z_i)^2}{f_\theta(Z_i) f_0(Z_i)},
-			\qquad \esp \left[ \frac{\varphi^2}{f_\theta f_0} \right] = \int \frac{\varphi^2}{f_\theta} \diff \lambda$$
-		\item $\hat{\theta}_n = \argmin_{\theta \in \Theta} \hat{\sigma}_\theta^2$
-		\item $X_1,\ldots,X_n \sim f_{\hat{\theta}_n}$ i.i.d, $\hat{\mu}(\hat{\theta}) = \frac{1}{n} \sum_{i = 1}^n \frac{\varphi(X_i)}{f_{\hat{\theta_n}}(X_i)}$
+	Soit $\theta^* \in \argmin_{\theta \in \Theta} r_{f_\theta}^2(\varphi) = \argmin_{\theta \in \Theta} \int \frac{\varphi^2}{f_\theta} \diff \lambda$.
+	On cherche à estimer par simulation cette variance.
+	On utilise l'algorithme suivant, avec en entrée $n \in \N^*$, $\mathcal{F}$ et $f_0$ l'échantillon initial.
+	\begin{enumerate}[(i)]
+		\item Soit $n_1 < n$ et $n_2 = n - n_1$. Générer $X_1,\ldots,X_{n_1} \sim f_0$ i.i.d.
+		\item Calculer $\hat{\theta}_{n_1}^{(1)} = \argmin_{\theta \in \Theta} \hat{\psi}{n_1}^{(1)}(\theta)$ où $\hat{\psi}_{n_1}^{(1)}(\theta) := \frac{1}{n_1} \sum_{i = 1}^{n_1} \frac{\varphi(X_i)^2}{ f_\theta(X_i) f_0(X_i) }$.
+		\item Générer $Z_1,\ldots,Z_{n_2} \sim f_{\hat{\theta}_{n_1}}$.
+		\item Calculer $\frac{1}{n_2} \sum_{i = 1}^{n_2} \frac{\varphi(Z_i)}{f_{\hat{\theta}_{n_1}^{(1)}}(Z_i)}$
+			ou $\frac{1}{n} \left( \sum_{i = 1}^{n_1} \frac{\varphi(X_i)}{f_0(X_i)} + \sum_{i = 1}^{n_2} \frac{\varphi(Z_i)}{f_{\hat{\theta}_{n_1}^{(1)}}(Z_i)} \right)$.
 	\end{enumerate}
+	
+	\noindent On peut aussi utiliser la méthode par vraisemblance où l'on remplace $\hat{\psi}_{n_1}^{(1)}$ par $\hat{\psi}_{n_1}^{(2)} \colon \theta \mapsto \frac{1}{n_1} \sum_{i = 1}^{n_1} \ln \left( \frac{f_\theta(X_i)}{\abs{\varphi(X_i)}} \right) \frac{\abs{\varphi(X_i)}}{f_0(X_i)}$.
+	On appelle $\hat{I}_{n,1}^{(is)}$ et $\hat{I}_{n,2}^{(is)}$ les deux estimateurs obtenus.
+	
+	\begin{lem}
+		Supposons $\Theta$ compact, $\psi$ continue sur $\Theta$, qu'il existe un unique $\theta^* \in \argmin_{\theta \in \Theta} \psi(\theta)$, que $\sup_{\theta \in \Theta} \abs{\hat{\psi}(\theta) - \psi(\theta)} \underset{n}{\overset{\proba}{\longrightarrow}} 0$ et que $\hat{\theta}_{n_1}$ minimise $\hat{\psi}$.
+		Alors $\abs{\hat{\theta}_{n_1} - \theta^*} \underset{n_1}{\overset{\proba}{\longrightarrow}} 0$.
+	\end{lem}
+	
+	\begin{pop}
+		$\hat{I}_{n,1}^{(is)}$ et $\hat{I}_{n,2}^{(is)}$ sont des estimateurs sans biais de $I_\lambda$.
+	\end{pop}
+	
+	\begin{pop}
+		Soit $v_0 = \Var \left( \frac{\varphi(X_1)}{f_0(X_1)} \right)$.
+		Supposons $v_0 < \infty$ et $\sup_{\theta \in \Theta} \int \frac{\varphi(x)^2}{f_\theta(x)} \diff x < \infty$.
+		Alors on a $\Var \left( \hat{I}_{n,1}^{(is)} \right) = \frac{1}{n_2} \left( \esp[\psi^{(1)}(\hat{\theta}_{n_1})] - I_\lambda^2 \right)$ et $\Var \left( \hat{I}_{n,2}^{(is)} \right) = \frac{1}{n^2} \left[ n_1 v_0 + n_2 \left( \esp[\psi^{(1)}(\hat{\theta}_{n_1})] - I_\lambda^2 \right) \right]$.
+	\end{pop}
+	
+	La complexité est en $O(n + n_1^2 + n_2) = O(n)$.

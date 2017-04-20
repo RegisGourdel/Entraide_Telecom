@@ -541,3 +541,21 @@
 			\item[\textbullet] $\Phi(E_1 . E_2) = \Phi(E_1) \cap \Phi(E_2)$, et si $K \subseteq L$ est finie, $\Phi(E_1 \cap E_2)$ est le ss-gr de $G$ engendré par $\Phi(E_1)$ et $\Phi(E_2)$.
 		\end{itemize}
 	\end{thm}
+	
+	\begin{defn}
+		Le \textbf{groupe de Galois d'un polynôme séparable} $f$ sur un corps $K$ est le groupe des permutations des racines de $f$ qui définissent un automorphisme du corps de décomposition.
+	\end{defn}
+	
+	\begin{rem}
+		Pour $L$ galoisienne sur $K$, les orbites $\{ \sigma(x), \sigma \in \Gal(K \subseteq L) \}$ sont exactement les classes d'équivalence pour la relation “être conjugué sur $K$”.
+	\end{rem}
+	
+	\begin{thm}
+		Soit $L$ un corps, $G$ un groupe fini d'automorphismes de $L$ et $K = \Fix_L(G) = \{ x \in L \mid \forall \sigma \in G, \sigma(x) = x \}$.
+		Alors $K \subseteq L$ est une extension galoisienne de groupe de Galois $G$ et $[L : K] = \card(G)$.
+	\end{thm}
+	
+	\begin{thm}
+		Soit $G$ un groupe, $L$ un corps et $\chi_1,\ldots,\chi_n$ des caractères de $G$ dans $L$ (i.e. des morphismes $G \to L^\times$) deux à deux disctincts.
+		Alors les $\chi_1,\ldots,\chi_n$ sont linéairement indépendants en tant qu'applications $G \to L$.
+	\end{thm}

@@ -63,6 +63,12 @@
 	\begin{defn}
 		Un idéal $\mathfrak{r}$ d'un anneau $A$ est dit \textbf{radical} lorsque $A / \mathfrak{r}$ est réduit, i.e $\forall x \in A, \forall n \in \N, x^n \in \mathfrak{r} \implies x \in \mathfrak{r}$.
 	\end{defn}
+	
+	\begin{defn}
+		Soit $I$ un idéal de $A$.
+		Le \textbf{radical de $I$} est $\surd I = \{ x \in A \mid \exists n \in \N, x^n \in I \}$.
+		C'est un idéal radical.
+	\end{defn}
 
 	Un idéal premier, et a fortiori un idéal maximal, est en particulier un idéal radical.
 
@@ -95,5 +101,32 @@
 	\end{note}
 
 	\begin{rem}
-		$\mathfrak{J}(E)$ est un idéal radical, $\mathfrak{J}$ est décroissant pour l'inclusion et $\mathfrak{J}(E) = \bigcap_{x \in E} \mathfrak{M}_x$ où $\mathfrak{M}_x = \mathfrak{J}(\{ x \})$.
+		$\mathfrak{J}(E)$ est un idéal radical, $\mathfrak{J}$ est décroissante pour l'inclusion, $\mathfrak{J}(E) = \bigcap_{x \in E} \mathfrak{M}_x$ où $\mathfrak{M}_x = \mathfrak{J}(\{ x \})$ et en particulier $\mathfrak{J}(E) \neq k[t_1,\ldots,t_d] \iff E = \emptyset$.
+		De plus $\mathfrak{J} \left( (k^{\alg})^d \right) = \{ 0 \}$.
 	\end{rem}
+
+	\begin{pop}
+		Soit $E \subset (k^{\alg})^d$ et $\mathscr{F} \subset k[t_1,\ldots,t_d]$.
+		On a $E \subset Z(\mathscr{F}) \iff \mathscr{F} \subset \mathfrak{J}(E)$.
+	\end{pop}
+	
+	\begin{pop}
+		Une partie $E \subset (k^{\alg})^d$ vérifie $E = Z(\mathfrak{J}(E))$ si et seulement si c'est un fermé de Zariski.
+	\end{pop}
+	
+	\begin{pop}
+		Soit $I$ un idéal de $k[t_1,\ldots,t_d]$ et $E \subset (k^{\alg})^d$.
+		Alors $\mathfrak{J}(Z(I)) = \surd I$ et $Z(\mathfrak{J}(E))$ est le plus petit fermé de Zariski défini sur $k$ qui contient $E$.
+		De plus, $Z$ et $\mathfrak{J}$ définissent des bijections réciproques décroissantes entre idéaux radicaux de $k[t_1,\ldots,t_d]$ et fermés de Zariski de $(k^{\alg})^d$ définis sur $k$.
+	\end{pop}
+	
+	\begin{defn}
+		Les éléments de $Z(I) \cap k^d$ sont appelés \textbf{points rationnels} de $Z(I)$.
+		Ceux dans $Z(I) \cap ((k^{\alg})^d \setminus k^d)$ sont appelés \textbf{points géométriques}.
+		Enfin on appelle \textbf{point fermé} les $Z(\mathfrak{m})$ avec $\mathfrak{m}$ un idéal maximal de $k[t_1,\ldots,t_d]$ et $I \subset \mathfrak{m}$.
+	\end{defn}
+	
+	\begin{defn}
+		Le corps $\varkappa_{\mathfrak{m}} = k[t_1,\ldots,t_d] / \mathfrak{m}$ s'appelle \textbf{corps résiduel} de $Z(\mathfrak{m})$.
+		La classe modulo $\mathfrak{m}$ d'un polynôme s'appelle \textbf{évaluation} du polynôme en $Z(\mathfrak{m})$ et $[\varkappa_{\mathfrak{m}} : k]$ est appelé \textbf{degré} de $Z(\mathfrak{m})$.
+	\end{defn}
