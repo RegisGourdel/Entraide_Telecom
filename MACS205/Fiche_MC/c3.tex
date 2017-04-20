@@ -37,9 +37,9 @@ C'est vérifié avec $\beta^* = \argmin_\beta \Var \left( \varphi(X_1) - \beta Y
 
 \subsection{Propriétés asymptotiques : $Z_1 \in \R^m$}
 
-	On estime $I = \esp[\varphi(X_1)]$ par $\hat{I}_n^{(cv)}(\beta) = \frac{1}{n} \sum_{i = 1}^n \left( \varphi(X_i) - \transp{\beta}Z_i \right)$ où $\beta \in \R^m$, avec encore $\esp Z_1 = 0$.
+	On estime $I = \esp[\varphi(X_1)]$ par $\hat{I}_n^{(cv)}(\beta) = \frac{1}{n} \sum_{i = 1}^n \left( \varphi(X_i) - \transp{\beta}Z_i \right)$ où $\beta \in \R^m$ et $\esp Z_1 = 0$.
 
-	La valeur théorique pour minimiser la variance, si $\esp \left[ Z_1 \transp{Z_1} \right]$ est inversible, est $\beta^* = \esp \left[ Z_1 \transp{Z_1} \right]^{-1} \esp[Z_1 \varphi(X_1)]$.
+	La valeur théorique pour minimiser la variance, si $\esp \left[ Z_1 \transp{Z_1} \right]$ est inversible, est\linebreak $\beta^* = \esp \left[ Z_1 \transp{Z_1} \right]^{-1} \esp[Z_1 \varphi(X_1)]$.
 	En pratique on l'estime.
 	Notons $Z_{n,m} = \transp{\begin{pmatrix} Z_1 & \cdots & Z_n \end{pmatrix}} \in \R^{n \times m}$, et $\mathbf{\varphi}_i = \transp{\left(\varphi(X_1), \ldots, \varphi(X_n) \right)} \in \R^n$.
 	
@@ -48,7 +48,7 @@ C'est vérifié avec $\beta^* = \argmin_\beta \Var \left( \varphi(X_1) - \beta Y
 	\begin{pop}
 		Supposons $\esp \abs{\varphi(X_1)} < \infty$, $\forall k \in \iniff{1}{m}, \esp \abs{\varphi(X_1) Z_{k,1}} < \infty$ et $\esp[Z_1 \transp{Z_1}]$ existe et est inversible.
 		Alors $\hat{I}_n^{(cv)}(\hat{\beta}_n) \overset{\text{p.s.}}{\longrightarrow} I$ (fortement consistant).
-		Si de plus $\esp \abs{\varphi(X_1)}^2 < \infty$, alors $\sqrt{n} \left( \hat{I}_n^{(cv)}(\hat{\beta}_n) - I \right) \overset{\mathcal{L}}{\longrightarrow} \mathcal{N}(0,\sigma_m^2)$ avec $\sigma_m^2 = \Var \left( \varphi(X_1) - \transp{{\beta^*}} Z_1 \right)$.
+		Si de plus $\esp \abs{\varphi(X_1)}^2 < \infty$, alors\linebreak $\sqrt{n} \left( \hat{I}_n^{(cv)}(\hat{\beta}_n) - I \right) \overset{\mathcal{L}}{\longrightarrow} \mathcal{N}(0,\sigma_m^2)$ avec $\sigma_m^2 = \Var \left( \varphi(X_1) - \transp{{\beta^*}} Z_1 \right)$.
 	\end{pop}
 	
 	\begin{rem}

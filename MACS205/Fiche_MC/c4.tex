@@ -10,7 +10,7 @@ $$I_\lambda = \int_{S_{\varphi}} \varphi(x) \diff x = \int_{S_f} \varphi(x) \dif
 L'échantillonage d'importance “naïf” consiste à générer $X_1,\ldots,X_n \sim f$ i.i.d puis appliquer Monte-Carlo :
 $$\hat{I}_n^{(is)} = \frac{1}{n} \sum_{i = 1}^n \frac{\varphi(X_i)}{f(X_i)}\ .$$
 
-La distribution associée à $f$ est appelée \textbf{distribution d'échantillonage}, ou bien l'\textbf{échantilloneur}.
+\noindent La distribution associée à $f$ est appelée \textbf{distribution d'échantillonage}, ou bien l'\textbf{échantilloneur}.
 
 \begin{pop}
 	Si $\int \abs{\varphi} < \infty$ et $S_\varphi \subseteq S_f$, $\hat{I}_n^{(is)} \overset{\text{p.s.}}{\longrightarrow} I_\lambda$.
@@ -96,6 +96,16 @@ Par ailleurs il existe deux méthodes de réduction de la variance où l'on s'ad
 		Soit $v_0 = \Var \left( \frac{\varphi(X_1)}{f_0(X_1)} \right)$.
 		Supposons $v_0 < \infty$ et $\sup_{\theta \in \Theta} \int \frac{\varphi(x)^2}{f_\theta(x)} \diff x < \infty$.
 		Alors on a $\Var \left( \hat{I}_{n,1}^{(is)} \right) = \frac{1}{n_2} \left( \esp[\psi^{(1)}(\hat{\theta}_{n_1})] - I_\lambda^2 \right)$ et $\Var \left( \hat{I}_{n,2}^{(is)} \right) = \frac{1}{n^2} \left[ n_1 v_0 + n_2 \left( \esp[\psi^{(1)}(\hat{\theta}_{n_1})] - I_\lambda^2 \right) \right]$.
+	\end{pop}
+	
+	\begin{pop}
+		Supposons $\esp \left[ \psi^{(1)}(\hat{\theta}_{n_1}) - \psi^{(1)}(\theta^*) \right] = \frac{\sigma^2}{n_1} + o \left( \frac{1}{n_1} \right)$ et $v_0 > v(\theta^*) = \psi^{(1)}(\theta^*) - I_\lambda^2$.
+		On a :
+		$$\lim_n \sqrt{n} \inf_{1 \leq n_1 \leq n} \left( \esp \left[ n \left( \hat{I}_{n,2}^{(is)} - \int \varphi \right)^2 \right] - \esp \left[ n \left( \hat{I}_{n}^{(is*)} - \int \varphi \right)^2 \right] \right) = 2 \sigma \sqrt{v_0 - v(\theta^*)}$$
+		si $v(\theta^*) > 0$,
+		$$\lim_n \sqrt{n} \inf_{1 \leq n_1 \leq n} \left( \esp \left[ n \left( \hat{I}_{n,1}^{(is)} - \int \varphi \right)^2 \right] - \esp \left[ n \left( \hat{I}_{n}^{(is*)} - \int \varphi \right)^2 \right] \right) = 2 \sigma \sqrt{v(\theta^*)}$$
+		et si $v(\theta^*) = 0$,
+		$$\lim_n n \inf_{1 \leq n_1 \leq n} \esp \left[ n \left( \hat{I}_{n,1}^{(is)} - \int \varphi \right)^2 \right] = 4 \sigma^2$$
 	\end{pop}
 	
 	La complexité est en $O(n + n_1^2 + n_2) = O(n)$.

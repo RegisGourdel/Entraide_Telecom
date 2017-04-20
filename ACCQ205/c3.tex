@@ -12,7 +12,16 @@
 		\textbf{Droite projective} sur $k$, notée $\proba_k^1$ ou $\proba^1$ : courbe simple donnée par $k(t)$ le corps des fractions rationnelles.
 	\end{defn}
 	
-	...
+	\begin{defn}
+		Soit $P \in k[x,y]$ non constant.
+		On dit qu'un point de $Z(P)$ est \textbf{singulier} si $P_x'$ et $P_y'$ s'y annulent simultanément.
+	\end{defn}
+	
+	\begin{defn}
+		Soit $I \subset k[t_1,\ldots,t_d]$ un idéal premier.
+		Alors $X := Z(I)$ est irréductible et on appelle $\Frac(k[t_1,\ldots,t_d]/I)$ \textbf{corps des fonctions rationnelles} de $X$, noté $k(X)$.
+		On appelle $\degtr_k k(X)$ la \textbf{dimension} de $X$.
+	\end{defn}
 
 \subsection{Anneaux de valuation}
 
@@ -159,8 +168,8 @@
 	\end{pop}
 
 	Dans ce cas $\varkappa_v$ est une extension finie, donc algébrique, de $k$.
-	Le degré $[\varkappa_v : k]$ s'appelle aussi degré de la place $v$.
-	S'il vaut $1$, i.e. $\varkappa_v = k$, $v$ est dite rationnelle.
+	Le degré $[\varkappa_v : k]$ s'appelle aussi \textbf{degré de la place} $v$.
+	S'il vaut $1$, i.e. $\varkappa_v = k$, $v$ est dite \textbf{rationnelle}.
 	C'est notamment le cas si $v$ est algébriquemet clos.
 	
 	\begin{defn}
@@ -192,7 +201,7 @@
 	
 	\begin{rem}
 		Tous les corps résiduels $\varkappa_v$ sont des extensions de $\tilde{k}$.
-		Notamment $[\tilde{k} : k]$ divise tous les $\deg(v) = [\varkappa_v : k]$ et, en particulier, s'il existe une place \textbf{rationnelle}, i.e. telle que $\deg(v) = 1$, ou simplement deux places de degrés premiers entre eux, on a $\tilde{k} = k$.
+		Notamment $[\tilde{k} : k]$ divise tous les $\deg(v) = [\varkappa_v : k]$ et, en particulier, s'il existe une place rationnelle, i.e. telle que $\deg(v) = 1$, ou simplement deux places de degrés premiers entre eux, on a $\tilde{k} = k$.
 	\end{rem}
 
 \subsection{Les places de la droite projective}
@@ -222,22 +231,113 @@
 
 \subsection{L'indépendance des valuations}
 
+	\begin{thm}[approximation faible]
+		Soit $K$ un corps, $v_1,\ldots,v_n \in \mathscr{V}_K$ discrètes deux à deux distinctes, $f_1,\ldots,f_n \in K$ et $r_1,\ldots,r_n \in \Z$.
+		Alors $\exists f \in K, \forall i, v_i (f - f_i) \geq r_i$.
+		On peut aussi obtenir $\forall i, v_i (f - f_i) = r_i$.
+	\end{thm}
 	
+	Une interprétation est : pour des développement limités $f_1,\ldots,f_n$ en des places $v_1,\ldots,v_n$ on peut trouver une fonction $f$ qui les approche simultanément à n'importe quel ordre $r_i$ fixé.
+
+	\begin{cor}
+		L'ensemble $\mathscr{V}_{K/k}$ des places d'un corps $K$ de fonctions de courbe sur $k$ est infini.
+	\end{cor}
+
 
 
 \subsection{L'identité du degré}
 
+	\begin{thm}[identité du degré]
+		Soit $K$ un corps de fonction de courbe sur $k$ et $x \in K$ non constant.
+		Alors l'ensemble des places où $x$ a un zéro, i.e. $v(x) > 0$, est fini, et si on les note $v_1,\ldots,v_n$ on a $[K : k(x)] = \sum_{i = 1}^n v_i(x) \deg(v_i)$.
+	\end{thm}
 	
+	\begin{cor}
+		Soit $K$ un corps de fonction de courbe sur $k$ et $x \in K$ non nul.
+		Alors l'ensemble des places des places où $x$ a un zéro ou un pôle est fini.
+	\end{cor}
+	
+	\begin{defn}
+		Soit $K$ un corps de fonction de courbe sur $k$ et $h \in K$.
+		Alors on pose $\deg(h) = 0$ si $h$ est constant et $\deg(h) = [K : k(h)]$ sinon.
+		Donc $\deg(h) = \sum_{i = 1}^n v_i(h) \deg(v_i)$ dès que $h \neq 0$ avec $v_1,\ldots,v_n$ les places où $h$ a un zéro.
+	\end{defn}
+	
+	Si $h$ est un polynôme le degré est celui au sens usuel et, si c'est une fraction rationnelle, $\deg(h)$ est le maximum du degré du numérateur et du dénominateur.
 
 
 \subsection{Diviseurs sur les courbes}
 
+	\begin{defn}
+		Soit $K = k(C)$ un corps de fonctions de courbe sur $k$.
+		Un \textbf{diviseur} sur $C$ est une combinaison linéaire formelle à coefficients entiers de $k$-places de $K$.
+		Leur groupe $\Div(C)$ est défini comme le groupe abélien libre $\oplus_{P \in \mathscr{V}_{K/k}} \Z$.
+		On notera $\sum_{P \in \mathscr{V}_C} n_P \cdot (P)$ une telle combinaison, où les $n_P \in \Z$ sont tous nuls sauf un nombre fini.
+	\end{defn}
 	
+	\begin{defn}
+		Le \textbf{degré d'un diviseur} $D = \sum_{P \in \mathscr{V}_C} n_P \cdot (P)$ est $\deg(D) := \sum_P n_P \deg(P)$.
+		On notera $\Div^0(C)$ le sous-groupe des diviseurs de degré $0$.
+	\end{defn}
+	
+	\begin{defn}
+		Un diviseur $D$ est dit \textbf{effectif}, noté $D \geq 0$, lorsque tous ses coefficients $n_P$ sont positifs.
+	\end{defn}
+	
+	\begin{defn}
+		Soit $K = k(C)$ un corps de fonctions de courbe sur $k$ et $f \in K$ non nulle.
+		On appelle :
+		\begin{itemize}
+			\item[\textbullet] \textbf{diviseur des zéros} $f^*((0)) := \sum_{P, P(f) > 0} P(f) \cdot (P)$,
+			\item[\textbullet] \textbf{diviseur des pôles} $f^*((\infty)) := \sum_{P, P(f) < 0} - P(f) \cdot (P)$,
+			\item[\textbullet] \textbf{diviseur principal} $\divg(f) := f^*((0) - (\infty)) = \sum_P P(f) \cdot (P)$.
+		\end{itemize}
+	\end{defn}
+	
+	\begin{rem}
+		On a $\deg(f^*((0))) = \deg(f^*((\infty))) = [K : k(f)]$ et $\deg(\divg(f)) = 0$.
+		De plus $\divg(fg) = \divg(f) + \divg(g)$, ainsi $\divg$ définit un morphisme $K^\times \to \Div(C)$ de noyau $\tilde{k}^\times$.
+	\end{rem}
+	
+	\begin{pop}
+		Les diviseurs principaux forment un sous-groupe du groupe des diviseurs, et même des diviseurs de degré zéro.
+	\end{pop}
+	
+	\begin{defn}
+		On dit que deux diviseurs $D$ et $D'$ sont \textbf{linéairement équivalents}, noté $D \sim D'$ lorsque $D' - D$ est un diviseur principal.
+		Le groupe $\Div(C)$ (resp. $Div^0(C)$) modulo les diviseurs principaux s'appelle \textbf{groupe de Picard} (resp. groupe de Picard de degré zéro) de $C$, et est noté $\Pic(C)$ (resp. $\Pic^0(C)$).
+	\end{defn}
 
 
 \subsection{Espaces de Riemann-Roch}
 
+	\begin{defn}
+		Soit $K = k(C)$ un corps de fonctions de courbe sur  $k$ et $D = \sum_P n_P \cdot (P)$ un diviseur sur $C$.
+		On appelle \textbf{espace de Riemannn-Roch} associé à $D$ le $k$-ev
+		$$\mathscr{L}(D) = \{ f \in K \mid \forall P \in \mathscr{V}_C, P(f) \geq -n_P \}
+		                 = \{ f \in K^\times \mid \divg(f) + D \geq 0 \} \cup \{ 0 \}\ .$$
+		On note $l(D)$ la dimension (finie) de $\mathscr{L}(D)$ comme $k$-ev.
+	\end{defn}
 	
+	\begin{pop}
+		Soit $D$ et $D'$ deux diviseurs sur une même courbe.
+		On a :
+		\begin{enumerate}[(i)]
+			\item Si $\mathscr{L}(D) \neq \{ 0 \}$ alors il existe $D'$ linéairement équivalent à $D$ et effectif.
+			\item En notant $0$ le diviseur nul on a $\mathscr{L}(0) = \tilde{k}$.
+				Si $D < 0$ (au sens où $-D$ est effectif et non nul) on a $\mathscr{L}(D) = 0$.
+			\item Si $D \sim D'$, i.e $\exists f, D' - D = \divg(f)$ alors on a un isomorphisme $\begin{array}{rcl} \mathscr{L}(D') & \overset{\sim}{\to} & \mathscr{L}(D) \\ g & \mapsto & fg\end{array}$ et $l(D') = l(D)$.
+			\item Si $D \leq D'$ (au sens où $D' - D \geq 0$) alors $\mathscr{L}(D) \subset \mathscr{L}(D')$ et $\dim(\mathscr{L}(D') / \mathscr{L}(D)) \leq \deg D' - \deg D$.
+			\item Le $k$-ev $\mathscr{L}(D)$ est de dimension finie.
+				Plus précisément si $D = D_+ - D_-$ avec $D_+$ et $D_-$ effectifs alors $l(D) \leq [\tilde{k} : k] + \deg D_+$.
+		\end{enumerate}
+	\end{pop}
+	
+	\begin{pop}
+		Soit $D$ un diviseur.
+		Si $\deg D < 0$ alors $l(D) = 0$.
+		Si $\deg D = 0$ et $l(D) \neq 0$ alors $l(D) = [\tilde{k} : k]$ et $D \sim 0$.
+	\end{pop}
 
 
 \subsection{Différentielles de Kähler}
@@ -260,7 +360,7 @@
 			\item[\textbullet] il existe une base de transcendance $(t_1,\ldots,t_n)$ pour laquelle $K$ est (algébrique) séparable sur $k(t_1,\ldots,t_n)$.
 		\end{itemize}
 		Lorsque ces conditions sont vérifiées on dit que $K$ est \textbf{séparable}.
-		On dit aussi que $(t_1,\ldots,t_n)$ est une base de transcendance \textbf{séparante}.
+		On dit aussi que $(t_1,\ldots,t_n)$ est une \textbf{base de transcendance séparante}.
 	\end{pop}
 	
 	\begin{rem}
@@ -268,12 +368,11 @@
 	\end{rem}
 	
 	\begin{pop}
-		Si $K = k(C)$ est le corps des fractions d'une courbe sur un corps $k$ et qu'au moins une des hypothèses suivantes est satisfaite :
+		Si $K = k(C)$ est le corps des fractions d'une courbe sur un corps $k$ et qu'au moins une des hypothèses suivantes est satisfaite alors l'extension $k \subseteq K$ est séparable :
 		\begin{itemize}
 			\item[\textbullet] le corps de base $k$ est parfait,
-			\item[\textbullet] la courbe $C$ est irréductible.
+			\item[\textbullet] la courbe $C$ est géométriquement irréductible.
 		\end{itemize}
-		alors l'extension $K$ est séparable.
 	\end{pop}
 
 	\begin{pop}
@@ -283,18 +382,63 @@
 		Réciproquement, si $t_1,\ldots,t_n \in K$ sont tels que $\diff t_1,\ldots,\diff t_n$ sont linéairement indépendants sur $K$, alors ils sont une base de transcendance séparante.
 	\end{pop}
 	
-	...
+	\begin{cor}
+		Si $K = k(C)$ est séparable alors $\Omega^1_{K/k}$ est un $K$-ev de dimension 1 et une base en est donné par $\diff t$ pour n'importe quel $t$ qui soit une base de transcendance séparante.
+	\end{cor}
+	
+	\begin{pop}
+		Soit $K = k(C)$ séparable, $P \in \mathscr{V}_{K/k}$ et $R = \mathcal{O}_P = \{ f \in K \mid P(f) \geq 0 \}$.
+		Alors le $R$-module $\Gamma_{R/k}^1$ s'identifie au sous-$R$-module de $\Omega^1_{K/k}$ engendré par $\{ \diff f, f \in R \}$ car $\diff_R f \mapsto \diff_K$ est une application $R$-linéaire injective.
+		De plus $\Gamma_{R/k}^1$ est libre de rang 1 comme $R$-module, i.e $\exists \alpha \in \Gamma_{R/k}^1, \forall \omega \in \Omega^1_{K/k}, \exists ! (u,i) \in R^\times \times \Z, \omega = u t^i \alpha$ et on a $i \geq 0$ si et seulement si $\omega \in \Gamma_{R/k}^1$.
+	\end{pop}
+	
+	\begin{defn}
+		Soit $K = k(C)$ séparable, $P \in \mathscr{V}_C$ et $\omega \in \Omega^1_{K/k}$.
+		On appelle \textbf{ordre du zéro} de $\omega$ en $P$, noté $\ord_P(\omega)$, l'entier $i$ de la proposition précédente, i.e $i = \max \left\{ j \in \Z \mid \omega / t^j \in \Omega^1_{\mathcal{O}_p/k} \right\}$ où $t$ est une uniformisante en $P$.
+		On dit que $\omega$ est holomorphe en $P$ lorsque $\ord_P(\omega) \geq 0$, qu'elle a un zéro en $P$ lorsque $\ord_P(\omega) > 0$ et qu'elle a un pôle en $P$ lorsque $\ord_P(\omega) < 0$.
+	\end{defn}
+	
+	\begin{pop}
+		Soit $K = k(C)$ séparable, $P \in \mathscr{V}_C$ séparable et $t$ est uniformisante en $P$.
+		Alors $\diff t$ est une base du $R$-module $\Omega^1_{R/k}$.
+		En particulier $t$ est une base de transcendance séparante de $K$ sur $k$.
+	\end{pop}
+	
+	\begin{cor}
+		Dans les conditions précédentes on a $\forall \omega \in \Omega^1_{K/k}, \ord_P(\omega) = \ord_P(\omega / \diff t)$.
+	\end{cor}
+	
+	\begin{pop}
+		Soit $K = k(C)$ séparable et $P \in \mathscr{V}_C$ séparable.
+		Alors pour tout $f \in K$ on a :
+		\begin{itemize}
+			\item[\textbullet] $\ord_P(\diff f) = \ord_P(f) - 1$ si $\ord_P(f) \neq 0$ dans $k$,
+			\item[\textbullet] $\ord_P(\diff f) \geq 0$ si $\ord_P(f) \geq 0$ et, plus généralement, $\ord_P(\diff f) \geq \ord_P(f)$ si $\ord_P(f)$ est multiple de la caractéristique de $k$.
+		\end{itemize}
+	\end{pop}
+	
+	\begin{pop}
+		Soit $K = k(C)$ séparable et $\omega \in \Omega^1_{K/k}$ non nulle.
+		Alors $\{ P \in \mathscr{V}_C \mid \ord_P(\omega) \neq 0 \}$ est fini.
+	\end{pop}
+	
+	\begin{defn}
+		Soit $K = k(C)$ séparable et $\omega \in \Omega^1_{K/k}$ non nulle.
+		Le diviseur $\divg(\omega) = \sum_P \ord_P(\omega) \cdot (P)$ est appelé \textbf{diviseur canonique} associé à $\omega$.
+	\end{defn}
 
-\subsection{Théorème de Riemann-Roch}
+	On appelle \textbf{classe canonique} la classe $W \in \Pic(C)$ de n'importe quel diviseur canonique.
+
+%~ \subsection{Théorème de Riemann-Roch}
 
 	
 
 
-\subsection{Points et places}
+%~ \subsection{Points et places}
 
 	
 
 
-\subsection{Revêtements de courbes}
+%~ \subsection{Revêtements de courbes}
 
 	
