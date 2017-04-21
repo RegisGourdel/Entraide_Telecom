@@ -9,6 +9,7 @@ MCN = function(n, phi, m, var) {
 VC = function(n, phi, f, m, var) {
   X = rnorm(n,m,var)
   phiVec = lapply(X,phi)
+  fVec = lapply(X,f)
   aux = function(x) { x - mean(x) }
   Z = lapply(fVec, aux)
   Psi = aux(phiVec)
