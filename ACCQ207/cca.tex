@@ -1,0 +1,48 @@
+\subsection{Définitions}
+
+	\begin{defn}
+		Une \textbf{courbe elliptique} sur un corps $K$ est 
+		\begin{itemize}
+			\item[\textbullet] soit la donnée d'une courbe algébrique $E$ projective lisse de genre 1 sur $K$ et d'un point $O_E \in E(K)$,
+			\item[\textbullet] soit la donnée d'une équation “de Weierstrass” de la forme $y^2 + a_1 xy + a_3 y = x^3 + a_2 x^2 + a_4 x + a_6$
+				qui définit une courbe plane où les coefficients $a_1,a_2,a_3,a_4,a_6 \in K$ sont choisis pour que $E$ soit lisse.
+				La courbe admet alors un unique point à l'infini, noté $O_E$.
+		\end{itemize}
+	\end{defn}
+	
+	\begin{rem}
+		Lorsque $K$ est de caractéristique différente de 2 ou 3, on se ramène par changement de variable à une équation de la forme $y^2 = x^3 + ax + b$.
+		La lissité équuivaut donc à ce que $x^3 + ax + b$ soit sans racine double, i.e $\Delta = 4 a^3 + 27 b^2 \neq 0$ dans $K$.
+	\end{rem}
+
+
+\subsection{Loi de groupe}
+
+	\begin{lem}
+		Soit $D \in \Div^0(E)$, alors $\exists ! P \in E(K), D \sim (P) - (O_E)$.
+	\end{lem}
+	
+	On a donc une bijection $\begin{array}{rcl} E(K) & \overset{\sim}{\to} & Cl^0 (E)_K \\ P & \mapsto & (P) - (O_E) \end{array}$ avec $Cl^0 (E)_K$ le groupe des classes d'équivalence linéaire de diviseurs de degré 0 définis sur $K$.
+	
+	\begin{defn}
+		On munit $E(K)$ d'une loi de groupe $+$ en transportant la loi de $Cl^0 (E)_K$ par cette bijection.
+	\end{defn}
+	
+	\begin{pop}
+		\begin{enumerate}[(i)]
+			\item L'élément neutre de $E(K)$ est $O_E$.
+			\item $\forall P,Q \in E(K)$, $P + Q$ dans $E(K)$ est l'unique point tel que $(P) - (O_E) + (Q) - (O_E) \sim (P + Q) - (O_E)$ dans $\Div^0(E)$, i.e. tel que $\exists f \in E(K), \divg(f) = (P) + (Q) - (P + Q) - (O_E)$.
+			\item Soit $D = \sum_{P \in E(K)} n_P \cdot (P)$ un diviseur sur $E$.
+				Alors $D$ est principal si et seulement si $\deg(D) = \sum_P n_P = 0$ et $\sum_p n_P P = O_E$ dans $E(K)$.
+			\item En particulier $P + Q + R = O_E \iff (P) - (O_E) + (Q) - (O_E) + (R) - (O_E) \sim 0$ dans $\Div^0(E)$.
+			\item $\forall P \in E(K)$, $-P \in E(K)$ est l'unique point tel que $\exists f, \divg(f) = (P) + (-P) - 2 (O_E)$.
+		\end{enumerate}
+	\end{pop}
+	
+	\begin{rem}
+		On a $P + Q + R = O_E$ si et seulement si $P,Q,R$ sont les trois points d'intersection de $E$ et d'une droite.
+	\end{rem}
+	
+	\begin{rem}
+		Si $P$ est un point de coordonnées affines $(x_P,y_P)$ alors $-P$ a pour coordonnées $(x_P,-y_P)$.
+	\end{rem}
