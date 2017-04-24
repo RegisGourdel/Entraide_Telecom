@@ -1,0 +1,173 @@
+\subsection{Généralités}
+
+	Soit $(\Omega,\mathcal{F},\proba)$ un espace de probabilités.
+	Soit $d \in \N^*$, $E = \R^d$ et $\mathcal{E} = \mathcal{B}(E)$.
+	
+	On note $\mu \colon B \mapsto \proba(X^{-1}(B))$ la loi de probabilité de $X$.
+	
+	Soit $\mathbf{T}$ un “ensemble d'indices” qui représente le temps.
+	En général $\mathbf{T} = \R_+$.
+	
+	\begin{defn}
+		Un processus à valeurs dans $(E,\mathcal{E})$ indexé par $\mathbf{T}$ est une famille de v.a $X = (X_t)_{t \in \mathbf{T}}$ à valeurs dans $(E,\mathcal{E})$.
+		Pour tout $\omega \in \Omega$, l'application $t \mapsto X_t(\omega)$ est appelé \textbf{trajectoire} de $X$.
+	\end{defn}
+	
+	La famille $X$ peut-être vue comme une application $\Omega \to E^{\mathbf{T}}$ de toutes les trajectoires possibles.
+	Il faut donc définir une tribu sur $E^{\mathbf{T}}$ et caractériser la mesure.
+	
+	Soit $t \in \mathbf{T}$, on pose $\mathcal{G}_t := \sigma(\xi_t)$ la tribu sur $E^{\mathbf{T}}$ engendrée par la projection $\xi_t \colon \begin{array}{lcr} E^{\mathbf{T}} & \to & E \\ x & \mapsto & x(t) \end{array}$.
+	Cette tribu est donc constituée des ensembles $\{ x \in E^{\mathbf{T}} \mid x(t) \in H \}$ où $H$ parcourt $\mathcal{E}$.
+	
+	\begin{defn}
+		La \textbf{tribu de Kolmogorov} est la tribu $\mathcal{G}$ engendrée par la famille $\{ \mathcal{G}_t \}_{t \in \mathbf{T}}$.
+	\end{defn}
+	
+	D'une manière équivalente, $\mathcal{G}$ est la plus petite tribu rendant mesurables toutes les applications $\xi_t$ où $t$ parcourt $\mathbf{T}$.
+	Avec cette construction $X \colon \Omega \to E^{\mathbf{T}}$ est $\mathcal{F}/\mathcal{G}$-mesurable de loi $\mu$ l'image de $\proba$ par $X$.
+	
+	Étant donné une loi de probabilité $\mu$ sur $\left( E^{\mathbf{T}}, \mathcal{G} \right)$, il est facile de construire un processus de loi $\mu$ : il suffit de prendre $(\Omega, \mathcal{F}, \proba) = \left( E^{\mathbf{T}}, \mathcal{G}, \mu \right)$ et de poser $X(\omega) = \omega$.
+	
+	Ce processus est appelé \textbf{processus canonique}.
+	
+	\begin{defn}[\textbf{Lois fini-dimensionnelles}]
+		Soit $\mathcal{J}$ l'ensemble des parties finies de $\mathbf{T}$ et $I = \{ t_1,\ldots,t_n \} \in \mathcal{J}$ où $t_1 < t_2 < \cdots < t_n$.
+		Soit $\mu_I$ la loi du vecteur $(X_{t_1},\ldots,X_{t_n})$.
+		En notant $\mathcal{G}_I := \sigma(\xi_I)$ la sous-tribu de $\mathcal{G}$ engendrée par $\xi_I \colon \begin{array}{lcr} E^{\mathbf{T}} & \to & E^I \\ x & \mapsto & (x(t_1),\ldots,x(t_n)) \end{array}$, la loi $\mu_I$ peut être définie sur $(E^I, \mathcal{G}_I)$ comme étant l'image de $\mu$ par $\xi_I$.
+	\end{defn}
+	
+	\begin{rem}
+		$\mathcal{G}_I$ est la collection des ensembles $\{ x \in E^{\mathbf{T}} \mid (x(t_1),\ldots,x(t_n)) \in H \}$ où $H \in \xi^{\otimes I}$ est la tribu produit sur $E^I$.
+		Donc $\mathcal{G}_I$ peut être identifiée à $\mathcal{E}^{\otimes I}$ et on peut caractériser $\mu_I$ par $\forall H_1,\ldots,H_n \in \mathcal{E}, \mu_I(H_1 \times \cdots \times H_n) = \proba(X_{t_1} \in H_1, \ldots, X_{t_n} \in H_n)$.
+	\end{rem}
+	
+	\begin{defn}
+		La famille des lois fini-dimensionnelles de $X$ est la famille des $\mu_I$ où $I$ parcourt $\mathcal{J}$.
+	\end{defn}
+	
+	\begin{pop}
+		Si deux lois $\mu$ et $\nu$ sur $\left( E^{\mathbf{T}}, \mathcal{G} \right)$ possèdent les mêmes lois fini-dimensionnelles alors elles sont égales.
+	\end{pop}
+	
+	\begin{proof}
+		$\mathcal{G}$ est engendré par l'algèbre $\bigcup_{I \in \mathcal{J}} \mathcal{G}_I$.
+		Comme $\mu$ et $\nu$ coïncident sur cette algèbre elles coïncident sur $\mathcal{G}$.
+	\end{proof}
+	
+	\begin{pop}
+		Les lois fini-dimensionnelles satisfont la \textbf{condition de compatibilité} suivante : pour tout $I = \{ t_1,\ldots,t_n \}$ avec $t_1 < \cdots < t_n$, pour $p \in \iniff{1}{n}$ et $J = \{ t_1,\ldots,t_{p - 1},t_{p + 1},\ldots,t_n \} \subset I$, pour toutes les familles  $(H_i)$ de $\mathcal{E}$, on a $\mu_I(H_1 \times \cdots H_{p - 1} \times E \times H_{p + 1} \times \cdots \times H_n) = \mu_J(H_1 \times \cdots H_n)$.
+	\end{pop}
+	
+	\begin{thm}[\textbf{Kolmogorov}]
+		Soit $(\mu_I)_{I \in \mathcal{J}}$ une famille de lois sur $\left( E^I, \mathcal{E}^{\otimes I} \right)_{I \in \mathcal{J}}$.
+		Si elle vérifie les conditions de compatibilité, $(\mu_I)_{I \in \mathcal{J}}$ est la famille de lois fini-dimensionnelles d'une unique mesure de probabilités $\mu$ sur $\left( E^{\mathbf{T}}, \mathcal{G} \right)$.
+	\end{thm}
+	
+	{\Large \noindent\lightning} Ici $E = \R^d$. Cela ne marche pas pour tous types de $E$.
+	
+	\begin{ex}
+		Prenons $E = \R$.
+		Soit $\nu$ une mesure sur $\R$.
+		Supposons $\mu_I = \otimes^n \nu$, avec $n = \card(I)$.
+		Alors il existe un processus aléatoire tel que ...
+	\end{ex}
+	
+	\begin{defn}
+		Soit $X$ et $X'$ deux processus définis sur le même espace de probabilités.
+		\begin{itemize}
+			\item[\textbullet] On dit que $X'$ est une \textbf{modification} de $X$ si $\forall t \in \mathbf{T}, \proba(X_t = X_t') = 1$.
+			\item[\textbullet] On dit que $X$ et $X'$ sont \textbf{indistinguables} si $\proba(\forall t \in \mathbf{T}, X_t = X_t') = 1$ en admettant que $\{ \forall t \in \mathbf{T}, X_t = X_t' \} \in \mathcal{F}$.
+		\end{itemize}
+	\end{defn}
+	
+	\begin{ex}
+		Soit $\Omega = \mathbf{T} = \inff{0}{1}$, $\mathcal{F} = \mathcal{B}(\inff{0}{1})$, $\proba$ la mesure de Lebesgue sur $\iniff{0}{1}$ et $\forall t \in \mathbf{T}, X_t(\omega) = \delta_{t,\omega} = \indic_{ \{ t \} }(\omega)$ et $\forall t, X_t'(\omega) = 0$.
+		Alors $\forall t \in \mathbf{T}, \proba( \omega \mid X_t(\omega) \neq X_t'(\omega) ) = \proba( \{ t \} ) = 0$ mais $\proba( \omega \mid \exists t \in \mathbf{T}, X_t(\omega) \neq X_t'(\omega) ) = \proba(\inff{0}{1}) = 1$.
+	\end{ex}
+	
+	Question : peut-on trouver une condition sur $\mu$ qui rende le processsus $X$ continu, au moins avec la probabilité 1, i.e. “presque toutes les trajectoires sont continues”, si cela a un sens ?
+	Non, comme le montr l'exemple précédent.
+	En effet les lois fini-dimensionnelles de $X$ et $X'$ sont identiques.
+	Donc $X$ et $X'$ ont la même loi $\mu$.
+	
+	Cet exemple montre que l'ensemble des processus continus n'est pas mesurable par la tribu de Kolmogorov.
+	En effet, si $\cont(\inff{0}{1})$ était mesurable, on aurait $\mu \left( \cont(\inff{0}{1}) \right) = 1$ car $\mu$ est la loi de $X' \in \cont(\inff{0}{1})$.
+	En même temps $\mu \left( \cont(\inff{0}{1}) \right) = 0$ car $\mu$ est la loi de $X$.
+
+
+\subsection{Le mouvement brownien}
+
+	\begin{defn}
+		Un processus aléatoire est dit \textbf{gaussien} si toutes ses lois fini-dimensionnelles sont gaussiennes.
+	\end{defn}
+	
+	\begin{defn}
+		Un \textbf{mouvement brownien au sens large (MBL)} est un processus scalaire gaussien $X$ sur $\mathbf{T} = \R_+$ tel que $\forall t \in \mathbf{T}, \esp X_t = 0$ et $\forall t,s \in \mathbf{T}, \esp[X_t X_s] = \min(t,s)$.
+	\end{defn}
+	
+	\begin{pop}
+		Le MBL existe.
+	\end{pop}
+	
+	\begin{proof}
+		Il nous faudra prouver que les conditions de compatibilité sont satisfaites.
+		Pour tout $I = \{ t_1,\ldots,t_n \}, t_1 < \cdots < t_n$ il nous suffira de prouver que $\mu_I$ est une loi de probabilité.
+		Ainsi $\mu_J$ pour tout $J \subset I$ sera la marginale correspondante de $\mu_I$.
+		Cela revient à prouver que $\Gamma := (t_i \wedge t_j)_{1 \leq i,j \leq n}$ est une matrice de covariance, i.e une matrice semi-définie positive.
+		En effet,
+		\begin{align*}
+		\forall x = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n,\quad
+		\transp{x} \Gamma_I x & = \sum_{i,j = 1}^n x_i x_j (t_i \wedge t_j) \\
+		                      & = \sum_{i,j = 1}^n x_i x_j \sum_{l = 1}^{i \wedge j} (t_l - t_{l - 1}) \qquad \text{avec}\ t_0 := 0 \\
+		                      & = \sum_{l = 1}^n (t_l - t_{l - 1}) \left( \sum_{i = l}^n x_i \right)^2 \\
+		                      & \geq 0
+		\end{align*}
+	\end{proof}
+	
+	\begin{defn}
+		Soit $\sigma(X_t)$ la sous-tribu de $\mathcal{F}$ engendrée par la v.a $\xi_t \circ X$.
+		La tribu engendrée par $\{ \sigma(X_s) \}_{0 \leq s \leq t}$, noté $\sigma(X_s, 0 \leq s \leq t)$ représente le \textbf{passé} de $X$ antérieur à $t$.
+	\end{defn}
+	
+	\begin{pop}
+		Un processus $X$ est un MBL si et seulement si il satisfait les conditions suivantes :
+		\begin{enumerate}[(i)]
+			\item Il est à accroissement indépendants, i.e $\forall s,t \geq 0, X_{t+s} - X_t$ est indépendant de $\sigma(X_u, 0 \leq u \leq t)$.
+			\item Il est gaussien centré et $\forall t \geq 0, \esp[X_t^2] = t$.
+		\end{enumerate}
+		Par ailleurs les accroissements d'un MBL satisfont $\forall s,t \geq 0, X_{t+s} - X_t \overset{\mathcal{L}}{=} X_s - X_0 \overset{\mathcal{L}}{=} X_s \sim \mathcal{N}(0,s)$.
+	\end{pop}
+	
+	\begin{proof}
+		Si $X$ est un MBL, il suffit de prouver le premier point.
+		Comme la loi de $X$ est caractérisée par les lois fini-dimensionnelles, il suffit de prouver $\forall t_0,\ldots,t_{n + 1}$ tel que $0 = t_0 < t_1 < \cdots < t_n = t < t_{n + 1} = t + 1$, la v.a $X_{t_{n + 1}} - X_{t_n}$ et le vecteur $(X_{t_0},\ldots,X_{t_n})$ sont indépendants comme $(X_{t_0},\ldots,X_{t_{n + 1}})$ est gaussien.
+		
+		Le vecteur $(X_{t_0},\ldots,X_{t_n},X_{t_{n + 1}} - X_{t_n})$ l'est par transformation linéaire, et il suffit de prouver la décorrélation $\forall i \in \iniff{0}{1}, \esp \left[ (X_{t_{n + 1}} - X_{t_n}) X_{t_i} \right] = 0$.
+		C'est immédiat : $\esp \left[ X_{t_{n + 1}} X_{t_i} \right] - \esp \left[ X_{t_n} X_{t_i} \right] = t_{n + 1} \wedge t_i - t_n \wedge t_i = t_i - t_i = 0$.
+		
+		Réciproquement, si les deux points sont satisfaits, il suffit de prouver que $\esp \left[ X_{t + s} X_t \right] = t$.
+		En effet $\esp \left[ X_{t + s} X_t \right] = \esp \left[ (X_{t + s} - X_t) X_t \right] + \esp \left[ X_t^2 \right] = \esp \left[ X_{t + s} - X_t \right] \esp \left[ X_t \right] + \esp \left[ X_t^2 \right] = \esp \left[ X_t^2 \right] = t$.
+		
+		Enfin on sait que $X_{t + s} - X_t$ est gaussienne et il est facile de vérifier qu'elle est centrée et de variance $s$.
+	\end{proof}
+	
+	\begin{thm}[Kolmogorov]
+		Soit $\mathbf{T}$ un intervalle de $\R$ et $(X_t)_{t \in \mathbf{T}}$ un processus à valeurs dans $E^{\mathbf{T}}$.
+		Supposons $\exists \alpha,\beta \in \R_+^*, \exists C > 0, \forall s,t \in \mathbf{T}, \esp \left[ \norme{X_t - X_s}^\beta \right] \leq C \abs{t - s}^{1 + \alpha}$.
+		Alors $X$ admet une modification $\tilde{X} = \left( \tilde{X}_t \right)_{t \in \mathbf{T}}$ dont toutes les trajectoires $t \mapsto \tilde{X}_t(\omega)$ sont continues.
+	\end{thm}
+	
+	\begin{defn}
+		Un \textbf{mouvement brownien (MB)} ou processus de Wiener est un MBL dont toutes les trajectoires sont continues et nulles en $t = 0$.
+	\end{defn}
+	
+	\begin{pop}
+		Le MB existe.
+	\end{pop}
+	
+	\begin{proof}
+		Soit $X$ un MBL.
+		$\esp \left[ (X_s - X_t)^4 \right] = (t - s)^2 \esp \left[ U^2 \right]$ où $U \sim \mathcal{N}(0,1)$ et on applique le théorème de Kolmogorov.
+	\end{proof}
+	
+	...
