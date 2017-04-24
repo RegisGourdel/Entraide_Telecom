@@ -15,5 +15,68 @@
 	\end{pop}
 	
 	\begin{pop}
-		$Y \sim \mathcal{N}(m,\sigma^2)$ 
+		$Y \sim \mathcal{N}(m,\sigma^2)$ si et seulement si sa fonction caractéristique est $\phi(\lambda) = \psi(i \lambda) = \exp \left( im \lambda - \lambda^2 \frac{s^2}{2} \right)$.
+	\end{pop}
+	
+	\begin{pop}
+		Supposons $\sigma > 0$.
+		Alors $Y \sim \mathcal{N}(m,\sigma^2)$ si et seulement si $Y$ admet pour densité $f(y) = \frac{1}{\sigma \sqrt{2 \pi}} \exp \left( - \frac{(x - m)^2}{2 \sigma^2} \right)$.
+	\end{pop}
+	
+	\begin{pop}
+		Soit $Y \sim \mathcal{N}(m,\sigma^2)$, alors $\esp Y = m$ et $\Var(Y) = \sigma^2$.
+	\end{pop}
+	
+	\begin{pop}
+		Soit $X_n \sim \mathcal{N}(m_n, \sigma_n^2)$ une suite de v.a, $X_n \overset{\mathcal{L}}{\longrightarrow} X$.
+		Alors $(m_n)_n$ et $(\sigma_n^2)_n$ convergent et en notant $m$ et $\sigma^2$ leurs limite on a $X \sim \mathcal{N}(m,\sigma^2)$.
+		Si par ailleurs $X_n \overset{\proba}{\longrightarrow} X$ alors la convergence a lieu dans $\mathcal{L}^p$ pour tout $p > 0$.
+	\end{pop}
+	
+	\begin{proof}
+		Le premier point se démontre par l'utilisation de la fonction caractéristique.
+		Pour le second on déduit du premier que tous les moments de $\abs{X_n - X}$ sont bornés et on applique un argument d'intégrabilité uniforme.
+	\end{proof}
+
+
+
+\subsection{La loi gaussienne vectorielle}
+
+	\begin{defn}
+		Un vecteur aléatoire $X$ sur $\R^d$ est dit \textbf{gaussien} si $\forall u \in \R^d$, $\scal{u}{X}$ est une v.a gaussienne.
+	\end{defn}
+	
+	\begin{ex}
+		Le vecteur $X = \transp{(X_1,\cdots,X_d)}$ où les variables aléatoires $X_i$ sont gaussiennes et indépendantes est gaussien.
+		En effet, on sait que toute combinaison linéaire de v.a gaussienne indépendantes est gaussienne.
+	\end{ex}
+	
+	Soit $X = \transp{(X_1,\ldots,X_d)}$ un vecteur aléatoire tel que $\esp \left[ \norme{X}^2 \right] < \infty$ et soit $m = \esp X = \transp{(\esp X_1, \ldots, \esp X_d)}$ et $\Gamma = (\Cov(X_i,X_j))_{1 \leq i,j \leq d}$ sa moyennne et sa matrice de covariance respectivement.
+	Il est alors clair que
+	$$\forall u \in \R^d, \esp \scal{u}{X} = \scal{u}{m}\qquad \text{et}\qquad \Var(\scal{u}{X}) = \transp{u} \Gamma u$$
+	(ce qui montre au passage que $\Gamma \in \Sym_d^+$, le cône des matrices $d \times d$ définies positives).
+	Si le vecteur $X$ est gaussien, la v.a $\scal{u}{X}$ est gaussienne, et sa fonction caractéristique est $\esp \left[ e^{i \lambda \scal{u}{X}} \right] = \exp \left( i \lambda \scal{u}{m} - \lambda^2 \frac{\transp{u} \Gamma u}{2} \right)$.
+	En particulier, en prenant $\lambda = 1$ nous obtenons la fonction caractéristique de $X$ : $\phi(u) = \esp \left[ \exp(i\scal{u}{X}) \right] = \exp \left( i \scal{u}{m} - \frac{\transp{u} \Gamma u}{2} \right)$.
+	La loi de $X$ est ainsi entièrement déterminée par sa moyenne et par sa matrice de covariance.
+	On note $X \sim \mathcal{N}(m,\Gamma)$.
+	
+	\begin{pop}
+		Les composantes d'un vecteur gaussien sont indépendantes si et seulement si elles sont décorrelées, i.e la matrice de covariance est diagonale.
+	\end{pop}
+	
+	\begin{pop}
+		Soit $X \sim \mathcal{N}(m,\Gamma)$ sur $\R^d$ et $H \in \M_{n,m}$.
+		Alors le vecteur aléatoire $Y = HX$ suit la loi $\mathcal{N} \left( Hm, H \Gamma \transp{H} \right)$.
+	\end{pop}
+	
+	\begin{pop}
+		On a $\forall d \in \N^*, \forall m \in \R^d, \forall \Gamma \in \Sym_d^+, \exists X \sim \mathcal{N}(m,\Gamma)$.
+	\end{pop}
+	
+	\begin{proof}
+		Écrire $\Gamma = H \transp{H}$ et poser $X = m + HZ$ où $Z$ est un vecteur dont les éléments dont des gaussiennes standard indépendantes.
+	\end{proof}
+	
+	\begin{pop}
+		Si $\Gamma$ est définie positive, alors $X \sim \mathcal{N}(m,\Gamma)$ a pour densité $f(x) = \frac{1}{\sqrt{\det(2 \pi \Gamma)}} \exp \left( - \frac{\transp{(x - m)} \Gamma^{-1} (x - m)}{2} \right)$.
 	\end{pop}

@@ -114,14 +114,11 @@
 		Pour tout $I = \{ t_1,\ldots,t_n \}, t_1 < \cdots < t_n$ il nous suffira de prouver que $\mu_I$ est une loi de probabilité.
 		Ainsi $\mu_J$ pour tout $J \subset I$ sera la marginale correspondante de $\mu_I$.
 		Cela revient à prouver que $\Gamma := (t_i \wedge t_j)_{1 \leq i,j \leq n}$ est une matrice de covariance, i.e une matrice semi-définie positive.
-		En effet,
-		\begin{align*}
-		\forall x = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n,\quad
-		\transp{x} \Gamma_I x & = \sum_{i,j = 1}^n x_i x_j (t_i \wedge t_j) \\
-		                      & = \sum_{i,j = 1}^n x_i x_j \sum_{l = 1}^{i \wedge j} (t_l - t_{l - 1}) \qquad \text{avec}\ t_0 := 0 \\
-		                      & = \sum_{l = 1}^n (t_l - t_{l - 1}) \left( \sum_{i = l}^n x_i \right)^2 \\
-		                      & \geq 0
-		\end{align*}
+		En effet, avec $t_0 := 0$, $\forall x = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n$,
+		$$\transp{x} \Gamma_I x = \sum_{i,j = 1}^n x_i x_j (t_i \wedge t_j)
+		                        = \sum_{i,j = 1}^n x_i x_j \sum_{l = 1}^{i \wedge j} (t_l - t_{l - 1})
+		                        = \sum_{l = 1}^n (t_l - t_{l - 1}) \left( \sum_{i = l}^n x_i \right)^2
+		                        \geq 0$$
 	\end{proof}
 	
 	\begin{defn}
