@@ -70,6 +70,7 @@
 		Soit $\nu$ une mesure sur $\R$.
 		Supposons $\mu_I = \otimes^n \nu$, avec $n = \card(I)$.
 		Alors il existe un processus aléatoire tel que ...
+		TODO
 	\end{ex}
 	
 	\begin{defn}
@@ -167,4 +168,209 @@
 		$\esp \left[ (X_s - X_t)^4 \right] = (t - s)^2 \esp \left[ U^2 \right]$ où $U \sim \mathcal{N}(0,1)$ et on applique le théorème de Kolmogorov.
 	\end{proof}
 	
-	...
+	TODO\\
+	
+	\begin{pop}
+		Soit $B$ un MB.
+		Alors $\limsup_{t \to \infty} \frac{B_t}{\sqrt{t}} \overset{\text{p.s.}}{=} +\infty$, $\liminf_{t \to \infty} \frac{B_t}{\sqrt{t}} \overset{\text{p.s.}}{=} -\infty$, $\lim_{t \to \infty} \frac{B_t}{t} = 0$, $\limsup_{t \searrow 0} \frac{B_t}{\sqrt{t}} \overset{\text{p.s.}}{=} +\infty$ et $\liminf_{t \searrow 0} \frac{B_t}{\sqrt{t}} \overset{\text{p.s.}}{=} -\infty$.
+		De plus le processus donné par $Z_t = t B_{1/t}$ est un MBL.
+	\end{pop}
+	
+	\begin{rem}
+		On peut prouver des résultats plus fins, comme $\limsup_{t \to \infty} \frac{B_t}{\sqrt{t \log \log t}} \overset{\text{p.s.}}{=} 1$ ou $\liminf_{t \to \infty} \frac{B_t}{\sqrt{t \log \log t}} \overset{\text{p.s.}}{=} -1$.
+	\end{rem}
+	
+	\begin{proof}
+		Soit $R := \limsup_{t \to \infty} \frac{B_t}{\sqrt{t}}$.
+		On a $\forall s > 0, R = \limsup_{t \to \infty} \frac{B_{t + s}}{\sqrt{t + s}} = \limsup_{t \to \infty} \frac{B_{t + s}}{\sqrt{t}} = \limsup_{t \to \infty} \frac{B_{t + s} - B_s}{\sqrt{t}}$.
+		Par conséquent $R$ est indépendante de $\sigma(B_u, u \leq s)$ pour tout $s$.
+		Donc $R$ est indépendante de la tribu $\sigma(B)$ engendrée par $B$.
+		Comme $R$ est $\sigma(B)$-mesurable, $R$ est indépendant d'elle même : $\forall H \in \mathcal{B}(\R), \proba(R \in H) = P(R \in H)^2$.
+		Donc $P(R \in H)$ vaut $0$ ou $1$.
+		Donc $R = a$ avec proba $1$ où $a \in \intff{-\infty}{+\infty}$.
+		
+		Supposons $a < \infty$.
+		Soit $b > a$ quelconque.
+		Comme $R = a$ on peut vérifier que $\proba \left( \frac{B_t}{\sqrt{t}} > b \right) \underset{t \to \infty}{\longrightarrow} 0$.
+		Mais par ailleurs $\frac{B_t}{\sqrt{t}} \sim \mathcal{N}(0,1)$, d'où une contradiction.
+		Par conséquent $R = \infty$.
+		La 2\up{e} et la 3\up{e} convergences se démontrent de la même façon.
+		
+		Pour prouver la 3\up{e} convergence et le résultat sur $Z_t = t B_{1/t}$.
+		Nous avons que $Z_t$ est une gaussienne centrée.
+		On peut prouver facilement que $\esp Z_t Z_s = s \wedge t$.
+		$Z_t$ est continue sur $\intoo{0}{\infty}$ car $B_t$ est continue.
+		Alors $\lim_{t \searrow 0} Z_t = \lim_{t \searrow 0} t B_{1/t} = \lim_{u \to \infty} \frac{B_u}{u} \overset{\text{p.s.}}{=} 0$.
+		Donc $Z_t$ est un MBL dont presque toutes les trajectoires sont continues sur $\intfo{0}{\infty}$.
+		Nous avons alors $\limsup_{t \searrow 0} \frac{B_t}{\sqrt{t}} = \limsup_{t \to \infty} \frac{Z_t}{\sqrt{t}} = +\infty$.
+	\end{proof}
+	
+	\begin{cor}
+		Avec probabilité 1 on a :
+		\begin{enumerate}[(i)]
+			\item Le MB passe une infinité de fois par chaque point de $\R$.
+			\item Le MB n'est dérivable ni à droite pour tout $t \in \R_+$, ni à gauche pour tout $t \in \R_+^*$.
+		\end{enumerate}
+	\end{cor}
+	
+	\begin{proof}
+		Pour \textit{(i)}, utiliser les convergences de la proposition précédente conjointement avec la continuité du MB.
+		
+		Pour \textit{(ii)}, prenons $t > 0$.
+		Pour $s > 0$ nous avons $\frac{B_{t+s} - B_t}{s} = \frac{1}{\sqrt{s}} \cdot \frac{B_{t+s} - B_t}{\sqrt{s}}$, mais $Z_s := B_{t + s} - B_t$ est un MB.
+		Comme $\limsup_{s \searrow 0} \frac{Z_s}{\sqrt{s}} \overset{\text{p.s.}}{=} +\infty$ on a le résultat.
+	\end{proof}
+
+
+\subsection{Mesurabilité du MB}
+
+	On peut considérer un processus $X \colon \Omega \to E^{\mathbf{T}}$ où $\mathbf{T} = \R_+$ comme une application $\Omega \times \mathbf{T} \to E$ qui, à chaque couple $(\omega,t) \in \Omega \times \mathbf{T}$, associe $X_t(\omega)$.
+	Si on adopte ce point de vue, on est amené à considérer la mesurabilité de $X$ par rapport à la tribu-produit $\mathcal{F} \otimes \mathcal{B}(\mathbf{T})$.
+	
+	\begin{defn}
+		Un processus $X = (X_t, t \in \mathbf{T})$ à valeurs dans $E$ est dit \textbf{mesurable} si l'application $(\omega,t) \mapsto X_t(\omega)$ est mesurable de $(\Omega \times \mathbf{T}, \mathcal{F} \otimes \mathcal{B}(\mathbf{T})$ dans $(E,\mathcal{E})$.
+	\end{defn}
+	
+	En présence de mesurabilité, les trajectoires $t \mapsto X_t(\omega)$ à $\omega$ fixé sont mesurables pour la tribu $\mathcal{B}(\mathbf{T})$.
+	En particulier, le bruit blanc n'est pas mesurable en ce sens (bien qu'il soit mesurable au sens de Kolmogorov) car ses trajectoires sont trop irrégulières si $\nu$ n'est pas un Dirac.
+	Aucune trajectoire de ce processus n'est borélienne.
+	
+	Quand le processus $X$ est mesurable, l'intégrale $\int_a^b \varphi(X_t(\omega)) \diff t$ a un sens pour toute fonction mesurable $\varphi$, et par Fubini $\esp \left[ \int_a^b \varphi(X_t(\omega)) \diff t \right] = \int_a^b \esp \varphi(X_t(\omega)) \diff t$ si $\int_a^b \esp \abs{\varphi(X_t(\omega))} \diff t < \infty$.
+	
+	\begin{note}
+		Si $\forall \omega \in \Omega, t \mapsto X_t(\omega)$ est continue à droite (resp. à gauche), on dit que le processus est continu à droite (resp. à gauche).
+	\end{note}
+	
+	\begin{pop}
+		Si un processus $X$ est continu à gauche ou à droite, il est mesurable (par rapport à la tribu produit).
+	\end{pop}
+	
+	\begin{proof}
+		Supposons $X$ continu à gauche.
+		Pour tout $n \in \N$, soit $X_n(t) := X \left( \frac{\lfloor nt \rfloor}{n} \right)$.
+		Alors on peut vérifier que $X_n(t) \underset{n \to \infty}{\longrightarrow} X(t)$.
+		Or $X_n(t)$ est toujours mesurable.
+		Donc $X$ l'est par passage à la limite.
+	\end{proof}
+	
+	\begin{cor}
+		Le MB est mesurable.
+	\end{cor}
+
+	Notre but est maintenant de construire une intégrale de type $\int_0^t \varphi(s) \diff B_s$ où $B$ est un MB et où $\varphi$ est une fonction déterministe qui appartient à une classe appropriée.
+
+
+\subsection{Rappels sur les fonctions à variations finies}
+
+	Soit $\cont_0(\R_+)$ (resp. $\cont_0^+(\R_+)$) l'ensemble des fonctions continues (resp. continues croissantes) issues de zéro.
+	Soit $\pi_t = \{ t_0,\ldots,t_n \}, 0 = t_0 < t_1 < \ldots < t_n = t$ une subdivision finie de l'intervalle $\intff{0}{t}$.
+	
+	\begin{defn}
+		La \textbf{variation approchée} d'une fonction $f \in \cont_0(\R_+)$ sur la subdivision $\pi_t$ est $V_1(f,\pi_t,t) := \sum_{i = 1}^n \abs{f(t_i) - f(t_{i - 1})}$.
+		La fonction $f$ est dit à \textbf{variation finie} si $\forall t, V_1(f,t) := \sup_{\pi_t} V_1(f,\pi_t,t)$ est finie.
+	\end{defn}
+	
+	\begin{pop}
+		Si $f \in \cont_0(\R_+)$ est à variations finies, alors elle s'écrit d'une manière unique $f = f_+ - f_-$ où :
+		\begin{enumerate}[(i)]
+			\item $f_+ \in \cont_0^+(\R_+)$, $f_- \in \cont_0^+(\R_+)$,
+			\item $\forall f_+',f_-' \in \cont_0^+(\R_+)$ telles que $f = f_+' - f_-'$ on a $f_+' - f_+ \in \cont_0^+(\R_+)$ et $f_-' - f_- \in \cont_0^+(\R_+)$.
+		\end{enumerate}
+	\end{pop}
+	
+	Nous savons que si $g \in \cont_0^+(\R_+)$ alors la fonction d'ensemble $\mu(\intof{a}{b}) := g(b) - g(a)$ pour tout $a \leq b$ est une mesure (de Radon) positive sur $\R_+$.
+	Soit $\diff f_+$ et $\diff f_-$ les mesures associées à $f_+$ et $f_-$ de cette façon.
+	Pour toute fonction borélienne $\varphi$ sur $\R_+$ qui satisfait $\int \abs{\varphi} \diff f_+ < \infty$ et $\int \abs{\varphi} \diff f_- < \infty$, nous écrirons $\int \varphi \diff f := \int \varphi \diff f_+ - \int \varphi \diff f_- = \int \varphi (\diff f_+ - \diff f_-)$.
+	C'est l'intégrale de Lebesgue-Stieltjes par rapport à une fonction à variation finie.
+
+
+\subsection{Variation quadratique d'un MB}
+
+	\begin{defn}
+		La \textbf{variation quadratique approchée} d'une fonction $f \in \cont_0(\R_+)$ sur la subdivision $\pi_t$ est $V_2(f,\pi_t,t) := \sum_{i = 1}^n (f(t_i) - f(t_{i-1}))^2$.
+	\end{defn}
+	
+	\begin{pop}
+		Si $f$ est à variation finie alors $V_2(f,\pi_t,t) \underset{\abs{\pi_t} \to 0}{\longrightarrow} 0$ où $\abs{\pi_t} := \max_i \abs{t_i - t_{i-1}}$.
+	\end{pop}
+	
+	\begin{proof}
+		Comme $f$ est continue sur $\intff{0}{t}$, elle est uniformément continue, i.e $\forall \varepsilon > 0, \exists \eta > 0, \forall t_1,t_2 \in \intff{0}{t}, \abs{t_1 - t_2} < \eta \implies \abs{f(t_1) - f(t_2)} < \varepsilon$.
+		Par conséquent, si $\abs{\pi_t} < \eta$,
+		$$V_2(f,\pi_t,t) \leq \varepsilon \sum_{i = 1}^n \abs{f(t_i) - f(t_{i-1})} = \varepsilon V_1(f,\pi_t,t) \leq \varepsilon V_1(f,t)\ .$$
+		Comme $\varepsilon$ est quelconque, on a le résultat.
+	\end{proof}
+	
+	\begin{thm}
+		Sur tout intervalle $\intff{0}{1}$ où $t  0$, presque toutes les trajectoires d'un MB sont à variation infinie.
+	\end{thm}
+	
+	\begin{proof}
+		On montre $\forall t > 0, V_2(B,\pi_t,t) \underset{\abs{\pi_t} \to 0}{\overset{\mathcal{L}^2}{\longrightarrow}} t\quad  (*)$.
+		En effet, soit $Y_n := \sum_{i = 1}^n \left( B_{t_i} - B_{t_{i-1}} \right)^2$.
+		En écrivant $B_{t_i} - B_{t_{i-1}} = \sqrt{t_i - t_{i-1}} Z_i$ où $Z_i \sim \mathcal{N}(0,1)$ et où les $Z_i$ sont indépendantes, on a $\esp Y_n = t$ et
+		$$\Var(Y_n) = \sum_{i = 1}^n \Var \left( \left( B_{t_i} - B_{t_{i-1}} \right)^2 \right)
+			= \Var \left( Z_1^2 \right) \sum_{i = 1}^n (t_i - t_{i - 1})^2
+			\leq \Var \left( Z_1^2 \right) \abs{\pi_t} \sum_{i = 1}^n (t_i - t_{i - 1})
+			= \Var \left( Z_1^2 \right) \abs{\pi_t} t$$
+		qui tend vers $0$ avec $\abs{\pi_t}$, d'où $(*)$.
+		
+		Considérons une suite de subdivisions $\pi_t^n$ telle que $\abs{\pi_t^n} \underset{n \to \infty}{\longrightarrow} 0$.
+		Les v.a $Y_n$ associées tendent dans $\mathcal{L}^2$, donc en probabilité, vers $t$.
+		Par conséquent il existe une sous-suite $\left( \pi_t^{\varphi(n)} \right)$ telle que $V_2(B,\pi_t^{\varphi(n)},t) \underset{n \to \infty}{\overset{\text{p.s.}}{\longrightarrow}} t > 0$.
+		La proposition précédente nous dit que sur cet ensemble de proba 1, $B_t$ n'est pas à variation finie.
+	\end{proof}
+
+	Conclusion : on ne peut pas utiliser la théorie de Lebesgue pour construire des intégrales du type $\int_0^t \varphi(s) \diff B_s$.
+
+
+\subsection{L'intégrale de Wiener}
+
+	L'intégrale de Wiener est définie sur l'espace de Hillbert $L^2(\R_+)$ des fonctions de carré intégrable par rapport à la mesure de Lebesgue sur $\R_+$.
+	C'est une isométrie entre cet espace et l'espace de Hilbert $\mathcal{L}^2$ des variables aléatoires qui ont un 2\up{nd} moment fini.
+	Rappelons que ces deux espaces sont munis des normes respectives $\norme{\varphi}_{L^2(\R_+)} = \left( \int_{\R_+} \varphi(s)^2 \diff s \right)^{\frac{1}{2}}$ et $\norme{X}_{\mathcal{L}^2} = \left( \esp \left[ X^2 \right] \right)^{\frac{1}{2}}$.
+	
+	\begin{thm}[\textbf{Intégrale de Wiener}]
+		Soit $B$ un MB.
+		Il existe un opérateur linéaire isométrique $I \colon L^2(\R_+) \to \mathcal{L}^2$, unique à une classe d'équivalence près pour l'égalité presque partout, et qui satisfait $I(\indic_{\intof{s}{t}}) = B_t - B_s$ pour tous $0 \leq s \leq t$.
+		Par ailleurs $\esp[I(\varphi)] = 0$ pour tout $\varphi \in L^2(\R_+)$.
+		Nous écrivons $I(\varphi) = \int_{\R_+} \varphi(t) \diff B_t$.
+	\end{thm}
+	
+	\begin{rem}
+		Dire que $I$ est une isométrie revient à dire $\forall \varphi \in L^2(\R_+), \esp \left[ I(\varphi)^2 \right] = \int \varphi^2(x) \diff x$.
+	\end{rem}
+	
+	\begin{proof}
+		Dans un premier temps, nous construisons $I$ sur l'ensemble $\mathcal{E}$ des fonctions en escalier, i.e de la forme $\varphi = \sum_{i = 1}^n a_i \indic_{\intof{t_{i-1}}{t_i}}$ où $0 \leq t_0 < t_1 < \ldots < t_n$.
+		Par linéarité $I(\varphi) = \sum_{i = 1}^n a_i \left( B_{t_{i-1}} - B_{t_i} \right)$.
+		Aussi nous avons sur $\mathcal{E}$,
+		$$\norme{I(\varphi)}_{\mathcal{L}^2}^2
+			= \esp \left[ \left( \sum_{i = 1}^n a_i (B_{t_{i-1}} - B_{t_i}) \right)^2 \right]
+			= \sum_{i = 1}^n a_i^2 (t_i - t_{i-1})
+			= \norme{\varphi}_{L^2(\R_+)}^2\ .$$
+		Comme $\mathcal{E}$ est dense dans $L^2(\R_+)$, l'opérateur $I$ se prolonge d'une manière unique en une isométrie sur $L^2(\R_+)$.
+		Il reste à prouver que $\esp[I(\varphi)] = 0$ pour tout $\varphi \in L^2(\R_+)$.
+		Le résultat est évident sur $\mathcal{E}$.
+		
+		Soit $(\varphi_n)_n$ une suite de $\mathcal{E}$ qui tend vers $\varphi$ dans $L^2(\R_+)$.
+		On a
+		$$\abs{\esp[I(\varphi)]}
+			= \abs{\esp[I(\varphi - \varphi_n)]}
+			\leq \esp \abs{I(\varphi - \varphi_n)}
+			\leq \norme{I(\varphi - \varphi_n)}_{\mathcal{L}^2}
+			= \norme{\varphi - \varphi_n}_{L^2(\R_+)}$$
+		en utilisant $\esp \abs{X} \leq \left( \esp[X^2] \right)^{1/2}$ et $I$ est une isométrie.
+		
+		Comme $\abs{\varphi - \varphi_n}_{L^2(\R_+)} \longrightarrow 0$ nous avons le résultat.
+	\end{proof}
+	
+	\begin{pop}
+		On a $\forall \varphi \in L^2(\R_+), I(\varphi) \sim \mathcal{N} \left( 0, \norme{\varphi}_{L^2(\R_+)}^2 \right)$.
+	\end{pop}
+	
+	\begin{proof}
+		On sait que $\esp[I(\varphi)] = 0$ et $\esp \left[ I(\varphi)^2 \right] = \norme{\varphi}^2_{L^2(\R_+)}$.
+		Reste à établir la gaussianité.
+		Pour ceci il suffit d'approximer $\varphi$ par une suite de fonctions dans $\mathcal{E}$ (dont les intégrales de Wiener sont par construction des gaussiennes) et de passer à la limite en utilisant un résultat du chapitre sur la loi gaussienne.
+	\end{proof}
