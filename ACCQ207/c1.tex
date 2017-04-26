@@ -31,7 +31,7 @@
 
 \subsection{Sécurité informationnelle}
 
-	{\centering
+	\begin{center}
 	\begin{tikzpicture}
 		\tikzstyle{block} = [rectangle, draw=blue, thick, fill=blue!20, text width=5.3em, text centered, rounded corners, minimum height=2em]
 		\node [block] (A) at (0,0) {Alice};
@@ -42,7 +42,7 @@
 		\draw [->] (X) to (B);
 		\draw [->] (X) to (E);
 	\end{tikzpicture}
-	}
+	\end{center}
 	
 	Modèle : A veut envoyer un message clair $M \in \mathcal{M}$. $M$ est vu comme une variable aléatoire de loi donnée.
 	
@@ -214,7 +214,8 @@
 	\begin{ex}[\textbf{Diffie-Hellman} (1976)]
 		Système d'échange de clé (key agreement).
 		
-		\begin{tabular}{ccc}
+		\begin{table}\centering
+		\begin{tabular}{aca}
 			Alice & \textit{Public} & Bob \\
 			\hline
 			 & $\F_q$ & \\
@@ -224,6 +225,7 @@
 			 & $\overset{\gamma}{\longleftarrow}$ & $\gamma = \alpha^s$ \\
 			$\gamma^r = \alpha^{rs}$ & & $\beta^s = \alpha^{rs}$
 		\end{tabular}
+		\end{table}
 		
 		À la fin $\alpha^{rs}$ est leur secret commun.
 		Eve voit passer $q,\alpha,\beta,\gamma$.
@@ -283,14 +285,24 @@
 		
 		Alice veut envoyer le message en clair $m \in \F_q^\times$.
 		Elle choisit $s \in \Z$ aléatoire et calcule $c_1 = \alpha^s$ et $c_2 = \beta^s m$.
-		Elle envoie $(c_1,c_2)$ à Bob qui déchiffre par $c_2 c_1^{-r} = \beta^s m \alpha^{-rs} = m$.
+		Elle envoie $(c_1,c_2)$ à Bob qui déchiffre par $c_2 c_1^{-r} = \beta^s m \alpha^{-rs} = m$.\\
 		
-		Eve peut vouloir :
+		\noindent Eve peut vouloir :
 		\begin{enumerate}[1.]
 			\item retrouver la clé secrète à partir de la clé publique \textrightarrow\ problème du logarithme discret,
 			\item retrouver $m$ à partir de $(c_1,c_2)$ où sont connus $F_q, \alpha, \beta = \alpha^r, c_1 = \alpha^s, c_2 = m \alpha^{rs}$.
 				Alors retrouver $m$ revient à retrouver $\alpha^{rs}$.
 				C'est le problème de DH.
 		\end{enumerate}
-		...
+		
+		DH et El Gamal utilisent la structure de groupe de $\F_q$.
+		La sécurité repose essentiellement sur la difficulté du log discret dans ce groupe.
+		De même que la factorisation on ne sait pas le résoudre en temps polynomial, mais on sait faire mieux que exponentiel.
+		
+		Formule générale : $L_{\varepsilon,c}(t) = \exp \left( c \cdot t^\varepsilon \log(t)^{1 - \varepsilon} \right)$.
+		Si $\varepsilon = 0$ on est dans le cas polynomial : $L_{\varepsilon,c}(t) = t^c$.
+		Si $\varepsilon = 1$ on est dans le cas exponentiel : $L_{\varepsilon,c}(t) = e^{ct}$.
+		
+		On sait résoudre les problèmes de factorisation et de log discret en $\varepsilon = \frac{1}{3}$.
+		En pratique, avec les puissances de calcul actuelles, cela veut dire que l'on doit prendre des clés de taille environ 2000 bits.
 	\end{ex}
