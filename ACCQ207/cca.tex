@@ -14,6 +14,8 @@
 		Lorsque $K$ est de caractéristique différente de 2 ou 3, on se ramène par changement de variable à une équation de la forme $y^2 = x^3 + ax + b$.
 		La lissité équuivaut donc à ce que $x^3 + ax + b$ soit sans racine double, i.e $\Delta = 4 a^3 + 27 b^2 \neq 0$ dans $K$.
 	\end{rem}
+	
+	Plan projectif : $\mathbf{P}^2 = \mathbf{A}^2 \cup \mathbf{P}^1$ où $\mathbf{P}^2$ correspond à $(X : Y : Z)$, $\mathbf{A}^2$ est le plan affine $(X : Y : 1)$ et $\mathbf{P}^1$ est la droite à l'infini $Z = 0$, $(X : Y : 0)$.
 
 
 \subsection{Loi de groupe}
@@ -46,3 +48,24 @@
 	\begin{rem}
 		Si $P$ est un point de coordonnées affines $(x_P,y_P)$ alors $-P$ a pour coordonnées $(x_P,-y_P)$.
 	\end{rem}
+	
+	Formule explicite : $x_{P + Q} = \lambda^2 - x_P - x_Q$ et $y_{P + Q} = -y_P + \lambda (x_P - x_{P + Q})$, avec $\lambda = \frac{y_Q - y_P}{x_Q - x_P} = \frac{3 x_P^3 + a}{2 y_P}$.
+	
+	\begin{defn}
+		Soit $E$ une courbe elliptique sur $K$ et $n \in \N^*$.
+		On note $E[n] = \{ P \in E(\bar{K}) \mid n \cdot P = O_E \}$ où $n \cdot P = P + P + \ldots + P$ pour la loi de $E$.
+		On dit que $P$ est de $n$-torsion s'il vérifie $n \cdot P = O_E$;
+	\end{defn}
+	
+	\begin{rem}
+		La loi est commutative donc $E[n]$ est un sous-groupe de $E(\bar K)$.
+		De même $E[n] \cap E(K)$ est un sous-groupe de $E(K)$.
+	\end{rem}
+	
+	\begin{ex}
+		Les points de $2$-torsion sont les $P$ tels que $P + P = O_E$.
+		Donc soit $P = O_E$, soit $P = (x,0)$ avec $x^3 + ax + b = 0$.
+		Ce polynôme a trois racines dans $\bar K$, donc $E[2] \simeq \Z/2\Z \times \Z/2\Z$.
+	\end{ex}
+	
+	
