@@ -1,0 +1,348 @@
+\subsection{Régularisation}
+
+	Il est utile qu'une (sous-)martingale soit la plus régulière possible.
+	
+	\begin{thm}[Régularisation]
+		Soit $X = (X_t)$ une sous-martingale pour la filtration standard $\mathcal{F} = (\mathcal{F}_t)$.
+		Si $t \mapsto \esp X_t$ est continue à gauche, alors $(X)$ admet une modification, càdlàg qui est une $(\mathcal{F}_t)$-sous-martingale.
+		En particulier, toute martingale admet une modification.
+	\end{thm}
+	
+	Dans toute la suite du cours, les sous-martingales sur $\mathbf{T} = \R_+$ seront supposées càdlàg et la filtration standard.
+
+
+\subsection{Théorème d'arrêt}
+
+	\begin{lem}
+		Soit $X$ une v.a intégrable.
+		Soit $\zeta$ une famille de tribus de $\mathcal{F}$.
+		Alors la famille $\{ \esp[X \mid \mathcal{G}], \mathcal{G} \in \zeta \}$ est uniformément intégrable.
+	\end{lem}
+	
+	\begin{lem}
+		Soit $X$ et $Y$ deux v.a intégrables par une tribu $\mathcal{G}$.
+		Si $\forall A \in \mathcal{G}, \esp [\indic_1 X] \geq \esp [\indic_1  Y]$ alors $X \geq Y$ p.s.
+	\end{lem}
+	
+	\begin{thm}[Théorème d'arrêt 1]
+		Soit $X = (X_t)$ une martingale et soit $\vartheta$ et $\varsigma$ deux temps d'arrêt tels que $\vartheta \leq \varsigma \leq K$ où $K$ est constante.
+		Alors $X_{\varsigma}$ et $X_{\vartheta}$ sont dans $\mathcal{L}^1$ et $\esp[ X_{\varsigma} \mid \mathcal{F}_{\vartheta}] = X_{\vartheta}$ p.s.
+	\end{thm}
+	
+	Ce théorème se généralise facilement sur une martingale.
+	
+	\begin{thm}[Théorème d'arrêt 2]
+		Soit $X = (X_t)$ une  martingale telle que $X_t = \esp [Z \mid \mathcal{F}_t]$ p.s, où $Z \in \mathcal{L}^1$.
+		Si $\vartheta \leq \varsigma$ sont deux temps d'arrêt, alors $X_{\varsigma}, X_{\vartheta} \in \mathcal{L}^1$ et $\esp [X_{\varsigma} \mid \mathcal{F}_{\vartheta}] = X_{\vartheta}$ p.s.
+	\end{thm}
+	
+	\begin{thm}
+		Si $X$ est une $\mathcal{F}_t$-martingale et $\varsigma$ est un temps d'arrêt, alors le processus arrêté $X^{\varsigma} = (X_{t \wedge \varsigma})_{t \in \varsigma}$ est une martingale.
+	\end{thm}
+
+
+\subsection{Convergences, inégalités maximales}
+
+	\begin{thm}
+		Soit $X$ une sous-martingale telle que $\sup_t \esp X_t^+ < \infty$.
+		Alors $X_t$ converge p.s vers une v.a $X_\infty \in \mathcal{L}^1$.
+	\end{thm}
+	
+	\begin{cor}
+		Toute sous-martingale positive $X$ converge p.s vers une v.a $X_\infty \geq 0$.
+	\end{cor}
+	
+	\begin{thm}[Inégalités maximales]
+		Soit $X$ une sous-martingale.
+		Alors $\forall a > 0, \forall t \geq 0, \proba \left[ \sup_{s \in \intff{0}{1}} X_s > a \right] \leq \frac{\esp \abs{X_t}}{a}$.
+		Si $X$ est une martingale ou une sous-martingale positive et si $\forall t \geq 0, X_t \in \mathcal{L}^p$ avec $p > 1$, alors $\forall a > 0, \forall t \geq 0$,
+		$$\norme{\sup_{s \in \intff{0}{1}} \abs{X_s}}_p \leq \frac{p}{p - 1} \norme{X_t}_p
+			\qquad \text{et} \qquad
+			\norme{\sup_{t \in \R_+} \abs{X_t}}_p \leq \frac{p}{p - 1} \norme{X_t}_p$$
+		où $\norme{Z}_p := \left( \esp \left[ \abs{Z}^p \right] \right)^{1/p}$.
+	\end{thm}
+	
+	\begin{thm}
+		Soit $X$ une martingale bornée dans $\mathcal{L}^p$ où $p > 1$, i.e $\sup_{t \in \mathbf{T}} \esp \left[ \abs{X_t}^p \right] < \infty$.
+		Alors $X$ converge p.s et dans $\mathcal{L}^p$.
+	\end{thm}
+	
+	\begin{thm}
+		Soit $X$ une martingale.
+		Alors les trois assertions suivantes sont équivalentes :
+		\begin{enumerate}[(i)]
+			\item La famille $(X_t)_{t \in \R_+}$ est uniformément intégrable.
+			\item $X_t$ converge dans $\mathcal{L}^1$ pour $t \longrightarrow \infty$.
+			\item $\exists Z \in \mathcal{L}^1, X_t = \esp \left[ Z \mid \mathcal{F}_t \right]$ p.s.
+		\end{enumerate}
+		Par ailleurs, pour tout temps d'arrêt $\varsigma$, $X_{\varsigma} = \esp [Z \mid \mathcal{F}_{\varsigma}]$ où $Z$ est la v.a décrite en \textit{(iii)}.
+	\end{thm}
+
+
+\subsection{Martingales de carré intégrable}
+
+	\begin{defn}
+		Une martingale $(X_t)$ est dite de carré intégrable si $\forall t \geq 0, \esp \left[ X_t^2 \right] < \infty$.
+	\end{defn}
+	
+	Par extension directe du cas discret, nous avons :
+	\begin{itemize}
+		\item[\textbullet] $\forall s \in \intfo{0}{t}, \esp \left[ (X_t - X_s)^2 \mid \mathcal{F}_s \right] = \esp \left[ X_t^2 - X_s^2 \mid \mathcal{F}_s \right]$,
+		\item[\textbullet] $X_t$ est à accroissements orthogonaux : $\forall 0 \leq u < v \leq s < t, \esp [(X_t - X_s)(X_v - X_u)] = 0$.
+		\item[\textbullet] Pour toute subdivision $0 = t_0 \leq t_1 < \ldots < t_n = t$, $\esp \left[ (X_t - X_0)^2 \right] = \sum_{i = 1}^n \esp \left[ (X_{t_i} - X_{t_{i - 1}})^2 \right]$.
+	\end{itemize}
+	
+	On s'intéresse dans toute la suite à l'espace
+	$$\mathbf{H}_c^2 = \left\{ X \mid X\ \text{est une martingale continue}, X_0 = 0, \sup_t \esp X_t^2 < \infty \right\}\ .$$
+	Plus exactement, $\mathbf{H}_c^2$ est l'ensemble des classes d'équivalence à l'indistinguabilité près.
+	
+	\begin{thm}
+		Soit $X \in \mathbf{H}_c^2$.
+		Alors :
+		\begin{enumerate}[(i)]
+			\item $X_t \underset{t \to \infty}{\longrightarrow} X_{\infty}$ p.s et dans $\mathcal{L}^2$.
+			\item Soit $(X^n)$ une suité d'éléments de $\mathbf{H}_c^2$ telle que $X_\infty^n \underset{t \to \infty}{\longrightarrow} Z$ dans $\mathcal{L}^2$.
+				Alors $\exists X \in \mathbf{H}_c^2$ telle que $Z = X_\infty$ p.s et $\forall t, X_t^n \longrightarrow X_t$ dans $\mathcal{L}^2$.
+			\item L'espace $\mathbf{H}_c^2$ est un Hilbert muni du produit scalaire $\scal{X}{Y} = \esp [X_\infty Y_\infty]$.
+		\end{enumerate}
+	\end{thm}
+
+
+	\begin{ex}[Temps d'atteinte d'un niveau]
+		Soit $a, b \geq 0$ et $X_t := B_t - bt$ où $B$ est un MB.
+		On note $\varsigma_a := \inf \{ t \mid X_t = a \}$ et $T_a := \inf \{ t \mid B_t = a \}$.
+		\begin{enumerate}[1)]
+			\item \textit{Posons $\forall t \geq 0, \forall u \in R, M_t^u := \esp \left( u B_t - \frac{u^2 t}{2} \right)$.
+				Montrer que $(M_t^u)_{t \in \R_+}$ est une martingale.
+				Quelle est son espérance ?}
+				
+				On a vu que $X$ sur $\R$ est un MB ssi $\forall \theta \in \R, M_t^\theta := \exp (i \theta X_t - \frac{\theta^2 t}{2})$ est une martingale.
+			\item \textit{En choisissant convenablement $u$, calculer $\esp[e^{-\lambda \varsigma_a} \indic_{\varsigma_a < \infty}]$, $\lambda \geq 0$.
+				Indication : appliquer le théorème d'arrêt à $Z_a \wedge u$ et $0$.}
+				
+			\item \textit{En déduire $\proba[\varsigma_a < \infty]$.
+				Qu'obtient-on en prenant $b = 0$ ?}
+				
+			\item \textit{Posons $S_t = \sup \{ B_u \mid u \in \intff{0}{t} \}$.
+				Montrer que $T_a \overset{\mathcal{L}}{=} a^2 T_1$ et $T_1 \overset{\mathcal{L}}{=} \frac{1}{S_1^2}$.}
+		\end{enumerate}
+	\end{ex}
+
+
+\subsection{Les martingales locales}
+
+	(Paraphrase du poly de J.F. Le Gall, cours du master de Paris Sud)
+	
+	\begin{defn}
+		Un processus réel $X = (X_t)_{t \in \mathbf{T}}$ est une \textbf{martingale locale} s'il existe une suite croissante de temps d'arrêts $(\varsigma_n)_{n \in \N}$, qui tend vers $\infty$, telle que pour tout $n \in \N$, le processus arrêté $(X^{\varsigma_n}) = (X_{t \wedge \varsigma_n})$ est une martingale.
+		$(\varsigma_n)_{n \in \N}$ est appelé \textbf{suite localisante} pour la martingale locale $X$.
+		Un temps d'arrêt $\varsigma$ pour lequel $X^2$ est une martingale \textbf{réduit} $X$.
+	\end{defn}
+	
+	\begin{note}
+		On note :
+		\begin{itemize}
+			\item[\textbullet] $\mathcal{M}$ l'ensemble des martingales,
+			\item[\textbullet] $\mathcal{M}_c$ l'ensemble des martingales continues,
+			\item[\textbullet] $\mathcal{M}^{\text{loc}}$ l'ensemble des martingales locales,
+			\item[\textbullet] $\mathcal{M}^{\text{loc}}_c$ l'ensemble des martingales locales continues.
+		\end{itemize}
+	\end{note}
+	
+	\begin{rem}
+		Un processus $X \in \mathcal{M}^{\text{loc}}$ n'est pas forcément dans $\mathcal{L}^1$.
+		S'il est dans $\mathcal{L}^1$ il n'est pas forcément dans $\mathcal{M}$.
+		Il le devient par localisation.
+	\end{rem}
+	
+	\begin{pop}
+		\begin{enumerate}[(i)]
+			\item $\mathcal{M} \subset \mathcal{M}^{\text{loc}}$,
+			\item Si $X \in \mathcal{M}^{\text{loc}}$ et $X$ est càdlàg, alors pour tout temps d'arrêt $\varsigma$, $X^{\varsigma} \in \mathcal{M}^{\text{loc}}$ (stabilité par arrêt).
+			\item L'ensemble $\mathcal{M}^{\text{loc}}_{\text{càdlàg}}$ est un espace vectoriel.
+		\end{enumerate}
+	\end{pop}
+	
+	\begin{proof}
+		\begin{enumerate}[(i)]
+			\item Prendre $\varsigma_n = n$.
+			\item D'après le paragraphe précédent, si $X \in \mathcal{M}$ et $X$ est càd alors $X^{\varsigma} \in \mathcal{M}$.
+			\item Soit $X, Y \in \mathcal{M}^{\text{loc}}_{\text{càdlàg}}$ et soit $(\varsigma_n)$ et $(\nu_n)$ deux suites localisantes pour $X$ et $Y$ respectivement.
+			Alors  $X^{\varsigma_n \wedge \nu_n} \in \mathcal{M}$, $Y^{\varsigma_n \wedge \nu_n} \in \mathcal{M}$ et par suite $(X + Y)^{\varsigma_n \wedge \nu_n} \in \mathcal{M}$.
+		\end{enumerate}
+	\end{proof}
+	
+	\begin{pop}
+		Soit $X \in \mathcal{M}^{\text{loc}}$.
+		Supposons $X \geq 0$ et $\esp X_0 < \infty$.
+		Alors $X$ est une surmartingale.
+	\end{pop}
+	
+	\begin{proof}
+		Soit $(\varsigma_n)$ une suite localisante.
+		Soit $0 \leq s \leq t$.
+		Alors, en utilisant le lemme de Fatou il vient,
+		\begin{align*}
+		\esp[X_t \mid \mathcal{F}_s] & = \esp[\lim_{n \to \infty} X_{t \wedge \sigma \varsigma_n} \mid \mathcal{F}_s] \\
+		                             & \leq \lim_{n \to \infty} \esp[X_{t \wedge \sigma \varsigma_n} \mid \mathcal{F}_s] \\
+		                             & = \lim_{n \to \infty} X_{s \wedge \varsigma_n}\ \text{p.s}\\
+		                             & = X_s
+		\end{align*}
+		Par ailleurs, en prenant $s = 0$, on a $\esp X_t \leq \esp X_0 < \infty$.
+		Donc $X_t \in \mathcal{L}_1$.
+	\end{proof}
+	
+	Dans toute la suite on se limite à $\mathcal{M}^{\text{loc}}_c$.
+	
+	\begin{pop}
+		Soit $X \in \mathcal{M}^{\text{loc}}_c$.
+		On suppose $\sup_t \abs{X_t} \leq Z$ où $Z \in \mathcal{L}^1$.
+		Alors $X \in \mathcal{M}$ et $X$ converge p.s dans $\mathcal{L}^1$ vers une v.a $X_\infty$.
+	\end{pop}
+	
+	\begin{proof}
+		Soit $(\varsigma_n)$ une suite localisante pour $X$.
+		Soit $0 \leq s \leq t$.
+		Pour tout $A \in \mathcal{F}_s$, $\esp[\indic_A X_{t \wedge \varsigma_n}] = \esp[\indic_A X_{s \wedge \varsigma_n}]$.
+		Or $\lim_n X_{t \wedge \varsigma_n} = X_t$, $\lim_n X_{s \wedge \varsigma_n} = X_s$ et les deux suites sont bornées par $Z \in \mathcal{L}_1$.
+		Donc on peut passer à la limite : $\esp[\indic_A X_t] = \esp[\indic_A X_s]$.
+		Le reste est un résultat connu.
+	\end{proof}
+	
+	\begin{cor}
+		Si $\forall T > 0, \exists Z_T \in \mathcal{L}^1, \sup_{0 \leq t \leq T} \abs{X_t} \leq Z_T$ alors $X \in \mathcal{M}_c$.
+	\end{cor}
+	
+	\begin{proof}
+		$X_{t \wedge T} \in \mathcal{M}^{\text{loc}}_c$ et $X$ satisfait les conditions de la propriétés précédente.
+		Donc $\forall T > 0, X_{t \wedge T} \in \mathcal{M}_c$.
+	\end{proof}
+	
+	\begin{cor}
+		Soit $X \in \mathcal{M}^{\text{loc}}_c$.
+		La suite des temps d'arrêt $\varsigma_n = \inf \{ t \geq 0 \mid \abs{X_t} = n \}$ réduit $X$, et pour tout $n \in \N$, $X^{\varsigma_n}$ converge p.s et dans $\mathcal{L}^1$ quand $t \longrightarrow \infty$.
+	\end{cor}
+	
+	\begin{proof}
+		$X^{\varsigma_n} \in \mathcal{M}^{\text{loc}}_c$ et $\abs{X^{\varsigma_n}} \leq n$.
+		Il suffit d'appliquer la propriété précédente.
+	\end{proof}
+	
+	Nous allons montrer que si une martingale locale est à variation finie, elle est constante.
+	
+	\paragraph{Rappel de notations} $f \in \cont^0(\R_+)$ à variationn finie s'écrit $f = f_+ - f_-$.
+	Les fonctions $f_+$ et $f_-$ définissent des mesures positives $\diff f_+$ et $\diff f_-$.
+	La variation totale de la mesure signée $\diff f = \diff f_+ - \diff _-$ sera notée $\abs{\diff f} = \diff f_+ + \diff f_-$.
+	
+	\begin{thm}
+		Soit $X \in \mathcal{M}^{\text{loc}}_c$ telle que $X_0 = 0$.
+		Si $X$ est à variation finie, elle est indistinguable de $0$.
+	\end{thm}
+	
+	\begin{proof}
+		Supposons $X$ à variation finie.
+		Posons $\forall n \in \N, \varsigma_n = \inf \{ t \geq 0 \mid \int_0^t \abs{\diff X_s} \geq n \}$.
+		$\varsigma_n$ est un temps d'arrêt car $\int_0 \abs{\diff X_s}$ est adapté et continu.
+		Le processus $Y = X^{\varsigma_n}$ est dans $\mathcal{M}^{\text{loc}}_c$ et il satisfait $\abs{Y_t} = \abs{\int_0^t \diff Y_s} \leq \int_0^\infty \abs{\diff Y_s} \leq n$.
+		Comme $Y$ est borné, $Y \in \mathcal{M}_c$.
+		
+		Pour tout $t \geq 0$, soit $\pi_t = \{ 0 = t_0 < t_1 < \ldots < t_p = t \}$ une subdivision de $\intff{0}{t}$.
+		Alors
+		\begin{align*}
+		\esp \left[ Y_t^2 \right] & = \sum_{i = 1}^p \esp \left[ (Y_{t_i} - Y_{t_{i - 1}})^2 \right] \\
+		                          & \leq \esp \left[ \sup_{1 \leq i \leq p} \abs{Y_{t_i} - Y_{t_{i - 1}}} \sum_{i = 1}^p \abs{Y_{t_i} - Y_{t_{i - 1}}} \right] \\
+		                          & \leq n \esp \left[ \sup_{1 \leq i \leq p} \abs{Y_{t_i} - Y_{t_{i - 1}}} \right]
+		\end{align*}
+		On fait $p \longrightarrow \infty$ et $\abs{\pi_t} \longrightarrow 0$.
+		Alors $\sup_{1 \leq i \leq p} \abs{Y_{t_i} - Y_{t_{i - 1}}} \longrightarrow 0$ par continuité de $Y$.
+		
+		Comme $\abs{Y_{t_i} - Y_{t_{i - 1}}} \leq n$ on applique la convergence dominée pour avoir $\esp \left[ Y_t^2 \right] = 0$.
+		Or $\esp \left[ Y_t^2 \right] = \esp \left[ (X_t^{\varsigma_n})^2 \right]$ et $\esp \left[ X_t^2 \right] = \esp \left[ \lim_{n \to \infty} (X_t^{\varsigma_n})^2 \right] \leq \lim_n \esp \left[ (X_t^{\varsigma_n})^2 \right] = 0$ avec le lemme de Fatou.
+	\end{proof}
+	
+	Rappelons que la variation d'un MB est infinie pour presque toutes les trajectoires.
+
+
+\subsection{Variation quadratique d'une martingale locale}
+
+	Rappel : on note $C_0^+(\R_+)$ les processus continus croissants issus de $0$.
+	
+	\begin{thm}[Meyer]
+		Soit $X \in \mathcal{M}^{\text{loc}}_c$.
+		Il existe un processus adapté de $C_0^+(\R_+)$, noté $(\langle X,X \rangle_t )_{t \geq 0}$, unique à l'indistinguabilité près, tel que $X^2 - \langle X,X \rangle \in \mathcal{M}^{\text{loc}}_c$.
+		Par ailleurs, pour tout $t \geq 0$ et toute subdivision $\{ 0 = t_0^n < t_1^n < \ldots < t_{p_n}^n = t \}$ de $\intff{0}{t}$ de pas tendant vers $0$ quand $n \longrightarrow \infty$, on a
+		$$\sum_{i = 1}^{p_n} \left( X_{t_i^n} - X_{t_{i - 1}^n} \right)^2 \overset{\proba}{\underset{n \to \infty}{\longrightarrow}} \langle X,X \rangle_t\ .$$
+		Le processus $\langle X,X \rangle$ est appelé la variation quadratique de $X$.
+	\end{thm}
+	
+	\begin{rem}
+		Nous avons vu que $B_t^2 - t \in \mathcal{M}_c \subset \mathcal{M}^{\text{loc}}_c$.
+		Par conséquent $\langle B,B \rangle_t = t$.
+		Nous avons aussi établi la convergence dans le cas du MB.
+		Le construction du MB est basée sur l'étude de cette convergence.
+	\end{rem}
+	
+	\begin{pop}
+		Soit $X \in \mathcal{M}^{\text{loc}}_c$.
+		Si $\varsigma$ est un temps d'arrêt alors $\langle X^{\varsigma},X^{\varsigma} \rangle_t = \langle X,X \rangle_{t \wedge \varsigma}$.
+	\end{pop}
+	
+	\begin{note}
+		Si $A$ est croissant on note $A_\infty = \lim_{t \to \infty} A_t$.
+	\end{note}
+	
+	\begin{thm}
+		Soit $X \in \mathcal{M}^{\text{loc}}_c$, $X_0 = 0$.
+		Alors,
+		\begin{enumerate}[1)]
+			\item Si $X \in \mathbf{H}_c^2$, alors $\esp [\langle X,X \rangle_\infty ] = \esp \left[ X_\infty^2 \right] < \infty$ et $X^2 - \langle X,X \rangle$ est une martingale uniformément intégrable.
+			\item Si $\esp [\langle X,X \rangle_\infty ] < \infty$ alors $X \in \mathbf{H}_c^2$.
+		\end{enumerate}
+	\end{thm}
+	
+	Rappelons que, quand $X \in \mathbf{H}_c^2$, $\esp \left[ \sup_t X_t^2 \right] \leq 2 \sup_t \esp \left[ X_t^2 \right]$.\\
+	
+	...%TODO
+
+
+\subsection{Crochet de deux martingales locales}
+
+	Rappelons que $\mathcal{M}_c$ et $\mathcal{M}^{\text{loc}}_c$ sont des espaces vectoriels.
+	
+	\begin{defn}
+		Soit $X, Y \in \mathcal{M}^{\text{loc}}_c$.
+		Le processus $\langle X,Y \rangle := \frac{1}{2} \left( \langle X+Y,X+Y \rangle - \langle X,X \rangle - \langle Y,Y \rangle \right)$ s'appelle le \textbf{crochet} de $X$ et de $Y$.
+	\end{defn}
+	
+	\begin{pop}
+		\begin{enumerate}[(i)]
+			\item 	$\langle X,Y \rangle$ est l'unique processus continu, issu de zéro et à variation finie tel que $XY - \langle X,Y \rangle \in \mathcal{M}^{\text{loc}}_c$.
+			\item L'application $(X,Y) \mapsto \langle X,Y \rangle$ est bilinéaire symétrique.
+			\item Pour toute subdivision $\{ 0 = t_0^n < t_1^n < \ldots < t_{p_n}^n = t \}$ de $\intff{0}{t}$ dont le pas tend vers $0$,
+				$$\sum_{i = 1}^{p_n} \left( X_{t_i^n} - X_{t_{i - 1}^n} \right) \left( Y_{t_i^n} - Y_{t_{i - 1}^n} \right) \overset{\proba}{\underset{n \to \infty}{\longrightarrow}} \langle X,Y \rangle_t\ .$$
+			\item Pour tout temps d'arrêt $\varsigma$, $\langle X^{\varsigma},Y^{\varsigma} \rangle_t = \langle X^{\varsigma},Y \rangle_t = \langle X,Y \rangle_{\varsigma \wedge t}$.
+		\end{enumerate}
+	\end{pop}
+	
+	\begin{pop}
+		Le produit scalaire dans $\mathbf{H}_c^2$ est $\scal{X}{Y} = \esp \left[ \langle X,Y \rangle_\infty \right]$.
+	\end{pop}
+	
+	\begin{defn}
+		Deux martingales locales sont dites orthogonales si $\langle X,Y \rangle = 0$, i.e $XY \in \mathcal{M}^{\text{loc}}_c$.
+	\end{defn}
+	
+	\begin{ex}
+		Deux MB indépendantes $B$ et $B'$ sont des martingales locales continues et orthogonales.
+		En effet $X := \frac{B + B'}{\sqrt 2} \in \mathcal{M}^{\text{loc}}_c$ et c'est un MB.
+		Donc sa variation quadratique est $\langle X,X \rangle = t$.
+		Par suite, $\langle B,B' \rangle_t = \langle X,X \rangle_t - \frac{\langle B,B \rangle_t}{2} - \frac{\langle B',B' \rangle_t}{2} = 0$.
+	\end{ex}
+	
+	\begin{thm}[Inégalité de Kumita-Watanabe]
+		Soit $X,Y \in \mathcal{M}^{\text{loc}}_c$ et soit $H$ et $K$ deux processus mesurables.
+		Alors
+		$$\int_0^\infty \abs{H_s} \abs{K_s} \abs{\diff \langle X,Y \rangle_s} \leq
+			\left( \int_0^\infty H_s^2 \diff \langle X,X \rangle_s \right)^{\frac{1}{2}}
+			\left( \int_0^\infty K_s^2 \diff \langle Y,Y \rangle_s \right)^{\frac{1}{2}}$$
+	\end{thm}
