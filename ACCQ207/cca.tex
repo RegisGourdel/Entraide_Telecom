@@ -68,4 +68,203 @@
 		Ce polynôme a trois racines dans $\bar K$, donc $E[2] \simeq \Z/2\Z \times \Z/2\Z$.
 	\end{ex}
 	
+	...\\
+	...\\
+	...%TODO
 	
+	\begin{pop}
+		Il existe deux fractions rationnelles $F_m(x)$ et $G_m(x)$ telles que $\forall P = \begin{bmatrix} x \\ y \end{bmatrix} \in E, m \cdot P = \begin{bmatrix} F_m(x) \\ y G_m(x) \end{bmatrix}$ et le dénominateur de $F_m(x)$ et $G_m(x)$ est une puissance d'un certain polynôme $\psi_m$, appelé polynôme de $m$-division, de degré $\deg \psi_m = \left\{ \begin{array}{l}
+		\frac{m^2 - 1}{2}\ \text{si $m$ est impair} \\
+		3 + \frac{m^2 - 4}{2}\ \text{si $m$ est pair} \end{array}\right.$.
+	\end{pop}
+	
+	\begin{proof}[Principe de la preuve]
+		On prouve la propriété par récurrence avec les formules pour $(m + 1)P = mP + P$.
+	\end{proof}
+	
+	\begin{rem}
+		On a $-P = \begin{bmatrix} x \\ -y \end{bmatrix}$ et $m \cdot P = \begin{bmatrix} F_m(x) \\ -y G_m(x) \end{bmatrix} = m \cdot (-P)$.
+		De plus $P$ est de $m$-torsion ssi $mP$ est le point $O_E$ à l'infini, ssi $x$ est un pôle de $F_m$ (et de $G_m$), ssi $x$ est racine de $\psi_m$.
+	\end{rem}
+	
+	\begin{ex}
+		...
+	\end{ex}
+	
+	\begin{cor}
+		On a $\abs{E[m]} \leq m^2$.
+	\end{cor}
+	
+	\begin{proof}
+		$E[m] = \{ (x,y) \in E \mid \psi_m(x) = 0 \} \cup \{ O_E \}$.
+		Si $m$ est impair, $\psi_m$ a au plus $\frac{m^2 - 1}{2}$ racines $x$ et pour chaque tel $x$, au plus deux valeurs de ...\\
+		...%TODO
+	\end{proof}
+	
+	\begin{rem}
+		En réalité on sait dire mieux dans le cas $m = p^e$.
+		Si $p \neq \card(K)$ alors $\abs{E[m]} = m^2$ et si $p = \card(K)$ alors $\abs{E[m]} = 1$ ou $m$.
+	\end{rem}
+	
+	\begin{cor}
+		Soit $K = \F_q$ un corps fini.
+		Alors $E(\F_q)$ est le produit d'au plus deux groupes cycliques, c'est-à-dire que ou bien $E(\F_q) \simeq \Z / N\Z$ est cyclique, ou bien $E(\F_q) \simeq \Z / m\Z \times \Z / n\Z$, ...%TODO
+	\end{cor}
+	
+	\begin{proof}
+		On a $E(\F_q) \simeq Z / n_1\Z \times \cdots \times Z / n_r\Z$ où $n_{i + 1} | n_i$.
+		Soit $l$ premier tel que $l | n_r$, donc $\forall i, l | n_i$.
+		Alors
+		\begin{align*}
+		E(\F_q)[l] & \subset E[l]\\
+		\quad \simeq & 
+		\end{align*}
+	\end{proof}
+	
+	\begin{thm}[de Hasse]
+		Soit $K = \F_q$ un corps fini et $E : y^2 = x^3 + ax + b$.
+		Alors $\abs{E(\F_q)} \in \intff{q + 1 - 2 \sqrt{q}}{q + 1 + 2 \sqrt{q}}$, ou encore $\abs{E(\F_q)} = q + 1 - t$ pour un entier $t \in \Z, \abs{t} \leq 2 \sqrt{q}$ ($t$ la “trace”).
+	\end{thm}
+	
+	\begin{rem}
+		$E(\F_q) = \{ O_E \} \cup \{ (x,y) \in \F_q \times \F_q \mid y^2 = x^3 + ax + b \}$ et ce deuxième ensemble a pour cardinal $q$, le nombre de valeur possibles pour $x$.
+		En effet, à $x$ fixé il y a 0, 1 ou 2 valeurs possibles pour $y$.
+		0 si $x^3 + ax + b$ n'est pas carré dans $\F_q$, 1 si $x^3 + ax + b = 0$, donc $y = 0$ et 2 si $x^3 + ax + b \neq  0$ est un carré dans $\F_q$.
+		
+		Il y a autant de carrés que de non carrés dans $\F_q$.
+		On s'attend donc à ce que $x^3 + ax + b$ soit à peu près aussi souvent carré que non carré.
+		Le théorèmme de Hasse dit que l'excès de l'un ou de l'autre est inférieur à $2 \sqrt{q}$.
+	\end{rem}
+	
+	\begin{ex}
+		Prenons $K = \F_5, \abs{E[\F_5]} \in \intff{2}{10}, E : y^2 = x^3 - x$, donc $a = -1$ et $b = 0$.
+		Alors $\Delta = 4a^3 + 27 b^2 = 1 \neq 0$ et $E(\F_5)$ contient les éléments suivants :
+		$$0_E,
+		\begin{bmatrix} 0 \\ 0 \end{bmatrix},
+		\begin{bmatrix} 1 \\ 0 \end{bmatrix},
+		\begin{bmatrix} 2 \\ 1 \end{bmatrix},
+		\begin{bmatrix} 2 \\ 4 \end{bmatrix},
+		\begin{bmatrix} 3 \\ 2 \end{bmatrix},
+		\begin{bmatrix} 3 \\ 3 \end{bmatrix},
+		\begin{bmatrix} 4 \\ 0 \end{bmatrix}$$
+		d'où $\abs{E(\F_(5)} = 8$.
+		On veut l'identifier à un groupe abélien de cardinal 8 qui soit produit d'au plus deux groupes cycliques.
+		Or il existe deux tels groupes : $\Z / 4\Z \times \Z / 2\Z$ et $\Z / 8\Z$.
+		
+		Remarquons alors que $E(\F_5)[2] = \left\{ O_E, \begin{bmatrix} 0 \\ 0 \end{bmatrix}, \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \begin{bmatrix} 4 \\ 0 \end{bmatrix} \right\}$ et $\Z / 8\Z[2] = 4\Z / 8\Z = \{ \bar 0, \bar 4 \}$.
+		Donc l'isomorphisme se fait nécessairement avec $\Z / 4\Z \times \Z / 2\Z$.\\
+	\end{ex}
+	
+	Rappel : expliciter un isomorphisme entre en groupe abélien donné et un produit de cycliques revient à trouver une “base” de ce groupe.
+	Soit $G$ donné.
+	On veut un isomorphisme explicite $G \simeq \Z / n_1\Z \times \cdots \times \Z / n_r\Z$.
+	\begin{enumerate}[1.]
+		\item nécessairement $n_1 = \omega(G)$ et on cherche $x_1 \in G$ d'ordre maximal $\omega(G)$,
+		\item alors $G / \langle x_1 \rangle \simeq \Z / n_2\Z \times \cdots \times \Z / n_r\Z$ et l'on trouve récursivement $z_2,\ldots,z_r$ une “base” de ce quotient,
+		\item relever chaque $z_i \in G / \langle x_1 \rangle$ en un $x_i \in G$ de sorte que $\langle x_1 \rangle \cap \langle x_2,\ldots,x_r \rangle = \{ 0 \}$.\\
+	\end{enumerate}
+	
+	Dans ce cas :
+	\begin{enumerate}[(1)]
+		\item on cherche $P \in E(\F_5)$ d'ordre 4.
+			Les éléments de $E(\F_5) \simeq \Z/4\Z \times Z/2\Z$ sont d'ordre 1, 2 ou 4.
+			Tout élément qui n'est pas de 2-torsion est d'ordre 4.
+			$P = \begin{bmatrix} 2 \\ 1 \end{bmatrix}$ convient.
+		\item Trouver $Q$ d'ordre 2 tel que
+			\begin{align*}
+				\langle P \rangle \cap \langle Q \rangle = \{ O_E \} & \iff Q\ \text{d'ordre 2}, Q \not\in \langle P \rangle = \{ O_E, P, 2P, 3P \} \\
+				                                                     & \iff Q\ \text{d'ordre 2}, Q \neq  2P
+			\end{align*}
+			Calcul de $2P$ : $\lambda = \frac{3 \cdot 2^2 - 1}{2 \cdot 1} = -\frac{4}{2} = 3$ donc $2P = \begin{bmatrix} 3^2 - 2 - 2 \\ 3(2 - 0) - 1 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$.
+			On peut prendre $Q = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$.
+	\end{enumerate}
+	
+	\begin{ex}
+		$E : y^2 = x^3 + x$, $\Delta = 4 \neq 0$ et $E(\F_5) = \left\{ O_E, \begin{bmatrix} 0 \\ 0 \end{bmatrix}, \begin{bmatrix} 2 \\ 0 \end{bmatrix}, \begin{bmatrix} 3 \\ 0 \end{bmatrix} \right\}$, d'où $\abs{E(\F_5)} = 4$ et $E(\F_5) \simeq \Z / 2\Z \times \Z / 2\Z$.
+	\end{ex}
+	
+	\begin{ex}
+		$E : y^2 = x^3 + x + 2$, $E(\F_5) = \left\{ O_E, ... \right\}$
+		...%TODO
+	\end{ex}
+
+
+\subsection{Isogénies}
+
+	\begin{defn}
+		Soit $E$ et $E'$ deux courbes elliptiques.
+		Une isogénie $E \to E'$ est un morphisme de courbes algébriques $E \to E'$ qui envoie $O_E$ sur $O_{E'}$.
+	\end{defn}
+	
+	Concrètement, si $E : y^2 = x^3 + ax + b$ et $E' : y^2 = x^3 + a' x + b'$, un morphisme de $E$ dans $E'$ est donné par des fonctions rationnelles $f(x,y)$ et $g(x,y)$ telles que
+	$$\forall x, y^2 = x^3 + ax + b \implies g(x,y)^2 = f(x,y)^3 + a'  f(x,y) + b'$$
+	et le morphisme envoie $\begin{bmatrix} x \\ y \end{bmatrix} \in E$ sur $\begin{bmatrix} f(x,y) \\ g(x,y) \end{bmatrix} \in E'$.
+	
+	\begin{ex}
+		Soit $u \in K^\times$.
+		$\begin{pmatrix} x \\ y \end{pmatrix} \mapsto \begin{pmatrix} u^2 x \\ u^3 y \end{pmatrix}$ définit une isogénie de $y^2 = x^3 + ax + b$ dans $y^2 = x^3 + u^4 ax + u^6 b$.
+		
+		Cette isogénie est inversible (isomorphisme) d'inverse $\begin{pmatrix} x \\ y \end{pmatrix} \mapsto \begin{pmatrix} u^{-2} x \\ u^{-3} y \end{pmatrix}$.
+	\end{ex}
+	
+	On peut montrer que tout isomorphisme entre deux courbes elliptiques est de cette forme.
+	Par ailleurs, remplacer la courbe $y^2 = x^3 + a x + b$ par $y^2 = x^3 + u^4 a x = u^6 b$ laisse invariant $j = \frac{4 a^3}{4 a^3 + 27 b^2}$.
+	
+	\begin{thm}
+		Deux courbes sont isomorphes (sur $\bar K$) ssi elles ont le même $j$-invariant.
+		De plus pour tout choix de $j \in K$, il existe $a, b \in K$ tels que la courbe $y^2 = x^3 + ax + b$ est une courbe elliptique de $j$-invariant égal à $j$.
+	\end{thm}
+	
+	\begin{proof}
+		Prouvons la deuxième partie.
+		On cherche $a, b$ tels que $A = 4a^3$ et $B = 27 b^2$.
+		De la sorte $j = \frac{A}{A + B} = \frac{1}{1 + B/A}$.
+		
+		Dans le cas $j \neq 0$, $1 + \frac{B}{A} = \frac{1}{j}$,...
+		
+		...%TODO
+	\end{proof}
+	
+	\begin{ex}
+		Supposons que $K$ contient un élément $i$ tel que $i^2 = -1$, comme $i = 2$ dans $K = \F_5$.
+		Alors $\begin{pmatrix} x \\ y \end{pmatrix} \mapsto \begin{pmatrix} -x \\ iy \end{pmatrix}$ définit une isogénie, et même un isomorphisme de le courbe $y^2 = x^3 - x$ dans elle-même.
+	\end{ex}
+	
+	\begin{ex}
+		Soit $E$ une courbe elliptique et $m$ un entier.
+		Alors $\begin{array}{lcr} E & \to & E \\ P & \mapsto & mP \end{array}$ est une isogénie de $E$.
+	\end{ex}
+	
+	\begin{ex}
+		Soit $K = \F_p$, $E : y^2 = x^3 + ax + b$.
+		Le Frobenius $\varphi(x,y) = (x^p, y^p)$ définit une isogénie de $E$.
+		En effet, $\forall x,y \in \bar \F_p$,
+		$$y^2 = x^3 + ax + b \implies (y^p)^2 = (y^2)^p = (x^3 + ax + b)^p = (x^p)^3 + a x^p + b\ .$$
+	\end{ex}
+	
+	\begin{thm}
+		Si $E \to E'$ est une isogénie, alors elle définit un morphisme de groupes $E(K) \to E'(K)$.
+	\end{thm}
+	
+	\begin{proof}
+		Les lois de $E(K)$ et $E'(K)$ sont celles de leurs groupes de classes de diviseurs.
+	\end{proof}
+	
+	\begin{ex}
+		Cas $K = \F_5$, $E : y^2 = x^3 - x$ et les points de $E(\F_5)$ sont
+		$$O_E, \underset{2P}{\begin{pmatrix} 0 \\ 0 \end{pmatrix}},
+		\underset{Q}{\begin{pmatrix} 1 \\ 0 \end{pmatrix}},
+		\underset{P}{\begin{pmatrix} 2 \\ 1 \end{pmatrix}},
+		\underset{3P}{\begin{pmatrix} 2 \\ 4 \end{pmatrix}},
+		\underset{3P + Q}{\begin{pmatrix} 3 \\ 2 \end{pmatrix}},
+		\underset{P + Q}{\begin{pmatrix} 3 \\ 3 \end{pmatrix}},
+		\underset{2P + Q}{\begin{pmatrix} 4 \\ 0 \end{pmatrix}}$$
+		On le munit de l'isogénie $\begin{pmatrix} x \\ y \end{pmatrix} \mapsto \begin{pmatrix} -x \\ 2y \end{pmatrix}$.
+		Elle respecte la structure de groupe et induit un isomorphisme de groupes de $E(\F_5) \simeq \Z / 4\Z \times \Z / 2\Z$ dans lui-même.
+	\end{ex}
+	
+	...%TODO
+	
+	\begin{rem}
+		...%TODO
+	\end{rem}
