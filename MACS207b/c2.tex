@@ -9,9 +9,11 @@
 	En général $\mathbf{T} = \R_+$.
 	
 	\begin{defn}
-		Un processus à valeurs dans $(E,\mathcal{E})$ indexé par $\mathbf{T}$ est une famille de v.a $X = (X_t)_{t \in \mathbf{T}}$ à valeurs dans $(E,\mathcal{E})$.
+		Un \textbf{processus} à valeurs dans $(E,\mathcal{E})$ indexé par $\mathbf{T}$ est une famille de v.a $X = (X_t)_{t \in \mathbf{T}}$ à valeurs dans $(E,\mathcal{E})$.
 		Pour tout $\omega \in \Omega$, l'application $t \mapsto X_t(\omega)$ est appelé \textbf{trajectoire} de $X$.
 	\end{defn}
+	
+	On parle ici de \textit{processus à temps continu}.
 	
 	La famille $X$ peut-être vue comme une application $\Omega \to E^{\mathbf{T}}$ de toutes les trajectoires possibles.
 	Il faut donc définir une tribu sur $E^{\mathbf{T}}$ et caractériser la mesure.
@@ -33,7 +35,7 @@
 	\begin{defn}[\textbf{Lois fini-dimensionnelles}]
 		Soit $\mathcal{J}$ l'ensemble des parties finies de $\mathbf{T}$ et $I = \{ t_1,\ldots,t_n \} \in \mathcal{J}$ où $t_1 < t_2 < \cdots < t_n$.
 		Soit $\mu_I$ la loi du vecteur $(X_{t_1},\ldots,X_{t_n})$.
-		En notant $\mathcal{G}_I := \sigma(\xi_I)$ la sous-tribu de $\mathcal{G}$ engendrée par $\xi_I \colon \begin{array}{lcr} E^{\mathbf{T}} & \to & E^I \\ x & \mapsto & (x(t_1),\ldots,x(t_n)) \end{array}$, la loi $\mu_I$ peut être définie sur $(E^I, \mathcal{G}_I)$ comme étant l'image de $\mu$ par $\xi_I$.
+		En notant $\mathcal{G}_I := \sigma(\xi_I)$ la sous-tribu de $\mathcal{G}$ engendrée par $\xi_I \colon \begin{array}{lcl} E^{\mathbf{T}} & \to & E^I \\ x & \mapsto & (x(t_1),\ldots,x(t_n)) \end{array}$, la loi $\mu_I$ peut être définie sur $(E^I, \mathcal{G}_I)$ comme étant l'image de $\mu$ par $\xi_I$.
 	\end{defn}
 	
 	\begin{rem}
@@ -42,7 +44,7 @@
 	\end{rem}
 	
 	\begin{defn}
-		La famille des lois fini-dimensionnelles de $X$ est la famille des $\mu_I$ où $I$ parcourt $\mathcal{J}$.
+		La famille des \textbf{lois fini-dimensionnelles} de $X$ est la famille des $\mu_I$ où $I$ parcourt $\mathcal{J}$.
 	\end{defn}
 	
 	\begin{pop}
@@ -58,6 +60,13 @@
 		Les lois fini-dimensionnelles satisfont la \textbf{condition de compatibilité} suivante : pour tout $I = \{ t_1,\ldots,t_n \}$ avec $t_1 < \cdots < t_n$, pour $p \in \iniff{1}{n}$ et $J = \{ t_1,\ldots,t_{p - 1},t_{p + 1},\ldots,t_n \} \subset I$, pour toutes les familles  $(H_i)$ de $\mathcal{E}$, on a $\mu_I(H_1 \times \cdots H_{p - 1} \times E \times H_{p + 1} \times \cdots \times H_n) = \mu_J(H_1 \times \cdots H_n)$.
 	\end{pop}
 	
+	\begin{proof}
+		Cf livre de Neveux.
+	\end{proof}
+	
+	
+	La question est alors : étant donné une famille $(\mu_I)_{I \in \mathcal{J}}$ qui vérifie les conditions de compatibilité, existe-t-il un processus aléatoire dont les lois fini-dimensionnelles sont les $\mu_I$ ?
+	
 	\begin{thm}[\textbf{Kolmogorov}]
 		Soit $(\mu_I)_{I \in \mathcal{J}}$ une famille de lois sur $\left( E^I, \mathcal{E}^{\otimes I} \right)_{I \in \mathcal{J}}$.
 		Si elle vérifie les conditions de compatibilité, $(\mu_I)_{I \in \mathcal{J}}$ est la famille de lois fini-dimensionnelles d'une unique mesure de probabilités $\mu$ sur $\left( E^{\mathbf{T}}, \mathcal{G} \right)$.
@@ -69,8 +78,7 @@
 		Prenons $E = \R$.
 		Soit $\nu$ une mesure sur $\R$.
 		Supposons $\mu_I = \otimes^n \nu$, avec $n = \card(I)$.
-		Alors il existe un processus aléatoire tel que ...
-		TODO
+		Alors il existe un processus aléatoire $X$ tel que $\{ \xi_t(X) = X_t \}_{t \in \mathbf{T}}$ soient des v.a i.i.d de loi $U$.
 	\end{ex}
 	
 	\begin{defn}
@@ -82,12 +90,14 @@
 	\end{defn}
 	
 	\begin{ex}
-		Soit $\Omega = \mathbf{T} = \inff{0}{1}$, $\mathcal{F} = \mathcal{B}(\inff{0}{1})$, $\proba$ la mesure de Lebesgue sur $\iniff{0}{1}$ et $\forall t \in \mathbf{T}, X_t(\omega) = \delta_{t,\omega} = \indic_{ \{ t \} }(\omega)$ et $\forall t, X_t'(\omega) = 0$.
-		Alors $\forall t \in \mathbf{T}, \proba( \omega \mid X_t(\omega) \neq X_t'(\omega) ) = \proba( \{ t \} ) = 0$ mais $\proba( \omega \mid \exists t \in \mathbf{T}, X_t(\omega) \neq X_t'(\omega) ) = \proba(\inff{0}{1}) = 1$.
+		Soit $\Omega = \mathbf{T} = \inff{0}{1}$, $\mathcal{F} = \mathcal{B}(\inff{0}{1})$ et $\proba$ la mesure de Lebesgue sur $\mathbf{T} = \inff{0}{1}$. Posons de plus, pour tout $(t,\omega) \in \mathbf{T} \times \Omega$, $X_t(\omega) = \delta_{t,\omega} = \indic_{ \{ t \} }(\omega)$ et $X_t'(\omega) = 0$.
+		
+		Les deux processus n'ont pas la même trajectoire.
+		Plus précisément $\forall t \in \mathbf{T}, \proba( \omega \mid X_t(\omega) \neq X_t'(\omega) ) = \proba( \{ t \} ) = 0$ mais $\proba( \omega \mid \exists t \in \mathbf{T}, X_t(\omega) \neq X_t'(\omega) ) = \proba(\inff{0}{1}) = 1$.
 	\end{ex}
 	
 	Question : peut-on trouver une condition sur $\mu$ qui rende le processsus $X$ continu, au moins avec la probabilité 1, i.e. “presque toutes les trajectoires sont continues”, si cela a un sens ?
-	Non, comme le montr l'exemple précédent.
+	Non, comme le montre l'exemple précédent.
 	En effet les lois fini-dimensionnelles de $X$ et $X'$ sont identiques.
 	Donc $X$ et $X'$ ont la même loi $\mu$.
 	
@@ -103,7 +113,7 @@
 	\end{defn}
 	
 	\begin{defn}
-		Un \textbf{mouvement brownien au sens large (MBL)} est un processus scalaire gaussien $X$ sur $\mathbf{T} = \R_+$ tel que $\forall t \in \mathbf{T}, \esp X_t = 0$ et $\forall t,s \in \mathbf{T}, \esp[X_t X_s] = \min(t,s)$.
+		Un \textbf{mouvement brownien au sens large (MBL)} est un processus scalaire gaussien $X$ sur $\mathbf{T} = \R_+$ tel que $\forall t \in \mathbf{T}, \esp[X_t] = 0$ et $\forall t,s \in \mathbf{T}, \esp[X_t X_s] = t \wedge s$ (minimum).
 	\end{defn}
 	
 	\begin{pop}
@@ -116,15 +126,18 @@
 		Ainsi $\mu_J$ pour tout $J \subset I$ sera la marginale correspondante de $\mu_I$.
 		Cela revient à prouver que $\Gamma := (t_i \wedge t_j)_{1 \leq i,j \leq n}$ est une matrice de covariance, i.e une matrice semi-définie positive.
 		En effet, avec $t_0 := 0$, $\forall x = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n$,
-		$$\transp{x} \Gamma_I x = \sum_{i,j = 1}^n x_i x_j (t_i \wedge t_j)
-		                        = \sum_{i,j = 1}^n x_i x_j \sum_{l = 1}^{i \wedge j} (t_l - t_{l - 1})
-		                        = \sum_{l = 1}^n (t_l - t_{l - 1}) \left( \sum_{i = l}^n x_i \right)^2
-		                        \geq 0$$
+		\begin{align*}
+		\transp{x} \Gamma_I x & = \sum_{i,j = 1}^n x_i x_j (t_i \wedge t_j) \\
+		                      & = \sum_{i,j = 1}^n x_i x_j \sum_{l = 1}^{i \wedge j} (t_l - t_{l - 1}) \qquad \text{avec}\ t_0 = 0 \\
+		                      & = \sum_{i,j = 1}^n x_i x_j \sum_{l = 1, l \leq  i \wedge j}^{n} (t_l - t_{l - 1}) \\
+		                      & = \sum_{l = 1}^n (t_l - t_{l - 1}) \left( \sum_{i = l}^n x_i \right)^2 \\
+		                      & \geq 0
+		\end{align*}
 	\end{proof}
 	
 	\begin{defn}
 		Soit $\sigma(X_t)$ la sous-tribu de $\mathcal{F}$ engendrée par la v.a $\xi_t \circ X$.
-		La tribu engendrée par $\{ \sigma(X_s) \}_{0 \leq s \leq t}$, noté $\sigma(X_s, 0 \leq s \leq t)$ représente le \textbf{passé} de $X$ antérieur à $t$.
+		La tribu engendrée par $\{ \sigma(X_s) \}_{0 \leq s \leq t}$, notée $\sigma(X_s, 0 \leq s \leq t)$ représente le \textbf{passé} de $X$ antérieur à $t$.
 	\end{defn}
 	
 	\begin{pop}
@@ -165,14 +178,29 @@
 	
 	\begin{proof}
 		Soit $X$ un MBL.
-		$\esp \left[ (X_s - X_t)^4 \right] = (t - s)^2 \esp \left[ U^2 \right]$ où $U \sim \mathcal{N}(0,1)$ et on applique le théorème de Kolmogorov.
+		$\esp \left[ (X_s - X_t)^4 \right] = (t - s)^2 \esp \left[ U^2 \right]$ où $U \sim \mathcal{N}(0,1)$.
+		Donc $\esp \left[ (X_s - X_t)^4 \right] = 3(t - s)^2$ et on applique le théorème de Kolmogorov.
 	\end{proof}
 	
-	TODO\\
+	NB : On peut simuler un brownien avec un TCL fonctionnel.
+	
+	\begin{defn}
+		Étant donné un entier $d \in \N^*$, un MB $d$-dimensionnel est un processus $B$ à valeurs dans $\R^d$ dont les composantes sont des MB indépendants.
+	\end{defn}
+	
+	\begin{pop}
+		Soit $B$ un MB, $s \in \R_+$ et $c \in \R^*$.
+		Alors les processus $B^{(s)} = (B_t^{(s)})_t = (B_{t + s} - B_s)_{t \in \mathbf{T}}$ et $Y = (Y_t)_t = \left( c B_{t/c^2} \right)_t$ sont des MB.
+	\end{pop}
 	
 	\begin{pop}
 		Soit $B$ un MB.
-		Alors $\limsup_{t \to \infty} \frac{B_t}{\sqrt{t}} \overset{\text{p.s.}}{=} +\infty$, $\liminf_{t \to \infty} \frac{B_t}{\sqrt{t}} \overset{\text{p.s.}}{=} -\infty$, $\lim_{t \to \infty} \frac{B_t}{t} = 0$, $\limsup_{t \searrow 0} \frac{B_t}{\sqrt{t}} \overset{\text{p.s.}}{=} +\infty$ et $\liminf_{t \searrow 0} \frac{B_t}{\sqrt{t}} \overset{\text{p.s.}}{=} -\infty$.
+		Alors
+		$$\limsup_{t \to \infty} \frac{B_t}{\sqrt{t}} \overset{\text{p.s.}}{=} +\infty,\qquad
+		\liminf_{t \to \infty} \frac{B_t}{\sqrt{t}} \overset{\text{p.s.}}{=} -\infty,\qquad
+		\lim_{t \to \infty} \frac{B_t}{t} = 0$$
+		$$\limsup_{t \searrow 0} \frac{B_t}{\sqrt{t}} \overset{\text{p.s.}}{=} +\infty,\qquad
+		\liminf_{t \searrow 0} \frac{B_t}{\sqrt{t}} \overset{\text{p.s.}}{=} -\infty\ .$$
 		De plus le processus donné par $Z_t = t B_{1/t}$ est un MBL.
 	\end{pop}
 	
@@ -182,7 +210,8 @@
 	
 	\begin{proof}
 		Soit $R := \limsup_{t \to \infty} \frac{B_t}{\sqrt{t}}$.
-		On a $\forall s > 0, R = \limsup_{t \to \infty} \frac{B_{t + s}}{\sqrt{t + s}} = \limsup_{t \to \infty} \frac{B_{t + s}}{\sqrt{t}} = \limsup_{t \to \infty} \frac{B_{t + s} - B_s}{\sqrt{t}}$.
+		On a $\forall s > 0$,
+		$$R = \limsup_{t \to \infty} \frac{B_{t + s}}{\sqrt{t + s}} = \limsup_{t \to \infty} \frac{B_{t + s}}{\sqrt{t}} = \limsup_{t \to \infty} \frac{B_{t + s} - B_s}{\sqrt{t}}\ .$$
 		Par conséquent $R$ est indépendante de $\sigma(B_u, u \leq s)$ pour tout $s$.
 		Donc $R$ est indépendante de la tribu $\sigma(B)$ engendrée par $B$.
 		Comme $R$ est $\sigma(B)$-mesurable, $R$ est indépendant d'elle même : $\forall H \in \mathcal{B}(\R), \proba(R \in H) = P(R \in H)^2$.
@@ -239,6 +268,7 @@
 	
 	\begin{note}
 		Si $\forall \omega \in \Omega, t \mapsto X_t(\omega)$ est continue à droite (resp. à gauche), on dit que le processus est continu à droite (resp. à gauche).
+		On écrira càd, resp. càg.
 	\end{note}
 	
 	\begin{pop}
