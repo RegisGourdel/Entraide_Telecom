@@ -268,3 +268,148 @@
 	\begin{rem}
 		...%TODO
 	\end{rem}
+	
+	\begin{exc}
+		On prend $y^2 = x^3 - x$.
+		Ses zéros sont $P_1 = \begin{pmatrix} -1 \\ 0 \end{pmatrix}$, $P_2 = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$ et $P_3 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$.
+		
+		On veut montrer $\divg(x) = 2 (P_2) - 2 (O_E)$ et $\divg(y) = (P_1) + (P_2) + (P_3) - 3(O_E)$.
+		
+		On a $K[x,y] / (y^2 - (x^3 - x), x) = K[y]/(y^2)$.
+		Si on veut formaliser : il s'agit d'une courbe plane lisse donnée par une équation $F(x,y) = 0$.
+		On se donne une fonction $h(x,y)$ qui n'est pas multiple de $F$ (sinon $h$ est identiquement nulle sur la courbe) et de dimension finie.
+		On veut trouver l'ordre d'annulation de $h$ en un point $P$ de la courbe, i.e l'anneau quotient $K[x,y]/(F,h)$.
+		
+		On a $K[x,y]/(F,h) \simeq A_1 \times \cdots \times  A_r$ produit fini d'anneaux de dimensions finies.
+		$r$ est le nombre de points d'intersection de $F = 0$ et $h = 0$ et chaque $A_i$ correspond à un $P_i$ point d'intersection.
+		De plus $\dim A_i$ est l'ordre de $h$ en $P_i$.
+		
+		Pour garder uniquement le $A_i$ qui correspond à $P$ il faut en plus trouver une autre fonction $\psi$ telle que $\psi$ s'annule en $P$ avec une grande multiplicité (convient si supérieure à $\deg(F) \cdot \deg(h)$) et $\psi \neq 0$ sur les autres $P_i$.
+		Alors $K[x,y] / (F,h,\psi) = A_{i_0}$ où $i_0$ est l'indice de $P$.
+		
+		Souvent on aura pas besoin de tout ça et on pourra conclure plus rapidement par un simple argument de degré.
+		
+		On obtient alors $\divg \left( \frac{x}{y} \right) = \divg(x) - \divg(y) = (P_2) + (O_E) - (P_1) - (P_3)$.
+		Si l'on veut dérouler l'algo jusqu'au bout, par exemple pour trouver $v_{P_2}(y)$, on cherche une fonction $\psi$ qui s'annule en $P_2$ à l'ordre 3 et non nul en $P_1$ et $P_3$.
+		Par exemple $\psi = x^3$ convient.
+		On obtient $K[x,y] / (y^2 - (x^3 - x), y, x^3) \simeq K[x]/(x)$ de dimension 1.
+	\end{exc}
+	
+	\begin{lem}
+		Soient $P$ et $Q$ deux points de $E$ et $l_{P,Q} : \lambda x + \mu y + \nu$ l'équation affine de la droite $(PQ)$ (ou bien de la tangente à la courbe en $P$ si $P = Q$).
+		Alors $\divg(l_{P,Q}) = (P) + (Q) + (-P-Q) - 3(O_E)$.
+	\end{lem}
+	
+	On se donne $D = \sum_P n_P(P)$ tel que $\sum n_P = 0$ et $\sum n_P P = O_E$.
+	
+	Problème : trouver $f$ tel que $D = \divg(f)$.
+	
+	Quitte à réécrire les points autant de fois que leur multiplicité $D = (P_1) + \ldots + (P_n) - (Q_1) - \ldots - (Q_n)$ avec $P_1 + \ldots + P_n = Q_1 + \ldots + Q_n$ dans $E$.
+	On procède par récurrence sur $n$.
+	
+	Pour $n = 0$ et $D = 0$, $f = 1$ convient.
+	Pour $n = 1$, $D = (P_1) - (P_1) = 0$ et on retombe sur $n = 0$.
+	
+	On suppose $n \geq 2$ et qu'on sait faire jusqu'à $n - 1$.
+	
+	...
+	
+	...
+	%TODO
+
+
+\subsection{Les courbes algébriques en crypto}
+
+	Les courbes algérbriques ont été introduites pour la factorisation \textrightarrow\ généralisation de l'algo $p - 1$ de Pollard qui permet de trouver facilement les diviseurs premiers $p$ d'un entier $N$ tel que $p - 1$ soit friable.
+	On doit donc éviter ce type de facteur.
+	
+	Cela repose sur $N = pq \implies (\Z / N\Z)^\times \simeq (\Z / p\Z)^\times \times (\Z / q\Z)^\times$.
+	L'algorithme $p - 1$ de Pollard fonctionne si $\F_p^\times$ est friable.
+	
+	Lenstra généralise cela avec des courbes elliptiques.
+	Soit $a, b \in \Z / N\Z$ et $E : y^2 = x^3 + ax + b$.
+	On a $E(\Z / N\Z) = E(\F_p) \times E(\F_q)$ (avec des bizarreries pour $O_E$).
+	Quand $a$ et $b$ varient, $\abs{E(\F_q)}$ varie et on arrive toujours à tomber sur un friable.
+	
+	Plus tard les courbes algébriques ont été utilisées pour fabriquer des cryptosystèmes en remplaçant $\F_p^\times$ par $E(\F_p)$ où le log discret est plus difficile.
+
+
+\subsection{Couplages}
+
+	Les couplages ont été introduits pour la cryptanalyse pour ramener certaines instances du log discret elliptique au log discret classique.
+	On fabrique ensuite des cryptosystèmes avec des propriétés spéciales.
+	
+	\begin{defn}
+		Soient $A, B, G$ trois groupes abéliens, avec une loi notée additivement pour $A$ et $B$, et multiplicativement pour $G$.
+		Un \textbf{couplage} $e \colon A \times B \to G$ est une application bilinéaire, i.e telle que $e(a + a',b) = e(a,b) e(a',b)$ et $e(a,b + b') = e(a,b) e(a,b')$.
+		
+		Dans le cas particulier $A = B$ :
+		\begin{itemize}
+			\item[\textbullet] le couplage est dit \textbf{symétrique} si $e(a,b) = e(b,a)$,
+			\item[\textbullet] le couplage est dit \textbf{alterné} si $\forall a, e(a,a) = 1$, ce qui implique l'antisymétrie $e(b,a) = e(a,b)^{-1}$.
+		\end{itemize}
+	\end{defn}
+	
+	\paragraph{Construction d'un couplage alterné} sur les groupes de $m$-torsion d'une courbe elliptique.
+	On travaille sur $K = \F_q$ où $q = p^n$ avec $p$ premier et on note $\bar K$ la cloture algébrique de $K$.
+	Soit $m \in \N$ tel que $p \not\mid m$.
+	Soit $\mu_m \subset \bar K^\times$ le groupe des racines $m$-ièmes de l'unité.
+	$\mu_m$ forme un groupe cyclique d'ordre $m$, donc $\mu_m \simeq \Z / m\Z$.
+	
+	\begin{rem}
+		$X^m - 1$ est bien à racines simples dans $\bar K$ car sa dérivée est $m X^{m - 1}$ et $\pgcd(X^m - 1, m X^{m - 1}) = 1$.
+	\end{rem}
+	
+	Soit $E$ une courbe elliptique sur $K$.
+	$E[m] \subset E(\bar K)$ est le produit de deux groupes cycliques d'ordre $m$.
+	
+	On va construire le couplage de Weil $e_m \colon E[m] \times E[m] \to \mu_m$.
+	Soient $P,Q \in E[m]$ et $D_{P,Q} = (P) + (P + Q) + (P + 2Q) + \ldots + (P + (m-1)Q) - (O_E) - (Q) - (2Q) - \ldots - ((m-1)Q)$.
+	Ce diviseur est principal (puisque $mP = O_E$ par définition de $P \in E[m]$)..
+	
+	On construit effectivemet une fonction $f_{PQ}$ telle que $\divg(f_{PQ}) = D_{PQ}$.\\
+	
+	
+	Soit maintenant  $\tau_Q \colon \begin{array}{lcr} E & \to & E \\ R & \mapsto & Q + R\end{array}$ l'application de translation par $Q$.
+	C'est un morphisme algébrique de $E$ dans lui-même.
+	
+	Si $f$ est une fonction de $E$, $\tau_Q^* f$ est la fonction telle que $\tau_Q^* f(R) = f(Q + R)$.
+	Donc $\divg(\tau_Q^* f)$ est translatée de $\divg(f)$ par $-Q$.
+	
+	En particulier, pour $f = f_{P,Q}$, $\div(\tau_Q^* f_{P,Q}) = \divg(f_{P,Q}) = D_{PQ}$ invariant par translation par $Q$.
+	Donc $\tau_Q^* f_{P,Q} = c \cdot f_{P,Q}$ pour une certaine constante $c \in \bar K^*$.
+	
+	$$\tau_{2Q}^* f_{P,Q} = \tau_Q^* \tau_Q^* f_{P,Q} = \tau_Q^* (c \cdot f_{P,Q}) = c \cdot \tau_Q^* f_{P,Q} = c^2 f_{P,Q}$$
+	
+	Par suite il vient $\tau_{mQ}^* f_{P,Q} = c^m f_{P,Q}$.
+	Or $mQ = O_E$ car $Q \in E[m]$, donc $\tau_{mQ}^* f_{P,Q} = f_{P,Q}$, d'où $c \in \mu_m$.
+	
+	\begin{defn}
+		$e_m(P,Q) = \frac{\tau_Q^* f_{P,Q}}{f_{P,Q}}$.
+	\end{defn}
+	
+	\begin{thm}
+		\begin{enumerate}[(i)]
+			\item $e_m(P + P', Q) = e_m(P,Q) e_m(P',Q)$,
+			\item $e_m(P, Q + Q') = e_m(P,Q) = e_m(P,Q')$,
+			\item $e_m(P,P) = 1$,
+			\item si $P,Q \in E[m](K)$ alors $e_m(P,Q) \in K$,
+			\item $e_m \colon E[m] \times E[m] \to \mu_m$ est surjective.
+		\end{enumerate}
+	\end{thm}
+	
+	\begin{proof}
+		\textit{(ii)} et \textit{(v)} sont admises (difficiles).
+		
+		Pour \textit{(i)} : on peut choisir $f_{P + P',Q} = f_{P,Q} \cdot \tau_{-P}^*  f_{P',Q}$ et alors
+		$$\frac{\tau^*_Q f_{P + P',Q}}{f_{P + P',Q}}
+			= \frac{\tau_Q^* f_{P,Q}}{f_{P,Q}}
+			\cdot \frac{\tau_Q^* \tau_{-P}^* f_{P',Q}}{\tau_{-P}^* f_{P',Q}}
+			= \frac{\tau_Q^* f_{P,Q}}{f_{P,Q}}
+			\cdot\tau_{-P} \left( \frac{\tau_Q^* f_{P',Q}}{f_{P',Q}} \right)$$
+		
+		Pour \textit{(iii)} : $D_{P,P} = 0$, $f_{P,P} = 1$.
+		
+		Pour \textit{(iv)} : $f_{P,Q}$ diviseur de $D_{P,Q}$ est construite par récurrence.
+		% TODO
+	\end{proof}

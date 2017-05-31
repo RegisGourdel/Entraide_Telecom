@@ -1,0 +1,99 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsthm} %ou \usepackage{ntheorem}
+\usepackage[top=1.5cm, bottom=2.2cm, left=2.4cm, right=2.4cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{titlesec}
+\usepackage{alltt}
+\usepackage{kpfonts}
+\usepackage[svgnames,table]{xcolor}
+\usepackage[francais]{babel}
+\pagestyle{fancy}
+
+
+
+%
+% Suivent les macros qui donnent la mise en forme des théorèmes, définitions, etc...
+%
+\newtheoremstyle{persoth}% name
+{3pt}%Space above
+{5pt}%Space below
+{}%{\itshape}%Body font
+{}%Indent amount
+{\bf}%Theorem head font
+{.}%Punctuation after theorem head
+{.5em}%Space after theorem head 2
+{}%
+
+\newtheoremstyle{persodef}% name
+{3pt}%Space above
+{5pt}%Space below
+{}%Body font
+{}%Indent amount
+{\bf}%Theorem head font
+{.}%Punctuation after theorem head
+{.5em}%Space after theorem head 2
+{}%
+
+\theoremstyle{persoth}% default
+\newtheorem*{thm}{\noindent\textcolor{Crimson}{Théorème}}
+\newtheorem*{lem}{\noindent\textcolor{MediumVioletRed}{Lemme}}
+\newtheorem*{pop}{\noindent\textcolor{FireBrick}{Proposition}}
+\newtheorem*{cor}{\noindent\textcolor{Brown}{Corrolaire}}
+
+\theoremstyle{persodef}
+\newtheorem*{defn}{\noindent\textcolor{magenta}{Définition}}
+\newtheorem*{conj}{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{\noindent\textcolor{Teal}{Remarque}}
+\newtheorem*{ex}{\noindent\textcolor{DarkOrange}{Exemple}}
+\newtheorem*{exc}{\noindent\textcolor{OrangeRed}{Exercice}}
+\newtheorem*{note}{\noindent\textcolor{RoyalBlue}{Notation}}
+\newtheorem*{danger}{\textcolor{green}{Attention}}
+\newtheorem*{voc}{\textcolor{DarkGreen}{Voc}}
+\newtheorem*{hyp}{\textcolor{OrangeRed}{Hyp}}
+
+%\newcommand\demo{\begin{proof}[\textit{Démonstration}]}
+
+
+%
+% Redéfinition de caractéristiques sur le format des titres de sections etc...
+%
+\titleformat{\section}
+	[hang]% style : hang, display, runin, leftmargin, ...
+	{\Large\bfseries\sffamily}% fonte numéro + titre
+	{\thesection}% numéro
+	{1em}% espace entre le numéro et le titre
+	{}% fonte titre
+
+\titlespacing{\section}{0pt}
+	{10pt}{4pt}
+
+\titleformat{\subsection}
+	[hang]% style : hang, display, runin, leftmargin, ...
+	{\large\bfseries\sffamily}% fonte numéro + titre
+	{\thesubsection}% numéro
+	{4pt}% espace entre le numéro et le titre
+	{}% fonte titre
+
+\titlespacing{\subsection}{0pt}
+	{8pt}{2pt}
+
+
+\date{}
+
+%
+% Ce qui suit permet de corriger le bug de titlesec sur la numérotation des sections
+%
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
+
+\usepackage[colorlinks=true,linkcolor=purple]{hyperref}
