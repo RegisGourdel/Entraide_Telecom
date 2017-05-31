@@ -1,0 +1,68 @@
+On veut définir $\int H_s \diff B_s$ avec $B_s$ un MB.
+
+Idée : $\sum H(t_i) (B(t_{i + 1}) - B(t_i))$.
+
+Problème : $\sum H(t_i) (B(t_{i + 1}) - B(t_i))$ n'a pas la même limite.
+
+Soit $\mathbf{H}^2$ l'ensemble des martingales de carré intégrable nulles en 0.
+Une martingale $M_t$ est de carré intégrable ssi $\sup_{t \in \intfo{0}{+\infty}} \esp[M_t^2] < +\infty$.
+Cela implique l'uniforme intégrabilité, qui implique $\exists M_\infty \in L^2, M_t \underset{t \to \infty}{\overset{L^2}{\longrightarrow}} M_\infty$ et $\forall n \in \N^*, M_t^n = \esp[M_\infty^n \mid \mathcal{F}_t]$.
+
+On muni $\mathbf{H}^2$ d'un produit scalaire avec $\scal{M}{N} = \esp[M_\infty N_\infty] = \esp[\langle M,N \rangle_\infty]$.
+
+\begin{thm}
+	$\mathbf{H}^2$ est un espace de Hilbert.
+\end{thm}
+
+%On a donc :
+%\begin{align*}
+%M^n\ \text{de Cauchy}
+	%& \iff \norme{M^n - M^k}_{\mathbf{H}^2} \underset{n,k \to \infty}{\longrightarrow} 0 \\
+	%& \iff \esp[\langle M^n - M^k \rangle_\infty] = \esp[(M_\infty^n - M_\infty^k)^2] \longrightarrow 0 \\
+	%& \iff (M_\infty^n)_{n \geq 1}\ \text{est de Cauchy dans}\ L^2 \\
+	%& \implies M_\infty^n \overset{L^2}{\longrightarrow} M_\infty^\infty
+%\end{align*}
+
+%Par inégalité de Doobs on a :
+%$$\underset{ \underset{n,m \to \infty}{\longrightarrow} 0 }{\underbrace{ \esp[\sup_t \abs{M_t^n - M_t^k}^2] }} \leq 4 \cdot \esp[\langle M^n - M^m \rangle_\infty]$$
+%Puis
+%$$\forall k, \exists n_k, \forall n,m \geq n_k, \esp[\sup_t \abs{M_t^n - M_t^m}^2]^{1/2} \leq 2^{-k}$$
+
+%...
+
+%...
+
+\begin{defn}
+	Processus \textbf{progressivement mesurables} : continus à droite et adaptés.
+\end{defn}
+
+\begin{note}
+	Soit $M \in \mathbf{H}^2$.
+	On note $L^2(M)$ l'ensemble des processus prog. mes. tels que $\esp \left[ \int H_s \diff \langle M,M \rangle_s \right] < +\infty$.
+\end{note}
+
+\begin{rem}
+	$L^2(B) = \left\{ H\ \text{prog. mes.} \mid \esp \left[ \int H_s^2 \diff s \right] < \infty \right\}$.
+\end{rem}
+
+\begin{defn}
+	$$\int_0^t H_s \diff M_s = \sum_{i = 1}^{p - 1} H_i (M_{t_{i + 1} \wedge t} - M_{t_i \wedge t})$$
+	$$H.M \colon \begin{array}{lcr} \mathcal{E} \subset L^2(M) & \to & \mathbf{H}^2 \\ H & \mapsto & (t \mapsto \int_0^t H_s \diff M_s) \end{array}$$
+\end{defn}
+
+\begin{lem}
+	$\forall H \in \mathcal{E}, \norme{H.M}_{\mathbf{H}^2} = \norme{H}_{L^2(M)}$
+\end{lem}
+
+\begin{thm}
+	Soit $H \in L^2(M)$ et $N \in \mathbf{H}^2$.
+	Alors
+	$$\langle H.M, N \rangle = H \langle M,N \rangle \iff \left\langle \int H_s \diff M_s, N \right\rangle_t = \int_0^t H_s \diff \langle M,N \rangle_s\ .$$
+\end{thm}
+
+\begin{cor}
+	\begin{itemize}
+		\item[\textbullet] $\left\langle \int H_s \diff M_s, \int K_s \diff N_s \right\rangle = \int H_s K_s \diff \langle M,N \rangle_s$
+		\item[\textbullet] $\left( t \mapsto \int_0^t H_s \diff M_s \right) \in \mathbf{H}^2$, $\int K_s \diff \left( \int_0^s H_\sigma \diff M_\sigma \right) = \int K_s H_s \diff M_s$.
+	\end{itemize}
+\end{cor}
