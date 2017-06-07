@@ -66,3 +66,33 @@ On muni $\mathbf{H}^2$ d'un produit scalaire avec $\scal{M}{N} = \esp[M_\infty N
 		\item[\textbullet] $\left( t \mapsto \int_0^t H_s \diff M_s \right) \in \mathbf{H}^2$, $\int K_s \diff \left( \int_0^s H_\sigma \diff M_\sigma \right) = \int K_s H_s \diff M_s$.
 	\end{itemize}
 \end{cor}
+
+
+...\\
+TODO\\
+...\\
+
+\begin{defn}
+	$(M_t)_{t \geq 0}$ est une martingale locale issue de 0 si :
+	\begin{itemize}
+		\item[\textbullet] $M_0 = 0$,
+		\item[\textbullet] il existe une suite de temps d'arrêts $(T_n)_{n \geq 1}$ telle que $\forall n, M^{T_n}$ soit une martingale uniformément intégrable.
+	\end{itemize}
+\end{defn}
+
+\begin{ex}
+	\begin{itemize}
+		\item[\textbullet] MB sur $\intff{O}{T}$ est une mg u.i : $\sup_{t \leq T} \esp[B_t^2] = T < +\infty$
+		\item[\textbullet] MB sur $\R_+$ qui n'est pas u.i : $T_n = n$, $B_t^{T_n} = B_{t \wedge T_n}$, $\sup_{t \in \R_+} \esp[(B_t^{T_n})^2] \leq n$, donc $B^{T_n}$ est une mg u.i
+	\end{itemize}
+\end{ex}
+
+...\\
+TODO\\
+...\\
+
+\begin{thm}[Formule de Itô]
+	Soit $f \in \mathcal{C}^2$, $X_t = X_0 + M_t + A_t$ une semi-martingale.
+	$(f(X_t)_{t \geq  0}$ une semi mg.
+	$$f(X_t) = f(X_0) + \int_0^t f'(X_s) \diff M_s + \int_0^t f'(X_s) \diff A_s + \frac{1}{2} \int_0^t f''(X_s) \diff \langle M \rangle_s$$
+\end{thm}
