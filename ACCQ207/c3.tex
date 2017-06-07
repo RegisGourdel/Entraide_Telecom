@@ -158,5 +158,39 @@ Par récurrence on va construire des indices $k_i$ : $v > k_1 > k_2 > \ldots$ co
 	... \\
 
 
-\paragraph{Extraction de racine modulo $N$ où $N = pq$ est un entier RSA}
+\subsection{Extraction de racine modulo $N$ où $N = pq$ est un entier RSA}
 	
+	...\\
+	TODO\\
+	...\\
+	
+	Sécurité :\\
+	\begin{tabular}{ccc}
+	& RSA & Rabin \\
+	\hline
+	attaque à chiffré seul & extraire une racine $e$-ième, pas plus difficile que factoriser & extraire une raince carrée, équivalent à factoriser \\
+	attaque à chiffré choisi & Bob est une boîte noire qui extrait les racines $e$-ième & Bob est une boîte noire qui extrait des racines carrées \textrightarrow\ l'attaquant factorise $N$, le système est cassé
+	\end{tabular}
+
+\subsection{Un protocole de tirage à pile ou face}
+
+	Alice choisit $N$ un entier de Blum et $x_0 \in (\Z / N\Z)^\times$.
+	Elle calcule $x_1 = x_0^2$ et $x_2 = x_1^2 = x_0^4$.
+	Elle publie $N$ et $x_2$.
+	
+	Bob choisit un bit au hasard, “pair” ou “impair”.
+	Alice révèle tout ($x_0$, $p$ et $q$ facteurs de $N$).
+	Bob gagne si son choix est la parité de $x_1$.
+	
+	Alice ne peut pas tricher car on vérifie tout a posteriori.
+	Bob ne gagne pas avec proba $\geq \frac{1}{2}$ sauf s'il sait distinguer carrés de pseudo-carrés (difficile).
+	
+	$x_1$ est une des quatres racines de $x_2$ et en fait c'est la racine principale.
+	Imaginons que Bob sache gagner avec proba $\geq \frac{1}{2}$.
+	Soit $y$ tel que $\left( \frac{y}{N} \right) = 1$.
+	On pose $x = y^2$.
+	
+	On demande à Bob de choisir “pair” ou “impair” en lui soumettant $x_2 = x$.
+	$x$ admet 4 racines dont 2 de symbole de Jacobi $-1$ et 2 de symbole de Jacobi $+1$ qui sont $y$ et $N - y$, une des deux est la racine principale (carrée), l'autre est un pseudo-carré et sont de parité différentes.
+	
+	Pour Bob, distinguer les parités est équivalent à décider si $y$ est carré ou pseudo-carré.
