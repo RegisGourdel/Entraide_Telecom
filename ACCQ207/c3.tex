@@ -1,0 +1,162 @@
+Rappel : on travaille sur un corps premier $\Z / p\Z = \F_p$ avec $p > 2$.
+
+On étudie la fonction $x \mapsto x^2$ dans $\F_p^\times$.
+C'est un morphisme de noyau $\{ \pm 1 \}$ de cardinal 2.
+Son image est donc de cardinal $\frac{p - 1}{2} = \frac{\varphi(p)}{2}$, i.e dans $(\Z / p\Z)^\times$ il y a $\frac{p - 1}{2}$ résidus quadratiques et $\frac{p - 1}{2}$ non-résidus.
+
+Soit $N$ composé sans facteur carré, $N = p_1 \cdots p_r$, $\forall i, p_i > 2$.
+Regardons alors $\begin{array}{ccc} (\Z / N\Z)^\times & \to & (\Z / N\Z)^\times \\ x & \mapsto & x^2 \end{array}$.
+C'est un morphisme de groupes de noyau $\left\{ x \in (\Z / N\Z)^\times \mid \forall i, x \equiv \pm 1 \mod{p_i} \right\}$, de cardinal $2^r$.
+L'image est donc de cardinal $\frac{\varphi(N)}{2^r} = \prod_i \frac{p_i - 1}{2}$ et est égale à $\left\{ x \in (\Z / N\Z)^\times \mid \forall i, x\ \text{est carré} \mod{p_i} \right\}$.\\
+
+
+Disgression : dans un corps, tout polynôme $P$ de degré $d$ admet au plus $d$ racines :
+\begin{enumerate}[(1)]
+	\item si $x_1$ est racine de $P$, alors $P(X) = (X - x_1) Q(X)$ (marche dans n'importe quel anneau),
+	\item si $x_2 \neq x_1$ est une autre racine de $P$ alors $0 = P(x_2) = (x_2 - x_1) Q(x_2)$ donc $Q(x_2) = 0$ car on est dans un corps ou anneau intègre, et on conclut par récurrence.
+\end{enumerate}
+
+\begin{ex}
+	Cas de $X^2 - 1$ dans $\Z / 15\Z$.
+	Le polynôme admet 4 racines : $\pm 1 \mod 3$ et $\pm 1 \mod 5$.
+	Qu'est ce qui se passe si l'on déroule la preuve précédente ?
+	\begin{enumerate}[(1)]
+		\item $x_1 = 1$ est racine de $P(X) = X^2 - 1$ d'où $P(X) = (X - 1)(X + 1)$,
+		\item $x_2 = 4$ est une autre racine : $0 = P(4) = \underset{\neq 0}{\underbrace{(4 - 1)}} \underset{\neq 0}{\underbrace{(4 + 1)}}$.
+	\end{enumerate}
+\end{ex}
+
+Symbole de Legendre : soit $a \in \Z$ et $p > 2$ premier,
+$$\left( \frac{a}{b} \right)
+	= a^{\frac{p - 1}{2}} \mod p
+	= \left\{ \begin{array}{ll}
+		0 & \text{si}\ p \mid a \\
+		1 & \text{si $a$ est un résidu quadratique modulo $p$} \\
+		-1 & \text{si $a$ n'est pas résidu}
+		\end{array}\right.$$
+
+Symbole de Jacobi : $\left( \frac{m}{n} \right)$ avec $m \in \Z$ et $n > 0$ un entier impair.
+Si $n = \prod_{i = 1}^r p_i^{e_i}$ alors $\left( \frac{m}{n} \right) = \prod_{i = 1}^r \left( \frac{m}{p_i} \right)^{e_i}$.
+Pour simplifier on suppose $n$ sans facteur carré, i.e $\forall i, e_i = 1$.\\
+
+On suppose $(m,n) = 1$.
+Alors
+$$m \text{est un carré} \mod n
+	\iff \forall i, m \text{est un carré} \mod p_i
+	\iff \forall i, \left( \frac{m}{p_i} \right) = 1
+	\implies \left( \frac{m}{n} \right) = 1$$
+On remarque qu'il y a $\frac{\varphi(n)}{2^r}$ valeurs $m$ telles que $m$ est un carré modulo $n$, et $\frac{\varphi(n)}{2}$ tels que $\left( \frac{m}{n} \right) = 1$.
+
+Jacobi (et Legendre) se calcule en temps $O(\log n)$ :
+\begin{itemize}
+	\item[\textbullet] $\left( \frac{m}{n} \right) = \left( \frac{m \pmod n}{n} \right)$
+	\item[\textbullet] $\left( \frac{m}{n} \right) = (-1)^{\frac{m - 1}{2} \frac{n - 1}{2}} \left( \frac{n}{m} \right)$
+	\item[\textbullet] $\left( \frac{2m}{n} \right) = (-1)^{\frac{n^2 - 1}{8}} \left( \frac{m}{n} \right)$.
+\end{itemize}
+
+Le Jacobi $\begin{array}{ccc} (\Z / n\Z)^\times & \to & \{ \pm 1 \} \\ x & \mapsto & \left( \frac{x}{n} \right) \end{array}$ est un morphisme de groupes.
+
+En effet $\left( \frac{xy}{n} \right) = \left( \frac{x}{n} \right) \left( \frac{y}{n} \right)$ car $\forall i, \left( \frac{xy}{p_i} \right) = \left( \frac{x}{p_i} \right) \left( \frac{y}{p_i} \right)$.
+
+Il est surjectif : soit $a$ non résidu modulo $p_1$ : $a = a \mod p_1$ et $a = 1 \mod p_i$ pour $i \in \intiff{2}{r}$.
+Alors $\left( \frac{x}{n} \right) = \left( \frac{a}{p_1} \right) \left( \frac{1}{p_2} \right) \cdots \left( \frac{1}{p_r} \right) = -1$.
+
+Donc il est de noyau de cardinal $\frac{\varphi(x)}{2}$.\\
+
+
+Souvent dans les applications cryptographiques on prend $N = pq$ (entier RSA).
+
+Soit $m \in (\Z / N\Z)^\times$.
+\begin{itemize}
+	\item[\textbullet] $\left( \frac{m}{N} \right) = -1$ se produit $\frac{\varphi(N)}{2}$ fois.
+	$m$ n'est pas carré modulo $N$ et, en fait, ou bien $m$ est carré modulo $p$ et non carré modulo $q$, ou l'inverse.
+	\item[\textbullet] $\left( \frac{m}{N} \right) = +1$ signifie que, ou bien $\left( \frac{m}{p} \right) = \left( \frac{m}{q} \right) = +1$ et $m$ est carré modulo $N$, ce qui se produit $\frac{\varphi(N)}{4}$ fois, ou bien $\left( \frac{m}{p} \right) = \left( \frac{m}{q} \right) = -1$ et on dit que $m$ est pseudo-carré modulo $N$ ce qui se produit $\frac{\varphi(N)}{4}$ fois.\\
+\end{itemize}
+
+Problème algorithmique :\\
+\begin{tabular}{c|c|c|c}
+	& calculer Legendre/Jacobi & décider si un élément est un carré & extraire une racine carrée \\
+	\hline
+	$\mod p$ premier & facile & facile & facile \\
+	$\mod N$ composé & facile & difficile (mais pas pire que factoriser) & difficile (équivalent à factoriser)\\
+\end{tabular}
+
+\paragraph{Extraire une racine carrée $\mod p$}
+Cas facile : $p \equiv 3 \mod 4$.
+Soit $x$ un carré $\mod p$.
+Alors $x^{\frac{p + 1}{4}}$ est une racine de $x$ (où $x^{\frac{p + 1}{4}}$ s'obtient par exponentiation rapide, donc complexité polynomiale en le nombre de chiffres de $p$).
+En effet
+$$\left( x^{\frac{p + 1}{2}} \right)^2 = x^{\frac{p + 1}{2}} = x \cdot x^{\frac{p-1}{2}} = x$$
+
+...\\
+TODO\\
+...\\
+
+
+\paragraph{Extraire une racine carrée $\mod p$}
+
+Difficulté : un carré admet deux racines, donc tout algo d'extraction de racine suppose de privilégier l'une des deux.
+
+\paragraph{Algo 1 : Adleman-Manders-Miller}
+
+	$p - 1 = u 2^v$ avec $u$ impair et $v = v_2(p -1)$.
+	$(\Z / p\Z)^\times$ est cyclique d'ordre $p - 1$.
+	Pour tout $k \in \intff{O}{v}$ il admet un unique s-g d'ordre $u 2^k$, en l'occurrence c'est le s-g formé des puissances $2^{v - k}$-ièmes.
+	
+	En notation additive, $(\Z / p\Z)^\times \simeq \Z / (p-1)\Z = \Z / u2^v \Z$ admet pour s-g $2^{v - k}\Z / u2^v \Z \simeq \Z / u2^k\Z$.
+
+\begin{ex}
+	$p = 13$, $u = 3$, $v = 2$ et $12 = 3 \cdot 2^2$.
+	Alors $(\Z / 13\Z)^\times = \{ 1, 2, 4, 8, 3, 6, 12, 11, 9, 5, 10, 7 \}$ (engendré par 2), $k = 2$.
+	Il inclut les carrés : $\{ 1, 4, 3, 12, 9, 10 \}$, $k = 1$, qui inclut les puissances 4\up{e} : $\{ 1, 3, 9 \}$, $k = 0$.
+	L'élévation au carré n'est bijective dans aucun de ces s-g sauf dans le dernier $k = 0$.
+\end{ex}
+
+Si $x$ est une puissance $2^v$-ième, alors $x$ appartient à ce dernier s-g, d'ordre $u$, dans lequel l'élévation au carré est inversible car $2$ est inversible modulo $u$ : $2^{-1} \mod u = \frac{u + 1}{2}$ (dans le cas $p \equiv 3 \mod 4$, $u = \frac{p - 1}{2}$, $v = 1$ et $2^{-1} \mod u = \frac{p + 1}{4}$).
+Alors $y = x^{\frac{u + 1}{2}}$ est une racine de $x$.
+
+L'entrée de l'algorithme est $x \in (\Z / p\Z)^\times$, réputé être carré.
+La sortie est une racine de $x$.
+Sont donnés : $p - 1 = n2^v$ et $b$ un non-résidu modulo $p$ (par exemple $b$ primitif).
+
+Par récurrence on va construire des indices $k_i$ : $v > k_1 > k_2 > \ldots$ comme suit :
+\begin{itemize}
+	\item[\textbullet] $a_1 = x$
+	\item[\textbullet] étape $i$ :
+		\begin{itemize}
+			\item[\textbullet] soit $k_i$ e plus petit entier $k \geq 0$ tel que $a_i^{u2k} = 1$.
+				Remarque : alors $a_i^{u 2^{k_i - 1}} = -1$.
+				On a $k_{i + 1} \leq k_i - 1$.
+			\item[\textbullet] on pose $a_{i + 1} = a_i b^{v - k_i}$
+		\end{itemize}
+	\item[\textbullet] À l'étape $N$ : $k_N = 0$ et $a_N^u = 1$
+		\begin{itemize}
+			\item[\textbullet] $a_N$ appartient à l'unique s-g d'ordre $u$,
+			\item[\textbullet] $r_N = a_N^{\frac{u + 1}{2}}$ est racine de $a_N$, car $r_N^2 = a_N^{u + 1} = a_N$.
+		\end{itemize}
+	\item[\textbullet] On remonte : si $r_{i + 1}$ est racine de $a_{i + 1}$ alors $r_i = r_{i + 1} \cdot (b^{2^{v - k_i - 1}})^{-1}$ est racine de $a_i$.
+\end{itemize}
+
+
+\paragraph{Algo 2 : probabiliste}
+
+	Entrée : $x$ un carré. Sortie : $y$ une racine de $x$.
+	
+	À un moment il faut bien choisir entre $y$ et $-y$ : si $p \equiv 3 \mod 4$ il y a un carré et un non-carré parmi $y$ et $-y$, si $p \equiv 1 \mod 4$  ça ne marche plus...
+	
+	\begin{rem}
+		Si $a$ est aléatoire $\neq \pm y$ alors parmi $a + y$ et $a - y$, avec proba $\geq \frac{1}{2}$ il y aura un carré et un non-carré, ce qui équivaut à avoir $\frac{a + y}{a - y}$ non-carré.
+		
+		L'application $\begin{array}{ccc} \Z/p\Z \setminus \{ \pm y \} & \to & \Z/p\Z \setminus \{ 0,1 \} \\ & a \mapsto & \frac{a + y}{a - y} \end{array}$ est bijective, touche $\frac{p - 1}{2}$ non-carrés et $\frac{p - 1}{2} - 1$ carrés.
+	\end{rem}
+	
+	On choisit $a$ aléatoire et on calcule $\pgcd \left( X^{\frac{p-1}{2}} - 1, (X - a)^2 - x \right)$.
+	Alors, avec proba $\simeq \frac{1}{2}$, ce pgcd est de la forme $X - c$.
+	En effet : les racines de $X^{\frac{p-1}{2}} - 1$ sont les carrés de $(\Z / p\Z)^\times$ et les racines de $(X - a)^2 - x$ sont $\{ a + y, a - y \}$.
+	Le pgcd est $X - c$ où ...\\
+	TODO \\
+	... \\
+
+
+\paragraph{Extraction de racine modulo $N$ où $N = pq$ est un entier RSA}
+	
