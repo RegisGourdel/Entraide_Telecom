@@ -297,11 +297,11 @@
 	
 	\begin{defn}
 		La \textbf{variation approchée} d'une fonction $f \in \cont_0(\R_+)$ sur la subdivision $\pi_t$ est $V_1(f,\pi_t,t) := \sum_{i = 1}^n \abs{f(t_i) - f(t_{i - 1})}$.
-		La fonction $f$ est dit à \textbf{variation finie} si $\forall t, V_1(f,t) := \sup_{\pi_t} V_1(f,\pi_t,t)$ est finie.
+		La fonction $f$ est dit à \textbf{variation finie} si $\forall t, V_1(f,t) := \sup_{\pi_t} V_1(f,\pi_t,t)$ est finie \textrightarrow\ la variation totale est finie sur tout compact.
 	\end{defn}
 	
 	\begin{pop}
-		Si $f \in \cont_0(\R_+)$ est à variations finies, alors elle s'écrit d'une manière unique $f = f_+ - f_-$ où :
+		Si $f \in \cont_0(\R_+)$ est à variation finie, alors elle s'écrit d'une manière unique $f = f_+ - f_-$ où :
 		\begin{enumerate}[(i)]
 			\item $f_+ \in \cont_0^+(\R_+)$, $f_- \in \cont_0^+(\R_+)$,
 			\item $\forall f_+',f_-' \in \cont_0^+(\R_+)$ telles que $f = f_+' - f_-'$ on a $f_+' - f_+ = f_-' - f_- = 0$.
@@ -321,7 +321,7 @@
 	\end{defn}
 	
 	\begin{pop}
-		Si $f$ est à variation finie alors $V_2(f,\pi_t,t) \underset{\abs{\pi_t} \to 0}{\longrightarrow} 0$ où $\abs{\pi_t} := \max_i \abs{t_i - t_{i-1}}$.
+		Si $f$ est à variation finie, alors $V_2(f,\pi_t,t) \underset{\abs{\pi_t} \to 0}{\longrightarrow} 0$ où $\abs{\pi_t} := \max_i \abs{t_i - t_{i-1}}$.
 	\end{pop}
 	
 	\begin{proof}
