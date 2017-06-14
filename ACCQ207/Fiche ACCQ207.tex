@@ -1,6 +1,8 @@
 \documentclass[a4paper,9pt]{article}
 
 \input{ficheStyleSheet.tex}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
 \usepackage{wasysym}
 
 \usepackage{pgf, tikz}
@@ -39,9 +41,15 @@ edge[every join]#1(\tikzchaincurrent)\fi}}}
 	\input{c1}
 
 \section{Courbes elliptiques}
-	\input{cca}
+	\input{c2}
 
 \section{Carré modulaire}
 	\input{c3}
+
+\section{Cryptographie à base de couplages}
+	\input{c4}
+
+\section{Preuve sans apport de connaissance (ZK, Zero Knowledge)}
+	\input{c5}
 
 \end{document}

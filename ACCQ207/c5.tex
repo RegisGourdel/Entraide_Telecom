@@ -1,0 +1,61 @@
+Deux participants : P, prouveur et V, vérifieur.
+
+P possède un secret.
+À l'issue de ce protocole V doit être convaincu que P possède bien ce secret.
+Mais V ne doit rien avoir appris de plus (en particulier aucune info sur le secret) \textrightarrow\ procédé d'identification.
+
+Protocole : Fiat-Shamir \textrightarrow\ repose sur la difficulté de la racine carrée mod $N = pq$ (équivalent à la factorisation).
+
+Secret de P : $x \in (\Z / n\Z)^\times$ et factorisation $p,q$.
+
+Public : $y = x^2$ et $N$.
+
+\begin{table}[h]\centering
+\begin{tabular}{aca}
+	P & \textit{Public} & V \\
+	\hline
+	$r \in (\Z / N\Z)^\times$ aléatoire & $\overset{s = r^2}{\longrightarrow}$ & \\
+	 & $\overset{\varepsilon \in \{ 0, 1 \} }{\longleftarrow}$ & \\
+	 & $\overset{r x^\varepsilon = r \text{ ou}\ rx}{\longrightarrow}$ & teste si $(r x^\varepsilon)^2 = s y^\varepsilon$
+\end{tabular}
+\end{table}
+
+On itère un certain nombre de fois $M$ le protocole.
+V est convaincu avec proba $1 - \frac{1}{2^M}$ si tous les tests sont positifs.
+
+À vérifier :
+\begin{itemize}
+	\item[\textbullet] si P possède le secret, elle répond juste tout le temps \textrightarrow\ OK,
+	\item[\textbullet] si P ne possède pas le secret au mieux elle tombe juste avec proba $\frac{1}{2}$ (et d'ailleurs $\frac{1}{2}$ est atteignable).
+		Si P tombe juste avec proba $\geq \frac{1 + \alpha}{2}$ alors parmi tous les $s$ possibles, il y a une proportion $\alpha$ pour lesquels elle sait répondre à $\varepsilon = 0$ et à $\varepsilon = 1$ \textrightarrow\ sait trouver une racine de $s$ et de $sy$ donc sait trouver une racine de $y$.
+		$\frac{1}{2}$ est atteignable quel que soit la stratégie de V sur l'envoi des $\varepsilon$.
+\end{itemize}
+
+\begin{table}[h]\centering
+\begin{tabular}{aca}
+	P & \textit{Public} & V \\
+	\hline
+	choisit $\eta \in \{ 0, 1 \}$ aléatoire &  & \\
+	choisit $u \in (\Z / N\Z)^\times$ aléatoire &  & \\
+	 & $\overset{v = u^2 y^{-\eta} = u^2 \text{ ou } u^2 y^{-1} }{\longleftarrow}$ & \\
+	 & $\overset{\longleftarrow}{\varepsilon}$ & \\
+	{teste si $\varepsilon = \eta$, vrai avec proba $1/2$} & & \\
+	si oui & TODO & 
+\end{tabular}
+\end{table}
+
+V ne reçoit aucune info sur $x$
+
+$V$ honnête : les échanges sont des triplets $(s_i, \varepsilon_i, u_i)$ où
+\begin{itemize}
+	\item[\textbullet] $u_i^2 = s_i y^{\varepsilon_i}$
+	\item[\textbullet] $s_i$ aléatoire uniforme parmi les carrés de $(\Z / N\Z)^\times$
+	\item[\textbullet] $\varepsilon_i$ aléaoire uniforme dans $\{ 0, 1 \}$, tous les $s_i$ et les $\varepsilon_i$ sont indépendants
+	\item[\textbullet] $u_i$ aléatoire uniforme dans $(\Z / N\Z)^\times$ mais lié aux $s_i$ et $\varepsilon_i$
+\end{itemize}
+
+Est-ce que ça apprend quelque chose sur une racine $x$ de $y$ ?
+
+Non car ces triplets (avec cette distribution) peuvent être construits sans aucune connaissance de $x$.
+
+TODO
